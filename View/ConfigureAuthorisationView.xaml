@@ -16,7 +16,7 @@
 
             <HierarchicalDataTemplate DataType="{x:Type model:UserNode}" 
                                               ItemsSource="{Binding Roles}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Visibility="{Binding IsVisible, Converter={StaticResource boolToVisibilityConverter}}">
                     <Image Source="../Images/User.png" 
                        ToolTip="{Binding Text}" Margin="2" MaxHeight="20" MaxWidth="20" VerticalAlignment="Center"/>
                     <TextBlock Text="{Binding Text}" Margin="2" VerticalAlignment="Center"/>
@@ -24,7 +24,7 @@
             </HierarchicalDataTemplate>
 
             <HierarchicalDataTemplate DataType="{x:Type model:RoleNode}" ItemsSource="{Binding Activities}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Visibility="{Binding IsVisible, Converter={StaticResource boolToVisibilityConverter}}">
                     <Image Source="../Images/Role.png"
                        ToolTip="{Binding Text}" Margin="2" MaxHeight="20" MaxWidth="20" VerticalAlignment="Center"/>
                     <TextBlock Text="{Binding Text}" Margin="2" VerticalAlignment="Center"/>
@@ -32,7 +32,7 @@
             </HierarchicalDataTemplate>
 
             <HierarchicalDataTemplate DataType="{x:Type model:ActivityNode}" ItemsSource="{Binding Activities}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Visibility="{Binding IsVisible, Converter={StaticResource boolToVisibilityConverter}}">
                     <Image Source="../Images/Activity.png" 
                        ToolTip="{Binding Text}" Margin="2" MaxHeight="20" MaxWidth="20" VerticalAlignment="Center"/>
                     <TextBlock Text="{Binding Text}" Margin="2" VerticalAlignment="Center"/>

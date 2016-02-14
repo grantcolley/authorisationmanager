@@ -5,6 +5,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Model
     public abstract class EntityBase : INotifyPropertyChanged
     {
         private string text;
+        private bool isVisible;
 
         protected EntityBase()
         {
@@ -29,7 +30,18 @@ namespace DevelopmentInProgress.AuthorisationManager.Model
 
         public string Description { get; set; }
 
-        public bool IsVisible { get; set; }
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set
+            {
+                if (isVisible != value)
+                {
+                    isVisible = value;
+                    OnPropertyChanged("IsVisible");
+                }
+            }
+        }
 
         public bool IsReadOnly { get; set; }
 
