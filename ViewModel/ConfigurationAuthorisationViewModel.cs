@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows.Input;
 using DevelopmentInProgress.AuthorisationManager.Model;
 using DevelopmentInProgress.Origin.Context;
@@ -12,10 +11,16 @@ namespace DevelopmentInProgress.AuthorisationManager.ViewModel
     {
         public ConfigurationAuthorisationViewModel(ViewModelContext viewModelContext)
             : base(viewModelContext)
-        {            
-            AddItemCommand = new WpfCommand(AddItem);
-            RemoveItemCommand = new WpfCommand(RemoveItem);
-            SelectItemCommand = new WpfCommand(SelectItem);
+        {
+            NewUserCommand = new WpfCommand(OnNewUser);
+            NewRoleCommand = new WpfCommand(OnNewRole);
+            NewActivityCommand = new WpfCommand(OnNewActivity);
+            SaveCommand = new WpfCommand(OnEntitySave);
+            DeleteCommand = new WpfCommand(OnEntityDelete);
+            AddItemCommand = new WpfCommand(OnAddItem);
+            RemoveItemCommand = new WpfCommand(OnRemoveItem);
+            SelectItemCommand = new WpfCommand(OnSelectItem);
+            DragDropCommand = new WpfCommand(OnDragDrop);
         }
 
         public ICommand NewUserCommand { get; set; }
@@ -28,9 +33,9 @@ namespace DevelopmentInProgress.AuthorisationManager.ViewModel
 
         public ICommand DeleteCommand { get; set; }
 
-        public ICommand RemoveItemCommand { get; set; }
-
         public ICommand AddItemCommand { get; set; }
+
+        public ICommand RemoveItemCommand { get; set; }
 
         public ICommand SelectItemCommand { get; set; }
 
@@ -48,10 +53,12 @@ namespace DevelopmentInProgress.AuthorisationManager.ViewModel
             var activity2 = new ActivityNode() { Text = "Write" };
 
             var role1 = new RoleNode() { Text = "Reader" };
+            role1.Activities.Add(activity2);
             role1.Activities.Add(activity1);
 
             var role2 = new RoleNode() { Text = "Writer" };
-            role1.Activities.Add(activity2);
+            role2.Activities.Add(activity1);
+            role2.Activities.Add(activity2);
 
             var user1 = new UserNode() { Text = "Grant" };
             user1.Roles.Add(role1);
@@ -61,8 +68,8 @@ namespace DevelopmentInProgress.AuthorisationManager.ViewModel
 
             Users = new List<UserNode>();
             Users.AddRange(new[] { user1, user2 });
-            Roles = new List<RoleNode>(new[] { role1, role2 });
-            Activities = new List<ActivityNode>(new[] { activity1, activity2 });
+            //Roles = new List<RoleNode>(new[] { role1, role2 });
+            //Activities = new List<ActivityNode>(new[] { activity1, activity2 });
 
             return base.OnPublishedAsync(data);
         }
@@ -77,17 +84,47 @@ namespace DevelopmentInProgress.AuthorisationManager.ViewModel
             return base.SaveDocumentAsync();
         }
 
-        private void AddItem(object param)
+        private void OnNewUser(object param)
+        {
+            
+        }
+
+        private void OnNewRole(object param)
         {
 
         }
 
-        private void RemoveItem(object param)
+        private void OnNewActivity(object param)
         {
 
         }
 
-        private void SelectItem(object param)
+        private void OnEntitySave(object param)
+        {
+
+        }
+
+        private void OnEntityDelete(object param)
+        {
+
+        }
+
+        private void OnAddItem(object param)
+        {
+
+        }
+
+        private void OnRemoveItem(object param)
+        {
+
+        }
+
+        private void OnSelectItem(object param)
+        {
+
+        }
+        
+        private void OnDragDrop(object param)
         {
 
         }

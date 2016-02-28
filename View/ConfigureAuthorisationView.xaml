@@ -92,28 +92,28 @@
             <ContentControl DockPanel.Dock="Top" Height="20"/>
             <GroupBox Background="#FFEEF5FD" Style="{StaticResource GroupBoxNoHeaderStyle}" DockPanel.Dock="Top">
                 <DockPanel Dock="Top" LastChildFill="True">
-                    <Button Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+                    <Button Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding NewUserCommand}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="../Images/User.png" Height="24" Width="24"/>
                             <Label Content="New User" Foreground="{StaticResource LabelForeground}"/>
                         </StackPanel>
                     </Button>
-                    <Button Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+                    <Button Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding NewRoleCommand}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="../Images/Role.png" Height="24" Width="24"/>
                             <Label Content="New Role" Foreground="{StaticResource LabelForeground}"/>
                         </StackPanel>
                     </Button>
-                    <Button Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+                    <Button Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding NewActivityCommand}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="../Images/Activity.png" Height="24" Width="24"/>
                             <Label Content="New Activity" Foreground="{StaticResource LabelForeground}"/>
                         </StackPanel>
                     </Button>
-                    <Button DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+                    <Button DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding DeleteCommand}">
                         <Image Source="../Images/Delete.png" Height="24" Width="24"/>
                     </Button>
-                    <Button DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+                    <Button DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding SaveCommand}">
                         <Image Source="../Images/Save.png" Height="24" Width="24"/>
                     </Button>
                     <Label/>
