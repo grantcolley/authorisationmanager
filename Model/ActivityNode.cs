@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace DevelopmentInProgress.AuthorisationManager.Model
+namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 {
     public class ActivityNode : EntityBase
     {

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Input;
-using DevelopmentInProgress.AuthorisationManager.Model;
+using DevelopmentInProgress.AuthorisationManager.WPF.Model;
 using DevelopmentInProgress.Origin.Context;
 using DevelopmentInProgress.Origin.ViewModel;
 using DevelopmentInProgress.WPFControls.Command;
 
-namespace DevelopmentInProgress.AuthorisationManager.ViewModel
+namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 {
     public class ConfigurationAuthorisationViewModel : DocumentViewModel
     {

@@ -1,12 +1,12 @@
 ﻿using System;
-using DevelopmentInProgress.AuthorisationManager.View;
-using DevelopmentInProgress.AuthorisationManager.ViewModel;
+using DevelopmentInProgress.AuthorisationManager.WPF.View;
+using DevelopmentInProgress.AuthorisationManager.WPF.ViewModel;
 using DevelopmentInProgress.Origin.Module;
 using DevelopmentInProgress.Origin.Navigation;
 using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Unity;
 
-namespace DevelopmentInProgress.AuthorisationManager
+namespace DevelopmentInProgress.AuthorisationManager.WPF
 {
     public class Module : ModuleBase
     {
@@ -25,7 +25,7 @@ namespace DevelopmentInProgress.AuthorisationManager
             var authorisationManager = new ModuleSettings()
             {
                 ModuleName = ModuleName,
-                ModuleImagePath = @"/DevelopmentInProgress.AuthorisationManager;component/Images/AuthorisationManager.png"
+                ModuleImagePath = @"/DevelopmentInProgress.AuthorisationManager.WPF;component/Images/AuthorisationManager.png"
             };
 
             var authorisationGroup = new ModuleGroup()
@@ -39,7 +39,7 @@ namespace DevelopmentInProgress.AuthorisationManager
                 TargetView = typeof (ConfigureAuthorisationView).Name,
                 TargetViewTitle = "Configure Authorisation",
                 ModuleGroupItemImagePath =
-                    @"\DevelopmentInProgress.AuthorisationManager;component/Images/Users.png"
+                    @"\DevelopmentInProgress.AuthorisationManager.WPF;component/Images/Users.png"
             };
 
             authorisationGroup.ModuleGroupItems.Add(configureAuthorisation);

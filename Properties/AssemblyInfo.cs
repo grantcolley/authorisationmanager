@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DevelopmentInProgress.AuthorisationManager")]
+[assembly: AssemblyTitle("DevelopmentInProgress.AuthorisationManager.WPF")]
 [assembly: AssemblyDescription("A WPF authorisation module to be hosted in the Origin WPF shell application")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Development In Progress Ltd")]

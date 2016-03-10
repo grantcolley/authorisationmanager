@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DevelopmentInProgress.AuthorisationManager.Model
+namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 {
     public class UserNode : EntityBase
     {
