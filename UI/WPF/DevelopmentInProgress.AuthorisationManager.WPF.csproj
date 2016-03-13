@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Binaries\</OutputPath>
+    <OutputPath>..\..\..\Binaries\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -34,25 +34,21 @@
       <HintPath>packages\DipSecure.1.0.0.0\lib\net45\DevelopmentInProgress.DipSecure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\origin\Third Party\Prism\Microsoft.Practices.Prism.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\..\..\origin\Third Party\Prism\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.UnityExtensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\origin\Third Party\Prism\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism.UnityExtensions">
+      <HintPath>..\..\..\origin\Third Party\Prism\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\origin\Third Party\Prism\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\..\origin\Third Party\Prism\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\origin\Third Party\Prism\Microsoft.Practices.Unity.dll</HintPath>
+      <HintPath>..\..\..\origin\Third Party\Prism\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\origin\Third Party\Prism\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\..\..\origin\Third Party\Prism\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -106,11 +102,11 @@
     <Resource Include="Images\Users.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\origin\Projects\DevelopmentInProgress.Origin\DevelopmentInProgress.Origin.csproj">
+    <ProjectReference Include="..\..\..\origin\Projects\DevelopmentInProgress.Origin\DevelopmentInProgress.Origin.csproj">
       <Project>{7bce5d35-0443-4031-843a-3563356290e1}</Project>
       <Name>DevelopmentInProgress.Origin</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\wpfcontrols\DevelopmentInProgress.WPFControls\DevelopmentInProgress.WPFControls.csproj">
+    <ProjectReference Include="..\..\..\wpfcontrols\DevelopmentInProgress.WPFControls\DevelopmentInProgress.WPFControls.csproj">
       <Project>{5acdc574-0f6f-48bc-ad2a-2f29bd7009fe}</Project>
       <Name>DevelopmentInProgress.WPFControls</Name>
     </ProjectReference>
