@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthorisationManager", "Aut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.WPF", "UI\WPF\DevelopmentInProgress.AuthorisationManager.WPF.csproj", "{4B067197-130F-41C3-B6FB-E7541B091B4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.Model", "Model\DevelopmentInProgress.AuthorisationManager.Model\DevelopmentInProgress.AuthorisationManager.Model.csproj", "{78172902-2245-456A-AF2A-3F8D2B944A5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{4B067197-130F-41C3-B6FB-E7541B091B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B067197-130F-41C3-B6FB-E7541B091B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B067197-130F-41C3-B6FB-E7541B091B4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78172902-2245-456A-AF2A-3F8D2B944A5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78172902-2245-456A-AF2A-3F8D2B944A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78172902-2245-456A-AF2A-3F8D2B944A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78172902-2245-456A-AF2A-3F8D2B944A5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +56,6 @@ Global
 		{15F28BB2-AD38-4A65-AE62-2280F0C4F83A} = {01E37B87-B050-4A67-B0CE-90FDBA13DA75}
 		{A8D08386-DA1E-4694-B91A-458AE98AE8D0} = {9F6A33EA-8714-491F-B697-59B70514ED15}
 		{4B067197-130F-41C3-B6FB-E7541B091B4D} = {A8D08386-DA1E-4694-B91A-458AE98AE8D0}
+		{78172902-2245-456A-AF2A-3F8D2B944A5D} = {15F28BB2-AD38-4A65-AE62-2280F0C4F83A}
 	EndGlobalSection
 EndGlobal
