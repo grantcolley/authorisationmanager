@@ -49,28 +49,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         protected override ProcessAsyncResult OnPublishedAsync(object data)
         {
-            var activity1 = new ActivityNode() { Text = "Read Only" };
-            var activity2 = new ActivityNode() { Text = "Write" };
-
-            var role1 = new RoleNode() { Text = "Reader" };
-            role1.Activities.Add(activity2);
-            role1.Activities.Add(activity1);
-
-            var role2 = new RoleNode() { Text = "Writer" };
-            role2.Activities.Add(activity1);
-            role2.Activities.Add(activity2);
-
-            var user1 = new UserNode() { Text = "Grant" };
-            user1.Roles.Add(role1);
-
-            var user2 = new UserNode() { Text = "Melanie" };
-            user2.Roles.Add(role2);
-
-            Users = new List<UserNode>();
-            Users.AddRange(new[] { user1, user2 });
-            //Roles = new List<RoleNode>(new[] { role1, role2 });
-            //Activities = new List<ActivityNode>(new[] { activity1, activity2 });
-
             return base.OnPublishedAsync(data);
         }
 
