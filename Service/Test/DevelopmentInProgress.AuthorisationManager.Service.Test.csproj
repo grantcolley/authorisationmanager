@@ -47,13 +47,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Model\DevelopmentInProgress.AuthorisationManager.Model\DevelopmentInProgress.AuthorisationManager.Model.csproj">
-      <Project>{78172902-2245-456a-af2a-3f8d2b944a5d}</Project>
-      <Name>DevelopmentInProgress.AuthorisationManager.Model</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\DevelopmentInProgress.AuthorisationManager.Service\DevelopmentInProgress.AuthorisationManager.Service.csproj">
+      <Project>{f6cbd0d7-ccb3-44e2-97a9-549253a2ad35}</Project>
+      <Name>DevelopmentInProgress.AuthorisationManager.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
