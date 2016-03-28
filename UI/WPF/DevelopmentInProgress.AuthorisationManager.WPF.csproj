@@ -111,9 +111,9 @@
       <Project>{5acdc574-0f6f-48bc-ad2a-2f29bd7009fe}</Project>
       <Name>DevelopmentInProgress.WPFControls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Model\DevelopmentInProgress.AuthorisationManager.Model\DevelopmentInProgress.AuthorisationManager.Model.csproj">
-      <Project>{78172902-2245-456a-af2a-3f8d2b944a5d}</Project>
-      <Name>DevelopmentInProgress.AuthorisationManager.Model</Name>
+    <ProjectReference Include="..\..\Service\DevelopmentInProgress.AuthorisationManager.Service\DevelopmentInProgress.AuthorisationManager.Service.csproj">
+      <Project>{f6cbd0d7-ccb3-44e2-97a9-549253a2ad35}</Project>
+      <Name>DevelopmentInProgress.AuthorisationManager.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

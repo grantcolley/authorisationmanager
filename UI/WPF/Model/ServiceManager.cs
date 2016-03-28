@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using DevelopmentInProgress.AuthorisationManager.Model;
+using DevelopmentInProgress.AuthorisationManager.Service;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 {
     public class ServiceManager
     {
-        private readonly IServiceFactory serviceFactory;
+        private readonly IAuthorisationManagerServiceProxy authorisationManagerService;
 
-        public ServiceManager(IServiceFactory serviceFactory)
+        public ServiceManager(IAuthorisationManagerServiceProxy authorisationManagerService)
         {
-            this.serviceFactory = serviceFactory;
+            this.authorisationManagerService = authorisationManagerService;
         }
 
         public List<ActivityNode> GetActivityNodes()
