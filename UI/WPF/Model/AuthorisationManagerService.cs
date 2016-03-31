@@ -56,7 +56,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         private UserNode GetUserNode(UserAuthorisation userAuthorisation)
         {
-            var userNode = new UserNode() {Text = userAuthorisation.UserName};
+            var userNode = new UserNode() {Id = userAuthorisation.Id, Text = userAuthorisation.DisplayName};
             userAuthorisation.Roles.ForEach(r => userNode.Roles.Add(GetRoleNode(r)));
             return userNode;
         }
