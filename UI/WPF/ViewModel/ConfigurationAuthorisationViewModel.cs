@@ -9,9 +9,13 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 {
     public class ConfigurationAuthorisationViewModel : DocumentViewModel
     {
-        public ConfigurationAuthorisationViewModel(ViewModelContext viewModelContext)
+        private AuthorisationManagerService serviceManager;
+
+        public ConfigurationAuthorisationViewModel(ViewModelContext viewModelContext, AuthorisationManagerService serviceManager)
             : base(viewModelContext)
         {
+            this.serviceManager = serviceManager;
+
             NewUserCommand = new WpfCommand(OnNewUser);
             NewRoleCommand = new WpfCommand(OnNewRole);
             NewActivityCommand = new WpfCommand(OnNewActivity);
@@ -55,6 +59,10 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         protected override void OnPublishedAsyncCompleted(ProcessAsyncResult processAsyncResult)
         {
             base.OnPublishedAsyncCompleted(processAsyncResult);
+
+            Activities = serviceManager.GetActivityNodes();
+            Roles = serviceManager.GetRoleNodes();
+            Users = serviceManager.GetUserNodes();
         }
 
         protected override ProcessAsyncResult SaveDocumentAsync()

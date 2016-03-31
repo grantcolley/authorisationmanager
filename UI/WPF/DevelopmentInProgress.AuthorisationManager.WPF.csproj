@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevelopmentInProgress.DipSecure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DipSecure.1.0.0.0\lib\net45\DevelopmentInProgress.DipSecure.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.Practices.Prism">
       <HintPath>..\..\..\origin\Third Party\Prism\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
@@ -66,7 +62,7 @@
     <Compile Include="Model\ActivityNode.cs" />
     <Compile Include="Model\EntityBase.cs" />
     <Compile Include="Model\RoleNode.cs" />
-    <Compile Include="Model\ServiceManager.cs" />
+    <Compile Include="Model\AuthorisationManagerService.cs" />
     <Compile Include="Model\UserNode.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,6 +99,10 @@
     <Resource Include="Images\Users.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\dipsecure\DevelopmentInProgress.DipSecure\DevelopmentInProgress.DipSecure.csproj">
+      <Project>{22c3bf8f-c03b-49bb-9295-ef4efef95ef4}</Project>
+      <Name>DevelopmentInProgress.DipSecure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\origin\Projects\DevelopmentInProgress.Origin\DevelopmentInProgress.Origin.csproj">
       <Project>{7bce5d35-0443-4031-843a-3563356290e1}</Project>
       <Name>DevelopmentInProgress.Origin</Name>

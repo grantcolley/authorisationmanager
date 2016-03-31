@@ -20,7 +20,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF
         public override void Initialize()
         {
             Container.RegisterType<object, ConfigureAuthorisationView>(typeof (ConfigureAuthorisationView).Name);
-            Container.RegisterType<ConfigurationAuthorisationViewModel>(typeof (ConfigurationAuthorisationViewModel).Name);
+            Container.RegisterType<ConfigurationAuthorisationViewModel>(typeof(ConfigurationAuthorisationViewModel).Name);
 
             var authorisationManager = new ModuleSettings()
             {
