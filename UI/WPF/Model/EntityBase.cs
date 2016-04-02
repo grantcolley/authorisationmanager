@@ -4,7 +4,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 {
     public abstract class EntityBase : INotifyPropertyChanged
     {
-        private string text;
         private bool isVisible;
 
         protected EntityBase()
@@ -14,21 +13,15 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
-        public string Text
-        {
-            get { return text; }
-            set
-            {
-                text = value;
-                OnPropertyChanged("Text");
-            }
-        }
+        public virtual string Text { get; set; }
 
-        public string Code { get; set; }
+        public virtual string Code { get; set; }
 
-        public string Description { get; set; }
+        public virtual string Description { get; set; }
+
+        public bool IsReadOnly { get; set; }
 
         public bool IsVisible
         {
@@ -42,8 +35,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
                 }
             }
         }
-
-        public bool IsReadOnly { get; set; }
 
         public bool CanModify
         {
