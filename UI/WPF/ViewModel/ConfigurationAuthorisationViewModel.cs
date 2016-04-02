@@ -9,7 +9,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 {
     public class ConfigurationAuthorisationViewModel : DocumentViewModel
     {
-        private AuthorisationManagerService serviceManager;
+        private EntityBase selectedItem;
+
+        private readonly AuthorisationManagerService serviceManager;
 
         public ConfigurationAuthorisationViewModel(ViewModelContext viewModelContext, AuthorisationManagerService serviceManager)
             : base(viewModelContext)
@@ -50,6 +52,16 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         public List<ActivityNode> Activities { get; set; }
 
         public List<UserNode> Users { get; set; }
+
+        public EntityBase SelectedItem
+        {
+            get { return selectedItem; }
+            set
+            {
+                selectedItem = value;
+                OnPropertyChanged("SelectedItem");
+            }
+        }
 
         protected override ProcessAsyncResult OnPublishedAsync(object data)
         {
