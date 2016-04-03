@@ -38,6 +38,21 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             return userNodes;
         }
 
+        public bool TrySaveActivity(ActivityNode activityNode)
+        {
+            return false;
+        }
+
+        public bool TrySaveRole(RoleNode roleNode)
+        {
+            return false;
+        }
+
+        public bool TrySaveUser(UserNode userNode)
+        {
+            return false;
+        }
+
         private ActivityNode GetActivityNode(Activity activity)
         {
             var activityNode = new ActivityNode(activity);

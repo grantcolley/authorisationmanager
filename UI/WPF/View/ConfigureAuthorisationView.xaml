@@ -169,7 +169,7 @@
         <GridSplitter Grid.Column="5" Width="2" HorizontalAlignment="Stretch"/>
 
         <ScrollViewer Grid.Column="6" Margin="5,5,5,5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <DockPanel LastChildFill="True" Margin="2">
+            <DockPanel LastChildFill="True" Margin="2" Background="#FFEEF5FD">
                 <ContentControl DockPanel.Dock="Top" Height="10"/>
                 <GroupBox Background="#FFEEF5FD" Style="{StaticResource GroupBoxNoHeaderStyle}" DockPanel.Dock="Top">
                     <DockPanel Dock="Top" LastChildFill="True">
@@ -191,10 +191,10 @@
                                 <Label Content="New Activity" Foreground="{StaticResource LabelForeground}"/>
                             </StackPanel>
                         </Button>
-                        <Button DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding DeleteCommand}">
+                        <Button DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItem}">
                             <Image Source="../Images/Delete.png" Height="24" Width="24"/>
                         </Button>
-                        <Button DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding SaveCommand}">
+                        <Button DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding SaveCommand}" CommandParameter="{Binding SelectedItem}">
                             <Image Source="../Images/Save.png" Height="24" Width="24"/>
                         </Button>
                         <Label/>

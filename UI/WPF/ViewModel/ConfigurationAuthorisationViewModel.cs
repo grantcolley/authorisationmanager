@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using DevelopmentInProgress.AuthorisationManager.WPF.Model;
 using DevelopmentInProgress.DipSecure;
@@ -100,7 +101,30 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         private void OnEntitySave(object param)
         {
+            if (param == null)
+            {
+                return;
+            }
 
+            var activityNode = param as ActivityNode;
+            if (activityNode != null)
+            {
+                
+                return;
+            }
+
+            var roleNode = param as RoleNode;
+            if (roleNode != null)
+            {
+
+                return;
+            }
+
+            var userNode = param as UserNode;
+            if (userNode != null)
+            {
+                
+            }
         }
 
         private void OnEntityDelete(object param)
@@ -124,6 +148,38 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         }
         
         private void OnDragDrop(object param)
+        {
+
+        }
+
+        private void SaveActivity(ActivityNode activityNode)
+        {
+            var newActivity = activityNode.Id.Equals(0);
+
+            var saved = serviceManager.TrySaveActivity(activityNode);
+
+            if (saved)
+            {
+                if (newActivity)
+                {
+                    Activities.Add(activityNode);
+                }
+                else
+                {
+                    var updatedActivity = Activities.First(a => a.Id.Equals(activityNode.Id));
+                    updatedActivity.Text = activityNode.Text;
+                    updatedActivity.Code = activityNode.Code;
+                    updatedActivity.Description = activityNode.Description;
+                }
+            }
+        }
+
+        private void SaveRole(RoleNode roleNode)
+        {
+
+        }
+
+        private void SaveUser(UserNode userNode)
         {
 
         }
