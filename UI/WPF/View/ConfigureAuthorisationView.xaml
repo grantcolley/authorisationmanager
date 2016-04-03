@@ -6,6 +6,7 @@
              xmlns:view="clr-namespace:DevelopmentInProgress.Origin.View;assembly=DevelopmentInProgress.Origin"
              xmlns:ft="clr-namespace:DevelopmentInProgress.WPFControls.FilterTree;assembly=DipWpfControls"
              xmlns:model="clr-namespace:DevelopmentInProgress.AuthorisationManager.WPF.Model"
+             xmlns:local="clr-namespace:DevelopmentInProgress.AuthorisationManager.WPF.View"
              mc:Ignorable="d">
     <view:DocumentViewBase.Resources>
         <ResourceDictionary>
@@ -38,6 +39,85 @@
                     <TextBlock Text="{Binding Text}" Margin="2" VerticalAlignment="Center"/>
                 </StackPanel>
             </HierarchicalDataTemplate>
+
+            <DataTemplate x:Key="ActivityNodeTemplate" DataType="{x:Type model:ActivityNode}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Margin="2" Content="Id:" Foreground="{StaticResource LabelForeground}"/>
+                    <Label Grid.Row="0" Grid.Column="1" Margin="2" Content="{Binding Id}" Foreground="{StaticResource LabelForeground}"/>
+                    <Label Grid.Row="1" Grid.Column="0" Margin="2" Content="Name:" Foreground="{StaticResource LabelForeground}"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding Text}"/>
+                    <Label Grid.Row="2" Grid.Column="0" Margin="2" Content="Activity Code:" Foreground="{StaticResource LabelForeground}"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding Code}"/>
+                    <Label Grid.Row="3" Grid.Column="0" Margin="2" Content="Description:" Foreground="{StaticResource LabelForeground}"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="2" Text="{Binding Description}"/>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="RoleNodeTemplate" DataType="{x:Type model:RoleNode}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Margin="2" Content="Id:" Foreground="{StaticResource LabelForeground}"/>
+                    <Label Grid.Row="0" Grid.Column="1" Margin="2" Content="{Binding Id}" Foreground="{StaticResource LabelForeground}"/>
+                    <Label Grid.Row="1" Grid.Column="0" Margin="2" Content="Name:" Foreground="{StaticResource LabelForeground}"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding Text}"/>
+                    <Label Grid.Row="2" Grid.Column="0" Margin="2" Content="Role Code:" Foreground="{StaticResource LabelForeground}"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding Code}"/>
+                    <Label Grid.Row="3" Grid.Column="0" Margin="2" Content="Description:" Foreground="{StaticResource LabelForeground}"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="2" Text="{Binding Description}"/>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="UserNodeTemplate" DataType="{x:Type model:UserNode}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Margin="2" Content="Id:" Foreground="{StaticResource LabelForeground}"/>
+                    <Label Grid.Row="0" Grid.Column="1" Margin="2" Content="{Binding Id}" Foreground="{StaticResource LabelForeground}"/>
+                    <Label Grid.Row="1" Grid.Column="0" Margin="2" Content="User Name:" Foreground="{StaticResource LabelForeground}"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding Text}"/>
+                    <Label Grid.Row="2" Grid.Column="0" Margin="2" Content="Display Name:" Foreground="{StaticResource LabelForeground}"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding Description}"/>
+                </Grid>
+            </DataTemplate>
+            
+            <local:SelectedItemTemplateSelector 
+                ActivityNodeTemplate="{StaticResource ActivityNodeTemplate}"
+                RoleNodeTemplate="{StaticResource RoleNodeTemplate}"
+                UserNodeTemplate="{StaticResource UserNodeTemplate}"
+                x:Key="SelectItemTemplateSelector"/>
             
         </ResourceDictionary>        
     </view:DocumentViewBase.Resources>
@@ -120,7 +200,7 @@
                         <Label/>
                     </DockPanel>
                 </GroupBox>
-                <ContentControl />
+                <ContentControl Content="{Binding SelectedItem}" ContentTemplateSelector="{StaticResource SelectItemTemplateSelector}"/>
             </DockPanel>
         </ScrollViewer>
     </Grid>

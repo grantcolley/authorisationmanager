@@ -70,6 +70,7 @@
     <Compile Include="View\ConfigureAuthorisationView.xaml.cs">
       <DependentUpon>ConfigureAuthorisationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SelectedItemTemplateSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Delete.png" />

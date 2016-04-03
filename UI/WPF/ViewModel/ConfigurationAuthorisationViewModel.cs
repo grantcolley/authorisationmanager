@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Input;
 using DevelopmentInProgress.AuthorisationManager.WPF.Model;
+using DevelopmentInProgress.DipSecure;
 using DevelopmentInProgress.Origin.Context;
 using DevelopmentInProgress.Origin.ViewModel;
 using DevelopmentInProgress.WPFControls.Command;
@@ -84,17 +85,17 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         private void OnNewUser(object param)
         {
-            
+            SelectedItem = new UserNode(new UserAuthorisation());
         }
 
         private void OnNewRole(object param)
         {
-
+            SelectedItem = new RoleNode(new Role());
         }
 
         private void OnNewActivity(object param)
         {
-
+            SelectedItem = new ActivityNode(new Activity());
         }
 
         private void OnEntitySave(object param)
