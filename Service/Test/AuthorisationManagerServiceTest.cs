@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipSecure;
 
@@ -52,6 +53,29 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
         {
             var json = Serializer.SerializeToJson(usersAuthorisations);
             return json;
+        }
+
+        public string SaveActivity(string activity)
+        {
+            var activityToSave = Serializer.DeserializeJson<Activity>(activity);
+            if (activityToSave.Id.Equals(0))
+            {
+                activityToSave.Id = activities.Max(a => a.Id) + 1;
+            }
+
+            activities.Add(activityToSave);
+            var json = Serializer.SerializeToJson(activityToSave);
+            return json;
+        }
+
+        public string SaveRole(string role)
+        {
+            return String.Empty;
+        }
+
+        public string SaveUserAuthorisaion(UserAuthorisation userAuthorisation)
+        {
+            return String.Empty;
         }
     }
 }

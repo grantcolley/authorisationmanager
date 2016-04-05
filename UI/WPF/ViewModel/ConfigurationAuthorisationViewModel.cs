@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using DevelopmentInProgress.AuthorisationManager.WPF.Model;
@@ -49,11 +50,11 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         public ICommand DragDropCommand { get; set; }
 
-        public List<RoleNode> Roles { get; set; }
+        public ObservableCollection<ActivityNode> Activities { get; set; }
 
-        public List<ActivityNode> Activities { get; set; }
+        public ObservableCollection<RoleNode> Roles { get; set; }
 
-        public List<UserNode> Users { get; set; }
+        public ObservableCollection<UserNode> Users { get; set; }
 
         public EntityBase SelectedItem
         {
@@ -74,9 +75,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         {
             base.OnPublishedAsyncCompleted(processAsyncResult);
 
-            Activities = serviceManager.GetActivityNodes();
-            Roles = serviceManager.GetRoleNodes();
-            Users = serviceManager.GetUserNodes();
+            Activities = new ObservableCollection<ActivityNode>(serviceManager.GetActivityNodes());
+            Roles = new ObservableCollection<RoleNode>(serviceManager.GetRoleNodes());
+            Users = new ObservableCollection<UserNode>(serviceManager.GetUserNodes());
         }
 
         protected override ProcessAsyncResult SaveDocumentAsync()
@@ -109,21 +110,21 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             var activityNode = param as ActivityNode;
             if (activityNode != null)
             {
-                
+                SaveActivity(activityNode);
                 return;
             }
 
             var roleNode = param as RoleNode;
             if (roleNode != null)
             {
-
+                SaveRole(roleNode);
                 return;
             }
 
             var userNode = param as UserNode;
             if (userNode != null)
             {
-                
+                SaveUser(userNode);
             }
         }
 
@@ -156,20 +157,20 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         {
             var newActivity = activityNode.Id.Equals(0);
 
-            var saved = serviceManager.TrySaveActivity(activityNode);
+            var savedActivity = serviceManager.SaveActivity(activityNode);
 
-            if (saved)
+            if (savedActivity != null)
             {
                 if (newActivity)
                 {
-                    Activities.Add(activityNode);
+                    Activities.Add(savedActivity);
                 }
                 else
                 {
-                    var updatedActivity = Activities.First(a => a.Id.Equals(activityNode.Id));
-                    updatedActivity.Text = activityNode.Text;
-                    updatedActivity.Code = activityNode.Code;
-                    updatedActivity.Description = activityNode.Description;
+                    var updatedActivity = Activities.First(a => a.Id.Equals(savedActivity.Id));
+                    updatedActivity.Text = savedActivity.Text;
+                    updatedActivity.Code = savedActivity.Code;
+                    updatedActivity.Description = savedActivity.Description;
                 }
             }
         }

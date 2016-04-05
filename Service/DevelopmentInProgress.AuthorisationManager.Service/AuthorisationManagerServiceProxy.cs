@@ -33,5 +33,23 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
             var userAuthorisations = Serializer.DeserializeJson<IList<UserAuthorisation>>(json);
             return userAuthorisations;
         }
+
+        public Activity SaveActivity(Activity activity)
+        {
+            var json = Serializer.SerializeToJson(activity);
+            var result = authorisationManagerService.SaveActivity(json);
+            activity = Serializer.DeserializeJson<Activity>(result);
+            return activity;
+        }
+
+        public Role SaveRole(Role role)
+        {
+            return null;
+        }
+
+        public UserAuthorisation SaveUserAuthorisation(UserAuthorisation userAuthorisation)
+        {
+            return null;
+        }
     }
 }
