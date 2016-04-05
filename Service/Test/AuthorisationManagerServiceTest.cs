@@ -28,7 +28,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
 
             roles = new List<Role>(new[] {role1, role2});
 
-            var user1 = new UserAuthorisation() {Id = 1, UserName = "jbloggs", DisplayName = "Joe Bloggs"};
+            var user1 = new UserAuthorisation() {Id = 1, UserName = "jbloggs", DisplayName = "Joe Blogger"};
             user1.Roles.Add(roles[0]);
 
             var user2 = new UserAuthorisation() {Id = 2, UserName = "jmasters", DisplayName = "Jane Masters"};
