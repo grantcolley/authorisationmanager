@@ -145,7 +145,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         private void OnSelectItem(object param)
         {
-
+            SelectedItem = param as EntityBase;
         }
         
         private void OnDragDrop(object param)
@@ -163,21 +163,24 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 if (newActivity)
                 {
-                    Activities.Add(savedActivity);
-                }
-                else
-                {
-                    var updatedActivity = Activities.First(a => a.Id.Equals(savedActivity.Id));
-                    updatedActivity.Text = savedActivity.Text;
-                    updatedActivity.Code = savedActivity.Code;
-                    updatedActivity.Description = savedActivity.Description;
+                    Activities.Add(activityNode);
                 }
             }
         }
 
         private void SaveRole(RoleNode roleNode)
         {
+            var newRole = roleNode.Id.Equals(0);
 
+            var savedRole = serviceManager.SaveRole(roleNode);
+
+            if (savedRole != null)
+            {
+                if (newRole)
+                {
+                    Roles.Add(roleNode);
+                }
+            }
         }
 
         private void SaveUser(UserNode userNode)

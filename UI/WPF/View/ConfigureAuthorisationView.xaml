@@ -57,11 +57,11 @@
                     <Label Grid.Row="0" Grid.Column="0" Margin="2" Content="Id:" Foreground="{StaticResource LabelForeground}"/>
                     <Label Grid.Row="0" Grid.Column="1" Margin="2" Content="{Binding Id}" Foreground="{StaticResource LabelForeground}"/>
                     <Label Grid.Row="1" Grid.Column="0" Margin="2" Content="Name:" Foreground="{StaticResource LabelForeground}"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding Text}"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
                     <Label Grid.Row="2" Grid.Column="0" Margin="2" Content="Activity Code:" Foreground="{StaticResource LabelForeground}"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding Code}"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}"/>
                     <Label Grid.Row="3" Grid.Column="0" Margin="2" Content="Description:" Foreground="{StaticResource LabelForeground}"/>
-                    <TextBox Grid.Row="3" Grid.Column="1" Margin="2" Text="{Binding Description}"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="2" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </DataTemplate>
 
@@ -82,11 +82,11 @@
                     <Label Grid.Row="0" Grid.Column="0" Margin="2" Content="Id:" Foreground="{StaticResource LabelForeground}"/>
                     <Label Grid.Row="0" Grid.Column="1" Margin="2" Content="{Binding Id}" Foreground="{StaticResource LabelForeground}"/>
                     <Label Grid.Row="1" Grid.Column="0" Margin="2" Content="Name:" Foreground="{StaticResource LabelForeground}"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding Text}"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
                     <Label Grid.Row="2" Grid.Column="0" Margin="2" Content="Role Code:" Foreground="{StaticResource LabelForeground}"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding Code}"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}"/>
                     <Label Grid.Row="3" Grid.Column="0" Margin="2" Content="Description:" Foreground="{StaticResource LabelForeground}"/>
-                    <TextBox Grid.Row="3" Grid.Column="1" Margin="2" Text="{Binding Description}"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="2" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </DataTemplate>
 
@@ -107,9 +107,9 @@
                     <Label Grid.Row="0" Grid.Column="0" Margin="2" Content="Id:" Foreground="{StaticResource LabelForeground}"/>
                     <Label Grid.Row="0" Grid.Column="1" Margin="2" Content="{Binding Id}" Foreground="{StaticResource LabelForeground}"/>
                     <Label Grid.Row="1" Grid.Column="0" Margin="2" Content="User Name:" Foreground="{StaticResource LabelForeground}"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding Text}"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
                     <Label Grid.Row="2" Grid.Column="0" Margin="2" Content="Display Name:" Foreground="{StaticResource LabelForeground}"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding Description}"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </DataTemplate>
             
