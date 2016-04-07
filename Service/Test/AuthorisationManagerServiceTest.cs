@@ -70,7 +70,15 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
 
         public string SaveRole(string role)
         {
-            return String.Empty;
+            var roleToSave = Serializer.DeserializeJson<Role>(role);
+            if (roleToSave.Id.Equals(0))
+            {
+                roleToSave.Id = roles.Max(r => r.Id) + 1;
+            }
+
+            roles.Add(roleToSave);
+            var json = Serializer.SerializeToJson(roleToSave);
+            return json;
         }
 
         public string SaveUserAuthorisaion(UserAuthorisation userAuthorisation)

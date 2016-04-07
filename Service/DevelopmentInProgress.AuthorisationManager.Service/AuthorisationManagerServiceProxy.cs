@@ -44,7 +44,10 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
 
         public Role SaveRole(Role role)
         {
-            return null;
+            var json = Serializer.SerializeToJson(role);
+            var result = authorisationManagerService.SaveRole(json);
+            role = Serializer.DeserializeJson<Role>(result);
+            return role;
         }
 
         public UserAuthorisation SaveUserAuthorisation(UserAuthorisation userAuthorisation)

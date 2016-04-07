@@ -41,16 +41,28 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
         public ActivityNode SaveActivity(ActivityNode activityNode)
         {
             var activity = authorisationManagerServiceProxy.SaveActivity(activityNode.Activity);
-            activityNode = GetActivityNode(activity);
+            var savedActivityNode = GetActivityNode(activity);
+
+            activityNode.Id = savedActivityNode.Id;
+            activityNode.Text = savedActivityNode.Text;
+            activityNode.Code = savedActivityNode.Code;
+            activityNode.Description = savedActivityNode.Description;
             return activityNode;
         }
 
-        public RoleNode TrySaveRole(RoleNode roleNode)
+        public RoleNode SaveRole(RoleNode roleNode)
         {
-            return null;
+            var activity = authorisationManagerServiceProxy.SaveRole(roleNode.Role);
+            var savedRoleNode = GetRoleNode(activity);
+
+            roleNode.Id = savedRoleNode.Id;
+            roleNode.Text = savedRoleNode.Text;
+            roleNode.Code = savedRoleNode.Code;
+            roleNode.Description = savedRoleNode.Description;
+            return roleNode;
         }
 
-        public UserNode TrySaveUser(UserNode userNode)
+        public UserNode SaveUser(UserNode userNode)
         {
             return null;
         }
