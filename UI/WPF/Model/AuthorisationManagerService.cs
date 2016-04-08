@@ -52,8 +52,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public RoleNode SaveRole(RoleNode roleNode)
         {
-            var activity = authorisationManagerServiceProxy.SaveRole(roleNode.Role);
-            var savedRoleNode = GetRoleNode(activity);
+            var role = authorisationManagerServiceProxy.SaveRole(roleNode.Role);
+            var savedRoleNode = GetRoleNode(role);
 
             roleNode.Id = savedRoleNode.Id;
             roleNode.Text = savedRoleNode.Text;
@@ -64,7 +64,13 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public UserNode SaveUser(UserNode userNode)
         {
-            return null;
+            var user = authorisationManagerServiceProxy.SaveUserAuthorisation(userNode.UserAuthorisation);
+            var savedUserNode = GetUserNode(user);
+
+            userNode.Id = savedUserNode.Id;
+            userNode.Text = savedUserNode.Text;
+            userNode.Description = savedUserNode.Description;
+            return userNode;
         }
 
         private ActivityNode GetActivityNode(Activity activity)

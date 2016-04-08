@@ -52,7 +52,10 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
 
         public UserAuthorisation SaveUserAuthorisation(UserAuthorisation userAuthorisation)
         {
-            return null;
+            var json = Serializer.SerializeToJson(userAuthorisation);
+            var result = authorisationManagerService.SaveUserAuthorisaion(json);
+            userAuthorisation = Serializer.DeserializeJson<UserAuthorisation>(result);
+            return userAuthorisation;
         }
     }
 }

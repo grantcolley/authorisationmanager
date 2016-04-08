@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using DevelopmentInProgress.AuthorisationManager.WPF.Model;
 using DevelopmentInProgress.DipSecure;
@@ -185,7 +183,17 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         private void SaveUser(UserNode userNode)
         {
+            var newUser = userNode.Id.Equals(0);
 
+            var savedUser = serviceManager.SaveUser(userNode);
+
+            if (savedUser != null)
+            {
+                if (newUser)
+                {
+                    Users.Add(userNode);
+                }
+            }
         }
     }
 }

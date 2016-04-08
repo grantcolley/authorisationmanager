@@ -1,6 +1,4 @@
-﻿using DevelopmentInProgress.DipSecure;
-
-namespace DevelopmentInProgress.AuthorisationManager.Service
+﻿namespace DevelopmentInProgress.AuthorisationManager.Service
 {
     public interface IAuthorisationManagerService
     {
@@ -9,6 +7,6 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
         string GetUserAuthorisations();
         string SaveActivity(string activity);
         string SaveRole(string role);
-        string SaveUserAuthorisaion(UserAuthorisation userAuthorisation);
+        string SaveUserAuthorisaion(string userAuthorisation);
     }
 }

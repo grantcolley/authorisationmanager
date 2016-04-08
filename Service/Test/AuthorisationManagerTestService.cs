@@ -81,9 +81,17 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             return json;
         }
 
-        public string SaveUserAuthorisaion(UserAuthorisation userAuthorisation)
+        public string SaveUserAuthorisaion(string userAuthorisation)
         {
-            return String.Empty;
+            var userToSave = Serializer.DeserializeJson<UserAuthorisation>(userAuthorisation);
+            if (userToSave.Id.Equals(0))
+            {
+                userToSave.Id = usersAuthorisations.Max(u => u.Id) + 1;
+            }
+
+            usersAuthorisations.Add(userToSave);
+            var json = Serializer.SerializeToJson(userToSave);
+            return json;
         }
     }
 }
