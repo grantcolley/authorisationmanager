@@ -6,13 +6,13 @@ using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.Service.Test
 {
-    public class AuthorisationManagerServiceTest : IAuthorisationManagerService
+    public class AuthorisationManagerTestService : IAuthorisationManagerService
     {
         private readonly List<Activity> activities;
         private readonly List<Role> roles;
         private readonly List<UserAuthorisation> usersAuthorisations;
 
-        public AuthorisationManagerServiceTest()
+        public AuthorisationManagerTestService()
         {
             var activity1 = new Activity() {Id = 1, Name = "Read", ActivityCode = "READ", Description = "Read access"};
             var activity2 = new Activity() {Id = 2, Name = "Write", ActivityCode = "WRITE", Description = "Write access"};
