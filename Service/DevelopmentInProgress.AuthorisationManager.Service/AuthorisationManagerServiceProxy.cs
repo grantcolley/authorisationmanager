@@ -57,5 +57,20 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
             userAuthorisation = Serializer.DeserializeJson<UserAuthorisation>(result);
             return userAuthorisation;
         }
+
+        public void DeleteActivity(int id)
+        {
+            authorisationManagerService.DeleteActivity(id.ToString());
+        }
+
+        public void DeleteRole(int id)
+        {
+            authorisationManagerService.DeleteRole(id.ToString());
+        }
+
+        public void DeleteUserAuthorisation(int id)
+        {
+            authorisationManagerService.DeleteUserAuthorisation(id.ToString());
+        }
     }
 }

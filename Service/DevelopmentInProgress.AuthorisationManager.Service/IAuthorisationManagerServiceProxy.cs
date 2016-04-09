@@ -11,5 +11,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
         Activity SaveActivity(Activity activity);
         Role SaveRole(Role role);
         UserAuthorisation SaveUserAuthorisation(UserAuthorisation userAuthorisation);
+        void DeleteActivity(int id);
+        void DeleteRole(int id);
+        void DeleteUserAuthorisation(int id);
     }
 }

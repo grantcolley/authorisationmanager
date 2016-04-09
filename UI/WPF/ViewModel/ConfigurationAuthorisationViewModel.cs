@@ -128,7 +128,36 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         private void OnEntityDelete(object param)
         {
+            if (param == null)
+            {
+                return;
+            }
 
+            var activityNode = param as ActivityNode;
+            if (activityNode != null)
+            {
+                serviceManager.DeleteActivity(activityNode.Id);
+                Activities.Remove(activityNode);
+                SelectedItem = null;
+                return;
+            }
+
+            var roleNode = param as RoleNode;
+            if (roleNode != null)
+            {
+                serviceManager.DeleteRole(roleNode.Id);
+                Roles.Remove(roleNode);
+                SelectedItem = null;
+                return;
+            }
+
+            var userNode = param as UserNode;
+            if (userNode != null)
+            {
+                serviceManager.DeleteUserAuthorisation(userNode.Id);
+                Users.Remove(userNode);
+                SelectedItem = null;
+            }
         }
 
         private void OnAddItem(object param)

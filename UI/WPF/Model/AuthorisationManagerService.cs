@@ -73,6 +73,21 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             return userNode;
         }
 
+        public void DeleteActivity(int id)
+        {
+            authorisationManagerServiceProxy.DeleteActivity(id);
+        }
+
+        public void DeleteRole(int id)
+        {
+            authorisationManagerServiceProxy.DeleteRole(id);
+        }
+
+        public void DeleteUserAuthorisation(int id)
+        {
+            authorisationManagerServiceProxy.DeleteUserAuthorisation(id);
+        }
+        
         private ActivityNode GetActivityNode(Activity activity)
         {
             var activityNode = new ActivityNode(activity);

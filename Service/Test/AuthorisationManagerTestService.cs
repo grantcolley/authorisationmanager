@@ -93,5 +93,38 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             var json = Serializer.SerializeToJson(userToSave);
             return json;
         }
+
+        public void DeleteActivity(string id)
+        {
+            int i;
+            Int32.TryParse(id, out i);
+            var activity = activities.FirstOrDefault(a => a.Id == i);
+            if (activity != null)
+            {
+                activities.Remove(activity);
+            }
+        }
+
+        public void DeleteRole(string id)
+        {
+            int i;
+            Int32.TryParse(id, out i);
+            var role = roles.FirstOrDefault(r => r.Id == i);
+            if (role != null)
+            {
+                roles.Remove(role);
+            }            
+        }
+
+        public void DeleteUserAuthorisation(string id)
+        {
+            int i;
+            Int32.TryParse(id, out i);
+            var user = usersAuthorisations.FirstOrDefault(u => u.Id == i);
+            if (user != null)
+            {
+                usersAuthorisations.Remove(user);
+            }
+        }
     }
 }
