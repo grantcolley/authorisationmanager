@@ -23,7 +23,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             role1.Activities.Add(activities[0]);
 
             var role2 = new Role() {Id = 2, Name = "Writer", RoleCode = "WRITER", Description = "Write permission"};
-            role1.Activities.Add(activities[0]);
+            role2.Activities.Add(activities[0]);
             role2.Activities.Add(activities[1]);
 
             roles = new List<Role>(new[] {role1, role2});
