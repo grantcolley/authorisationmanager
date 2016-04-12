@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
@@ -9,10 +9,10 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
         {
             UserAuthorisation = userAuthorisation;
 
-            Roles = new List<RoleNode>();
+            Roles = new ObservableCollection<RoleNode>();
         }
 
-        public List<RoleNode> Roles { get; set; }
+        public ObservableCollection<RoleNode> Roles { get; set; }
 
         public UserAuthorisation UserAuthorisation { get; private set; }
 
