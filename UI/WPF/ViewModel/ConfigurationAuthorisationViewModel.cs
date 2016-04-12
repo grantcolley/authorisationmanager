@@ -5,6 +5,7 @@ using DevelopmentInProgress.DipSecure;
 using DevelopmentInProgress.Origin.Context;
 using DevelopmentInProgress.Origin.ViewModel;
 using DevelopmentInProgress.WPFControls.Command;
+using DevelopmentInProgress.WPFControls.FilterTree;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 {
@@ -177,6 +178,68 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         
         private void OnDragDrop(object param)
         {
+            if (param == null)
+            {
+                return;
+            }
+
+            var dragDropArgs = param as FilterTreeDragDropArgs;
+            if (dragDropArgs == null)
+            {
+                return;
+            }
+
+            var dragActivityNode = dragDropArgs.DragItem as ActivityNode;
+            if (dragActivityNode != null)
+            {
+                var dropRoleNode = dragDropArgs.DropTarget as RoleNode;
+                if (dropRoleNode != null)
+                {
+                    // drag activity onto a role
+
+                    dropRoleNode.Activities.Add(dragActivityNode);
+                    return;
+                }
+
+                var dropActivityNode = dragDropArgs.DropTarget as ActivityNode;
+                if (dropActivityNode != null)
+                {
+                    // drag activity onto another activity
+
+                    dropActivityNode.Activities.Add(dragActivityNode);
+                    return;
+                }
+
+                // invalid drop target
+                return;
+            }
+
+            var dragRoleNode = dragDropArgs.DragItem as RoleNode;
+            if (dragRoleNode != null)
+            {
+                var dropUserNode = dragDropArgs.DropTarget as UserNode;
+                if (dropUserNode != null)
+                {
+                    // drag role onto a user
+
+                    dropUserNode.Roles.Add(dragRoleNode);
+                    return;
+                }
+
+                var dropRoleNode = dragDropArgs.DropTarget as RoleNode;
+                if (dropRoleNode != null)
+                {
+                    // drag role onto another role
+
+                    dropRoleNode.Roles.Add(dragRoleNode);
+                    return;
+                }
+
+                // invalid drop target
+                return;
+            }
+
+            // invalid drag item
 
         }
 
