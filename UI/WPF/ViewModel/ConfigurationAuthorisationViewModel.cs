@@ -3,6 +3,7 @@ using System.Windows.Input;
 using DevelopmentInProgress.AuthorisationManager.WPF.Model;
 using DevelopmentInProgress.DipSecure;
 using DevelopmentInProgress.Origin.Context;
+using DevelopmentInProgress.Origin.Messages;
 using DevelopmentInProgress.Origin.ViewModel;
 using DevelopmentInProgress.WPFControls.Command;
 using DevelopmentInProgress.WPFControls.FilterTree;
@@ -210,7 +211,15 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                     return;
                 }
 
-                // invalid drop target
+                var activityMsg = new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text =
+                        string.Format("Invalid drop target. Activity {0} can only be dropped on a role or another activity.",
+                            dragActivityNode.Text)
+                };
+
+                ShowMessage(activityMsg, true);
                 return;
             }
 
@@ -235,12 +244,25 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                     return;
                 }
 
-                // invalid drop target
+                var roleMsg = new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text =
+                        string.Format("Invalid drop target. Role {0} can only be dropped on a user or another role.",
+                            dragRoleNode.Text)
+                };
+
+                ShowMessage(roleMsg, true);
                 return;
             }
 
-            // invalid drag item
+            var msg = new Message()
+            {
+                MessageType = MessageTypeEnum.Warn,
+                Text = "Invalid drag item."
+            };
 
+            ShowMessage(msg, true);
         }
 
         private void SaveActivity(ActivityNode activityNode)
