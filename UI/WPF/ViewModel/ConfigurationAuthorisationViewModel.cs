@@ -26,7 +26,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             NewActivityCommand = new WpfCommand(OnNewActivity);
             SaveCommand = new WpfCommand(OnEntitySave);
             DeleteCommand = new WpfCommand(OnEntityDelete);
-            AddItemCommand = new WpfCommand(OnAddItem);
             RemoveItemCommand = new WpfCommand(OnRemoveItem);
             SelectItemCommand = new WpfCommand(OnSelectItem);
             DragDropCommand = new WpfCommand(OnDragDrop);
@@ -41,8 +40,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         public ICommand SaveCommand { get; set; }
 
         public ICommand DeleteCommand { get; set; }
-
-        public ICommand AddItemCommand { get; set; }
 
         public ICommand RemoveItemCommand { get; set; }
 
@@ -162,11 +159,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             }
         }
 
-        private void OnAddItem(object param)
-        {
-
-        }
-
         private void OnRemoveItem(object param)
         {
 
@@ -179,11 +171,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         
         private void OnDragDrop(object param)
         {
-            if (param == null)
-            {
-                return;
-            }
-
             var dragDropArgs = param as FilterTreeDragDropArgs;
             if (dragDropArgs == null)
             {

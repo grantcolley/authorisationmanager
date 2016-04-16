@@ -137,7 +137,6 @@
                                Foreground="{StaticResource LabelForeground}"
                                ItemsSource="{Binding Users}" 
                                RemoveItemCommand="{Binding RemoveItemCommand}"
-                               AddItemCommand="{Binding AddItemCommand}"
                                SelectItemCommand="{Binding SelectItemCommand}"
                                DragDropCommand="{Binding DragDropCommand}"/>          
         </ScrollViewer>
@@ -149,7 +148,6 @@
                                Foreground="{StaticResource LabelForeground}"
                                ItemsSource="{Binding Roles}" 
                                RemoveItemCommand="{Binding RemoveItemCommand}"
-                               AddItemCommand="{Binding AddItemCommand}"
                                SelectItemCommand="{Binding SelectItemCommand}"
                                DragDropCommand="{Binding DragDropCommand}"/>
         </ScrollViewer>
@@ -161,7 +159,6 @@
                                Foreground="{StaticResource LabelForeground}"
                                ItemsSource="{Binding Activities}" 
                                RemoveItemCommand="{Binding RemoveItemCommand}"
-                               AddItemCommand="{Binding AddItemCommand}"
                                SelectItemCommand="{Binding SelectItemCommand}"
                                DragDropCommand="{Binding DragDropCommand}"/>
         </ScrollViewer>
