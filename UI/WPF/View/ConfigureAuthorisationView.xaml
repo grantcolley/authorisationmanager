@@ -24,7 +24,7 @@
                 </StackPanel>
             </HierarchicalDataTemplate>
 
-            <HierarchicalDataTemplate DataType="{x:Type model:RoleNode}" ItemsSource="{Binding Activities}">
+            <HierarchicalDataTemplate DataType="{x:Type model:RoleNode}" ItemsSource="{Binding Items}">
                 <StackPanel Orientation="Horizontal" Visibility="{Binding IsVisible, Converter={StaticResource boolToVisibilityConverter}}">
                     <Image Source="../Images/Role.png"
                        ToolTip="{Binding Text}" Margin="2" MaxHeight="20" MaxWidth="20" VerticalAlignment="Center"/>

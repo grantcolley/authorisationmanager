@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections;
+using System.Collections.ObjectModel;
+using System.Windows.Data;
 using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
@@ -16,6 +18,18 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
         public ObservableCollection<RoleNode> Roles { get; set; }
 
         public ObservableCollection<ActivityNode> Activities { get; set; }
+
+        public IList Items
+        {
+            get
+            {
+                return new CompositeCollection()
+                {
+                    new CollectionContainer() {Collection = Activities},
+                    new CollectionContainer() {Collection = Roles}
+                };
+            }
+        }
 
         public Role Role { get; private set; }
 
