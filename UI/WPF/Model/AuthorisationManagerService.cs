@@ -91,22 +91,42 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
         private ActivityNode GetActivityNode(Activity activity)
         {
             var activityNode = new ActivityNode(activity);
-            activity.Activities.ToList().ForEach(a => activityNode.Activities.Add(GetActivityNode(a)));
+            activity.Activities.ToList().ForEach(a =>
+            {
+                var an = GetActivityNode(a);
+                an.Parent = activityNode;
+                activityNode.Activities.Add(an);
+            });
             return activityNode;
         }
 
         private RoleNode GetRoleNode(Role role)
         {
             var roleNode = new RoleNode(role);
-            role.Activities.ToList().ForEach(a => roleNode.Activities.Add(GetActivityNode(a)));
-            role.Roles.ToList().ForEach(r => roleNode.Roles.Add(GetRoleNode(r)));
+            role.Activities.ToList().ForEach(a =>
+            {
+                var an = GetActivityNode(a);
+                an.Parent = roleNode;
+                roleNode.Activities.Add(an);
+            });
+            role.Roles.ToList().ForEach(r =>
+            {
+                var rn = GetRoleNode(r);
+                rn.Parent = roleNode;
+                roleNode.Roles.Add(GetRoleNode(r));
+            });
             return roleNode;
         }
 
         private UserNode GetUserNode(UserAuthorisation userAuthorisation)
         {
             var userNode = new UserNode(userAuthorisation);
-            userAuthorisation.Roles.ToList().ForEach(r => userNode.Roles.Add(GetRoleNode(r)));
+            userAuthorisation.Roles.ToList().ForEach(r =>
+            {
+                var rn = GetRoleNode(r);
+                rn.Parent = userNode;
+                userNode.Roles.Add(rn);
+            });
             return userNode;
         }
     }
