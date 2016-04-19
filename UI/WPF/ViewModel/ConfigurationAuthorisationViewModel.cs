@@ -99,11 +99,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         private void OnEntitySave(object param)
         {
-            if (param == null)
-            {
-                return;
-            }
-
             var activityNode = param as ActivityNode;
             if (activityNode != null)
             {
@@ -127,11 +122,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         private void OnEntityDelete(object param)
         {
-            if (param == null)
-            {
-                return;
-            }
-
             var activityNode = param as ActivityNode;
             if (activityNode != null)
             {
@@ -161,7 +151,24 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         private void OnRemoveItem(object param)
         {
+            var activityNode = param as ActivityNode;
+            if (activityNode != null)
+            {
+                RemoveActivity(activityNode);
+                return;
+            }
 
+            var roleNode = param as RoleNode;
+            if (roleNode != null)
+            {
+                RemoveRole(roleNode);
+            }
+
+            var userNode = param as UserNode;
+            if (userNode != null)
+            {
+                RemoveUser(userNode);
+            }
         }
 
         private void OnSelectItem(object param)
@@ -295,6 +302,21 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                     Users.Add(userNode);
                 }
             }
+        }
+
+        private void RemoveActivity(ActivityNode activityNode)
+        {
+            
+        }
+
+        private void RemoveRole(RoleNode roleNode)
+        {
+
+        }
+
+        private void RemoveUser(UserNode userNode)
+        {
+
         }
     }
 }
