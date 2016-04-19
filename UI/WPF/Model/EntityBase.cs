@@ -21,6 +21,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public virtual string Description { get; set; }
 
+        public EntityBase Parent { get; set; }
+
         public bool IsReadOnly { get; set; }
 
         public bool IsVisible
