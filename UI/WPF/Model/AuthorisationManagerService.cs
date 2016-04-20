@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.RightsManagement;
 using DevelopmentInProgress.AuthorisationManager.Service;
 using DevelopmentInProgress.DipSecure;
 
@@ -87,7 +89,15 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
         {
             authorisationManagerServiceProxy.DeleteUserAuthorisation(id);
         }
-        
+
+        public void RemoveActivity(ActivityNode activityNode)
+        {
+        }
+
+        public void RemoveRole(RoleNode roleNode)
+        {
+        }
+
         private ActivityNode GetActivityNode(Activity activity)
         {
             var activityNode = new ActivityNode(activity);

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using DevelopmentInProgress.AuthorisationManager.WPF.Model;
 using DevelopmentInProgress.DipSecure;
@@ -306,17 +307,68 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         private void RemoveActivity(ActivityNode activityNode)
         {
-            
+            if (activityNode.Parent == null)
+            {
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Info,
+                    Text = string.Format("Can't remove activity {0} as it has no parent.", activityNode.Text)
+                });
+                return;
+            }
+
+            serviceManager.RemoveActivity(activityNode);
+            var parentActivity = activityNode.Parent as ActivityNode;
+            if (parentActivity != null)
+            {
+                parentActivity.Activities.Remove(activityNode);
+                return;
+            }
+
+            var parentRole = activityNode.Parent as RoleNode;
+            if (parentRole != null)
+            {
+                parentRole.Activities.Remove(activityNode);
+            }
         }
 
         private void RemoveRole(RoleNode roleNode)
         {
+            if (roleNode.Parent == null)
+            {
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Info,
+                    Text = string.Format("Can't remove role {0} as it has no parent.", roleNode.Text)
+                });
+                return;
+            }
 
+            serviceManager.RemoveRole(roleNode);
+
+            var parentRole = roleNode.Parent as RoleNode;
+            if (parentRole != null)
+            {
+                parentRole.Roles.Remove(roleNode);
+            }
+
+            var parentUser = roleNode.Parent as UserNode;
+            if (parentUser != null)
+            {
+                parentUser.Roles.Remove(roleNode);
+            }
         }
 
         private void RemoveUser(UserNode userNode)
         {
-
+            if (userNode.Parent == null)
+            {
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Info,
+                    Text = string.Format("Can't remove user {0} as the user has no parent.", userNode.Text)
+                });
+            }
         }
     }
 }
