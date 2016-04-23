@@ -90,10 +90,37 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public void RemoveActivity(ActivityNode activityNode)
         {
+            // call service...
+
+            var parentActivity = activityNode.Parent as ActivityNode;
+            if (parentActivity != null)
+            {
+                parentActivity.Activities.Remove(activityNode);
+                return;
+            }
+
+            var parentRole = activityNode.Parent as RoleNode;
+            if (parentRole != null)
+            {
+                parentRole.Activities.Remove(activityNode);
+            }
         }
 
         public void RemoveRole(RoleNode roleNode)
         {
+            // call service...
+
+            var parentRole = roleNode.Parent as RoleNode;
+            if (parentRole != null)
+            {
+                parentRole.Roles.Remove(roleNode);
+            }
+
+            var parentUser = roleNode.Parent as UserNode;
+            if (parentUser != null)
+            {
+                parentUser.Roles.Remove(roleNode);
+            }
         }
 
         private ActivityNode GetActivityNode(Activity activity)

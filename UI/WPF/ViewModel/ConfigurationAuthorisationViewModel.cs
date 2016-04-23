@@ -317,18 +317,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             }
 
             serviceManager.RemoveActivity(activityNode);
-            var parentActivity = activityNode.Parent as ActivityNode;
-            if (parentActivity != null)
-            {
-                parentActivity.Activities.Remove(activityNode);
-                return;
-            }
-
-            var parentRole = activityNode.Parent as RoleNode;
-            if (parentRole != null)
-            {
-                parentRole.Activities.Remove(activityNode);
-            }
         }
 
         private void RemoveRole(RoleNode roleNode)
@@ -344,18 +332,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             }
 
             serviceManager.RemoveRole(roleNode);
-
-            var parentRole = roleNode.Parent as RoleNode;
-            if (parentRole != null)
-            {
-                parentRole.Roles.Remove(roleNode);
-            }
-
-            var parentUser = roleNode.Parent as UserNode;
-            if (parentUser != null)
-            {
-                parentUser.Roles.Remove(roleNode);
-            }
         }
 
         private void RemoveUser(UserNode userNode)
