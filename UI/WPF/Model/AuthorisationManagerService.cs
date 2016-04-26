@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DevelopmentInProgress.AuthorisationManager.Service;
 using DevelopmentInProgress.DipSecure;
@@ -121,6 +122,16 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             {
                 parentUser.Roles.Remove(roleNode);
             }
+        }
+
+        private bool TryAddActivity(ActivityNode activityNode, EntityBase target, out string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool TryAddRole(RoleNode activityNode, EntityBase target, out string message)
+        {
+            throw new NotImplementedException();
         }
 
         private ActivityNode GetActivityNode(Activity activity)
