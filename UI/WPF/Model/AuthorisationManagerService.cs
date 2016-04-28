@@ -124,14 +124,77 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             }
         }
 
-        private bool TryAddActivity(ActivityNode activityNode, EntityBase target, out string message)
+        public bool TryAddActivity(ActivityNode activityNode, EntityBase target, out string message)
         {
-            throw new NotImplementedException();
+            message = string.Empty;
+
+            if (activityNode == null)
+            {
+                message = "Invalid activity.";
+                return false;
+            }
+
+            var dropRoleNode = target as RoleNode;
+            if (dropRoleNode != null)
+            {
+                dropRoleNode.Activities.Add(activityNode);
+
+                // save role
+
+                return true                    ;
+            }
+
+            var dropActivityNode = target as ActivityNode;
+            if (dropActivityNode != null)
+            {
+                dropActivityNode.Activities.Add(activityNode);
+
+                // save activity
+
+                return true;
+            }
+
+            message =
+                string.Format("Invalid drop target. Activity {0} can only be dropped on a role or another activity.",
+                    activityNode.Text);
+
+            return false;
         }
 
-        private bool TryAddRole(RoleNode activityNode, EntityBase target, out string message)
+        public bool TryAddRole(RoleNode roleNode, EntityBase target, out string message)
         {
-            throw new NotImplementedException();
+            message = string.Empty;
+
+            if (roleNode == null)
+            {
+                message = "Invalid role.";
+                return false;
+            }
+
+            var dropUserNode = target as UserNode;
+            if (dropUserNode != null)
+            {
+                dropUserNode.Roles.Add(roleNode);
+
+                // save user
+
+                return true;
+            }
+
+            var dropRoleNode = target as RoleNode;
+            if (dropRoleNode != null)
+            {
+                dropRoleNode.Roles.Add(roleNode);
+
+                // save role
+
+                return true;
+            }
+
+            message = string.Format("Invalid drop target. Role {0} can only be dropped on a user or another role.",
+                roleNode.Text);
+
+            return false;
         }
 
         private ActivityNode GetActivityNode(Activity activity)

@@ -184,76 +184,50 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 return;
             }
 
+            var message = string.Empty;
+            var target = dragDropArgs.DropTarget as EntityBase;
+
             var dragActivityNode = dragDropArgs.DragItem as ActivityNode;
             if (dragActivityNode != null)
             {
-                var dropRoleNode = dragDropArgs.DropTarget as RoleNode;
-                if (dropRoleNode != null)
+                
+                if (!serviceManager.TryAddActivity(dragActivityNode, target, out message))
                 {
-                    // drag activity onto a role
+                    var activityMsg = new Message()
+                    {
+                        MessageType = MessageTypeEnum.Warn,
+                        Text = message
+                    };
 
-                    dropRoleNode.Activities.Add(dragActivityNode);
-                    return;
+                    ShowMessage(activityMsg, true);
                 }
 
-                var dropActivityNode = dragDropArgs.DropTarget as ActivityNode;
-                if (dropActivityNode != null)
-                {
-                    // drag activity onto another activity
-
-                    dropActivityNode.Activities.Add(dragActivityNode);
-                    return;
-                }
-
-                var activityMsg = new Message()
-                {
-                    MessageType = MessageTypeEnum.Warn,
-                    Text =
-                        string.Format("Invalid drop target. Activity {0} can only be dropped on a role or another activity.",
-                            dragActivityNode.Text)
-                };
-
-                ShowMessage(activityMsg, true);
                 return;
             }
 
             var dragRoleNode = dragDropArgs.DragItem as RoleNode;
             if (dragRoleNode != null)
             {
-                var dropUserNode = dragDropArgs.DropTarget as UserNode;
-                if (dropUserNode != null)
+                if (!serviceManager.TryAddRole(dragRoleNode, target, out message))
                 {
-                    // drag role onto a user
+                    var roleMsg = new Message()
+                    {
+                        MessageType = MessageTypeEnum.Warn,
+                        Text = message
+                    };
 
-                    dropUserNode.Roles.Add(dragRoleNode);
-                    return;
+                    ShowMessage(roleMsg, true);
                 }
 
-                var dropRoleNode = dragDropArgs.DropTarget as RoleNode;
-                if (dropRoleNode != null)
-                {
-                    // drag role onto another role
-
-                    dropRoleNode.Roles.Add(dragRoleNode);
-                    return;
-                }
-
-                var roleMsg = new Message()
-                {
-                    MessageType = MessageTypeEnum.Warn,
-                    Text =
-                        string.Format("Invalid drop target. Role {0} can only be dropped on a user or another role.",
-                            dragRoleNode.Text)
-                };
-
-                ShowMessage(roleMsg, true);
                 return;
             }
+
+            message = "Invalid drag item.";
 
             var msg = new Message()
             {
                 MessageType = MessageTypeEnum.Warn,
-                Text = "Invalid drag item."
+                Text = message
             };
 
             ShowMessage(msg, true);
