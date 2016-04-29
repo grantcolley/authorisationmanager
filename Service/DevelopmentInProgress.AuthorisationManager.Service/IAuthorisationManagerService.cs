@@ -8,8 +8,8 @@
         string SaveActivity(string activity);
         string SaveRole(string role);
         string SaveUserAuthorisaion(string userAuthorisation);
-        void DeleteActivity(string id);
-        void DeleteRole(string id);
-        void DeleteUserAuthorisation(string id);
+        string DeleteActivity(string id);
+        string DeleteRole(string id);
+        string DeleteUserAuthorisation(string id);
     }
 }

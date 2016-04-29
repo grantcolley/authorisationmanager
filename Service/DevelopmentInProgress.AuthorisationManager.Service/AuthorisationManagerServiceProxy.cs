@@ -62,17 +62,20 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
 
         public void DeleteActivity(int id)
         {
-            authorisationManagerService.DeleteActivity(id.ToString());
+            var response = authorisationManagerService.DeleteActivity(id.ToString());
+            ServiceResponse.Deserialize(response);
         }
 
         public void DeleteRole(int id)
         {
-            authorisationManagerService.DeleteRole(id.ToString());
+            var response = authorisationManagerService.DeleteRole(id.ToString());
+            ServiceResponse.Deserialize(response);
         }
 
         public void DeleteUserAuthorisation(int id)
         {
-            authorisationManagerService.DeleteUserAuthorisation(id.ToString());
+            var response = authorisationManagerService.DeleteUserAuthorisation(id.ToString());
+            ServiceResponse.Deserialize(response);
         }
     }
 }
