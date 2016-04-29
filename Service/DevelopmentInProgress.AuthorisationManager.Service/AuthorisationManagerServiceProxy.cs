@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using DevelopmentInProgress.DipCore;
+using DevelopmentInProgress.DipCore.Service;
 using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.Service
@@ -15,46 +17,46 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
 
         public IList<Activity> GetActivities()
         {
-            var json = authorisationManagerService.GetActivities();
-            var activities = Serializer.DeserializeJson<IList<Activity>>(json);
+            var response = authorisationManagerService.GetActivities();
+            var activities = ServiceResponse.Deserialize<IList<Activity>>(response);
             return activities;
         }
 
         public IList<Role> GetRoles()
         {
-            var json = authorisationManagerService.GetRoles();
-            var roles = Serializer.DeserializeJson<IList<Role>>(json);
+            var response = authorisationManagerService.GetRoles();
+            var roles = ServiceResponse.Deserialize<IList<Role>>(response);
             return roles;
         }
 
         public IList<UserAuthorisation> GetUserAuthorisations()
         {
-            var json = authorisationManagerService.GetUserAuthorisations();
-            var userAuthorisations = Serializer.DeserializeJson<IList<UserAuthorisation>>(json);
+            var response = authorisationManagerService.GetUserAuthorisations();
+            var userAuthorisations = ServiceResponse.Deserialize<IList<UserAuthorisation>>(response);
             return userAuthorisations;
         }
 
         public Activity SaveActivity(Activity activity)
         {
             var json = Serializer.SerializeToJson(activity);
-            var result = authorisationManagerService.SaveActivity(json);
-            activity = Serializer.DeserializeJson<Activity>(result);
+            var response = authorisationManagerService.SaveActivity(json);
+            activity = ServiceResponse.Deserialize<Activity>(response);
             return activity;
         }
 
         public Role SaveRole(Role role)
         {
             var json = Serializer.SerializeToJson(role);
-            var result = authorisationManagerService.SaveRole(json);
-            role = Serializer.DeserializeJson<Role>(result);
+            var response = authorisationManagerService.SaveRole(json);
+            role = ServiceResponse.Deserialize<Role>(response);
             return role;
         }
 
         public UserAuthorisation SaveUserAuthorisation(UserAuthorisation userAuthorisation)
         {
             var json = Serializer.SerializeToJson(userAuthorisation);
-            var result = authorisationManagerService.SaveUserAuthorisaion(json);
-            userAuthorisation = Serializer.DeserializeJson<UserAuthorisation>(result);
+            var response = authorisationManagerService.SaveUserAuthorisaion(json);
+            userAuthorisation = ServiceResponse.Deserialize<UserAuthorisation>(response);
             return userAuthorisation;
         }
 

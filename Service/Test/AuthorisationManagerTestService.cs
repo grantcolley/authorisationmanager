@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DevelopmentInProgress.DipCore;
+using DevelopmentInProgress.DipCore.Service;
 using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.Service.Test
@@ -39,19 +40,25 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
 
         public string GetActivities()
         {
-            var json = Serializer.SerializeToJson(activities);
+            var jsonActivities = Serializer.SerializeToJson(activities);
+            var serviceResponse = new ServiceResponse() { Message = jsonActivities };
+            var json = Serializer.SerializeToJson(serviceResponse);            
             return json;
         }
 
         public string GetRoles()
         {
-            var json = Serializer.SerializeToJson(roles);
+            var jsonRoles = Serializer.SerializeToJson(roles);
+            var serviceResponse = new ServiceResponse() { Message = jsonRoles };
+            var json = Serializer.SerializeToJson(serviceResponse);      
             return json;
         }
 
         public string GetUserAuthorisations()
         {
-            var json = Serializer.SerializeToJson(usersAuthorisations);
+            var jsonUserAuthorisations = Serializer.SerializeToJson(usersAuthorisations);
+            var serviceResponse = new ServiceResponse() { Message = jsonUserAuthorisations };
+            var json = Serializer.SerializeToJson(serviceResponse);    
             return json;
         }
 
@@ -64,7 +71,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
 
             activities.Add(activityToSave);
-            var json = Serializer.SerializeToJson(activityToSave);
+            var jsonActivityToSave = Serializer.SerializeToJson(activityToSave);
+            var serviceResponse = new ServiceResponse() { Message = jsonActivityToSave };
+            var json = Serializer.SerializeToJson(serviceResponse);   
             return json;
         }
 
@@ -77,7 +86,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
 
             roles.Add(roleToSave);
-            var json = Serializer.SerializeToJson(roleToSave);
+            var jsonRoleToSave = Serializer.SerializeToJson(roleToSave);
+            var serviceResponse = new ServiceResponse() { Message = jsonRoleToSave };
+            var json = Serializer.SerializeToJson(serviceResponse);   
             return json;
         }
 
@@ -90,7 +101,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
 
             usersAuthorisations.Add(userToSave);
-            var json = Serializer.SerializeToJson(userToSave);
+            var jsonUserToSave = Serializer.SerializeToJson(userToSave);
+            var serviceResponse = new ServiceResponse() { Message = jsonUserToSave };
+            var json = Serializer.SerializeToJson(serviceResponse);   
             return json;
         }
 
