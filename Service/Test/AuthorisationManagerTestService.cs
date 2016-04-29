@@ -40,104 +40,200 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
 
         public string GetActivities()
         {
-            var jsonActivities = Serializer.SerializeToJson(activities);
-            var serviceResponse = new ServiceResponse() { Message = jsonActivities };
+            var serviceResponse = new ServiceResponse();
+
+            try
+            {
+                var jsonActivities = Serializer.SerializeToJson(activities);
+                serviceResponse = new ServiceResponse() { Message = jsonActivities };
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
+            }
+
             var json = Serializer.SerializeToJson(serviceResponse);            
             return json;
         }
 
         public string GetRoles()
         {
-            var jsonRoles = Serializer.SerializeToJson(roles);
-            var serviceResponse = new ServiceResponse() { Message = jsonRoles };
-            var json = Serializer.SerializeToJson(serviceResponse);      
+            var serviceResponse = new ServiceResponse();
+
+            try
+            {
+                var jsonRoles = Serializer.SerializeToJson(roles);
+                serviceResponse = new ServiceResponse() {Message = jsonRoles};
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
+            }
+
+            var json = Serializer.SerializeToJson(serviceResponse);
             return json;
         }
 
         public string GetUserAuthorisations()
         {
-            var jsonUserAuthorisations = Serializer.SerializeToJson(usersAuthorisations);
-            var serviceResponse = new ServiceResponse() { Message = jsonUserAuthorisations };
-            var json = Serializer.SerializeToJson(serviceResponse);    
+            var serviceResponse = new ServiceResponse();
+
+            try
+            {
+                var jsonUserAuthorisations = Serializer.SerializeToJson(usersAuthorisations);
+                serviceResponse = new ServiceResponse() {Message = jsonUserAuthorisations};
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
+            }
+
+            var json = Serializer.SerializeToJson(serviceResponse);
             return json;
         }
 
         public string SaveActivity(string activity)
         {
-            var activityToSave = Serializer.DeserializeJson<Activity>(activity);
-            if (activityToSave.Id.Equals(0))
+            var serviceResponse = new ServiceResponse();
+
+            try
             {
-                activityToSave.Id = activities.Max(a => a.Id) + 1;
+                var activityToSave = Serializer.DeserializeJson<Activity>(activity);
+                if (activityToSave.Id.Equals(0))
+                {
+                    activityToSave.Id = activities.Max(a => a.Id) + 1;
+                }
+
+                activities.Add(activityToSave);
+                var jsonActivityToSave = Serializer.SerializeToJson(activityToSave);
+                serviceResponse = new ServiceResponse() {Message = jsonActivityToSave};
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
             }
 
-            activities.Add(activityToSave);
-            var jsonActivityToSave = Serializer.SerializeToJson(activityToSave);
-            var serviceResponse = new ServiceResponse() { Message = jsonActivityToSave };
-            var json = Serializer.SerializeToJson(serviceResponse);   
+            var json = Serializer.SerializeToJson(serviceResponse);
             return json;
         }
 
         public string SaveRole(string role)
         {
-            var roleToSave = Serializer.DeserializeJson<Role>(role);
-            if (roleToSave.Id.Equals(0))
+            var serviceResponse = new ServiceResponse();
+
+            try
             {
-                roleToSave.Id = roles.Max(r => r.Id) + 1;
+                var roleToSave = Serializer.DeserializeJson<Role>(role);
+                if (roleToSave.Id.Equals(0))
+                {
+                    roleToSave.Id = roles.Max(r => r.Id) + 1;
+                }
+
+                roles.Add(roleToSave);
+                var jsonRoleToSave = Serializer.SerializeToJson(roleToSave);
+                serviceResponse = new ServiceResponse() {Message = jsonRoleToSave};
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
             }
 
-            roles.Add(roleToSave);
-            var jsonRoleToSave = Serializer.SerializeToJson(roleToSave);
-            var serviceResponse = new ServiceResponse() { Message = jsonRoleToSave };
-            var json = Serializer.SerializeToJson(serviceResponse);   
+            var json = Serializer.SerializeToJson(serviceResponse);
             return json;
         }
 
         public string SaveUserAuthorisaion(string userAuthorisation)
         {
-            var userToSave = Serializer.DeserializeJson<UserAuthorisation>(userAuthorisation);
-            if (userToSave.Id.Equals(0))
+            var serviceResponse = new ServiceResponse();
+
+            try
             {
-                userToSave.Id = usersAuthorisations.Max(u => u.Id) + 1;
+                var userToSave = Serializer.DeserializeJson<UserAuthorisation>(userAuthorisation);
+                if (userToSave.Id.Equals(0))
+                {
+                    userToSave.Id = usersAuthorisations.Max(u => u.Id) + 1;
+                }
+
+                usersAuthorisations.Add(userToSave);
+                var jsonUserToSave = Serializer.SerializeToJson(userToSave);
+                serviceResponse = new ServiceResponse() {Message = jsonUserToSave};
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
             }
 
-            usersAuthorisations.Add(userToSave);
-            var jsonUserToSave = Serializer.SerializeToJson(userToSave);
-            var serviceResponse = new ServiceResponse() { Message = jsonUserToSave };
-            var json = Serializer.SerializeToJson(serviceResponse);   
+            var json = Serializer.SerializeToJson(serviceResponse);
             return json;
         }
 
-        public void DeleteActivity(string id)
+        public string DeleteActivity(string id)
         {
-            int i;
-            Int32.TryParse(id, out i);
-            var activity = activities.FirstOrDefault(a => a.Id == i);
-            if (activity != null)
+            var serviceResponse = new ServiceResponse();
+
+            try
             {
-                activities.Remove(activity);
+                int i;
+                Int32.TryParse(id, out i);
+                var activity = activities.FirstOrDefault(a => a.Id == i);
+                if (activity != null)
+                {
+                    activities.Remove(activity);
+                }
             }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
+            }
+
+            var json = Serializer.SerializeToJson(serviceResponse);
+            return json;
         }
 
-        public void DeleteRole(string id)
+        public string DeleteRole(string id)
         {
-            int i;
-            Int32.TryParse(id, out i);
-            var role = roles.FirstOrDefault(r => r.Id == i);
-            if (role != null)
+            var serviceResponse = new ServiceResponse();
+
+            try
             {
-                roles.Remove(role);
-            }            
+                int i;
+                Int32.TryParse(id, out i);
+                var role = roles.FirstOrDefault(r => r.Id == i);
+                if (role != null)
+                {
+                    roles.Remove(role);
+                }
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
+            }
+
+            var json = Serializer.SerializeToJson(serviceResponse);
+            return json;
         }
 
-        public void DeleteUserAuthorisation(string id)
+        public string DeleteUserAuthorisation(string id)
         {
-            int i;
-            Int32.TryParse(id, out i);
-            var user = usersAuthorisations.FirstOrDefault(u => u.Id == i);
-            if (user != null)
+            var serviceResponse = new ServiceResponse();
+
+            try
             {
-                usersAuthorisations.Remove(user);
+                int i;
+                Int32.TryParse(id, out i);
+                var user = usersAuthorisations.FirstOrDefault(u => u.Id == i);
+                if (user != null)
+                {
+                    usersAuthorisations.Remove(user);
+                }
             }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
+            }
+
+            var json = Serializer.SerializeToJson(serviceResponse);
+            return json;
         }
     }
 }
