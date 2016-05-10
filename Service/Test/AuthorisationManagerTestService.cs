@@ -17,7 +17,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
         {
             var activity1 = new Activity() {Id = 1, Name = "Read", ActivityCode = "READ", Description = "Read access"};
             var activity2 = new Activity() {Id = 2, Name = "Write", ActivityCode = "WRITE", Description = "Write access"};
-            
+            activity2.Activities.Add(activity1);
             activities = new List<Activity>(new[] { activity1, activity2 });
 
             var role1 = new Role() {Id = 1, Name = "Reader", RoleCode = "READER", Description = "Read permission"};
