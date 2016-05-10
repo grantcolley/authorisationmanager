@@ -14,12 +14,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
     {
         private EntityBase selectedItem;
 
-        private readonly AuthorisationManagerService serviceManager;
 
-        public ConfigurationAuthorisationViewModel(ViewModelContext viewModelContext, AuthorisationManagerService serviceManager)
             : base(viewModelContext)
         {
-            this.serviceManager = serviceManager;
 
             NewUserCommand = new WpfCommand(OnNewUser);
             NewRoleCommand = new WpfCommand(OnNewRole);
@@ -72,9 +69,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         {
             base.OnPublishedAsyncCompleted(processAsyncResult);
 
-            Activities = new ObservableCollection<ActivityNode>(serviceManager.GetActivityNodes());
-            Roles = new ObservableCollection<RoleNode>(serviceManager.GetRoleNodes());
-            Users = new ObservableCollection<UserNode>(serviceManager.GetUserNodes());
         }
 
         protected override ProcessAsyncResult SaveDocumentAsync()
@@ -125,7 +119,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             var activityNode = param as ActivityNode;
             if (activityNode != null)
             {
-                serviceManager.DeleteActivity(activityNode.Id);
                 Activities.Remove(activityNode);
                 SelectedItem = null;
                 return;
@@ -134,7 +127,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             var roleNode = param as RoleNode;
             if (roleNode != null)
             {
-                serviceManager.DeleteRole(roleNode.Id);
                 Roles.Remove(roleNode);
                 SelectedItem = null;
                 return;
@@ -143,7 +135,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             var userNode = param as UserNode;
             if (userNode != null)
             {
-                serviceManager.DeleteUserAuthorisation(userNode.Id);
                 Users.Remove(userNode);
                 SelectedItem = null;
             }
@@ -191,7 +182,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             if (dragActivityNode != null)
             {
                 
-                if (!serviceManager.TryAddActivity(dragActivityNode, target, out message))
                 {
                     var activityMsg = new Message()
                     {
@@ -208,7 +198,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             var dragRoleNode = dragDropArgs.DragItem as RoleNode;
             if (dragRoleNode != null)
             {
-                if (!serviceManager.TryAddRole(dragRoleNode, target, out message))
                 {
                     var roleMsg = new Message()
                     {
@@ -237,7 +226,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         {
             var newActivity = activityNode.Id.Equals(0);
 
-            var savedActivity = serviceManager.SaveActivity(activityNode);
 
             if (savedActivity != null)
             {
@@ -252,7 +240,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         {
             var newRole = roleNode.Id.Equals(0);
 
-            var savedRole = serviceManager.SaveRole(roleNode);
 
             if (savedRole != null)
             {
@@ -267,7 +254,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         {
             var newUser = userNode.Id.Equals(0);
 
-            var savedUser = serviceManager.SaveUser(userNode);
 
             if (savedUser != null)
             {
@@ -290,7 +276,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 return;
             }
 
-            serviceManager.RemoveActivity(activityNode);
         }
 
         private void RemoveRole(RoleNode roleNode)
@@ -305,7 +290,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 return;
             }
 
-            serviceManager.RemoveRole(roleNode);
         }
 
         private void RemoveUser(UserNode userNode)

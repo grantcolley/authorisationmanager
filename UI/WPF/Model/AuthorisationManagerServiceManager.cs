@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DevelopmentInProgress.AuthorisationManager.Service;
 using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 {
-    public class AuthorisationManagerService
+    public class AuthorisationManagerServiceManager
     {
         private readonly IAuthorisationManagerServiceProxy authorisationManagerServiceProxy;
 
-        public AuthorisationManagerService(IAuthorisationManagerServiceProxy authorisationManagerServiceProxy)
+        public AuthorisationManagerServiceManager(IAuthorisationManagerServiceProxy authorisationManagerServiceProxy)
         {
             this.authorisationManagerServiceProxy = authorisationManagerServiceProxy;
         }
