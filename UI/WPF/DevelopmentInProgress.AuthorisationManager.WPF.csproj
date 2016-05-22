@@ -100,6 +100,10 @@
     <Resource Include="Images\Users.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\dipcore\DevelopmentInProgress.DipCore\DevelopmentInProgress.DipCore.csproj">
+      <Project>{ba7df412-8e32-498d-a463-bd35f9494d5e}</Project>
+      <Name>DevelopmentInProgress.DipCore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\dipsecure\DevelopmentInProgress.DipSecure\DevelopmentInProgress.DipSecure.csproj">
       <Project>{22c3bf8f-c03b-49bb-9295-ef4efef95ef4}</Project>
       <Name>DevelopmentInProgress.DipSecure</Name>
