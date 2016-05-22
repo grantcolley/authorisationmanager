@@ -38,38 +38,70 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             return userNodes;
         }
 
-        public ActivityNode SaveActivity(ActivityNode activityNode)
+        public ActivityNode SaveActivity(ActivityNode activityNode, IEnumerable<ActivityNode> activities)
         {
             var activity = authorisationManagerServiceProxy.SaveActivity(activityNode.Activity);
             var savedActivityNode = GetActivityNode(activity);
 
-            activityNode.Id = savedActivityNode.Id;
-            activityNode.Text = savedActivityNode.Text;
-            activityNode.Code = savedActivityNode.Code;
-            activityNode.Description = savedActivityNode.Description;
+            if (activityNode.Id.Equals(0))
+            {
+                activityNode.Id = savedActivityNode.Id;
+                activityNode.Text = savedActivityNode.Text;
+                activityNode.Code = savedActivityNode.Code;
+                activityNode.Description = savedActivityNode.Description;
+            }
+
+            foreach (var a in activities)
+            {
+                a.Text = savedActivityNode.Text;
+                a.Code = savedActivityNode.Code;
+                a.Description = savedActivityNode.Description;
+            }
+
             return activityNode;
         }
 
-        public RoleNode SaveRole(RoleNode roleNode)
+        public RoleNode SaveRole(RoleNode roleNode, IEnumerable<RoleNode> roles)
         {
             var role = authorisationManagerServiceProxy.SaveRole(roleNode.Role);
             var savedRoleNode = GetRoleNode(role);
 
-            roleNode.Id = savedRoleNode.Id;
-            roleNode.Text = savedRoleNode.Text;
-            roleNode.Code = savedRoleNode.Code;
-            roleNode.Description = savedRoleNode.Description;
+            if (roleNode.Id.Equals(0))
+            {
+                roleNode.Id = savedRoleNode.Id;
+                roleNode.Text = savedRoleNode.Text;
+                roleNode.Code = savedRoleNode.Code;
+                roleNode.Description = savedRoleNode.Description;
+            }
+
+            foreach (var r in roles)
+            {
+                r.Text = savedRoleNode.Text;
+                r.Code = savedRoleNode.Code;
+                r.Description = savedRoleNode.Description;                
+            }
+
             return roleNode;
         }
 
-        public UserNode SaveUser(UserNode userNode)
+        public UserNode SaveUser(UserNode userNode, IEnumerable<UserNode> users)
         {
             var user = authorisationManagerServiceProxy.SaveUserAuthorisation(userNode.UserAuthorisation);
             var savedUserNode = GetUserNode(user);
 
-            userNode.Id = savedUserNode.Id;
-            userNode.Text = savedUserNode.Text;
-            userNode.Description = savedUserNode.Description;
+            if (userNode.Id.Equals(0))
+            {
+                userNode.Id = savedUserNode.Id;
+                userNode.Text = savedUserNode.Text;
+                userNode.Description = savedUserNode.Description;
+            }
+
+            foreach (var u in users)
+            {
+                u.Text = savedUserNode.Text;
+                u.Description = savedUserNode.Description;
+            }
+
             return userNode;
         }
 

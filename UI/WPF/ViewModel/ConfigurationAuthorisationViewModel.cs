@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using DevelopmentInProgress.AuthorisationManager.WPF.Model;
+using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipSecure;
 using DevelopmentInProgress.Origin.Context;
 using DevelopmentInProgress.Origin.Messages;
@@ -82,6 +83,11 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             return base.SaveDocumentAsync();
         }
 
+        private void OnSelectItem(object param)
+        {
+            SelectedItem = param as EntityBase;
+        }
+
         private void OnNewUser(object param)
         {
             SelectedItem = new UserNode(new UserAuthorisation());
@@ -126,7 +132,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             if (activityNode != null)
             {
                 authorisationManagerServiceManager.DeleteActivity(activityNode.Id);
-                Activities.Remove(activityNode);
+                Activities.RemoveNested(activityNode, a => a.Id.Equals(activityNode.Id), Roles, Users);
                 SelectedItem = null;
                 return;
             }
@@ -135,7 +141,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             if (roleNode != null)
             {
                 authorisationManagerServiceManager.DeleteRole(roleNode.Id);
-                Roles.Remove(roleNode);
+                Roles.RemoveNested(roleNode, r => r.Id.Equals(roleNode.Id), Users);
                 SelectedItem = null;
                 return;
             }
@@ -169,11 +175,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 RemoveUser(userNode);
             }
-        }
-
-        private void OnSelectItem(object param)
-        {
-            SelectedItem = param as EntityBase;
         }
         
         private void OnDragDrop(object param)
@@ -237,7 +238,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         {
             var newActivity = activityNode.Id.Equals(0);
 
-            var savedActivity = authorisationManagerServiceManager.SaveActivity(activityNode);
+            var duplicates = Activities.Flatten<ActivityNode>(a => a.Id.Equals(activityNode.Id), Roles, Users);
+
+            var savedActivity = authorisationManagerServiceManager.SaveActivity(activityNode, duplicates);
 
             if (savedActivity != null)
             {
@@ -252,7 +255,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         {
             var newRole = roleNode.Id.Equals(0);
 
-            var savedRole = authorisationManagerServiceManager.SaveRole(roleNode);
+            var duplicates = Roles.Flatten<RoleNode>(r => r.Id.Equals(roleNode.Id), Users);
+
+            var savedRole = authorisationManagerServiceManager.SaveRole(roleNode, duplicates);
 
             if (savedRole != null)
             {
@@ -267,7 +272,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         {
             var newUser = userNode.Id.Equals(0);
 
-            var savedUser = authorisationManagerServiceManager.SaveUser(userNode);
+            var duplicates = Users.Flatten<UserNode>(u => u.Id.Equals(0));
+
+            var savedUser = authorisationManagerServiceManager.SaveUser(userNode, duplicates);
 
             if (savedUser != null)
             {
