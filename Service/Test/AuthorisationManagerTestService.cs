@@ -15,27 +15,28 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
 
         public AuthorisationManagerTestService()
         {
-            var activity1 = new Activity() {Id = 1, Name = "Read", ActivityCode = "READ", Description = "Read access"};
-            var activity2 = new Activity() {Id = 2, Name = "Write", ActivityCode = "WRITE", Description = "Write access"};
-            activity2.Activities.Add(activity1);
-            activities = new List<Activity>(new[] { activity1, activity2 });
+            var read = new Activity() {Id = 1, Name = "Read", ActivityCode = "READ", Description = "Read access"};
+            var write = new Activity() {Id = 2, Name = "Write", ActivityCode = "WRITE", Description = "Write access"};
+            var email = new Activity() { Id = 3, Name = "Email", ActivityCode = "EMAIL", Description = "Send email" };
+            activities = new List<Activity>(new[] {read, write, email});
+            write.Activities.Add(email);
 
-            var role1 = new Role() {Id = 1, Name = "Reader", RoleCode = "READER", Description = "Read permission"};
-            role1.Activities.Add(activities[0]);
+            var reader = new Role() {Id = 1, Name = "Reader", RoleCode = "READER", Description = "Read permission"};
+            reader.Activities.Add(read);
 
-            var role2 = new Role() {Id = 2, Name = "Writer", RoleCode = "WRITER", Description = "Write permission"};
-            role2.Activities.Add(activities[0]);
-            role2.Activities.Add(activities[1]);
+            var writer = new Role() {Id = 2, Name = "Writer", RoleCode = "WRITER", Description = "Write permission"};
+            writer.Activities.Add(read);
+            writer.Activities.Add(write);
 
-            roles = new List<Role>(new[] {role1, role2});
+            roles = new List<Role>(new[] {reader, writer});
 
-            var user1 = new UserAuthorisation() {Id = 1, UserName = "jbloggs", DisplayName = "Joe Bloggs"};
-            user1.Roles.Add(roles[0]);
+            var joe = new UserAuthorisation() {Id = 1, UserName = "jbloggs", DisplayName = "Joe Bloggs"};
+            joe.Roles.Add(reader);
 
-            var user2 = new UserAuthorisation() {Id = 2, UserName = "jmasters", DisplayName = "Jane Masters"};
-            user2.Roles.Add(roles[1]);
+            var jane = new UserAuthorisation() {Id = 2, UserName = "jmasters", DisplayName = "Jane Masters"};
+            jane.Roles.Add(writer);
 
-            usersAuthorisations = new List<UserAuthorisation>(new[] { user1, user2 });
+            usersAuthorisations = new List<UserAuthorisation>(new[] {joe, jane});
         }
 
         public string GetActivities()
