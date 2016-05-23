@@ -155,34 +155,31 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             }
         }
 
-        public bool TryAddActivity(ActivityNode activityNode, EntityBase target, out string message)
+        public bool TryAddActivity(ActivityNode activityNode, IEnumerable<EntityBase> targets, out string message)
         {
             message = string.Empty;
 
-            if (activityNode == null)
+            foreach (var target in targets)
             {
-                message = "Invalid activity.";
-                return false;
-            }
+                var dropRoleNode = target as RoleNode;
+                if (dropRoleNode != null)
+                {
+                    dropRoleNode.Activities.Add(activityNode);
 
-            var dropRoleNode = target as RoleNode;
-            if (dropRoleNode != null)
-            {
-                dropRoleNode.Activities.Add(activityNode);
+                    // save role
 
-                // save role
+                    return true;
+                }
 
-                return true                    ;
-            }
+                var dropActivityNode = target as ActivityNode;
+                if (dropActivityNode != null)
+                {
+                    dropActivityNode.Activities.Add(activityNode);
 
-            var dropActivityNode = target as ActivityNode;
-            if (dropActivityNode != null)
-            {
-                dropActivityNode.Activities.Add(activityNode);
+                    // save activity
 
-                // save activity
-
-                return true;
+                    return true;
+                }
             }
 
             message =
@@ -192,34 +189,31 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             return false;
         }
 
-        public bool TryAddRole(RoleNode roleNode, EntityBase target, out string message)
+        public bool TryAddRole(RoleNode roleNode, IEnumerable<EntityBase> targets, out string message)
         {
             message = string.Empty;
 
-            if (roleNode == null)
+            foreach (var target in targets)
             {
-                message = "Invalid role.";
-                return false;
-            }
+                var dropUserNode = target as UserNode;
+                if (dropUserNode != null)
+                {
+                    dropUserNode.Roles.Add(roleNode);
 
-            var dropUserNode = target as UserNode;
-            if (dropUserNode != null)
-            {
-                dropUserNode.Roles.Add(roleNode);
+                    // save user
 
-                // save user
+                    return true;
+                }
 
-                return true;
-            }
+                var dropRoleNode = target as RoleNode;
+                if (dropRoleNode != null)
+                {
+                    dropRoleNode.Roles.Add(roleNode);
 
-            var dropRoleNode = target as RoleNode;
-            if (dropRoleNode != null)
-            {
-                dropRoleNode.Roles.Add(roleNode);
+                    // save role
 
-                // save role
-
-                return true;
+                    return true;
+                }
             }
 
             message = string.Format("Invalid drop target. Role {0} can only be dropped on a user or another role.",

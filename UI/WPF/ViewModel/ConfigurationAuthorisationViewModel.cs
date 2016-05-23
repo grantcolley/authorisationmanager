@@ -180,19 +180,25 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         private void OnDragDrop(object param)
         {
             var dragDropArgs = param as FilterTreeDragDropArgs;
-            if (dragDropArgs == null)
+            if (dragDropArgs == null
+                || dragDropArgs.DragItem == null)
+            {
+                return;
+            }
+
+            var target = dragDropArgs.DropTarget as EntityBase;
+            if (target == null)
             {
                 return;
             }
 
             var message = string.Empty;
-            var target = dragDropArgs.DropTarget as EntityBase;
 
             var dragActivityNode = dragDropArgs.DragItem as ActivityNode;
             if (dragActivityNode != null)
             {
-                
-                if (!authorisationManagerServiceManager.TryAddActivity(dragActivityNode, target, out message))
+                var targets = Activities.Flatten<EntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text), Roles);
+                if (!authorisationManagerServiceManager.TryAddActivity(dragActivityNode, targets, out message))
                 {
                     var activityMsg = new Message()
                     {
@@ -209,7 +215,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             var dragRoleNode = dragDropArgs.DragItem as RoleNode;
             if (dragRoleNode != null)
             {
-                if (!authorisationManagerServiceManager.TryAddRole(dragRoleNode, target, out message))
+                var targets = Roles.Flatten<EntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text), Users);
+                if (!authorisationManagerServiceManager.TryAddRole(dragRoleNode, targets, out message))
                 {
                     var roleMsg = new Message()
                     {
@@ -238,9 +245,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         {
             var newActivity = activityNode.Id.Equals(0);
 
-            var duplicates = Activities.Flatten<ActivityNode>(a => a.Id.Equals(activityNode.Id), Roles, Users);
+            var duplicateActivities = Activities.Flatten<ActivityNode>(a => a.Id.Equals(activityNode.Id), Roles, Users);
 
-            var savedActivity = authorisationManagerServiceManager.SaveActivity(activityNode, duplicates);
+            var savedActivity = authorisationManagerServiceManager.SaveActivity(activityNode, duplicateActivities);
 
             if (savedActivity != null)
             {
@@ -255,9 +262,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         {
             var newRole = roleNode.Id.Equals(0);
 
-            var duplicates = Roles.Flatten<RoleNode>(r => r.Id.Equals(roleNode.Id), Users);
+            var duplicateRoles = Roles.Flatten<RoleNode>(r => r.Id.Equals(roleNode.Id), Users);
 
-            var savedRole = authorisationManagerServiceManager.SaveRole(roleNode, duplicates);
+            var savedRole = authorisationManagerServiceManager.SaveRole(roleNode, duplicateRoles);
 
             if (savedRole != null)
             {
@@ -272,9 +279,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         {
             var newUser = userNode.Id.Equals(0);
 
-            var duplicates = Users.Flatten<UserNode>(u => u.Id.Equals(0));
+            var duplicateUsers = Users.Flatten<UserNode>(u => u.Id.Equals(0));
 
-            var savedUser = authorisationManagerServiceManager.SaveUser(userNode, duplicates);
+            var savedUser = authorisationManagerServiceManager.SaveUser(userNode, duplicateUsers);
 
             if (savedUser != null)
             {
