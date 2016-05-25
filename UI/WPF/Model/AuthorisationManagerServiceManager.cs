@@ -122,11 +122,10 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public void RemoveActivity(ActivityNode activityNode)
         {
-            // call service...
-
             var parentActivity = activityNode.Parent as ActivityNode;
             if (parentActivity != null)
             {
+                authorisationManagerServiceProxy.RemoveActivityFromActivity(activityNode.Id, parentActivity.Id);
                 parentActivity.Activities.Remove(activityNode);
                 return;
             }
@@ -134,23 +133,24 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             var parentRole = activityNode.Parent as RoleNode;
             if (parentRole != null)
             {
+                authorisationManagerServiceProxy.RemoveActivityFromActivity(activityNode.Id, parentRole.Id);
                 parentRole.Activities.Remove(activityNode);
             }
         }
 
         public void RemoveRole(RoleNode roleNode)
         {
-            // call service...
-
             var parentRole = roleNode.Parent as RoleNode;
             if (parentRole != null)
             {
+                authorisationManagerServiceProxy.RemoveRoleFromRole(roleNode.Id, parentRole.Id);
                 parentRole.Roles.Remove(roleNode);
             }
 
             var parentUser = roleNode.Parent as UserNode;
             if (parentUser != null)
             {
+                authorisationManagerServiceProxy.RemoveRoleFromUser(roleNode.Id, parentUser.Id);
                 parentUser.Roles.Remove(roleNode);
             }
         }

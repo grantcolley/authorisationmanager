@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
 using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipCore.Service;
 using DevelopmentInProgress.DipSecure;
@@ -75,6 +74,30 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
         public void DeleteUserAuthorisation(int id)
         {
             var response = authorisationManagerService.DeleteUserAuthorisation(id.ToString());
+            ServiceResponse.Deserialize(response);
+        }
+
+        public void RemoveActivityFromActivity(int activityId, int parentId)
+        {
+            var response = authorisationManagerService.RemoveActivityFromActivity(activityId.ToString(), parentId.ToString());
+            ServiceResponse.Deserialize(response);
+        }
+
+        public void RemoveActivityFromRole(int activityId, int roleId)
+        {
+            var response = authorisationManagerService.RemoveActivityFromRole(activityId.ToString(), roleId.ToString());
+            ServiceResponse.Deserialize(response);
+        }
+
+        public void RemoveRoleFromRole(int roleId, int parentId)
+        {
+            var response = authorisationManagerService.RemoveRoleFromRole(roleId.ToString(), parentId.ToString());
+            ServiceResponse.Deserialize(response);
+        }
+
+        public void RemoveRoleFromUser(int roleId, int userId)
+        {
+            var response = authorisationManagerService.RemoveRoleFromUser(roleId.ToString(), userId.ToString());
             ServiceResponse.Deserialize(response);
         }
     }

@@ -11,5 +11,9 @@
         string DeleteActivity(string id);
         string DeleteRole(string id);
         string DeleteUserAuthorisation(string id);
+        string RemoveActivityFromActivity(string activityId, string parentId);
+        string RemoveActivityFromRole(string activityId, string roleId);
+        string RemoveRoleFromRole(string roleId, string parentId);
+        string RemoveRoleFromUser(string roleId, string userId);
     }
 }

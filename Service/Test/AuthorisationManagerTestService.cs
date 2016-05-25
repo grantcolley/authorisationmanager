@@ -236,5 +236,25 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             var json = Serializer.SerializeToJson(serviceResponse);
             return json;
         }
+
+        public string RemoveActivityFromActivity(string activityId, string parentId)
+        {
+            return String.Empty;
+        }
+
+        public string RemoveActivityFromRole(string activityId, string roleId)
+        {
+            return String.Empty;
+        }
+
+        public string RemoveRoleFromRole(string roleId, string parentId)
+        {
+            return String.Empty;
+        }
+
+        public string RemoveRoleFromUser(string roleId, string userId)
+        {
+            return String.Empty;
+        }
     }
 }
