@@ -168,6 +168,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             if (roleNode != null)
             {
                 RemoveRole(roleNode);
+                return;
             }
 
             var userNode = param as UserNode;
@@ -197,7 +198,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             var dragActivityNode = dragDropArgs.DragItem as ActivityNode;
             if (dragActivityNode != null)
             {
-                var targets = Activities.Flatten<EntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text), Roles);
+                var targets = Activities.Flatten<EntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text), Roles, Users);
                 if (!authorisationManagerServiceManager.TryAddActivity(dragActivityNode, targets, out message))
                 {
                     var activityMsg = new Message()

@@ -168,7 +168,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
                     // save role
 
-                    return true;
                 }
 
                 var dropActivityNode = target as ActivityNode;
@@ -178,7 +177,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
                     // save activity
 
-                    return true;
                 }
             }
 
@@ -202,7 +200,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
                     // save user
 
-                    return true;
                 }
 
                 var dropRoleNode = target as RoleNode;
@@ -212,7 +209,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
                     // save role
 
-                    return true;
                 }
             }
 
