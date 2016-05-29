@@ -122,7 +122,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
         public void DeleteUserAuthorisation(UserNode userNode, IList list)
         {
             authorisationManagerServiceProxy.DeleteUserAuthorisation(userNode.Id);
-             list.RemoveNested(userNode, u => u.Id.Equals(userNode.Id));        }
+            list.RemoveNested(userNode, u => u.Id.Equals(userNode.Id));
+        }
 
         public void RemoveActivity(ActivityNode activityNode)
         {
@@ -169,18 +170,14 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
                 if (dropRoleNode != null)
                 {
                     dropRoleNode.Activities.Add(activityNode);
-
-                    // save role
-
+                    authorisationManagerServiceProxy.AddActivityToRole(dropRoleNode.Id, activityNode.Id);
                 }
 
                 var dropActivityNode = target as ActivityNode;
                 if (dropActivityNode != null)
                 {
                     dropActivityNode.Activities.Add(activityNode);
-
-                    // save activity
-
+                    authorisationManagerServiceProxy.AddActivityToActivity(dropActivityNode.Id, activityNode.Id);
                 }
             }
 
@@ -201,18 +198,14 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
                 if (dropUserNode != null)
                 {
                     dropUserNode.Roles.Add(roleNode);
-
-                    // save user
-
+                    authorisationManagerServiceProxy.AddRoleToUser(dropUserNode.Id, roleNode.Id);
                 }
 
                 var dropRoleNode = target as RoleNode;
                 if (dropRoleNode != null)
                 {
                     dropRoleNode.Roles.Add(roleNode);
-
-                    // save role
-
+                    authorisationManagerServiceProxy.AddRoleToRole(dropRoleNode.Id, roleNode.Id);
                 }
             }
 

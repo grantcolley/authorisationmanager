@@ -100,5 +100,29 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
             var response = authorisationManagerService.RemoveRoleFromUser(roleId.ToString(), userId.ToString());
             ServiceResponse.Deserialize(response);
         }
+
+        public void AddActivityToRole(int roleId, int activityId)
+        {
+            var response = authorisationManagerService.AddActivityToRole(roleId.ToString(), activityId.ToString());
+            ServiceResponse.Deserialize(response);
+        }
+
+        public void AddActivityToActivity(int parentActivityId, int activityId)
+        {
+            var response = authorisationManagerService.AddActivityToActivity(parentActivityId.ToString(), activityId.ToString());
+            ServiceResponse.Deserialize(response);
+        }
+
+        public void AddRoleToUser(int userId, int roleId)
+        {
+            var response = authorisationManagerService.AddRoleToUser(userId.ToString(), roleId.ToString());
+            ServiceResponse.Deserialize(response);
+        }
+
+        public void AddRoleToRole(int parentRoleId, int roleId)
+        {
+            var response = authorisationManagerService.AddRoleToRole(parentRoleId.ToString(), roleId.ToString());
+            ServiceResponse.Deserialize(response);
+        }
     }
 }

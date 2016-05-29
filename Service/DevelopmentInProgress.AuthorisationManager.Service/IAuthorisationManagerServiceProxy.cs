@@ -18,5 +18,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
         void RemoveActivityFromRole(int activityId, int roleId);
         void RemoveRoleFromRole(int roleId, int parentId);
         void RemoveRoleFromUser(int roleId, int userId);
+        void AddActivityToRole(int roleId, int activityId);
+        void AddActivityToActivity(int parentActivityId, int activityId);
+        void AddRoleToUser(int userId, int roleId);
+        void AddRoleToRole(int parentRoleId, int roleId);
     }
 }

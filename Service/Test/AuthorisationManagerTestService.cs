@@ -240,6 +240,16 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
         public string RemoveActivityFromActivity(string activityId, string parentId)
         {
             var serviceResponse = new ServiceResponse();
+
+            try
+            {
+                // do stuff...
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
+            }
+
             var json = Serializer.SerializeToJson(serviceResponse);
             return json;
         }
@@ -247,6 +257,16 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
         public string RemoveActivityFromRole(string activityId, string roleId)
         {
             var serviceResponse = new ServiceResponse();
+
+            try
+            {
+                // do stuff...
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
+            }
+
             var json = Serializer.SerializeToJson(serviceResponse);
             return json;
         }
@@ -254,6 +274,16 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
         public string RemoveRoleFromRole(string roleId, string parentId)
         {
             var serviceResponse = new ServiceResponse();
+
+            try
+            {
+                // do stuff...
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
+            }
+
             var json = Serializer.SerializeToJson(serviceResponse);
             return json;
         }
@@ -261,6 +291,84 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
         public string RemoveRoleFromUser(string roleId, string userId)
         {
             var serviceResponse = new ServiceResponse();
+
+            try
+            {
+                // do stuff...
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
+            }
+
+            var json = Serializer.SerializeToJson(serviceResponse);
+            return json;
+        }
+
+        public string AddActivityToRole(string roleId, string activityId)
+        {
+            var serviceResponse = new ServiceResponse();
+
+            try
+            {
+                // do stuff...
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
+            }
+
+            var json = Serializer.SerializeToJson(serviceResponse);
+            return json;
+        }
+
+        public string AddActivityToActivity(string parentActivityId, string activityId)
+        {
+            var serviceResponse = new ServiceResponse();
+
+            try
+            {
+                // do stuff...
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
+            }
+
+            var json = Serializer.SerializeToJson(serviceResponse);
+            return json;
+        }
+
+        public string AddRoleToUser(string userId, string roleId)
+        {
+            var serviceResponse = new ServiceResponse();
+
+            try
+            {
+                // do stuff...
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
+            }
+
+            var json = Serializer.SerializeToJson(serviceResponse);
+            return json;
+        }
+
+        public string AddRoleToRole(string parentRoleId, string roleId)
+        {
+            var serviceResponse = new ServiceResponse();
+
+            try
+            {
+                // do stuff...
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Exception = ex;
+            }
+
             var json = Serializer.SerializeToJson(serviceResponse);
             return json;
         }

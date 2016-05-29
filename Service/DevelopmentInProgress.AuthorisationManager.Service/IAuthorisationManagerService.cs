@@ -15,5 +15,9 @@
         string RemoveActivityFromRole(string activityId, string roleId);
         string RemoveRoleFromRole(string roleId, string parentId);
         string RemoveRoleFromUser(string roleId, string userId);
+        string AddActivityToRole(string roleId, string activityId);
+        string AddActivityToActivity(string parentActivityId, string activityId);
+        string AddRoleToUser(string userId, string roleId);
+        string AddRoleToRole(string parentRoleId, string roleId);
     }
 }
