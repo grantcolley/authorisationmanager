@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using DevelopmentInProgress.AuthorisationManager.Service;
+using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
@@ -105,20 +107,22 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             return userNode;
         }
 
-        public void DeleteActivity(int id)
+        public void DeleteActivity(ActivityNode activityNode, IList list)
         {
-            authorisationManagerServiceProxy.DeleteActivity(id);
+            authorisationManagerServiceProxy.DeleteActivity(activityNode.Id);
+            list.RemoveNested(activityNode, a => a.Id.Equals(activityNode.Id));
         }
 
-        public void DeleteRole(int id)
+        public void DeleteRole(RoleNode roleNode, IList list)
         {
-            authorisationManagerServiceProxy.DeleteRole(id);
+            authorisationManagerServiceProxy.DeleteRole(roleNode.Id);
+            list.RemoveNested(roleNode, r => r.Id.Equals(roleNode.Id));
         }
 
-        public void DeleteUserAuthorisation(int id)
+        public void DeleteUserAuthorisation(UserNode userNode, IList list)
         {
-            authorisationManagerServiceProxy.DeleteUserAuthorisation(id);
-        }
+            authorisationManagerServiceProxy.DeleteUserAuthorisation(userNode.Id);
+             list.RemoveNested(userNode, u => u.Id.Equals(userNode.Id));        }
 
         public void RemoveActivity(ActivityNode activityNode)
         {

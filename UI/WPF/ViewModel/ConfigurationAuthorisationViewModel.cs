@@ -1,4 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using DevelopmentInProgress.AuthorisationManager.WPF.Model;
 using DevelopmentInProgress.DipCore;
@@ -131,27 +134,21 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             var activityNode = param as ActivityNode;
             if (activityNode != null)
             {
-                authorisationManagerServiceManager.DeleteActivity(activityNode.Id);
-                Activities.RemoveNested(activityNode, a => a.Id.Equals(activityNode.Id), Roles, Users);
-                SelectedItem = null;
+                DeleteActivity(activityNode);
                 return;
             }
 
             var roleNode = param as RoleNode;
             if (roleNode != null)
             {
-                authorisationManagerServiceManager.DeleteRole(roleNode.Id);
-                Roles.RemoveNested(roleNode, r => r.Id.Equals(roleNode.Id), Users);
-                SelectedItem = null;
+                DeleteRole(roleNode);
                 return;
             }
 
             var userNode = param as UserNode;
             if (userNode != null)
             {
-                authorisationManagerServiceManager.DeleteUserAuthorisation(userNode.Id);
-                Users.Remove(userNode);
-                SelectedItem = null;
+                DeleteUser(userNode);
             }
         }
 
@@ -333,6 +330,27 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                     Text = string.Format("Can't remove user {0} as the user has no parent.", userNode.Text)
                 });
             }
+        }
+
+        private void DeleteActivity(ActivityNode activityNode)
+        {
+            var combinedList = Activities.Merge(Roles, Users);
+            authorisationManagerServiceManager.DeleteActivity(activityNode, combinedList);            
+            SelectedItem = null;
+        }
+
+        private void DeleteRole(RoleNode roleNode)
+        {
+            var combinedList = Roles.Merge(Users);
+            authorisationManagerServiceManager.DeleteRole(roleNode, combinedList);
+            SelectedItem = null;
+        }
+
+        private void DeleteUser(UserNode userNode)
+        {
+            authorisationManagerServiceManager.DeleteUserAuthorisation(userNode, Users);
+            Users.Remove(userNode);
+            SelectedItem = null;
         }
     }
 }
