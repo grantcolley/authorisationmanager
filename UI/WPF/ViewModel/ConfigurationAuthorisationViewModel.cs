@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
 using DevelopmentInProgress.AuthorisationManager.WPF.Model;
 using DevelopmentInProgress.DipCore;
@@ -174,7 +172,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 RemoveUser(userNode);
             }
         }
-        
+
         private void OnDragDrop(object param)
         {
             var dragDropArgs = param as FilterTreeDragDropArgs;
@@ -195,7 +193,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             var dragActivityNode = dragDropArgs.DragItem as ActivityNode;
             if (dragActivityNode != null)
             {
-                var targets = Activities.Flatten<EntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text), Roles, Users);
+                var targets = Activities.Flatten<EntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text),
+                    Roles, Users);
                 if (!authorisationManagerServiceManager.TryAddActivity(dragActivityNode, targets, out message))
                 {
                     var activityMsg = new Message()
