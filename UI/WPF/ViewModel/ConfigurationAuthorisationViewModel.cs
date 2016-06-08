@@ -190,44 +190,31 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
             var message = string.Empty;
 
-            var dragActivityNode = dragDropArgs.DragItem as ActivityNode;
-            if (dragActivityNode != null)
+            if (dragDropArgs.DragItem is ActivityNode)
             {
-                var targets = Activities.Flatten<EntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text),
-                    Roles, Users);
-                if (!authorisationManagerServiceManager.TryAddActivity(dragActivityNode, targets, out message))
+                var dragActivityNode = (ActivityNode)dragDropArgs.DragItem;
+                var targets =
+                    Activities.Flatten<EntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text),
+                        Roles, Users);
+                if (authorisationManagerServiceManager.TryAddActivity(dragActivityNode, targets, out message))
                 {
-                    var activityMsg = new Message()
-                    {
-                        MessageType = MessageTypeEnum.Warn,
-                        Text = message
-                    };
-
-                    ShowMessage(activityMsg, true);
+                    return;
                 }
-
-                return;
             }
-
-            var dragRoleNode = dragDropArgs.DragItem as RoleNode;
-            if (dragRoleNode != null)
+            else if (dragDropArgs.DragItem is RoleNode)
             {
-                var targets = Roles.Flatten<EntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text), Users);
-                if (!authorisationManagerServiceManager.TryAddRole(dragRoleNode, targets, out message))
+                var dragRoleNode = (RoleNode)dragDropArgs.DragItem;
+                var targets = Roles.Flatten<EntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text),
+                    Users);
+                if (authorisationManagerServiceManager.TryAddRole(dragRoleNode, targets, out message))
                 {
-                    var roleMsg = new Message()
-                    {
-                        MessageType = MessageTypeEnum.Warn,
-                        Text = message
-                    };
-
-                    ShowMessage(roleMsg, true);
+                    return;
                 }
-
-                return;
             }
-
-            message = "Invalid drag item.";
+            else
+            {
+                message = "Invalid drag item.";
+            }
 
             var msg = new Message()
             {

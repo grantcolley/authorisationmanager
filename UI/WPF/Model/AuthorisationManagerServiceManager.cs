@@ -170,31 +170,43 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             {
                 if (IsAncestor(target, activityNode))
                 {
-                    break;
+                    message =
+                        string.Format(
+                            "Invalid drop target. Activity {0} can't be an ancestor of the target.",
+                            activityNode.Text);
+                    return false;
                 }
 
-                var dropRoleNode = target as RoleNode;
-                if (dropRoleNode != null)
+                if (target is RoleNode)
                 {
-                    activityNode.Parent = dropRoleNode;
-                    dropRoleNode.Activities.Add(activityNode);
-                    authorisationManagerServiceProxy.AddActivityToRole(dropRoleNode.Id, activityNode.Id);
+                    if (((RoleNode) target).Activities.All(a => a.Id != activityNode.Id))
+                    {
+                        var dropRoleNode = (RoleNode) target;
+                        activityNode.Parent = dropRoleNode;
+                        dropRoleNode.Activities.Add(activityNode);
+                        authorisationManagerServiceProxy.AddActivityToRole(dropRoleNode.Id, activityNode.Id);
+                    }
                 }
-
-                var dropActivityNode = target as ActivityNode;
-                if (dropActivityNode != null)
+                else if (target is ActivityNode)
                 {
-                    activityNode.Parent = dropActivityNode;
-                    dropActivityNode.Activities.Add(activityNode);
-                    authorisationManagerServiceProxy.AddActivityToActivity(dropActivityNode.Id, activityNode.Id);
+                    if (((ActivityNode)target).Activities.All(a => a.Id != activityNode.Id))
+                    {
+                        var dropActivityNode = (ActivityNode) target;
+                        activityNode.Parent = dropActivityNode;
+                        dropActivityNode.Activities.Add(activityNode);
+                        authorisationManagerServiceProxy.AddActivityToActivity(dropActivityNode.Id, activityNode.Id);
+                    }
+                }
+                else
+                {
+                    message =
+                        string.Format("Invalid drop target. Activity {0} can only be dropped on a role or another activity.",
+                            activityNode.Text);
+                    return false;
                 }
             }
 
-            message =
-                string.Format("Invalid drop target. Activity {0} can only be dropped on a role or another activity and it can't be an ancestor of the target.",
-                    activityNode.Text);
-
-            return false;
+            return true;
         }
 
         public bool TryAddRole(RoleNode roleNode, IEnumerable<EntityBase> targets, out string message)
@@ -203,32 +215,43 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
             foreach (var target in targets)
             {
-                var dropUserNode = target as UserNode;
-                if (dropUserNode != null)
+                if (target is UserNode)
                 {
-                    roleNode.Parent = dropUserNode;
-                    dropUserNode.Roles.Add(roleNode);
-                    authorisationManagerServiceProxy.AddRoleToUser(dropUserNode.Id, roleNode.Id);
+                    if (((UserNode) target).Roles.All(r => r.Id != roleNode.Id))
+                    {
+                        var dropUserNode = (UserNode) target;
+                        roleNode.Parent = dropUserNode;
+                        dropUserNode.Roles.Add(roleNode);
+                        authorisationManagerServiceProxy.AddRoleToUser(dropUserNode.Id, roleNode.Id);
+                    }
                 }
-
-                if (IsAncestor(target, roleNode))
+                else if (IsAncestor(target, roleNode))
                 {
-                    break;
+                    message =
+                        string.Format("Invalid drop target. Role {0} can't be an ancestor of the target.",
+                            roleNode.Text);
+                    return false;
                 }
-
-                var dropRoleNode = target as RoleNode;
-                if (dropRoleNode != null)
+                else if (target is RoleNode)
                 {
-                    roleNode.Parent = dropRoleNode;
-                    dropRoleNode.Roles.Add(roleNode);
-                    authorisationManagerServiceProxy.AddRoleToRole(dropRoleNode.Id, roleNode.Id);
+                    if (((RoleNode) target).Roles.All(r => r.Id != roleNode.Id))
+                    {
+                        var dropRoleNode = (RoleNode) target;
+                        roleNode.Parent = dropRoleNode;
+                        dropRoleNode.Roles.Add(roleNode);
+                        authorisationManagerServiceProxy.AddRoleToRole(dropRoleNode.Id, roleNode.Id);
+                    }
+                }
+                else
+                {
+                    message =
+                        string.Format("Invalid drop target. Role {0} can only be dropped on a user or another role.",
+                            roleNode.Text);
+                    return false;
                 }
             }
 
-            message = string.Format("Invalid drop target. Role {0} can only be dropped on a user or another role and it can't be an ancestor of the target.",
-                roleNode.Text);
-
-            return false;
+            return true;
         }
 
         private ActivityNode GetActivityNode(Activity activity)
