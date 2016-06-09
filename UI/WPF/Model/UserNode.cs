@@ -3,7 +3,7 @@ using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 {
-    public class UserNode : EntityBase
+    public class UserNode : NodeEntityBase
     {
         public UserNode(UserAuthorisation userAuthorisation)
         {

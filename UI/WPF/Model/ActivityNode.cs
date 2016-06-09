@@ -3,7 +3,7 @@ using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 {
-    public class ActivityNode : EntityBase
+    public class ActivityNode : NodeEntityBase
     {
         public ActivityNode(Activity activity)
         {

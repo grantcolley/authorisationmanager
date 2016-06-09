@@ -17,9 +17,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.View
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             if (item != null
-                && item is EntityBase)
+                && item is NodeEntityBase)
             {
-                switch (((EntityBase)item).GetType().Name)
+                switch (((NodeEntityBase)item).GetType().Name)
                 {
                     case "ActivityNode":
                         return ActivityNodeTemplate;

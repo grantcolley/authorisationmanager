@@ -5,7 +5,7 @@ using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 {
-    public class RoleNode : EntityBase
+    public class RoleNode : NodeEntityBase
     {
         public RoleNode(Role role)
         {

@@ -182,7 +182,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 return;
             }
 
-            var target = dragDropArgs.DropTarget as EntityBase;
+            var target = dragDropArgs.DropTarget as NodeEntityBase;
             if (target == null)
             {
                 return;
@@ -194,7 +194,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 var dragActivityNode = (ActivityNode)dragDropArgs.DragItem;
                 var targets =
-                    Activities.Flatten<EntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text),
+                    Activities.Flatten<NodeEntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text),
                         Roles, Users);
                 if (authorisationManagerServiceManager.TryAddActivity(dragActivityNode, targets, out message))
                 {
@@ -204,7 +204,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             else if (dragDropArgs.DragItem is RoleNode)
             {
                 var dragRoleNode = (RoleNode)dragDropArgs.DragItem;
-                var targets = Roles.Flatten<EntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text),
+                var targets = Roles.Flatten<NodeEntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text),
                     Users);
                 if (authorisationManagerServiceManager.TryAddRole(dragRoleNode, targets, out message))
                 {

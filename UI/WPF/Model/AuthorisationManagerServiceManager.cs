@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DevelopmentInProgress.AuthorisationManager.Service;
 using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipSecure;
-using Microsoft.Practices.Unity;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 {
@@ -162,7 +160,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             }
         }
 
-        public bool TryAddActivity(ActivityNode activityNode, IEnumerable<EntityBase> targets, out string message)
+        public bool TryAddActivity(ActivityNode activityNode, IEnumerable<NodeEntityBase> targets, out string message)
         {
             message = string.Empty;
 
@@ -209,7 +207,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             return true;
         }
 
-        public bool TryAddRole(RoleNode roleNode, IEnumerable<EntityBase> targets, out string message)
+        public bool TryAddRole(RoleNode roleNode, IEnumerable<NodeEntityBase> targets, out string message)
         {
             message = string.Empty;
 
@@ -296,7 +294,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             return userNode;
         }
 
-        private bool IsAncestor(EntityBase target, EntityBase candidate)
+        private bool IsAncestor(NodeEntityBase target, NodeEntityBase candidate)
         {
             if (target.Parent == null)
             {
