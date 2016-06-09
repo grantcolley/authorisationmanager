@@ -216,13 +216,16 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 message = "Invalid drag item.";
             }
 
-            var msg = new Message()
+            if (!string.IsNullOrEmpty(message))
             {
-                MessageType = MessageTypeEnum.Warn,
-                Text = message
-            };
+                var msg = new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text = message
+                };
 
-            ShowMessage(msg, true);
+                ShowMessage(msg, true);   
+            }
         }
 
         private void SaveActivity(ActivityNode activityNode)
