@@ -3,7 +3,7 @@ using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.Data
 {
-    public interface IAuthorisationManagerServiceDataProxy
+    public interface IAuthorisationManagerData
     {
         IList<Activity> GetActivities();
         IList<Role> GetRoles();

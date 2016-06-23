@@ -39,8 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="DataManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\dipsecure\DevelopmentInProgress.DipSecure\DevelopmentInProgress.DipSecure.csproj">
+      <Project>{22c3bf8f-c03b-49bb-9295-ef4efef95ef4}</Project>
+      <Name>DevelopmentInProgress.DipSecure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevelopmentInProgress.AuthorisationManager.Data\DevelopmentInProgress.AuthorisationManager.Data.csproj">
+      <Project>{e73387fe-7595-4122-9f27-00d5e3a454f6}</Project>
+      <Name>DevelopmentInProgress.AuthorisationManager.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

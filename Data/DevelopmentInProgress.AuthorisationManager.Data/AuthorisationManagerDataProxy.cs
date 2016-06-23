@@ -3,11 +3,11 @@ using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.Data
 {
-    public class AuthorisationManagerDataProxy : IAuthorisationManagerServiceDataProxy
+    public class AuthorisationManagerDataProxy : IAuthorisationManagerDataProxy
     {
-        private readonly IAuthorisationManagerServiceData authorisationManagerServiceData;
+        private readonly IAuthorisationManagerData authorisationManagerServiceData;
 
-        public AuthorisationManagerDataProxy(IAuthorisationManagerServiceData authorisationManagerServiceData)
+        public AuthorisationManagerDataProxy(IAuthorisationManagerData authorisationManagerServiceData)
         {
             this.authorisationManagerServiceData = authorisationManagerServiceData;
         }

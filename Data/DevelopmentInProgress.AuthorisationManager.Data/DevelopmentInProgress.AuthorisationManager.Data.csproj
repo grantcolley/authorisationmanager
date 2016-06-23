@@ -40,8 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorisationManagerDataProxy.cs" />
-    <Compile Include="IAuthorisationManagerServiceDataProxy.cs" />
-    <Compile Include="IAuthorisationManagerServiceData.cs" />
+    <Compile Include="IAuthorisationManagerDataProxy.cs" />
+    <Compile Include="IAuthorisationManagerData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
