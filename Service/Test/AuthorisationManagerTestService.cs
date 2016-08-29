@@ -143,7 +143,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             return json;
         }
 
-        public string SaveUserAuthorisaion(string userAuthorisation)
+        public string SaveUserAuthorisation(string userAuthorisation)
         {
             var serviceResponse = new ServiceResponse();
 
