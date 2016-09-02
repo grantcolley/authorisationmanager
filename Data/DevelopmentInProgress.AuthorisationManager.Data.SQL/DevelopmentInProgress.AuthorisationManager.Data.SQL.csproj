@@ -7,8 +7,8 @@
     <ProjectGuid>{3383DDD9-A333-4031-952B-9CFDB0D4C02D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DevelopmentInProgress.AuthorisationManager.Data.SQLServer</RootNamespace>
-    <AssemblyName>DevelopmentInProgress.AuthorisationManager.Data.SQLServer</AssemblyName>
+    <RootNamespace>DevelopmentInProgress.AuthorisationManager.Data.SQL</RootNamespace>
+    <AssemblyName>DevelopmentInProgress.AuthorisationManager.Data.SQL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\Binaries\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataManager.cs" />
+    <Compile Include="AuthorisationManagerData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

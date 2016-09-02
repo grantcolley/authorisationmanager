@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using DevelopmentInProgress.DipSecure;
 
-namespace DevelopmentInProgress.AuthorisationManager.Data.SQLServer
+namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 {
-    public class DataManager : IAuthorisationManagerData
+    public class AuthorisationManagerData : IAuthorisationManagerData
     {
         public IList<Activity> GetActivities()
         {
