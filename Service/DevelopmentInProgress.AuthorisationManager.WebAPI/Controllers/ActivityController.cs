@@ -4,17 +4,18 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WebAPI.Controllers
 {
     public class ActivityController : ApiController
     {
-        public string GetActivities()
+        public IEnumerable<Activity> GetActivities()
         {
             throw new NotImplementedException();
         }
 
-        public string SaveActivity(string activity)
+        public Activity SaveActivity(string activity)
         {
             throw new NotImplementedException();
         }
