@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{638070D4-E78E-47D7-B0AB-EE1EA5EF7674}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevelopmentInProgress.AuthorisationManager.Server</RootNamespace>
+    <AssemblyName>DevelopmentInProgress.AuthorisationManager.Server</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Binaries\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AuthorisationManagerServer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\dipcore\DevelopmentInProgress.DipCore\DevelopmentInProgress.DipCore.csproj">
+      <Project>{ba7df412-8e32-498d-a463-bd35f9494d5e}</Project>
+      <Name>DevelopmentInProgress.DipCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\dipsecure\DevelopmentInProgress.DipSecure\DevelopmentInProgress.DipSecure.csproj">
+      <Project>{22c3bf8f-c03b-49bb-9295-ef4efef95ef4}</Project>
+      <Name>DevelopmentInProgress.DipSecure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\DevelopmentInProgress.AuthorisationManager.Data\DevelopmentInProgress.AuthorisationManager.Data.csproj">
+      <Project>{e73387fe-7595-4122-9f27-00d5e3a454f6}</Project>
+      <Name>DevelopmentInProgress.AuthorisationManager.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevelopmentInProgress.AuthorisationManager.Service\DevelopmentInProgress.AuthorisationManager.Service.csproj">
+      <Project>{f6cbd0d7-ccb3-44e2-97a9-549253a2ad35}</Project>
+      <Name>DevelopmentInProgress.AuthorisationManager.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
