@@ -43,6 +43,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\dipmapper\DevelopmentInProgress.DipMapper\DevelopmentInProgress.DipMapper.csproj">
+      <Project>{8c8f5142-da70-438d-a602-dd60994f5ba1}</Project>
+      <Name>DevelopmentInProgress.DipMapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\dipsecure\DevelopmentInProgress.DipSecure\DevelopmentInProgress.DipSecure.csproj">
       <Project>{22c3bf8f-c03b-49bb-9295-ef4efef95ef4}</Project>
       <Name>DevelopmentInProgress.DipSecure</Name>

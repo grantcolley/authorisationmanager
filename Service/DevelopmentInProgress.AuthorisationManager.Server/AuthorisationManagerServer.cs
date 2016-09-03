@@ -1,4 +1,5 @@
 ﻿using System;
+using DevelopmentInProgress.AuthorisationManager.Data;
 using DevelopmentInProgress.AuthorisationManager.Service;
 using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipCore.Service;
@@ -8,22 +9,29 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 {
     public class AuthorisationManagerServer : IAuthorisationManagerService
     {
+        private readonly IAuthorisationManagerDataProxy authorisationManagerDataProxy;
+
+        public AuthorisationManagerServer(IAuthorisationManagerDataProxy authorisationManagerDataProxy)
+        {
+            this.authorisationManagerDataProxy = authorisationManagerDataProxy;
+        }
+
         public string GetActivities()
         {
             var serviceResponse = new ServiceResponse();
 
             try
             {
-                //var jsonActivities = Serializer.SerializeToJson(activities);
-                //serviceResponse = new ServiceResponse() { Message = jsonActivities };
+                var activities = authorisationManagerDataProxy.GetActivities();
+                var serialisedActivities = Serializer.SerializeToJson(activities);
+                serviceResponse = new ServiceResponse() {Message = serialisedActivities};
             }
             catch (Exception ex)
             {
                 serviceResponse.Exception = ex;
             }
 
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
+            return Serializer.SerializeToJson(serviceResponse);
         }
 
         public string GetRoles()
@@ -32,8 +40,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                //var jsonRoles = Serializer.SerializeToJson(roles);
-                //serviceResponse = new ServiceResponse() { Message = jsonRoles };
+                var roles = authorisationManagerDataProxy.GetRoles();
+                var serialisedRoles = Serializer.SerializeToJson(roles);
+                serviceResponse = new ServiceResponse() {Message = serialisedRoles};
             }
             catch (Exception ex)
             {
@@ -50,16 +59,16 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                //var jsonUserAuthorisations = Serializer.SerializeToJson(usersAuthorisations);
-                //serviceResponse = new ServiceResponse() { Message = jsonUserAuthorisations };
+                var users = authorisationManagerDataProxy.GetUserAuthorisations();
+                var serialisedUsers = Serializer.SerializeToJson(users);
+                serviceResponse = new ServiceResponse() {Message = serialisedUsers};
             }
             catch (Exception ex)
             {
                 serviceResponse.Exception = ex;
             }
 
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
+            return Serializer.SerializeToJson(serviceResponse);
         }
 
         public string SaveActivity(string activity)
@@ -68,23 +77,17 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                //var activityToSave = Serializer.DeserializeJson<Activity>(activity);
-                //if (activityToSave.Id.Equals(0))
-                //{
-                //    activityToSave.Id = activities.Max(a => a.Id) + 1;
-                //}
-
-                //activities.Add(activityToSave);
-                //var jsonActivityToSave = Serializer.SerializeToJson(activityToSave);
-                //serviceResponse = new ServiceResponse() { Message = jsonActivityToSave };
+                var activityToSave = Serializer.DeserializeJson<Activity>(activity);
+                var savedActivity = authorisationManagerDataProxy.SaveActivity(activityToSave);
+                var serialisedActivity = Serializer.SerializeToJson(savedActivity);
+                serviceResponse = new ServiceResponse() {Message = serialisedActivity};
             }
             catch (Exception ex)
             {
                 serviceResponse.Exception = ex;
             }
 
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
+            return Serializer.SerializeToJson(serviceResponse);
         }
 
         public string SaveRole(string role)
@@ -93,23 +96,17 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                //var roleToSave = Serializer.DeserializeJson<Role>(role);
-                //if (roleToSave.Id.Equals(0))
-                //{
-                //    roleToSave.Id = roles.Max(r => r.Id) + 1;
-                //}
-
-                //roles.Add(roleToSave);
-                //var jsonRoleToSave = Serializer.SerializeToJson(roleToSave);
-                //serviceResponse = new ServiceResponse() { Message = jsonRoleToSave };
+                var roleToSave = Serializer.DeserializeJson<Role>(role);
+                var savedRole = authorisationManagerDataProxy.SaveRole(roleToSave);
+                var serialisedRole = Serializer.SerializeToJson(savedRole);
+                serviceResponse = new ServiceResponse() {Message = serialisedRole};
             }
             catch (Exception ex)
             {
                 serviceResponse.Exception = ex;
             }
 
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
+            return Serializer.SerializeToJson(serviceResponse);
         }
 
         public string SaveUserAuthorisation(string userAuthorisation)
@@ -118,23 +115,17 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                //var userToSave = Serializer.DeserializeJson<UserAuthorisation>(userAuthorisation);
-                //if (userToSave.Id.Equals(0))
-                //{
-                //    userToSave.Id = usersAuthorisations.Max(u => u.Id) + 1;
-                //}
-
-                //usersAuthorisations.Add(userToSave);
-                //var jsonUserToSave = Serializer.SerializeToJson(userToSave);
-                //serviceResponse = new ServiceResponse() { Message = jsonUserToSave };
+                var userAuthorisationToSave = Serializer.DeserializeJson<UserAuthorisation>(userAuthorisation);
+                var savedUserAuthorisation = authorisationManagerDataProxy.SaveUserAuthorisation(userAuthorisationToSave);
+                var serialisedUserAuthorisation = Serializer.SerializeToJson(savedUserAuthorisation);
+                serviceResponse = new ServiceResponse() {Message = serialisedUserAuthorisation};
             }
             catch (Exception ex)
             {
                 serviceResponse.Exception = ex;
             }
 
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
+            return Serializer.SerializeToJson(serviceResponse);
         }
 
         public string DeleteActivity(string id)
@@ -143,21 +134,17 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                //int i;
-                //Int32.TryParse(id, out i);
-                //var activity = activities.FirstOrDefault(a => a.Id == i);
-                //if (activity != null)
-                //{
-                //    activities.Remove(activity);
-                //}
+                var identity = Int32.Parse(id);
+                var result = authorisationManagerDataProxy.DeleteActivity(identity);
+                var serialisedResult = Serializer.SerializeToJson(result);
+                serviceResponse = new ServiceResponse() {Message = serialisedResult};
             }
             catch (Exception ex)
             {
                 serviceResponse.Exception = ex;
             }
 
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
+            return Serializer.SerializeToJson(serviceResponse);
         }
 
         public string DeleteRole(string id)
@@ -166,21 +153,17 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                //int i;
-                //Int32.TryParse(id, out i);
-                //var role = roles.FirstOrDefault(r => r.Id == i);
-                //if (role != null)
-                //{
-                //    roles.Remove(role);
-                //}
+                var identity = Int32.Parse(id);
+                var result = authorisationManagerDataProxy.DeleteRole(identity);
+                var serialisedResult = Serializer.SerializeToJson(result);
+                serviceResponse = new ServiceResponse() {Message = serialisedResult};
             }
             catch (Exception ex)
             {
                 serviceResponse.Exception = ex;
             }
 
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
+            return Serializer.SerializeToJson(serviceResponse);
         }
 
         public string DeleteUserAuthorisation(string id)
@@ -189,21 +172,17 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                //int i;
-                //Int32.TryParse(id, out i);
-                //var user = usersAuthorisations.FirstOrDefault(u => u.Id == i);
-                //if (user != null)
-                //{
-                //    usersAuthorisations.Remove(user);
-                //}
+                var identity = Int32.Parse(id);
+                var result = authorisationManagerDataProxy.DeleteUserAuthorisation(identity);
+                var serialisedResult = Serializer.SerializeToJson(result);
+                serviceResponse = new ServiceResponse() {Message = serialisedResult};
             }
             catch (Exception ex)
             {
                 serviceResponse.Exception = ex;
             }
 
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
+            return Serializer.SerializeToJson(serviceResponse);
         }
 
         public string RemoveActivityFromActivity(string activityId, string parentId)
@@ -212,15 +191,18 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                // do stuff...
+                var activityIdentity = Int32.Parse(activityId);
+                var parentIdentity = Int32.Parse(parentId);
+                var result = authorisationManagerDataProxy.RemoveActivityFromActivity(activityIdentity, parentIdentity);
+                var serialisedResult = Serializer.SerializeToJson(result);
+                serviceResponse = new ServiceResponse() {Message = serialisedResult};
             }
             catch (Exception ex)
             {
                 serviceResponse.Exception = ex;
             }
 
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
+            return Serializer.SerializeToJson(serviceResponse);
         }
 
         public string RemoveActivityFromRole(string activityId, string roleId)
@@ -229,15 +211,18 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                // do stuff...
+                var activityIdentity = Int32.Parse(activityId);
+                var roleIdentity = Int32.Parse(roleId);
+                var result = authorisationManagerDataProxy.RemoveActivityFromRole(activityIdentity, roleIdentity);
+                var serialisedResult = Serializer.SerializeToJson(result);
+                serviceResponse = new ServiceResponse() {Message = serialisedResult};
             }
             catch (Exception ex)
             {
                 serviceResponse.Exception = ex;
             }
 
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
+            return Serializer.SerializeToJson(serviceResponse);
         }
 
         public string RemoveRoleFromRole(string roleId, string parentId)
@@ -246,15 +231,18 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                // do stuff...
+                var roleIdentity = Int32.Parse(roleId);
+                var parentIdentity = Int32.Parse(parentId);
+                var result = authorisationManagerDataProxy.RemoveRoleFromRole(roleIdentity, parentIdentity);
+                var serialisedResult = Serializer.SerializeToJson(result);
+                serviceResponse = new ServiceResponse() {Message = serialisedResult};
             }
             catch (Exception ex)
             {
                 serviceResponse.Exception = ex;
             }
 
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
+            return Serializer.SerializeToJson(serviceResponse);
         }
 
         public string RemoveRoleFromUser(string roleId, string userId)
@@ -263,15 +251,18 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                // do stuff...
+                var roleIdentity = Int32.Parse(roleId);
+                var userIdentity = Int32.Parse(userId);
+                var result = authorisationManagerDataProxy.RemoveRoleFromUser(roleIdentity, userIdentity);
+                var serialisedResult = Serializer.SerializeToJson(result);
+                serviceResponse = new ServiceResponse() {Message = serialisedResult};
             }
             catch (Exception ex)
             {
                 serviceResponse.Exception = ex;
             }
 
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
+            return Serializer.SerializeToJson(serviceResponse);
         }
 
         public string AddActivityToRole(string roleId, string activityId)
@@ -280,15 +271,18 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                // do stuff...
+                var roleIdentity = Int32.Parse(roleId);
+                var activityIdentity = Int32.Parse(activityId);
+                var result = authorisationManagerDataProxy.AddActivityToRole(roleIdentity, activityIdentity);
+                var serialisedResult = Serializer.SerializeToJson(result);
+                serviceResponse = new ServiceResponse() {Message = serialisedResult};
             }
             catch (Exception ex)
             {
                 serviceResponse.Exception = ex;
             }
 
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
+            return Serializer.SerializeToJson(serviceResponse);
         }
 
         public string AddActivityToActivity(string parentActivityId, string activityId)
@@ -297,15 +291,18 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                // do stuff...
+                var parentActivityIdentity = Int32.Parse(parentActivityId);
+                var activityIdentity = Int32.Parse(activityId);
+                var result = authorisationManagerDataProxy.AddActivityToActivity(parentActivityIdentity, activityIdentity);
+                var serialisedResult = Serializer.SerializeToJson(result);
+                serviceResponse = new ServiceResponse() {Message = serialisedResult};
             }
             catch (Exception ex)
             {
                 serviceResponse.Exception = ex;
             }
 
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
+            return Serializer.SerializeToJson(serviceResponse);
         }
 
         public string AddRoleToUser(string userId, string roleId)
@@ -314,15 +311,18 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                // do stuff...
+                var userIdentity = Int32.Parse(userId);
+                var roleIdentity = Int32.Parse(roleId);
+                var result = authorisationManagerDataProxy.AddRoleToUser(userIdentity, roleIdentity);
+                var serialisedResult = Serializer.SerializeToJson(result);
+                serviceResponse = new ServiceResponse() { Message = serialisedResult };
             }
             catch (Exception ex)
             {
                 serviceResponse.Exception = ex;
             }
 
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
+            return Serializer.SerializeToJson(serviceResponse);
         }
 
         public string AddRoleToRole(string parentRoleId, string roleId)
@@ -331,15 +331,18 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                // do stuff...
+                var parentRoleIdentity = Int32.Parse(parentRoleId);
+                var roleIdentity = Int32.Parse(roleId);
+                var result = authorisationManagerDataProxy.AddRoleToRole(parentRoleIdentity, roleIdentity);
+                var serialisedResult = Serializer.SerializeToJson(result);
+                serviceResponse = new ServiceResponse() {Message = serialisedResult};
             }
             catch (Exception ex)
             {
                 serviceResponse.Exception = ex;
             }
 
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
+            return Serializer.SerializeToJson(serviceResponse);
         }
     }
 }
