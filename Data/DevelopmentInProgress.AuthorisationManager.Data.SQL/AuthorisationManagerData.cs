@@ -1,44 +1,106 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using DevelopmentInProgress.DipMapper;
 using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 {
     public class AuthorisationManagerData : IAuthorisationManagerData
     {
+        private static string connectionString = "Data Source=(local);Initial Catalog=AuthorisationManager;Integrated Security=true";
+
         public IList<Activity> GetActivities()
         {
-            throw new NotImplementedException();
+            using (var conn = new SqlConnection(connectionString))
+            {
+                return conn.Select<Activity>().ToList();
+            }
         }
 
         public IList<Role> GetRoles()
         {
-            throw new NotImplementedException();
+            using (var conn = new SqlConnection(connectionString))
+            {
+                return conn.Select<Role>().ToList();
+            }
         }
 
         public IList<UserAuthorisation> GetUserAuthorisations()
         {
-            throw new NotImplementedException();
+            using (var conn = new SqlConnection(connectionString))
+            {
+                return conn.Select<UserAuthorisation>().ToList();
+            }
         }
 
         public Activity SaveActivity(Activity activity)
         {
-            throw new NotImplementedException();
+            var isInsert = activity.Id.Equals(0);
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                if (isInsert)
+                {
+                    activity = conn.Insert(activity, "Id");
+                }
+                else
+                {
+                    conn.Update(activity, new Dictionary<string, object>() {{"Id", activity.Id}});
+                }
+            }
+
+            return activity;
         }
 
         public Role SaveRole(Role role)
         {
-            throw new NotImplementedException();
+            var isInsert = role.Id.Equals(0);
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                if (isInsert)
+                {
+                    role = conn.Insert(role, "Id");
+                }
+                else
+                {
+                    conn.Update(role, new Dictionary<string, object>() {{"Id", role.Id}});
+                }
+            }
+
+            return role;
         }
 
         public UserAuthorisation SaveUserAuthorisation(UserAuthorisation userAuthorisation)
         {
-            throw new NotImplementedException();
+            var isInsert = userAuthorisation.Id.Equals(0);
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                if (isInsert)
+                {
+                    userAuthorisation = conn.Insert(userAuthorisation, "Id");
+                }
+                else
+                {
+                    conn.Update(userAuthorisation, new Dictionary<string, object>() {{"Id", userAuthorisation.Id}});
+                }
+            }
+
+            return userAuthorisation;
         }
 
         public bool DeleteActivity(int id)
         {
-            throw new NotImplementedException();
+            using (var conn = new SqlConnection(connectionString))
+            {
+                // TODO: Delete relationships too...
+
+                var recordsAffected = conn.Delete<Activity>(new Dictionary<string, object>() {{"Id", id}});
+                return recordsAffected.Equals(1);
+            }
         }
 
         public bool DeleteRole(int id)
