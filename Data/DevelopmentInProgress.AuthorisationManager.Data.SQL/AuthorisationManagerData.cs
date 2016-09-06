@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using DevelopmentInProgress.AuthorisationManager.Data.SQL.Model;
 using DevelopmentInProgress.DipMapper;
 using DevelopmentInProgress.DipSecure;
 
@@ -47,7 +48,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
                 }
                 else
                 {
-                    conn.Update(activity, new Dictionary<string, object>() {{"Id", activity.Id}});
+                    conn.Update(activity, new Dictionary<string, object>() {{"Id", activity.Id}}, new[] {"Id"});
                 }
             }
 
@@ -66,7 +67,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
                 }
                 else
                 {
-                    conn.Update(role, new Dictionary<string, object>() {{"Id", role.Id}});
+                    conn.Update(role, new Dictionary<string, object>() {{"Id", role.Id}}, new[] {"Id"});
                 }
             }
 
@@ -85,7 +86,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
                 }
                 else
                 {
-                    conn.Update(userAuthorisation, new Dictionary<string, object>() {{"Id", userAuthorisation.Id}});
+                    conn.Update(userAuthorisation, new Dictionary<string, object>() {{"Id", userAuthorisation.Id}}, new[] {"Id"});
                 }
             }
 
@@ -94,63 +95,166 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 
         public bool DeleteActivity(int id)
         {
+            var sql = "DELETE FROM ActivityActivity WHERE ParentActivityId = " + id + " or ActivityId = " + id
+                      + "; DELETE FROM RoleActivity WHERE ActivityId = " + id
+                      + "; DELETE FROM Activity WHERE Id = " + id;
+
             using (var conn = new SqlConnection(connectionString))
             {
-                // TODO: Delete relationships too...
-
-                var recordsAffected = conn.Delete<Activity>(new Dictionary<string, object>() {{"Id", id}});
-                return recordsAffected.Equals(1);
+                conn.Open();
+                using(var transaction = conn.BeginTransaction())
+                {
+                    conn.ExecuteNonQuery(sql, null, CommandType.Text, transaction);
+                    transaction.Commit();
+                }
             }
+
+            return true;
         }
 
         public bool DeleteRole(int id)
         {
-            throw new NotImplementedException();
+            var sql = "DELETE FROM RoleActivity WHERE RoleId = " + id
+                      + "; DELETE FROM UserRole WHERE RoleId = " + id
+                      + "; DELETE FROM Role WHERE Id = " + id;
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var transaction = conn.BeginTransaction())
+                {
+                    conn.ExecuteNonQuery(sql, null, CommandType.Text, transaction);
+                    transaction.Commit();
+                }
+            }
+
+            return true;
         }
 
         public bool DeleteUserAuthorisation(int id)
         {
-            throw new NotImplementedException();
+            var sql = "DELETE FROM UserRole WHERE Id = " + id
+                      + "; DELETE FROM UserAuthorisation WHERE Id = " + id;
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var transaction = conn.BeginTransaction())
+                {
+                    conn.ExecuteNonQuery(sql, null, CommandType.Text, transaction);
+                    transaction.Commit();
+                }
+            }
+
+            return true;
         }
 
         public bool RemoveActivityFromActivity(int activityId, int parentId)
         {
-            throw new NotImplementedException();
+            using (var conn = new SqlConnection(connectionString))
+            {
+                var recordsAffected =
+                    conn.Delete<ActivityActivity>(new Dictionary<string, object>()
+                    {
+                        {"ActivityId", activityId},
+                        {"ParentActivityId", parentId}
+                    });
+
+                return recordsAffected.Equals(1);
+            }
         }
 
         public bool RemoveActivityFromRole(int activityId, int roleId)
         {
-            throw new NotImplementedException();
+            using (var conn = new SqlConnection(connectionString))
+            {
+                var recordsAffected =
+                    conn.Delete<RoleActivity>(new Dictionary<string, object>()
+                    {
+                        {"ActivityId", activityId},
+                        {"RoleId", roleId}
+                    });
+
+                return recordsAffected.Equals(1);
+            }
         }
 
         public bool RemoveRoleFromRole(int roleId, int parentId)
         {
-            throw new NotImplementedException();
+            using (var conn = new SqlConnection(connectionString))
+            {
+                var recordsAffected =
+                    conn.Delete<RoleRole>(new Dictionary<string, object>()
+                    {
+                        {"RoleId", roleId},
+                        {"ParentRoleId", parentId}
+                    });
+
+                return recordsAffected.Equals(1);
+            }
         }
 
         public bool RemoveRoleFromUser(int roleId, int userId)
         {
-            throw new NotImplementedException();
+            using (var conn = new SqlConnection(connectionString))
+            {
+                var recordsAffected =
+                    conn.Delete<UserRole>(new Dictionary<string, object>()
+                    {
+                        {"Id", userId},
+                        {"RoleId", roleId}
+                    });
+
+                return recordsAffected.Equals(1);
+            }
         }
 
         public bool AddActivityToRole(int roleId, int activityId)
         {
-            throw new NotImplementedException();
+            var roleActivity = new RoleActivity() {ActivityId = activityId, RoleId = roleId};
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Insert(roleActivity);
+            }
+
+            return true;
         }
 
         public bool AddActivityToActivity(int parentActivityId, int activityId)
         {
-            throw new NotImplementedException();
+            var activityActivity = new ActivityActivity() {ActivityId = activityId, ParentActivityId = parentActivityId};
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Insert(activityActivity);
+            }
+
+            return true;
         }
 
         public bool AddRoleToUser(int userId, int roleId)
         {
-            throw new NotImplementedException();
+            var userRole = new UserRole() {Id = userId, RoleId = roleId};
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Insert(userRole);
+            }
+
+            return true;
         }
 
         public bool AddRoleToRole(int parentRoleId, int roleId)
         {
-            throw new NotImplementedException();
+            var roleRole = new RoleRole() {RoleId = roleId, ParentRoleId = parentRoleId};
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Insert(roleRole);
+            }
+
+            return true;
         }
     }
 }
