@@ -14,10 +14,27 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 
         public IList<Activity> GetActivities()
         {
+            List<Activity> activities;
+            List<ActivityActivity> activityActivity;
+
             using (var conn = new SqlConnection(connectionString))
             {
-                return conn.Select<Activity>().ToList();
+                activities = conn.Select<Activity>().ToList();
+                activityActivity = conn.Select<ActivityActivity>().ToList();
             }
+
+            var parents = activityActivity.OrderBy(a => a.ActivityId).GroupBy(a => a.ParentActivityId);
+            foreach (var parent in parents)
+            {
+                var target = activities.First(a => a.Id == parent.Key);
+                foreach (var parentActivity in parent)
+                {
+                    var activity = activities.First(a => a.Id == parentActivity.ActivityId);
+                    target.Activities.Add(activity);
+                }
+            }
+
+            return activities;
         }
 
         public IList<Role> GetRoles()
