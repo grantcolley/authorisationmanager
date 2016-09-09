@@ -14,8 +14,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 
         public IList<Activity> GetActivities()
         {
-            List<Activity> activities;
-            List<ActivityActivity> activityActivity;
+            IList<Activity> activities;
+            IList<ActivityActivity> activityActivity;
 
             using (var conn = new SqlConnection(connectionString))
             {
@@ -23,14 +23,19 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
                 activityActivity = conn.Select<ActivityActivity>().ToList();
             }
 
-            var parents = activityActivity.OrderBy(a => a.ActivityId).GroupBy(a => a.ParentActivityId);
-            foreach (var parent in parents)
+            var groups = activityActivity.OrderBy(a => a.ActivityId).GroupBy(a => a.ParentActivityId);
+            foreach (var group in groups)
             {
-                var target = activities.First(a => a.Id == parent.Key);
-                foreach (var parentActivity in parent)
+                var parentActivity = activities.SingleOrDefault(a => a.Id == group.Key);
+                if (parentActivity == null)
                 {
-                    var activity = activities.First(a => a.Id == parentActivity.ActivityId);
-                    target.Activities.Add(activity);
+                    continue;
+                }
+
+                foreach (var child in group)
+                {
+                    var childActivity = activities.First(a => a.Id == child.ActivityId);
+                    parentActivity.Activities.Add(childActivity);
                 }
             }
 
@@ -39,18 +44,78 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 
         public IList<Role> GetRoles()
         {
+            IList<Role> roles;
+            IList<RoleRole> roleRoles;
+            IList<RoleActivity> roleActivityActivities;
+
             using (var conn = new SqlConnection(connectionString))
             {
-                return conn.Select<Role>().ToList();
+                roles = conn.Select<Role>().ToList();
+                roleRoles = conn.Select<RoleRole>().ToList();
+                roleActivityActivities = conn.Select<RoleActivity>().ToList();
             }
+
+            var activities = GetActivities();
+
+            var groups = roleRoles.OrderBy(r => r.RoleId).GroupBy(r => r.ParentRoleId);
+            foreach (var group in groups)
+            {
+                var parentRole = roles.SingleOrDefault(r => r.Id == group.Key);
+                if (parentRole == null)
+                {
+                    continue;
+                }
+
+                var roleActivities = roleActivityActivities.Where(ra => ra.RoleId == parentRole.Id);
+                foreach (var roleActivity in roleActivities)
+                {
+                    var activity = activities.SingleOrDefault(a => a.Id == roleActivity.ActivityId);
+                    if (activity != null)
+                    {
+                        parentRole.Activities.Add(activity);
+                    }
+                }
+
+                foreach (var child in group)
+                {
+                    var childRole = roles.First(r => r.Id == child.RoleId);
+                    parentRole.Roles.Add(childRole);
+                }
+            }
+
+            return roles;
         }
 
         public IList<UserAuthorisation> GetUserAuthorisations()
         {
+            IList<UserAuthorisation> userAuthorisations;
+            IList<UserRole> userRoles;
+
             using (var conn = new SqlConnection(connectionString))
             {
-                return conn.Select<UserAuthorisation>().ToList();
+                userAuthorisations = conn.Select<UserAuthorisation>().ToList();
+                userRoles = conn.Select<UserRole>().ToList();
             }
+
+            var roles = GetRoles();
+
+            var groups = userRoles.OrderBy(r => r.RoleId).GroupBy(r => r.Id);
+            foreach (var group in groups)
+            {
+                var userAuthorisation = userAuthorisations.SingleOrDefault(u => u.Id == group.Key);
+                if (userAuthorisation == null)
+                {
+                    continue;
+                }
+
+                foreach (var child in group)
+                {
+                    var role = roles.First(r => r.Id == child.RoleId);
+                    userAuthorisation.Roles.Add(role);
+                }
+            }
+
+            return userAuthorisations;
         }
 
         public Activity SaveActivity(Activity activity)
