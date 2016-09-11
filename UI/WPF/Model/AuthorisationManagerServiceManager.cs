@@ -277,7 +277,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             {
                 var rn = GetRoleNode(r);
                 rn.Parent = roleNode;
-                roleNode.Roles.Add(GetRoleNode(r));
+                roleNode.Roles.Add(rn);
             });
             return roleNode;
         }
