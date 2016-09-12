@@ -14,41 +14,11 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             this.authorisationManagerServer = authorisationManagerServer;
         }
 
-        public string GetActivities()
+        public string GetAuthorisation()
         {
             try
             {
-                return authorisationManagerServer.GetActivities();
-            }
-            catch (Exception ex)
-            {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
-            }
-        }
-
-        public string GetRoles()
-        {
-            try
-            {
-                return authorisationManagerServer.GetRoles();
-            }
-            catch (Exception ex)
-            {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
-            }
-        }
-
-        public string GetUserAuthorisations()
-        {
-            try
-            {
-                return authorisationManagerServer.GetUserAuthorisations();
+                return authorisationManagerServer.GetAuthorisation();
             }
             catch (Exception ex)
             {

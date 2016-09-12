@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using DevelopmentInProgress.DipCore;
+﻿using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipCore.Service;
 using DevelopmentInProgress.DipSecure;
 
@@ -14,25 +13,11 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
             this.authorisationManagerService = authorisationManagerService;
         }
 
-        public IList<Activity> GetActivities()
+        public Authorisation GetAuthorisation()
         {
-            var response = authorisationManagerService.GetActivities();
-            var activities = ServiceResponse.Deserialize<IList<Activity>>(response);
-            return activities;
-        }
-
-        public IList<Role> GetRoles()
-        {
-            var response = authorisationManagerService.GetRoles();
-            var roles = ServiceResponse.Deserialize<IList<Role>>(response);
-            return roles;
-        }
-
-        public IList<UserAuthorisation> GetUserAuthorisations()
-        {
-            var response = authorisationManagerService.GetUserAuthorisations();
-            var userAuthorisations = ServiceResponse.Deserialize<IList<UserAuthorisation>>(response);
-            return userAuthorisations;
+            var response = authorisationManagerService.GetAuthorisation();
+            var authorisation = ServiceResponse.Deserialize<Authorisation>(response);
+            return authorisation;
         }
 
         public Activity SaveActivity(Activity activity)

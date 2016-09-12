@@ -2,9 +2,7 @@
 {
     public interface IAuthorisationManagerService
     {
-        string GetActivities();
-        string GetRoles();
-        string GetUserAuthorisations();
+        string GetAuthorisation();
         string SaveActivity(string activity);
         string SaveRole(string role);
         string SaveUserAuthorisation(string userAuthorisation);

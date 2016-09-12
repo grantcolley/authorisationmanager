@@ -73,9 +73,10 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         {
             base.OnPublishedAsyncCompleted(processAsyncResult);
 
-            Activities = new ObservableCollection<ActivityNode>(authorisationManagerServiceManager.GetActivityNodes());
-            Roles = new ObservableCollection<RoleNode>(authorisationManagerServiceManager.GetRoleNodes());
-            Users = new ObservableCollection<UserNode>(authorisationManagerServiceManager.GetUserNodes());
+            var authorisationNodes = authorisationManagerServiceManager.GetAuthorisationNodes();
+            Activities = new ObservableCollection<ActivityNode>(authorisationNodes.ActivityNodes);
+            Roles = new ObservableCollection<RoleNode>(authorisationNodes.RoleNodes);
+            Users = new ObservableCollection<UserNode>(authorisationNodes.UserNodes);
         }
 
         protected override ProcessAsyncResult SaveDocumentAsync()

@@ -16,28 +16,14 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             this.authorisationManagerServiceProxy = authorisationManagerServiceProxy;
         }
 
-        public List<ActivityNode> GetActivityNodes()
+        public AuthorisationNodes GetAuthorisationNodes()
         {
-            var activityNodes = new List<ActivityNode>();
-            var activities = authorisationManagerServiceProxy.GetActivities();
-            activities.ToList().ForEach(a => activityNodes.Add(GetActivityNode(a)));
-            return activityNodes;
-        }
-
-        public List<RoleNode> GetRoleNodes()
-        {
-            var roleNodes = new List<RoleNode>();
-            var roles = authorisationManagerServiceProxy.GetRoles();
-            roles.ToList().ForEach(r => roleNodes.Add(GetRoleNode(r)));
-            return roleNodes;
-        }
-
-        public List<UserNode> GetUserNodes()
-        {
-            var userNodes = new List<UserNode>();
-            var userAuthorisations = authorisationManagerServiceProxy.GetUserAuthorisations();
-            userAuthorisations.ToList().ForEach(u => userNodes.Add(GetUserNode(u)));
-            return userNodes;
+            var authorisationNodes = new AuthorisationNodes();
+            var authorisation = authorisationManagerServiceProxy.GetAuthorisation();
+            authorisation.Activities.ToList().ForEach(a => authorisationNodes.ActivityNodes.Add(GetActivityNode(a)));
+            authorisation.Roles.ToList().ForEach(r => authorisationNodes.RoleNodes.Add(GetRoleNode(r)));
+            authorisation.UserAuthorisations.ToList().ForEach(u => authorisationNodes.UserNodes.Add(GetUserNode(u)));
+            return authorisationNodes;
         }
 
         public ActivityNode SaveActivity(ActivityNode activityNode, IEnumerable<ActivityNode> activities)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DevelopmentInProgress.AuthorisationManager.Data;
 using DevelopmentInProgress.AuthorisationManager.Service;
 using DevelopmentInProgress.DipCore;
@@ -16,52 +17,18 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             this.authorisationManagerDataProxy = authorisationManagerDataProxy;
         }
 
-        public string GetActivities()
+        public string GetAuthorisation()
         {
             var serviceResponse = new ServiceResponse();
 
             try
             {
-                var activities = authorisationManagerDataProxy.GetActivities();
-                var serialisedActivities = Serializer.SerializeToJson(activities);
-                serviceResponse = new ServiceResponse() {Message = serialisedActivities};
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Exception = ex;
-            }
-
-            return Serializer.SerializeToJson(serviceResponse);
-        }
-
-        public string GetRoles()
-        {
-            var serviceResponse = new ServiceResponse();
-
-            try
-            {
-                var roles = authorisationManagerDataProxy.GetRoles();
-                var serialisedRoles = Serializer.SerializeToJson(roles);
-                serviceResponse = new ServiceResponse() {Message = serialisedRoles};
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Exception = ex;
-            }
-
-            var json = Serializer.SerializeToJson(serviceResponse);
-            return json;
-        }
-
-        public string GetUserAuthorisations()
-        {
-            var serviceResponse = new ServiceResponse();
-
-            try
-            {
-                var users = authorisationManagerDataProxy.GetUserAuthorisations();
-                var serialisedUsers = Serializer.SerializeToJson(users);
-                serviceResponse = new ServiceResponse() {Message = serialisedUsers};
+                var authorisation = new Authorisation();
+                authorisationManagerDataProxy.GetActivities().ToList().ForEach(a => authorisation.Activities.Add(a));
+                authorisationManagerDataProxy.GetRoles().ToList().ForEach(r => authorisation.Roles.Add(r));
+                authorisationManagerDataProxy.GetUserAuthorisations().ToList().ForEach(u => authorisation.UserAuthorisations.Add(u));
+                var serialisedAuthorisation = Serializer.SerializeToJson(authorisation);
+                serviceResponse = new ServiceResponse() { Message = serialisedAuthorisation };
             }
             catch (Exception ex)
             {
