@@ -12,8 +12,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
             UserAuthorisations = new List<UserAuthorisation>();
         }
 
-        public IList<Activity> Activities { get; private set; }
-        public IList<Role> Roles { get; private set; }
-        public IList<UserAuthorisation> UserAuthorisations { get; private set; }
+        public List<Activity> Activities { get; private set; }
+        public List<Role> Roles { get; private set; }
+        public List<UserAuthorisation> UserAuthorisations { get; private set; }
     }
 }

@@ -23,10 +23,21 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                var authorisation = new Authorisation();
-                authorisationManagerDataProxy.GetActivities().ToList().ForEach(a => authorisation.Activities.Add(a));
-                authorisationManagerDataProxy.GetRoles().ToList().ForEach(r => authorisation.Roles.Add(r));
-                authorisationManagerDataProxy.GetUserAuthorisations().ToList().ForEach(u => authorisation.UserAuthorisations.Add(u));
+                var activities = authorisationManagerDataProxy.GetActivities();
+                var roles = authorisationManagerDataProxy.GetRoles();
+                var userAuthorisations = authorisationManagerDataProxy.GetUserAuthorisations();
+
+                var serialisedActivities = Serializer.SerializeToJson(activities);
+                var serialisedRoles = Serializer.SerializeToJson(roles);
+                var serialisedUserAuthorisations = Serializer.SerializeToJson(userAuthorisations);
+
+                var authorisation = new AuthorisationSerialised()
+                {
+                    Activities = serialisedActivities,
+                    Roles = serialisedRoles,
+                    UserAuthorisations = serialisedUserAuthorisations
+                };
+
                 var serialisedAuthorisation = Serializer.SerializeToJson(authorisation);
                 serviceResponse = new ServiceResponse() { Message = serialisedAuthorisation };
             }

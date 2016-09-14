@@ -39,8 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthorisationManagerServiceProxy.cs" />
     <Compile Include="Authorisation.cs" />
+    <Compile Include="AuthorisationManagerServiceProxy.cs" />
+    <Compile Include="AuthorisationSerialised.cs" />
     <Compile Include="IAuthorisationManagerService.cs" />
     <Compile Include="IAuthorisationManagerServiceProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

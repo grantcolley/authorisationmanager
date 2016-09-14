@@ -1,4 +1,5 @@
-﻿using DevelopmentInProgress.DipCore;
+﻿using System.Collections.Generic;
+using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipCore.Service;
 using DevelopmentInProgress.DipSecure;
 
@@ -16,7 +17,17 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
         public Authorisation GetAuthorisation()
         {
             var response = authorisationManagerService.GetAuthorisation();
-            var authorisation = ServiceResponse.Deserialize<Authorisation>(response);
+            var authorisationSerialised = ServiceResponse.Deserialize<AuthorisationSerialised>(response);
+
+            var activities = Serializer.DeserializeJson<List<Activity>>(authorisationSerialised.Activities);
+            var roles = Serializer.DeserializeJson<List<Role>>(authorisationSerialised.Roles);
+            var userAuthorisations = Serializer.DeserializeJson<List<UserAuthorisation>>(authorisationSerialised.UserAuthorisations);
+
+            var authorisation = new Authorisation();
+            authorisation.Activities.AddRange(activities);
+            authorisation.Roles.AddRange(roles);
+            authorisation.UserAuthorisations.AddRange(userAuthorisations);
+
             return authorisation;
         }
 
