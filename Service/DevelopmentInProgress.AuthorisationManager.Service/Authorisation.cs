@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.Service
 {
+    [Serializable]
     public class Authorisation
     {
         public Authorisation()

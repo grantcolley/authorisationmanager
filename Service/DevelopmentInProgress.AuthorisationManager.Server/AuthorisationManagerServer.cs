@@ -27,16 +27,10 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
                 var roles = authorisationManagerDataProxy.GetRoles();
                 var userAuthorisations = authorisationManagerDataProxy.GetUserAuthorisations();
 
-                var serialisedActivities = Serializer.SerializeToJson(activities);
-                var serialisedRoles = Serializer.SerializeToJson(roles);
-                var serialisedUserAuthorisations = Serializer.SerializeToJson(userAuthorisations);
-
-                var authorisation = new AuthorisationSerialised()
-                {
-                    Activities = serialisedActivities,
-                    Roles = serialisedRoles,
-                    UserAuthorisations = serialisedUserAuthorisations
-                };
+                var authorisation = new Authorisation();
+                authorisation.Activities.AddRange(activities);
+                authorisation.Roles.AddRange(roles);
+                authorisation.UserAuthorisations.AddRange(userAuthorisations);
 
                 var serialisedAuthorisation = Serializer.SerializeToJson(authorisation);
                 serviceResponse = new ServiceResponse() { Message = serialisedAuthorisation };
