@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using DevelopmentInProgress.AuthorisationManager.Data;
 using DevelopmentInProgress.AuthorisationManager.Service;
 using DevelopmentInProgress.DipCore;
