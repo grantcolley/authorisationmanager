@@ -156,7 +156,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
                 {
                     message =
                         string.Format(
-                            "Invalid drop target. Activity {0} can't be an ancestor of the target.",
+                            "Invalid drop target. Activity {0} can't be added to itself of be an ancestor of the target.",
                             activityNode.Text);
                     return false;
                 }
@@ -212,7 +212,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
                 else if (IsAncestor(target, roleNode))
                 {
                     message =
-                        string.Format("Invalid drop target. Role {0} can't be an ancestor of the target.",
+                        string.Format("Invalid drop target. Role {0} can't be added to itself or be an ancestor of the target.",
                             roleNode.Text);
                     return false;
                 }
@@ -282,6 +282,11 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         private bool IsAncestor(NodeEntityBase target, NodeEntityBase candidate)
         {
+            if (target.Id == candidate.Id)
+            {
+                return true;
+            }
+
             if (target.Parent == null)
             {
                 return false;
