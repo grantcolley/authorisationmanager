@@ -42,7 +42,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
             return activities;
         }
 
-        public IList<Role> GetRoles()
+        public IList<Role> GetRoles(IList<Activity> activities)
         {
             IList<Role> roles;
             IList<RoleRole> roleRoles;
@@ -54,8 +54,6 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
                 roleRoles = conn.Select<RoleRole>().ToList();
                 roleActivityActivities = conn.Select<RoleActivity>().ToList();
             }
-
-            var activities = GetActivities();
 
             var groups = roleRoles.OrderBy(r => r.RoleId).GroupBy(r => r.ParentRoleId);
             foreach (var group in groups)
@@ -86,7 +84,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
             return roles;
         }
 
-        public IList<UserAuthorisation> GetUserAuthorisations()
+        public IList<UserAuthorisation> GetUserAuthorisations(IList<Role> roles)
         {
             IList<UserAuthorisation> userAuthorisations;
             IList<UserRole> userRoles;
@@ -96,8 +94,6 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
                 userAuthorisations = conn.Select<UserAuthorisation>().ToList();
                 userRoles = conn.Select<UserRole>().ToList();
             }
-
-            var roles = GetRoles();
 
             var groups = userRoles.OrderBy(r => r.RoleId).GroupBy(r => r.Id);
             foreach (var group in groups)

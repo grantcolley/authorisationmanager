@@ -17,14 +17,14 @@ namespace DevelopmentInProgress.AuthorisationManager.Data
             return authorisationManagerServiceData.GetActivities();
         }
 
-        public IList<Role> GetRoles()
+        public IList<Role> GetRoles(IList<Activity> activities)
         {
-            return authorisationManagerServiceData.GetRoles();
+            return authorisationManagerServiceData.GetRoles(activities);
         }
 
-        public IList<UserAuthorisation> GetUserAuthorisations()
+        public IList<UserAuthorisation> GetUserAuthorisations(IList<Role> roles)
         {
-            return authorisationManagerServiceData.GetUserAuthorisations();
+            return authorisationManagerServiceData.GetUserAuthorisations(roles);
         }
 
         public Activity SaveActivity(Activity activity)

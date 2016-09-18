@@ -24,8 +24,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             try
             {
                 var activities = authorisationManagerDataProxy.GetActivities();
-                var roles = authorisationManagerDataProxy.GetRoles();
-                var userAuthorisations = authorisationManagerDataProxy.GetUserAuthorisations();
+                var roles = authorisationManagerDataProxy.GetRoles(activities);
+                var userAuthorisations = authorisationManagerDataProxy.GetUserAuthorisations(roles);
 
                 var authorisation = new Authorisation();
                 authorisation.Activities.AddRange(activities);

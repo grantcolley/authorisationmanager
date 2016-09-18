@@ -6,8 +6,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Data
     public interface IAuthorisationManagerData
     {
         IList<Activity> GetActivities();
-        IList<Role> GetRoles();
-        IList<UserAuthorisation> GetUserAuthorisations();
+        IList<Role> GetRoles(IList<Activity> activities);
+        IList<UserAuthorisation> GetUserAuthorisations(IList<Role> roles);
         Activity SaveActivity(Activity activity);
         Role SaveRole(Role role);
         UserAuthorisation SaveUserAuthorisation(UserAuthorisation userAuthorisation);
