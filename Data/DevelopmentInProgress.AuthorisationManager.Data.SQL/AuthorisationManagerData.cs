@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using DevelopmentInProgress.AuthorisationManager.Data.SQL.Model;
+using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipMapper;
 using DevelopmentInProgress.DipSecure;
 
@@ -10,7 +11,18 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 {
     public class AuthorisationManagerData : IAuthorisationManagerData
     {
-        private static string connectionString = "Data Source=(local);Initial Catalog=AuthorisationManager;Integrated Security=true";
+        private static string connectionString;
+
+        static AuthorisationManagerData()
+        {
+            var password = "UyQbgX+rx6+JJARDmBJbqA==";
+            var key = "Ouc7Qs9I+rdjpsAll7HbJ+4pzmm9yvdD6rLmsq5pzZc=";
+            var iv = "+vafc4VzsRnl05ZIz3+nIQ==";
+
+            connectionString =
+                "Data Source=(local);Initial Catalog=AuthorisationManager;User id=authmanager;Password=" 
+                + Security.Decrypt(password, key, iv);
+        }
 
         public IList<Activity> GetActivities()
         {
