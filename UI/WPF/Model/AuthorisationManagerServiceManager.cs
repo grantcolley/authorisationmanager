@@ -282,7 +282,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         private bool IsAncestor(NodeEntityBase target, NodeEntityBase candidate)
         {
-            if (target.Id == candidate.Id)
+            if (target.GetType() == candidate.GetType()
+                && target.Id == candidate.Id)
             {
                 return true;
             }
@@ -291,9 +292,10 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             {
                 return false;
             }
-            
+
             if (target.Parent == candidate
-                || target.Parent.Id == candidate.Id)
+                || (target.Parent.GetType() == candidate.GetType()
+                    && target.Parent.Id == candidate.Id))
             {
                 return true;
             }
