@@ -46,8 +46,11 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 
                 foreach (var child in group)
                 {
-                    var childActivity = activities.First(a => a.Id == child.ActivityId);
-                    parentActivity.Activities.Add(childActivity);
+                    var childActivity = activities.SingleOrDefault(a => a.Id == child.ActivityId);
+                    if (childActivity != null)
+                    {
+                        parentActivity.Activities.Add(childActivity);
+                    }
                 }
             }
 
@@ -88,8 +91,11 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 
                 foreach (var child in group)
                 {
-                    var childRole = roles.First(r => r.Id == child.RoleId);
-                    parentRole.Roles.Add(childRole);
+                    var childRole = roles.SingleOrDefault(r => r.Id == child.RoleId);
+                    if (childRole != null)
+                    {
+                        parentRole.Roles.Add(childRole);
+                    }
                 }
             }
 
@@ -118,8 +124,11 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 
                 foreach (var child in group)
                 {
-                    var role = roles.First(r => r.Id == child.RoleId);
-                    userAuthorisation.Roles.Add(role);
+                    var role = roles.SingleOrDefault(r => r.Id == child.RoleId);
+                    if (role != null)
+                    {
+                        userAuthorisation.Roles.Add(role);
+                    }
                 }
             }
 
