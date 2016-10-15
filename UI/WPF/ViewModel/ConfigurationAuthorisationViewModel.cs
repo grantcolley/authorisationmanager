@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using DevelopmentInProgress.AuthorisationManager.WPF.Model;
 using DevelopmentInProgress.DipCore;
@@ -106,122 +107,167 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         private void OnEntitySave(object param)
         {
-            var activityNode = param as ActivityNode;
-            if (activityNode != null)
+            try
             {
-                SaveActivity(activityNode);
-                return;
-            }
+                var activityNode = param as ActivityNode;
+                if (activityNode != null)
+                {
+                    SaveActivity(activityNode);
+                    return;
+                }
 
-            var roleNode = param as RoleNode;
-            if (roleNode != null)
-            {
-                SaveRole(roleNode);
-                return;
-            }
+                var roleNode = param as RoleNode;
+                if (roleNode != null)
+                {
+                    SaveRole(roleNode);
+                    return;
+                }
 
-            var userNode = param as UserNode;
-            if (userNode != null)
+                var userNode = param as UserNode;
+                if (userNode != null)
+                {
+                    SaveUser(userNode);
+                }
+            }
+            catch (Exception ex)
             {
-                SaveUser(userNode);
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text = ex.Message
+                }, true);
             }
         }
 
         private void OnEntityDelete(object param)
         {
-            var activityNode = param as ActivityNode;
-            if (activityNode != null)
+            try
             {
-                DeleteActivity(activityNode);
-                return;
-            }
+                var activityNode = param as ActivityNode;
+                if (activityNode != null)
+                {
+                    DeleteActivity(activityNode);
+                    return;
+                }
 
-            var roleNode = param as RoleNode;
-            if (roleNode != null)
-            {
-                DeleteRole(roleNode);
-                return;
-            }
+                var roleNode = param as RoleNode;
+                if (roleNode != null)
+                {
+                    DeleteRole(roleNode);
+                    return;
+                }
 
-            var userNode = param as UserNode;
-            if (userNode != null)
+                var userNode = param as UserNode;
+                if (userNode != null)
+                {
+                    DeleteUser(userNode);
+                }
+            }
+            catch (Exception ex)
             {
-                DeleteUser(userNode);
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text = ex.Message
+                }, true);
             }
         }
 
         private void OnRemoveItem(object param)
         {
-            var activityNode = param as ActivityNode;
-            if (activityNode != null)
+            try
             {
-                RemoveActivity(activityNode);
-                return;
-            }
+                var activityNode = param as ActivityNode;
+                if (activityNode != null)
+                {
+                    RemoveActivity(activityNode);
+                    return;
+                }
 
-            var roleNode = param as RoleNode;
-            if (roleNode != null)
-            {
-                RemoveRole(roleNode);
-                return;
-            }
+                var roleNode = param as RoleNode;
+                if (roleNode != null)
+                {
+                    RemoveRole(roleNode);
+                    return;
+                }
 
-            var userNode = param as UserNode;
-            if (userNode != null)
+                var userNode = param as UserNode;
+                if (userNode != null)
+                {
+                    RemoveUser(userNode);
+                }
+            }
+            catch (Exception ex)
             {
-                RemoveUser(userNode);
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text = ex.Message
+                }, true);
             }
         }
 
         private void OnDragDrop(object param)
         {
-            var dragDropArgs = param as FilterTreeDragDropArgs;
-            if (dragDropArgs == null
-                || dragDropArgs.DragItem == null)
+            try
             {
-                return;
-            }
-
-            var target = dragDropArgs.DropTarget as NodeEntityBase;
-            if (target == null)
-            {
-                return;
-            }
-
-            var message = string.Empty;
-
-            if (dragDropArgs.DragItem is ActivityNode)
-            {
-                var dragActivityNode = (ActivityNode)dragDropArgs.DragItem;
-                var targets =
-                    Activities.Flatten<NodeEntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text),
-                        Roles, Users);
-                if (authorisationManagerServiceManager.TryAddActivity(dragActivityNode, targets, out message))
+                var dragDropArgs = param as FilterTreeDragDropArgs;
+                if (dragDropArgs == null
+                    || dragDropArgs.DragItem == null)
                 {
                     return;
                 }
-            }
-            else if (dragDropArgs.DragItem is RoleNode)
-            {
-                var dragRoleNode = (RoleNode)dragDropArgs.DragItem;
-                var targets = Roles.Flatten<NodeEntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text),
-                    Users);
-                if (authorisationManagerServiceManager.TryAddRole(dragRoleNode, targets, out message))
+
+                var target = dragDropArgs.DropTarget as NodeEntityBase;
+                if (target == null)
                 {
                     return;
                 }
-            }
-            else
-            {
-                message = "Invalid drag item.";
-            }
 
-            if (!string.IsNullOrEmpty(message))
+                var message = string.Empty;
+
+                if (dragDropArgs.DragItem is ActivityNode)
+                {
+                    var dragActivityNode = (ActivityNode) dragDropArgs.DragItem;
+                    var targets =
+                        Activities.Flatten<NodeEntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text),
+                            Roles, Users);
+                    if (authorisationManagerServiceManager.TryAddActivity(dragActivityNode, targets, out message))
+                    {
+                        return;
+                    }
+                }
+                else if (dragDropArgs.DragItem is RoleNode)
+                {
+                    var dragRoleNode = (RoleNode) dragDropArgs.DragItem;
+                    var targets =
+                        Roles.Flatten<NodeEntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text),
+                            Users);
+                    if (authorisationManagerServiceManager.TryAddRole(dragRoleNode, targets, out message))
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    message = "Invalid drag item.";
+                }
+
+                if (!string.IsNullOrEmpty(message))
+                {
+                    ShowMessage(new Message()
+                    {
+                        MessageType = MessageTypeEnum.Warn,
+                        Text = message
+                    }, true);
+                }
+            }
+            catch (Exception ex)
             {
                 ShowMessage(new Message()
                 {
                     MessageType = MessageTypeEnum.Warn,
-                    Text = message
+                    Text = ex.Message
                 }, true);
             }
         }
