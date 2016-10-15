@@ -36,7 +36,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = ex;
+                serviceResponse.Exception = new ServiceResponseException(ex);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -55,7 +55,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = ex;
+                serviceResponse.Exception = new ServiceResponseException(ex);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -74,7 +74,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = ex;
+                serviceResponse.Exception = new ServiceResponseException(ex);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -93,7 +93,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = ex;
+                serviceResponse.Exception = new ServiceResponseException(ex);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -112,7 +112,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = ex;
+                serviceResponse.Exception = new ServiceResponseException(ex);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -131,7 +131,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = ex;
+                serviceResponse.Exception = new ServiceResponseException(ex);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -150,7 +150,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = ex;
+                serviceResponse.Exception = new ServiceResponseException(ex);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -170,7 +170,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = ex;
+                serviceResponse.Exception = new ServiceResponseException(ex);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -190,7 +190,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = ex;
+                serviceResponse.Exception = new ServiceResponseException(ex);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -210,7 +210,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = ex;
+                serviceResponse.Exception = new ServiceResponseException(ex);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -230,7 +230,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = ex;
+                serviceResponse.Exception = new ServiceResponseException(ex);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -250,7 +250,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = ex;
+                serviceResponse.Exception = new ServiceResponseException(ex);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -270,7 +270,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = ex;
+                serviceResponse.Exception = new ServiceResponseException(ex);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -290,7 +290,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = ex;
+                serviceResponse.Exception = new ServiceResponseException(ex);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -310,7 +310,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = ex;
+                serviceResponse.Exception = new ServiceResponseException(ex);
             }
 
             return Serializer.SerializeToJson(serviceResponse);

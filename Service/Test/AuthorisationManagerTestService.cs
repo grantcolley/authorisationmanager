@@ -22,8 +22,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
             catch (Exception ex)
             {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
+                var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -37,8 +36,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
             catch (Exception ex)
             {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
+                var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -52,8 +50,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
             catch (Exception ex)
             {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
+                var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -67,8 +64,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
             catch (Exception ex)
             {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
+                var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -82,8 +78,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
             catch (Exception ex)
             {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
+                var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -97,8 +92,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
             catch (Exception ex)
             {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
+                var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -112,8 +106,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
             catch (Exception ex)
             {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
+                var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -127,8 +120,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
             catch (Exception ex)
             {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
+                var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -142,8 +134,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
             catch (Exception ex)
             {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
+                var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -157,8 +148,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
             catch (Exception ex)
             {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
+                var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -172,8 +162,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
             catch (Exception ex)
             {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
+                var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -187,8 +176,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
             catch (Exception ex)
             {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
+                var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -202,8 +190,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
             catch (Exception ex)
             {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
+                var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -217,8 +204,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
             catch (Exception ex)
             {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
+                var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -232,8 +218,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service.Test
             }
             catch (Exception ex)
             {
-                var serviceResponse = new ServiceResponse();
-                serviceResponse.Exception = ex;
+                var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
