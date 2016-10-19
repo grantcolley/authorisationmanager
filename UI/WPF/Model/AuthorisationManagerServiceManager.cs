@@ -124,7 +124,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             var parentRole = activityNode.Parent as RoleNode;
             if (parentRole != null)
             {
-                authorisationManagerServiceProxy.RemoveActivityFromActivity(activityNode.Id, parentRole.Id);
+                authorisationManagerServiceProxy.RemoveActivityFromRole(activityNode.Id, parentRole.Id);
                 parentRole.Activities.Remove(activityNode);
             }
         }
