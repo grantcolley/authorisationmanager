@@ -367,22 +367,21 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         private void DeleteActivity(ActivityNode activityNode)
         {
-            var combinedList = Activities.Merge(Roles, Users);
-            authorisationManagerServiceManager.DeleteActivity(activityNode, combinedList);            
+            var aggregatedList = Activities.Merge(Roles, Users);
+            authorisationManagerServiceManager.DeleteActivity(activityNode, aggregatedList);            
             SelectedItem = null;
         }
 
         private void DeleteRole(RoleNode roleNode)
         {
-            var combinedList = Roles.Merge(Users);
-            authorisationManagerServiceManager.DeleteRole(roleNode, combinedList);
+            var aggregatedList = Roles.Merge(Users);
+            authorisationManagerServiceManager.DeleteRole(roleNode, aggregatedList);
             SelectedItem = null;
         }
 
         private void DeleteUser(UserNode userNode)
         {
             authorisationManagerServiceManager.DeleteUserAuthorisation(userNode, Users);
-            Users.Remove(userNode);
             SelectedItem = null;
         }
     }
