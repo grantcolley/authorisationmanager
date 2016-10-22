@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
@@ -53,6 +54,22 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             {
                 Activity.Description = value;
                 OnPropertyChanged("Description");
+            }
+        }
+
+        public void RemoveActivity(int id)
+        {
+            var activity = Activity.Activities.FirstOrDefault(a => a.Id.Equals(id));
+            if (activity != null)
+            {
+                Activity.Activities.Remove(activity);
+            }
+
+            var activityNode = Activities.FirstOrDefault(a => a.Id.Equals(id));
+            if (activityNode != null)
+            {
+                activityNode.Parent = null;
+                Activities.Remove(activityNode);
             }
         }
     }

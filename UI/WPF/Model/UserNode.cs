@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
@@ -43,6 +44,22 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             {
                 UserAuthorisation.DisplayName = value;
                 OnPropertyChanged("Description");
+            }
+        }
+
+        public void RemoveRole(int id)
+        {
+            var role = UserAuthorisation.Roles.FirstOrDefault(r => r.Id.Equals(id));
+            if (role != null)
+            {
+                UserAuthorisation.Roles.Remove(role);
+            }
+
+            var roleNode = Roles.FirstOrDefault(r => r.Id.Equals(id));
+            if (roleNode != null)
+            {
+                roleNode.Parent = null;
+                Roles.Remove(roleNode);
             }
         }
     }
