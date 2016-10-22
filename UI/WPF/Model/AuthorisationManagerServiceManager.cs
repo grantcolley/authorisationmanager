@@ -111,13 +111,18 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             list.RemoveNested(userNode, u => u.Id.Equals(userNode.Id));
         }
 
-        public void RemoveActivity(ActivityNode activityNode)
+        public void RemoveActivity(ActivityNode activityNode, IList list)
         {
             var parentActivity = activityNode.Parent as ActivityNode;
             if (parentActivity != null)
             {
                 authorisationManagerServiceProxy.RemoveActivityFromActivity(activityNode.Id, parentActivity.Id);
-                parentActivity.Activities.Remove(activityNode);
+                var parentActivityList = list.Flatten<ActivityNode>(a => a.Id.Equals(parentActivity.Id));
+                foreach (var activity in parentActivityList)
+                {
+                    activity.RemoveActivity(activityNode.Id);
+                }
+
                 return;
             }
 
@@ -125,24 +130,38 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             if (parentRole != null)
             {
                 authorisationManagerServiceProxy.RemoveActivityFromRole(activityNode.Id, parentRole.Id);
-                parentRole.Activities.Remove(activityNode);
+                var parentRoleList = list.Flatten<RoleNode>(r => r.Id.Equals(parentRole.Id));
+                foreach (var role in parentRoleList)
+                {
+                    role.RemoveActivity(activityNode.Id);
+                }
             }
         }
 
-        public void RemoveRole(RoleNode roleNode)
+        public void RemoveRole(RoleNode roleNode, IList list)
         {
             var parentRole = roleNode.Parent as RoleNode;
             if (parentRole != null)
             {
                 authorisationManagerServiceProxy.RemoveRoleFromRole(roleNode.Id, parentRole.Id);
-                parentRole.Roles.Remove(roleNode);
+                var parentRoleList = list.Flatten<RoleNode>(r => r.Id.Equals(parentRole.Id));
+                foreach (var role in parentRoleList)
+                {
+                    role.RemoveRole(roleNode.Id);
+                }
+
+                return;
             }
 
             var parentUser = roleNode.Parent as UserNode;
             if (parentUser != null)
             {
                 authorisationManagerServiceProxy.RemoveRoleFromUser(roleNode.Id, parentUser.Id);
-                parentUser.Roles.Remove(roleNode);
+                var parentUserList = list.Flatten<UserNode>(u => u.Id.Equals(parentUser.Id));
+                foreach (var parent in parentUserList)
+                {
+                    parent.RemoveRole(roleNode.Id);
+                }
             }
         }
 

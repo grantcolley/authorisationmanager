@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using DevelopmentInProgress.AuthorisationManager.WPF.Model;
 using DevelopmentInProgress.DipCore;
@@ -335,9 +336,10 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 return;
             }
 
-            authorisationManagerServiceManager.RemoveActivity(activityNode);
+            var aggregatedList = Activities.Merge(Roles, Users);
+            authorisationManagerServiceManager.RemoveActivity(activityNode, aggregatedList);
         }
-
+        
         private void RemoveRole(RoleNode roleNode)
         {
             if (roleNode.Parent == null)
@@ -350,7 +352,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 return;
             }
 
-            authorisationManagerServiceManager.RemoveRole(roleNode);
+            var aggregatedList = Roles.Merge(Users);
+            authorisationManagerServiceManager.RemoveRole(roleNode, aggregatedList);
         }
 
         private void RemoveUser(UserNode userNode)
