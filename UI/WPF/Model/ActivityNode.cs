@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
@@ -54,6 +55,21 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             {
                 Activity.Description = value;
                 OnPropertyChanged("Description");
+            }
+        }
+
+        public void AddActivity(ActivityNode activity)
+        {
+            if (!Activities.Any(a => a.Id.Equals(activity.Id)))
+            {
+                var clone = activity.DeepClone();
+                clone.Parent = this;
+                Activities.Add(clone);
+
+                if (!Activity.Activities.Any(a => a.Id.Equals(activity.Id)))
+                {
+                    Activity.Activities.Add(clone.Activity);
+                }
             }
         }
 

@@ -336,8 +336,16 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 return;
             }
 
-            var aggregatedList = Activities.Merge(Roles, Users);
-            authorisationManagerServiceManager.RemoveActivity(activityNode, aggregatedList);
+            if (activityNode.Parent is ActivityNode)
+            {
+                var activities = Activities.Flatten<ActivityNode>(Roles, Users).ToList();
+                authorisationManagerServiceManager.RemoveActivityFromActivity(activityNode, activities);
+            }
+            else if (activityNode.Parent is RoleNode)
+            {
+                var roles = Roles.Flatten<RoleNode>(Users).ToList();
+                authorisationManagerServiceManager.RemoveActivityFromRole(activityNode, roles);                
+            }
         }
         
         private void RemoveRole(RoleNode roleNode)
@@ -352,8 +360,16 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 return;
             }
 
-            var aggregatedList = Roles.Merge(Users);
-            authorisationManagerServiceManager.RemoveRole(roleNode, aggregatedList);
+            if (roleNode.Parent is RoleNode)
+            {
+                var roles = Roles.Flatten<RoleNode>(Users).ToList();
+                authorisationManagerServiceManager.RemoveRoleFromRole(roleNode, roles);
+            }
+            else if (roleNode.Parent is UserNode)
+            {
+                var users = Users.Flatten<UserNode>().ToList();
+                authorisationManagerServiceManager.RemoveRoleFromUser(roleNode, users);
+            }
         }
 
         private void RemoveUser(UserNode userNode)
