@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Data;
+using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
@@ -71,6 +72,36 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             {
                 Role.Description = value;
                 OnPropertyChanged("Description");
+            }
+        }
+
+        public void AddActivity(ActivityNode activity)
+        {
+            if (!Activities.Any(a => a.Id.Equals(activity.Id)))
+            {
+                var clone = activity.DeepClone();
+                clone.Parent = this;
+                Activities.Add(clone);
+
+                if (!Role.Activities.Any(a => a.Id.Equals(activity.Id)))
+                {
+                    Role.Activities.Add(clone.Activity);
+                }
+            }
+        }
+
+        public void AddRole(RoleNode role)
+        {
+            if (!Roles.Any(r => r.Id.Equals(role.Id)))
+            {
+                var clone = role.DeepClone();
+                clone.Parent = this;
+                Roles.Add(clone);
+
+                if (!Role.Roles.Any(r => r.Id.Equals(role.Id)))
+                {
+                    Role.Roles.Add(clone.Role);
+                }
             }
         }
 
