@@ -187,8 +187,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
                     if (((RoleNode) target).Activities.All(a => a.Id != activityNode.Id))
                     {
                         var dropRoleNode = (RoleNode) target;
-                        activityNode.Parent = dropRoleNode;
-                        dropRoleNode.Activities.Add(activityNode);
+                        dropRoleNode.AddActivity(activityNode);
                         authorisationManagerServiceProxy.AddActivityToRole(dropRoleNode.Id, activityNode.Id);
                     }
                 }
@@ -197,8 +196,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
                     if (((ActivityNode)target).Activities.All(a => a.Id != activityNode.Id))
                     {
                         var dropActivityNode = (ActivityNode) target;
-                        activityNode.Parent = dropActivityNode;
-                        dropActivityNode.Activities.Add(activityNode);
+                        dropActivityNode.AddActivity(activityNode);
                         authorisationManagerServiceProxy.AddActivityToActivity(dropActivityNode.Id, activityNode.Id);
                     }
                 }
@@ -225,8 +223,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
                     if (((UserNode) target).Roles.All(r => r.Id != roleNode.Id))
                     {
                         var dropUserNode = (UserNode) target;
-                        roleNode.Parent = dropUserNode;
-                        dropUserNode.Roles.Add(roleNode);
+                        dropUserNode.AddRole(roleNode);
                         authorisationManagerServiceProxy.AddRoleToUser(dropUserNode.Id, roleNode.Id);
                     }
                 }
@@ -242,8 +239,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
                     if (((RoleNode) target).Roles.All(r => r.Id != roleNode.Id))
                     {
                         var dropRoleNode = (RoleNode) target;
-                        roleNode.Parent = dropRoleNode;
-                        dropRoleNode.Roles.Add(roleNode);
+                        dropRoleNode.AddRole(roleNode);
                         authorisationManagerServiceProxy.AddRoleToRole(dropRoleNode.Id, roleNode.Id);
                     }
                 }
