@@ -7,6 +7,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 {
     public class UserNode : NodeEntityBase
     {
+        public UserNode() : this(new UserAuthorisation()) { }
+
         public UserNode(UserAuthorisation userAuthorisation)
         {
             UserAuthorisation = userAuthorisation;
@@ -16,7 +18,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public ObservableCollection<RoleNode> Roles { get; set; }
 
-        public UserAuthorisation UserAuthorisation { get; private set; }
+        public UserAuthorisation UserAuthorisation { get; set; }
 
         public override int Id
         {

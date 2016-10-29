@@ -7,6 +7,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 {
     public class ActivityNode : NodeEntityBase
     {
+        public ActivityNode() : this(new Activity()){}
+
         public ActivityNode(Activity activity)
         {
             Activity = activity;
@@ -16,7 +18,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public ObservableCollection<ActivityNode> Activities { get; set; }
 
-        public Activity Activity { get; private set; }
+        public Activity Activity { get; set; }
 
         public override int Id
         {

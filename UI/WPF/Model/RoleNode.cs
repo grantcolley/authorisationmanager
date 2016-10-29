@@ -9,6 +9,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 {
     public class RoleNode : NodeEntityBase
     {
+        public RoleNode() : this(new Role()) { }
+
         public RoleNode(Role role)
         {
             Role = role;
@@ -33,7 +35,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             }
         }
 
-        public Role Role { get; private set; }
+        public Role Role { get; set; }
 
         public override int Id
         {
