@@ -27,15 +27,15 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
         public IList<Activity> GetActivities()
         {
             IList<Activity> activities;
-            IList<ActivityActivity> activityActivity;
+            IList<ActivityActivity> activityActivities;
 
             using (var conn = new SqlConnection(ConnectionString))
             {
                 activities = conn.Select<Activity>().ToList();
-                activityActivity = conn.Select<ActivityActivity>().ToList();
+                activityActivities = conn.Select<ActivityActivity>().ToList();
             }
 
-            var groups = activityActivity.OrderBy(a => a.ActivityId).GroupBy(a => a.ParentActivityId);
+            var groups = activityActivities.OrderBy(a => a.ActivityId).GroupBy(a => a.ParentActivityId);
             foreach (var group in groups)
             {
                 var parentActivity = activities.SingleOrDefault(a => a.Id == group.Key);
@@ -61,13 +61,32 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
         {
             IList<Role> roles;
             IList<RoleRole> roleRoles;
-            IList<RoleActivity> roleActivityActivities;
+            IList<RoleActivity> roleActivities;
 
             using (var conn = new SqlConnection(ConnectionString))
             {
                 roles = conn.Select<Role>().ToList();
                 roleRoles = conn.Select<RoleRole>().ToList();
-                roleActivityActivities = conn.Select<RoleActivity>().ToList();
+                roleActivities = conn.Select<RoleActivity>().ToList();
+            }
+
+            var roleActivityGroups = roleActivities.OrderBy(r => r.ActivityId).GroupBy(r => r.RoleId);
+            foreach (var group in roleActivityGroups)
+            {
+                var role = roles.SingleOrDefault(r => r.Id.Equals(group.Key));
+                if (role == null)
+                {
+                    continue;
+                }
+
+                foreach (var activity in group)
+                {
+                    var childActivity = activities.SingleOrDefault(a => a.Id == activity.ActivityId);
+                    if (childActivity != null)
+                    {
+                        role.Activities.Add(childActivity);
+                    }
+                }
             }
 
             var groups = roleRoles.OrderBy(r => r.RoleId).GroupBy(r => r.ParentRoleId);
@@ -77,16 +96,6 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
                 if (parentRole == null)
                 {
                     continue;
-                }
-
-                var roleActivities = roleActivityActivities.Where(ra => ra.RoleId == parentRole.Id);
-                foreach (var roleActivity in roleActivities)
-                {
-                    var activity = activities.SingleOrDefault(a => a.Id == roleActivity.ActivityId);
-                    if (activity != null)
-                    {
-                        parentRole.Activities.Add(activity);
-                    }
                 }
 
                 foreach (var child in group)
