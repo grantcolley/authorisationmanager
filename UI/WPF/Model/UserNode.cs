@@ -55,7 +55,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             if (!Roles.Any(r => r.Id.Equals(role.Id)))
             {
                 var clone = role.DeepClone();
-                clone.Parent = this;
                 Roles.Add(clone);
 
                 if (!UserAuthorisation.Roles.Any(r => r.Id.Equals(role.Id)))

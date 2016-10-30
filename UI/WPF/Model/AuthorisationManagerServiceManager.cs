@@ -244,7 +244,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             activity.Activities.ToList().ForEach(a =>
             {
                 var an = GetActivityNode(a);
-                an.Parent = activityNode;
                 activityNode.Activities.Add(an);
             });
             return activityNode;
@@ -256,13 +255,11 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             role.Activities.ToList().ForEach(a =>
             {
                 var an = GetActivityNode(a);
-                an.Parent = roleNode;
                 roleNode.Activities.Add(an);
             });
             role.Roles.ToList().ForEach(r =>
             {
                 var rn = GetRoleNode(r);
-                rn.Parent = roleNode;
                 roleNode.Roles.Add(rn);
             });
             return roleNode;
@@ -274,7 +271,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             userAuthorisation.Roles.ToList().ForEach(r =>
             {
                 var rn = GetRoleNode(r);
-                rn.Parent = userNode;
                 userNode.Roles.Add(rn);
             });
             return userNode;

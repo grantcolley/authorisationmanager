@@ -65,7 +65,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             if (!Activities.Any(a => a.Id.Equals(activity.Id)))
             {
                 var clone = activity.DeepClone();
-                clone.Parent = this;
                 Activities.Add(clone);
 
                 if (!Activity.Activities.Any(a => a.Id.Equals(activity.Id)))

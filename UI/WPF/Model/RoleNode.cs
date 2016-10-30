@@ -82,7 +82,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             if (!Activities.Any(a => a.Id.Equals(activity.Id)))
             {
                 var clone = activity.DeepClone();
-                clone.Parent = this;
                 Activities.Add(clone);
 
                 if (!Role.Activities.Any(a => a.Id.Equals(activity.Id)))
@@ -97,7 +96,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             if (!Roles.Any(r => r.Id.Equals(role.Id)))
             {
                 var clone = role.DeepClone();
-                clone.Parent = this;
                 Roles.Add(clone);
 
                 if (!Role.Roles.Any(r => r.Id.Equals(role.Id)))
