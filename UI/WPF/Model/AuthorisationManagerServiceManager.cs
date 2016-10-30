@@ -16,6 +16,29 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             this.authorisationManagerServiceProxy = authorisationManagerServiceProxy;
         }
 
+        public static bool IsAncestor(NodeEntityBase target, NodeEntityBase candidate)
+        {
+            if (target.GetType() == candidate.GetType()
+                && target.Id == candidate.Id)
+            {
+                return true;
+            }
+
+            if (target.Parent == null)
+            {
+                return false;
+            }
+
+            if (target.Parent == candidate
+                || (target.Parent.GetType() == candidate.GetType()
+                    && target.Parent.Id == candidate.Id))
+            {
+                return true;
+            }
+
+            return IsAncestor(target.Parent, candidate);
+        }
+
         public AuthorisationNodes GetAuthorisationNodes()
         {
             var authorisationNodes = new AuthorisationNodes();
@@ -167,92 +190,52 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             }
         }
 
-        public bool TryAddActivity(ActivityNode activityNode, IEnumerable<NodeEntityBase> targets, out string message)
+        public void AddActivity(ActivityNode activityNode, ActivityNode targetActivityNode, IEnumerable<ActivityNode> targets)
         {
-            message = string.Empty;
-
-            foreach (var target in targets)
+            authorisationManagerServiceProxy.AddActivityToActivity(targetActivityNode.Id, activityNode.Id);
+            foreach (var activity in targets)
             {
-                if (IsAncestor(target, activityNode))
+                if (activity.Activities.All(a => a.Id != activityNode.Id))
                 {
-                    message =
-                        string.Format(
-                            "Invalid drop target. Activity {0} can't be added to itself of be an ancestor of the target.",
-                            activityNode.Text);
-                    return false;
-                }
-
-                if (target is RoleNode)
-                {
-                    if (((RoleNode) target).Activities.All(a => a.Id != activityNode.Id))
-                    {
-                        var dropRoleNode = (RoleNode) target;
-                        dropRoleNode.AddActivity(activityNode);
-                        authorisationManagerServiceProxy.AddActivityToRole(dropRoleNode.Id, activityNode.Id);
-                    }
-                }
-                else if (target is ActivityNode)
-                {
-                    if (((ActivityNode)target).Activities.All(a => a.Id != activityNode.Id))
-                    {
-                        var dropActivityNode = (ActivityNode) target;
-                        dropActivityNode.AddActivity(activityNode);
-                        authorisationManagerServiceProxy.AddActivityToActivity(dropActivityNode.Id, activityNode.Id);
-                    }
-                }
-                else
-                {
-                    message =
-                        string.Format("Invalid drop target. Activity {0} can only be dropped on a role or another activity.",
-                            activityNode.Text);
-                    return false;
+                    activity.AddActivity(activityNode);
                 }
             }
-
-            return true;
         }
 
-        public bool TryAddRole(RoleNode roleNode, IEnumerable<NodeEntityBase> targets, out string message)
+        public void AddActivity(ActivityNode activityNode, RoleNode targetRoleNode, IEnumerable<RoleNode> targets)
         {
-            message = string.Empty;
-
-            foreach (var target in targets)
+            authorisationManagerServiceProxy.AddActivityToRole(targetRoleNode.Id, activityNode.Id);
+            foreach (var role in targets)
             {
-                if (target is UserNode)
+                if (role.Activities.All(a => a.Id != activityNode.Id))
                 {
-                    if (((UserNode) target).Roles.All(r => r.Id != roleNode.Id))
-                    {
-                        var dropUserNode = (UserNode) target;
-                        dropUserNode.AddRole(roleNode);
-                        authorisationManagerServiceProxy.AddRoleToUser(dropUserNode.Id, roleNode.Id);
-                    }
-                }
-                else if (IsAncestor(target, roleNode))
-                {
-                    message =
-                        string.Format("Invalid drop target. Role {0} can't be added to itself or be an ancestor of the target.",
-                            roleNode.Text);
-                    return false;
-                }
-                else if (target is RoleNode)
-                {
-                    if (((RoleNode) target).Roles.All(r => r.Id != roleNode.Id))
-                    {
-                        var dropRoleNode = (RoleNode) target;
-                        dropRoleNode.AddRole(roleNode);
-                        authorisationManagerServiceProxy.AddRoleToRole(dropRoleNode.Id, roleNode.Id);
-                    }
-                }
-                else
-                {
-                    message =
-                        string.Format("Invalid drop target. Role {0} can only be dropped on a user or another role.",
-                            roleNode.Text);
-                    return false;
+                    role.AddActivity(activityNode);
                 }
             }
+        }
 
-            return true;
+        public void AddRole(RoleNode roleNode, RoleNode targetRoleNode, IEnumerable<RoleNode> targets)
+        {
+            authorisationManagerServiceProxy.AddRoleToRole(targetRoleNode.Id, roleNode.Id);
+            foreach (var role in targets)
+            {
+                if (role.Roles.All(r => r.Id != roleNode.Id))
+                {
+                    role.AddRole(roleNode);
+                }
+            }
+        }
+
+        public void AddRole(RoleNode roleNode, UserNode targetUserNode, IEnumerable<UserNode> targets)
+        {
+            authorisationManagerServiceProxy.AddRoleToUser(targetUserNode.Id, roleNode.Id);
+            foreach (var user in targets)
+            {
+                if (user.Roles.All(r => r.Id != roleNode.Id))
+                {
+                    user.AddRole(roleNode);
+                }
+            }
         }
 
         private ActivityNode GetActivityNode(Activity activity)
@@ -295,29 +278,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
                 userNode.Roles.Add(rn);
             });
             return userNode;
-        }
-
-        private bool IsAncestor(NodeEntityBase target, NodeEntityBase candidate)
-        {
-            if (target.GetType() == candidate.GetType()
-                && target.Id == candidate.Id)
-            {
-                return true;
-            }
-
-            if (target.Parent == null)
-            {
-                return false;
-            }
-
-            if (target.Parent == candidate
-                || (target.Parent.GetType() == candidate.GetType()
-                    && target.Parent.Id == candidate.Id))
-            {
-                return true;
-            }
-
-            return IsAncestor(target.Parent, candidate);
         }
     }
 }

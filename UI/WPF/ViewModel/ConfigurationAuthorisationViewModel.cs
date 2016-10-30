@@ -210,57 +210,32 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         private void OnDragDrop(object param)
         {
+            var dragDropArgs = param as FilterTreeDragDropArgs;
+            if (dragDropArgs == null
+                || dragDropArgs.DragItem == null)
+            {
+                return;
+            }
+
+            var target = dragDropArgs.DropTarget as NodeEntityBase;
+            if (target == null)
+            {
+                return;
+            }
+
             try
             {
-                var dragDropArgs = param as FilterTreeDragDropArgs;
-                if (dragDropArgs == null
-                    || dragDropArgs.DragItem == null)
-                {
-                    return;
-                }
-
-                var target = dragDropArgs.DropTarget as NodeEntityBase;
-                if (target == null)
-                {
-                    return;
-                }
-
-                var message = string.Empty;
-
                 if (dragDropArgs.DragItem is ActivityNode)
                 {
-                    var dragActivityNode = (ActivityNode) dragDropArgs.DragItem;
-                    var targets =
-                        Activities.Flatten<NodeEntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text),
-                            Roles, Users);
-                    if (authorisationManagerServiceManager.TryAddActivity(dragActivityNode, targets, out message))
-                    {
-                        return;
-                    }
+                    AddActivity((ActivityNode) dragDropArgs.DragItem, target);
                 }
                 else if (dragDropArgs.DragItem is RoleNode)
                 {
-                    var dragRoleNode = (RoleNode) dragDropArgs.DragItem;
-                    var targets =
-                        Roles.Flatten<NodeEntityBase>(t => t.Id.Equals(target.Id) && t.Text.Equals(target.Text),
-                            Users);
-                    if (authorisationManagerServiceManager.TryAddRole(dragRoleNode, targets, out message))
-                    {
-                        return;
-                    }
+                    AddRole((RoleNode) dragDropArgs.DragItem, target);
                 }
                 else
                 {
-                    message = "Invalid drag item.";
-                }
-
-                if (!string.IsNullOrEmpty(message))
-                {
-                    ShowMessage(new Message()
-                    {
-                        MessageType = MessageTypeEnum.Warn,
-                        Text = message
-                    }, true);
+                    throw new Exception("Invalid drag item.");
                 }
             }
             catch (Exception ex)
@@ -321,6 +296,77 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 {
                     Users.Add(userNode);
                 }
+            }
+        }
+
+        private void AddActivity(ActivityNode activityNode, NodeEntityBase target)
+        {
+            try
+            {
+                if (AuthorisationManagerServiceManager.IsAncestor(target, activityNode))
+                {
+                    throw new Exception(string.Format(
+                        "Invalid drop target. Activity {0} can't be added to itself of be an ancestor of the target.",
+                        activityNode.Text));
+                }
+                
+                if (target is ActivityNode)
+                {
+                    var targets = Activities.Flatten<ActivityNode>(t => t.Id.Equals(target.Id), Roles, Users);
+                    authorisationManagerServiceManager.AddActivity(activityNode, (ActivityNode) target, targets);
+                }
+                else if (target is RoleNode)
+                {
+                    var targets = Roles.Flatten<RoleNode>(t => t.Id.Equals(target.Id), Users);
+                    authorisationManagerServiceManager.AddActivity(activityNode, (RoleNode) target, targets);
+                }
+                else
+                {
+                    throw new Exception(
+                        string.Format(
+                            "Invalid drop target. Activity {0} can only be dropped on a role or another activity.",
+                            activityNode.Text));
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text = ex.Message
+                }, true);
+            }
+        }
+
+        private void AddRole(RoleNode roleNode, NodeEntityBase target)
+        {
+            try
+            {                
+                if (AuthorisationManagerServiceManager.IsAncestor(target, roleNode))
+                {
+                    throw new Exception(
+                        string.Format("Invalid drop target. Role {0} can only be dropped on a user or another role.",
+                            roleNode.Text));
+                }
+
+                if (target is RoleNode)
+                {
+                    var targets = Roles.Flatten<RoleNode>(t => t.Id.Equals(target.Id), Users);
+                    authorisationManagerServiceManager.AddRole(roleNode, (RoleNode) target, targets);
+                }
+                else if (target is UserNode)
+                {
+                    var targets = Users.Where(t => t.Id.Equals(target.Id));
+                    authorisationManagerServiceManager.AddRole(roleNode, (UserNode) target, targets);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text = ex.Message
+                }, true);
             }
         }
 
