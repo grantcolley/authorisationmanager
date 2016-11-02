@@ -62,6 +62,7 @@
     <Compile Include="Model\ActivityNode.cs" />
     <Compile Include="Model\AuthorisationNodes.cs" />
     <Compile Include="Model\NodeEntityBase.cs" />
+    <Compile Include="Model\ParentType.cs" />
     <Compile Include="Model\RoleNode.cs" />
     <Compile Include="Model\AuthorisationManagerServiceManager.cs" />
     <Compile Include="Model\UserNode.cs" />
