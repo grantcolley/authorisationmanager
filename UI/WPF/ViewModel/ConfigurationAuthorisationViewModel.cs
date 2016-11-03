@@ -303,11 +303,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         {
             try
             {
-                if (AuthorisationManagerServiceManager.IsAncestor(target, activityNode))
+                if (AuthorisationManagerServiceManager.TargetNodeIsDropCandidate(target, activityNode))
                 {
-                    throw new Exception(string.Format(
-                        "Invalid drop target. Activity {0} can't be added to itself of be an ancestor of the target.",
-                        activityNode.Text));
+                    return;
                 }
                 
                 if (target is ActivityNode)
@@ -324,7 +322,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 {
                     throw new Exception(
                         string.Format(
-                            "Invalid drop target. Activity {0} can only be dropped on a role or another activity.",
+                            "Invalid drop target. '{0}' can only be dropped onto a role or another activity.",
                             activityNode.Text));
                 }
             }
@@ -341,12 +339,10 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         private void AddRole(RoleNode roleNode, NodeEntityBase target)
         {
             try
-            {                
-                if (AuthorisationManagerServiceManager.IsAncestor(target, roleNode))
+            {
+                if (AuthorisationManagerServiceManager.TargetNodeIsDropCandidate(target, roleNode))
                 {
-                    throw new Exception(
-                        string.Format("Invalid drop target. Role {0} can only be dropped on a user or another role.",
-                            roleNode.Text));
+                    return;
                 }
 
                 if (target is RoleNode)
@@ -358,6 +354,13 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 {
                     var targets = Users.Where(t => t.Id.Equals(target.Id));
                     authorisationManagerServiceManager.AddRole(roleNode, (UserNode) target, targets);
+                }
+                else
+                {
+                    throw new Exception(
+                        string.Format(
+                            "Invalid drop target. '{0}' can only be dropped onto a user or another role.",
+                            roleNode.Text));
                 }
             }
             catch (Exception ex)
@@ -372,7 +375,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         private void RemoveActivity(ActivityNode activityNode)
         {
-            if (activityNode.Parent == null)
+            if (activityNode.ParentType == ParentType.None)
             {
                 ShowMessage(new Message()
                 {
@@ -382,12 +385,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 return;
             }
 
-            if (activityNode.Parent is ActivityNode)
+            if (activityNode.ParentType == ParentType.Activity)
             {
                 var activities = Activities.Flatten<ActivityNode>(Roles, Users).ToList();
                 authorisationManagerServiceManager.RemoveActivityFromActivity(activityNode, activities);
             }
-            else if (activityNode.Parent is RoleNode)
+            else if (activityNode.ParentType == ParentType.Role)
             {
                 var roles = Roles.Flatten<RoleNode>(Users).ToList();
                 authorisationManagerServiceManager.RemoveActivityFromRole(activityNode, roles);                
@@ -396,7 +399,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
         
         private void RemoveRole(RoleNode roleNode)
         {
-            if (roleNode.Parent == null)
+            if (roleNode.ParentType == ParentType.None)
             {
                 ShowMessage(new Message()
                 {
@@ -406,12 +409,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 return;
             }
 
-            if (roleNode.Parent is RoleNode)
+            if (roleNode.ParentType == ParentType.Role)
             {
                 var roles = Roles.Flatten<RoleNode>(Users).ToList();
                 authorisationManagerServiceManager.RemoveRoleFromRole(roleNode, roles);
             }
-            else if (roleNode.Parent is UserNode)
+            else if (roleNode.ParentType == ParentType.User)
             {
                 var users = Users.Flatten<UserNode>().ToList();
                 authorisationManagerServiceManager.RemoveRoleFromUser(roleNode, users);
@@ -420,7 +423,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         private void RemoveUser(UserNode userNode)
         {
-            if (userNode.Parent == null)
+            if (userNode.ParentType == ParentType.None)
             {
                 ShowMessage(new Message()
                 {

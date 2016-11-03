@@ -16,7 +16,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             this.authorisationManagerServiceProxy = authorisationManagerServiceProxy;
         }
 
-        public static bool IsAncestor(NodeEntityBase target, NodeEntityBase candidate)
+        public static bool TargetNodeIsDropCandidate(NodeEntityBase target, NodeEntityBase candidate)
         {
             if (target.GetType() == candidate.GetType()
                 && target.Id == candidate.Id)
@@ -24,19 +24,13 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
                 return true;
             }
 
-            if (target.Parent == null)
-            {
-                return false;
-            }
-
-            if (target.Parent == candidate
-                || (target.Parent.GetType() == candidate.GetType()
-                    && target.Parent.Id == candidate.Id))
+            if (target.ParentId == candidate.Id
+                && target.ParentType == (ParentType)System.Enum.Parse(typeof(ParentType), candidate.GetType().Name))
             {
                 return true;
             }
 
-            return IsAncestor(target.Parent, candidate);
+            return false;
         }
 
         public AuthorisationNodes GetAuthorisationNodes()
@@ -136,11 +130,10 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public void RemoveActivityFromActivity(ActivityNode activityNode, IList<ActivityNode> activities)
         {
-            var parentActivity = activityNode.Parent as ActivityNode;
-            if (parentActivity != null)
+            if (activityNode.ParentType == ParentType.Activity)
             {
-                authorisationManagerServiceProxy.RemoveActivityFromActivity(activityNode.Id, parentActivity.Id);
-                var parentActivities = activities.Where(a => a.Id.Equals(parentActivity.Id));
+                authorisationManagerServiceProxy.RemoveActivityFromActivity(activityNode.Id, activityNode.ParentId);
+                var parentActivities = activities.Where(a => a.Id.Equals(activityNode.ParentId));
                 foreach (var activity in parentActivities)
                 {
                     activity.RemoveActivity(activityNode.Id);
@@ -150,11 +143,10 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public void RemoveActivityFromRole(ActivityNode activityNode, IList<RoleNode> roles)
         {
-            var parentRole = activityNode.Parent as RoleNode;
-            if (parentRole != null)
+            if (activityNode.ParentType == ParentType.Role)
             {
-                authorisationManagerServiceProxy.RemoveActivityFromRole(activityNode.Id, parentRole.Id);
-                var parentRoles = roles.Where(r => r.Id.Equals(parentRole.Id));
+                authorisationManagerServiceProxy.RemoveActivityFromRole(activityNode.Id, activityNode.ParentId);
+                var parentRoles = roles.Where(r => r.Id.Equals(activityNode.ParentId));
                 foreach (var role in parentRoles)
                 {
                     role.RemoveActivity(activityNode.Id);
@@ -164,11 +156,10 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public void RemoveRoleFromRole(RoleNode roleNode, IList<RoleNode> roles)
         {
-            var parentRole = roleNode.Parent as RoleNode;
-            if (parentRole != null)
+            if (roleNode.ParentType == ParentType.Role)
             {
-                authorisationManagerServiceProxy.RemoveRoleFromRole(roleNode.Id, parentRole.Id);
-                var parentRoles = roles.Where(r => r.Id.Equals(parentRole.Id));
+                authorisationManagerServiceProxy.RemoveRoleFromRole(roleNode.Id, roleNode.ParentId);
+                var parentRoles = roles.Where(r => r.Id.Equals(roleNode.ParentId));
                 foreach (var role in parentRoles)
                 {
                     role.RemoveRole(roleNode.Id);
@@ -178,11 +169,10 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public void RemoveRoleFromUser(RoleNode roleNode, IList<UserNode> users)
         {
-            var parentUser = roleNode.Parent as UserNode;
-            if (parentUser != null)
+            if (roleNode.ParentType == ParentType.User)
             {
-                authorisationManagerServiceProxy.RemoveRoleFromUser(roleNode.Id, parentUser.Id);
-                var parentUsers = users.Where(u => u.Id.Equals(parentUser.Id));
+                authorisationManagerServiceProxy.RemoveRoleFromUser(roleNode.Id, roleNode.ParentId);
+                var parentUsers = users.Where(u => u.Id.Equals(roleNode.ParentId));
                 foreach (var parent in parentUsers)
                 {
                     parent.RemoveRole(roleNode.Id);
@@ -244,6 +234,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             activity.Activities.ToList().ForEach(a =>
             {
                 var an = GetActivityNode(a);
+                an.ParentId = activity.Id;
+                an.ParentType = ParentType.Activity;
+
                 activityNode.Activities.Add(an);
             });
             return activityNode;
@@ -255,11 +248,17 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             role.Activities.ToList().ForEach(a =>
             {
                 var an = GetActivityNode(a);
+                an.ParentId = role.Id;
+                an.ParentType = ParentType.Role;
+
                 roleNode.Activities.Add(an);
             });
             role.Roles.ToList().ForEach(r =>
             {
                 var rn = GetRoleNode(r);
+                rn.ParentId = role.Id;
+                rn.ParentType = ParentType.Role;
+
                 roleNode.Roles.Add(rn);
             });
             return roleNode;
@@ -271,6 +270,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             userAuthorisation.Roles.ToList().ForEach(r =>
             {
                 var rn = GetRoleNode(r);
+                rn.ParentId = userAuthorisation.Id;
+                rn.ParentType = ParentType.User;
+
                 userNode.Roles.Add(rn);
             });
             return userNode;

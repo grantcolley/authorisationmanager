@@ -65,6 +65,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             if (!Activities.Any(a => a.Id.Equals(activity.Id)))
             {
                 var clone = activity.DeepClone();
+                clone.ParentType = ParentType.Activity;
+                clone.ParentId = Id;
+
                 Activities.Add(clone);
 
                 if (!Activity.Activities.Any(a => a.Id.Equals(activity.Id)))
@@ -85,7 +88,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             var activityNode = Activities.FirstOrDefault(a => a.Id.Equals(id));
             if (activityNode != null)
             {
-                activityNode.Parent = null;
                 Activities.Remove(activityNode);
             }
         }

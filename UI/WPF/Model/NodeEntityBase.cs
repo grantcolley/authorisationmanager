@@ -10,6 +10,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public virtual string Description { get; set; }
 
-        public NodeEntityBase Parent { get; set; }
+        public int ParentId { get; set; }
+
+        public ParentType ParentType { get; set; }
     }
 }

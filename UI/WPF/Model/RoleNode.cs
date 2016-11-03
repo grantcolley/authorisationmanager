@@ -82,6 +82,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             if (!Activities.Any(a => a.Id.Equals(activity.Id)))
             {
                 var clone = activity.DeepClone();
+                clone.ParentType = ParentType.Role;
+                clone.ParentId = Id;
+
                 Activities.Add(clone);
 
                 if (!Role.Activities.Any(a => a.Id.Equals(activity.Id)))
@@ -96,6 +99,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             if (!Roles.Any(r => r.Id.Equals(role.Id)))
             {
                 var clone = role.DeepClone();
+                clone.ParentType = ParentType.Role;
+                clone.ParentId = Id;
+
                 Roles.Add(clone);
 
                 if (!Role.Roles.Any(r => r.Id.Equals(role.Id)))
@@ -116,7 +122,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             var activityNode = Activities.FirstOrDefault(a => a.Id.Equals(id));
             if (activityNode != null)
             {
-                activityNode.Parent = null;
                 Activities.Remove(activityNode);
             }
         }
@@ -132,7 +137,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             var roleNode = Roles.FirstOrDefault(r => r.Id.Equals(id));
             if (roleNode != null)
             {
-                roleNode.Parent = null;
+
                 Roles.Remove(roleNode);
             }
         }

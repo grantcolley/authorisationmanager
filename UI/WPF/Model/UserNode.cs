@@ -55,6 +55,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             if (!Roles.Any(r => r.Id.Equals(role.Id)))
             {
                 var clone = role.DeepClone();
+                clone.ParentId = Id;
+                clone.ParentType = ParentType.User;
+
                 Roles.Add(clone);
 
                 if (!UserAuthorisation.Roles.Any(r => r.Id.Equals(role.Id)))
@@ -75,7 +78,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             var roleNode = Roles.FirstOrDefault(r => r.Id.Equals(id));
             if (roleNode != null)
             {
-                roleNode.Parent = null;
                 Roles.Remove(roleNode);
             }
         }
