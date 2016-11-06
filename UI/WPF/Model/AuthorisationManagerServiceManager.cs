@@ -130,7 +130,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public void RemoveActivityFromActivity(ActivityNode activityNode, IList<ActivityNode> activities)
         {
-            if (activityNode.ParentType == ParentType.Activity)
+            if (activityNode.ParentType == ParentType.ActivityNode)
             {
                 authorisationManagerServiceProxy.RemoveActivityFromActivity(activityNode.Id, activityNode.ParentId);
                 var parentActivities = activities.Where(a => a.Id.Equals(activityNode.ParentId));
@@ -143,7 +143,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public void RemoveActivityFromRole(ActivityNode activityNode, IList<RoleNode> roles)
         {
-            if (activityNode.ParentType == ParentType.Role)
+            if (activityNode.ParentType == ParentType.RoleNode)
             {
                 authorisationManagerServiceProxy.RemoveActivityFromRole(activityNode.Id, activityNode.ParentId);
                 var parentRoles = roles.Where(r => r.Id.Equals(activityNode.ParentId));
@@ -156,7 +156,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public void RemoveRoleFromRole(RoleNode roleNode, IList<RoleNode> roles)
         {
-            if (roleNode.ParentType == ParentType.Role)
+            if (roleNode.ParentType == ParentType.RoleNode)
             {
                 authorisationManagerServiceProxy.RemoveRoleFromRole(roleNode.Id, roleNode.ParentId);
                 var parentRoles = roles.Where(r => r.Id.Equals(roleNode.ParentId));
@@ -169,7 +169,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public void RemoveRoleFromUser(RoleNode roleNode, IList<UserNode> users)
         {
-            if (roleNode.ParentType == ParentType.User)
+            if (roleNode.ParentType == ParentType.UserNode)
             {
                 authorisationManagerServiceProxy.RemoveRoleFromUser(roleNode.Id, roleNode.ParentId);
                 var parentUsers = users.Where(u => u.Id.Equals(roleNode.ParentId));
@@ -235,7 +235,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             {
                 var an = GetActivityNode(a);
                 an.ParentId = activity.Id;
-                an.ParentType = ParentType.Activity;
+                an.ParentType = ParentType.ActivityNode;
 
                 activityNode.Activities.Add(an);
             });
@@ -249,7 +249,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             {
                 var an = GetActivityNode(a);
                 an.ParentId = role.Id;
-                an.ParentType = ParentType.Role;
+                an.ParentType = ParentType.RoleNode;
 
                 roleNode.Activities.Add(an);
             });
@@ -257,7 +257,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             {
                 var rn = GetRoleNode(r);
                 rn.ParentId = role.Id;
-                rn.ParentType = ParentType.Role;
+                rn.ParentType = ParentType.RoleNode;
 
                 roleNode.Roles.Add(rn);
             });
@@ -271,7 +271,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             {
                 var rn = GetRoleNode(r);
                 rn.ParentId = userAuthorisation.Id;
-                rn.ParentType = ParentType.User;
+                rn.ParentType = ParentType.UserNode;
 
                 userNode.Roles.Add(rn);
             });

@@ -3,8 +3,8 @@
     public enum ParentType
     {
         None = 0,
-        Activity = 1,
-        Role = 2,
-        User = 3
+        ActivityNode = 1,
+        RoleNode = 2,
+        UserNode = 3
     }
 }

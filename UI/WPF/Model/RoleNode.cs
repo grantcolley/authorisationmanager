@@ -1,12 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Data;
+using System.Xml.Serialization;
 using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 {
+    [Serializable]
     public class RoleNode : NodeEntityBase
     {
         public RoleNode() : this(new Role()) { }
@@ -23,6 +26,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 
         public ObservableCollection<ActivityNode> Activities { get; set; }
 
+        [XmlIgnore] 
         public IList Items
         {
             get
@@ -82,7 +86,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             if (!Activities.Any(a => a.Id.Equals(activity.Id)))
             {
                 var clone = activity.DeepClone();
-                clone.ParentType = ParentType.Role;
+                clone.ParentType = ParentType.RoleNode;
                 clone.ParentId = Id;
 
                 Activities.Add(clone);
@@ -99,7 +103,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             if (!Roles.Any(r => r.Id.Equals(role.Id)))
             {
                 var clone = role.DeepClone();
-                clone.ParentType = ParentType.Role;
+                clone.ParentType = ParentType.RoleNode;
                 clone.ParentId = Id;
 
                 Roles.Add(clone);

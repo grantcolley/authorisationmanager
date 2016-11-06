@@ -385,12 +385,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 return;
             }
 
-            if (activityNode.ParentType == ParentType.Activity)
+            if (activityNode.ParentType == ParentType.ActivityNode)
             {
                 var activities = Activities.Flatten<ActivityNode>(Roles, Users).ToList();
                 authorisationManagerServiceManager.RemoveActivityFromActivity(activityNode, activities);
             }
-            else if (activityNode.ParentType == ParentType.Role)
+            else if (activityNode.ParentType == ParentType.RoleNode)
             {
                 var roles = Roles.Flatten<RoleNode>(Users).ToList();
                 authorisationManagerServiceManager.RemoveActivityFromRole(activityNode, roles);                
@@ -409,12 +409,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 return;
             }
 
-            if (roleNode.ParentType == ParentType.Role)
+            if (roleNode.ParentType == ParentType.RoleNode)
             {
                 var roles = Roles.Flatten<RoleNode>(Users).ToList();
                 authorisationManagerServiceManager.RemoveRoleFromRole(roleNode, roles);
             }
-            else if (roleNode.ParentType == ParentType.User)
+            else if (roleNode.ParentType == ParentType.UserNode)
             {
                 var users = Users.Flatten<UserNode>().ToList();
                 authorisationManagerServiceManager.RemoveRoleFromUser(roleNode, users);

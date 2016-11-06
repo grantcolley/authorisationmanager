@@ -1,10 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 {
+    [Serializable]
     public class ActivityNode : NodeEntityBase
     {
         public ActivityNode() : this(new Activity()){}
@@ -65,7 +67,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             if (!Activities.Any(a => a.Id.Equals(activity.Id)))
             {
                 var clone = activity.DeepClone();
-                clone.ParentType = ParentType.Activity;
+                clone.ParentType = ParentType.ActivityNode;
                 clone.ParentId = Id;
 
                 Activities.Add(clone);

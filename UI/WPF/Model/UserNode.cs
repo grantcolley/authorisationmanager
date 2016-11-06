@@ -1,10 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
 {
+    [Serializable]
     public class UserNode : NodeEntityBase
     {
         public UserNode() : this(new UserAuthorisation()) { }
@@ -56,7 +58,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             {
                 var clone = role.DeepClone();
                 clone.ParentId = Id;
-                clone.ParentType = ParentType.User;
+                clone.ParentType = ParentType.UserNode;
 
                 Roles.Add(clone);
 
