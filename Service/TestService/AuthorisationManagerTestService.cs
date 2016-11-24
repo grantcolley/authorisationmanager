@@ -1,9 +1,10 @@
 ﻿using System;
 using DevelopmentInProgress.AuthorisationManager.Server;
+using DevelopmentInProgress.AuthorisationManager.Service;
 using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipCore.Service;
 
-namespace DevelopmentInProgress.AuthorisationManager.Service.Test
+namespace DevelopmentInProgress.AuthorisationManager.TestService
 {
     public class AuthorisationManagerTestService : IAuthorisationManagerService
     {
