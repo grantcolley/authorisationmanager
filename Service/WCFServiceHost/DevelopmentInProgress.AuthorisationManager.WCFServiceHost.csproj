@@ -7,8 +7,8 @@
     <ProjectGuid>{CA8AAD27-7E1E-495F-9828-D2E683B5DFA1}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DevelopmentInProgress.AuthorisationManager.WCF</RootNamespace>
-    <AssemblyName>DevelopmentInProgress.AuthorisationManager.WCF</AssemblyName>
+    <RootNamespace>DevelopmentInProgress.AuthorisationManager.WCFServiceHost</RootNamespace>
+    <AssemblyName>DevelopmentInProgress.AuthorisationManager.WCFServiceHost</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -61,6 +61,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\DevelopmentInProgress.AuthorisationManager.Data.SQL\DevelopmentInProgress.AuthorisationManager.Data.SQL.csproj">
+      <Project>{3383ddd9-a333-4031-952b-9cfdb0d4c02d}</Project>
+      <Name>DevelopmentInProgress.AuthorisationManager.Data.SQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\DevelopmentInProgress.AuthorisationManager.Data\DevelopmentInProgress.AuthorisationManager.Data.csproj">
+      <Project>{e73387fe-7595-4122-9f27-00d5e3a454f6}</Project>
+      <Name>DevelopmentInProgress.AuthorisationManager.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DevelopmentInProgress.AuthorisationManager.Server\DevelopmentInProgress.AuthorisationManager.Server.csproj">
       <Project>{638070d4-e78e-47d7-b0ab-ee1ea5ef7674}</Project>
       <Name>DevelopmentInProgress.AuthorisationManager.Server</Name>

@@ -6,7 +6,7 @@ using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
 using Microsoft.Practices.Unity;
 
-namespace DevelopmentInProgress.AuthorisationManager.WCF
+namespace DevelopmentInProgress.AuthorisationManager.WCFServiceHost
 {
     public class UnityServiceBehavior : IServiceBehavior
     {

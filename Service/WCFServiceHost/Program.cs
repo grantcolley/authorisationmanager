@@ -4,7 +4,7 @@ using System.ServiceModel.Description;
 using DevelopmentInProgress.AuthorisationManager.Server;
 using DevelopmentInProgress.AuthorisationManager.Service;
 
-namespace DevelopmentInProgress.AuthorisationManager.WCF
+namespace DevelopmentInProgress.AuthorisationManager.WCFServiceHost
 {
     class Program
     {

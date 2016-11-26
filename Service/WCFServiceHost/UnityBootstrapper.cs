@@ -1,10 +1,14 @@
 ﻿using System.Configuration;
 using System.IO;
 using System.Linq;
+using DevelopmentInProgress.AuthorisationManager.Data;
+using DevelopmentInProgress.AuthorisationManager.Data.SQL;
+using DevelopmentInProgress.AuthorisationManager.Server;
+using DevelopmentInProgress.AuthorisationManager.Service;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 
-namespace DevelopmentInProgress.AuthorisationManager.WCF
+namespace DevelopmentInProgress.AuthorisationManager.WCFServiceHost
 {
     public class UnityBootstrapper
     {
@@ -19,7 +23,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCF
         {
             Container = new UnityContainer();
 
-            var files = from f in Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Configuration"))
+            var files = from f in Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "ServerConfiguration"))
                         where f.ToUpper().EndsWith("UNITY.CONFIG")
                         select f;
             foreach (string fileName in files)

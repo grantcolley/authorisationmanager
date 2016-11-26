@@ -4,7 +4,7 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 using Microsoft.Practices.Unity;
 
-namespace DevelopmentInProgress.AuthorisationManager.WCF
+namespace DevelopmentInProgress.AuthorisationManager.WCFServiceHost
 {
     public class UnityInstanceProvider : IInstanceProvider
     {

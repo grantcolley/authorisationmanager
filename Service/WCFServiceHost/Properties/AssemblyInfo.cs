@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DevelopmentInProgress.AuthorisationManager.WCF")]
+[assembly: AssemblyTitle("DevelopmentInProgress.AuthorisationManager.WCFServiceHost")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DevelopmentInProgress.AuthorisationManager.WCF")]
+[assembly: AssemblyProduct("DevelopmentInProgress.AuthorisationManager.WCFServiceHost")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
