@@ -51,7 +51,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Configuration\DevelopmentInProgress.AuthorisationManager.Data.Unity.config">
+    <None Include="ServerConfiguration\DevelopmentInProgress.AuthorisationManager.Data.Unity.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
