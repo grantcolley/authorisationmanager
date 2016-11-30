@@ -3,30 +3,38 @@ using System.ServiceModel;
 using DevelopmentInProgress.AuthorisationManager.Service;
 using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipCore.Service;
-using AuthorisationManagerWCFProxy = DevelopmentInProgress.AuthorisationManager.WCFClient.AuthorisationManagerServiceReference;
+using WCFProxy = DevelopmentInProgress.AuthorisationManager.WCFClient.AuthorisationManagerServiceReference;
 
 namespace DevelopmentInProgress.AuthorisationManager.WCFClient
 {
     public class AuthorisationManagerWCFClient : IAuthorisationManagerService
     {
-        private readonly AuthorisationManagerWCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient;
-
-        public AuthorisationManagerWCFClient()
-        {
-            authorisationManagerServiceClient =
-                new AuthorisationManagerWCFProxy.AuthorisationManagerServiceClient(new WSHttpBinding(),
-                    new EndpointAddress(
-                        "http://localhost:8733/Design_Time_Addresses/AuthorisationManager/AuthorisationManagerService"));
-        }
+        private string endpointAddress =
+            "http://localhost:8733/Design_Time_Addresses/AuthorisationManager/AuthorisationManagerService";
 
         public string GetAuthorisation()
         {
+            WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
+
             try
             {
-                return authorisationManagerServiceClient.GetAuthorisation();
+                authorisationManagerServiceClient
+                    = new WCFProxy.AuthorisationManagerServiceClient(new WSHttpBinding(),
+                        new EndpointAddress(endpointAddress));
+
+                var result = authorisationManagerServiceClient.GetAuthorisation();
+
+                authorisationManagerServiceClient.Close();
+
+                return result;
             }
             catch (Exception ex)
             {
+                if (authorisationManagerServiceClient != null)
+                {
+                    authorisationManagerServiceClient.Abort();
+                }
+
                 var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
@@ -35,12 +43,27 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
 
         public string SaveActivity(string activity)
         {
+            WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
+
             try
             {
-                return authorisationManagerServiceClient.SaveActivity(activity);
+                authorisationManagerServiceClient
+                    = new WCFProxy.AuthorisationManagerServiceClient(new WSHttpBinding(),
+                        new EndpointAddress(endpointAddress));
+
+                var result = authorisationManagerServiceClient.SaveActivity(activity);
+
+                authorisationManagerServiceClient.Close();
+
+                return result;
             }
             catch (Exception ex)
             {
+                if (authorisationManagerServiceClient != null)
+                {
+                    authorisationManagerServiceClient.Abort();
+                }
+
                 var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
@@ -49,12 +72,27 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
 
         public string SaveRole(string role)
         {
+            WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
+
             try
             {
-                return authorisationManagerServiceClient.SaveRole(role);
+                authorisationManagerServiceClient
+                    = new WCFProxy.AuthorisationManagerServiceClient(new WSHttpBinding(),
+                        new EndpointAddress(endpointAddress));
+
+                var result = authorisationManagerServiceClient.SaveRole(role);
+
+                authorisationManagerServiceClient.Close();
+
+                return result;
             }
             catch (Exception ex)
             {
+                if (authorisationManagerServiceClient != null)
+                {
+                    authorisationManagerServiceClient.Abort();
+                }
+
                 var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
@@ -63,12 +101,27 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
 
         public string SaveUserAuthorisation(string userAuthorisation)
         {
+            WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
+
             try
             {
-                return authorisationManagerServiceClient.SaveUserAuthorisation(userAuthorisation);
+                authorisationManagerServiceClient
+                    = new WCFProxy.AuthorisationManagerServiceClient(new WSHttpBinding(),
+                        new EndpointAddress(endpointAddress));
+
+                var result = authorisationManagerServiceClient.SaveUserAuthorisation(userAuthorisation);
+
+                authorisationManagerServiceClient.Close();
+
+                return result;
             }
             catch (Exception ex)
             {
+                if (authorisationManagerServiceClient != null)
+                {
+                    authorisationManagerServiceClient.Abort();
+                }
+
                 var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
@@ -77,12 +130,27 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
 
         public string DeleteActivity(string id)
         {
+            WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
+
             try
             {
-                return authorisationManagerServiceClient.DeleteActivity(id);
+                authorisationManagerServiceClient
+                    = new WCFProxy.AuthorisationManagerServiceClient(new WSHttpBinding(),
+                        new EndpointAddress(endpointAddress));
+
+                var result = authorisationManagerServiceClient.DeleteActivity(id);
+
+                authorisationManagerServiceClient.Close();
+
+                return result;
             }
             catch (Exception ex)
             {
+                if (authorisationManagerServiceClient != null)
+                {
+                    authorisationManagerServiceClient.Abort();
+                }
+
                 var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
@@ -91,12 +159,27 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
 
         public string DeleteRole(string id)
         {
+            WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
+
             try
             {
-                return authorisationManagerServiceClient.DeleteRole(id);
+                authorisationManagerServiceClient
+                    = new WCFProxy.AuthorisationManagerServiceClient(new WSHttpBinding(),
+                        new EndpointAddress(endpointAddress));
+
+                var result = authorisationManagerServiceClient.DeleteRole(id);
+
+                authorisationManagerServiceClient.Close();
+
+                return result;
             }
             catch (Exception ex)
             {
+                if (authorisationManagerServiceClient != null)
+                {
+                    authorisationManagerServiceClient.Abort();
+                }
+
                 var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
@@ -105,12 +188,27 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
 
         public string DeleteUserAuthorisation(string id)
         {
+            WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
+
             try
             {
-                return authorisationManagerServiceClient.DeleteUserAuthorisation(id);
+                authorisationManagerServiceClient
+                    = new WCFProxy.AuthorisationManagerServiceClient(new WSHttpBinding(),
+                        new EndpointAddress(endpointAddress));
+
+                var result = authorisationManagerServiceClient.DeleteUserAuthorisation(id);
+
+                authorisationManagerServiceClient.Close();
+
+                return result;
             }
             catch (Exception ex)
             {
+                if (authorisationManagerServiceClient != null)
+                {
+                    authorisationManagerServiceClient.Abort();
+                }
+
                 var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
@@ -119,12 +217,27 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
 
         public string RemoveActivityFromActivity(string activityId, string parentId)
         {
+            WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
+
             try
             {
-                return authorisationManagerServiceClient.RemoveActivityFromActivity(activityId, parentId);
+                authorisationManagerServiceClient
+                    = new WCFProxy.AuthorisationManagerServiceClient(new WSHttpBinding(),
+                        new EndpointAddress(endpointAddress));
+
+                var result = authorisationManagerServiceClient.RemoveActivityFromActivity(activityId, parentId);
+
+                authorisationManagerServiceClient.Close();
+
+                return result;
             }
             catch (Exception ex)
             {
+                if (authorisationManagerServiceClient != null)
+                {
+                    authorisationManagerServiceClient.Abort();
+                }
+
                 var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
@@ -133,12 +246,27 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
 
         public string RemoveActivityFromRole(string activityId, string roleId)
         {
+            WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
+
             try
             {
-                return authorisationManagerServiceClient.RemoveActivityFromRole(activityId, roleId);
+                authorisationManagerServiceClient
+                    = new WCFProxy.AuthorisationManagerServiceClient(new WSHttpBinding(),
+                        new EndpointAddress(endpointAddress));
+
+                var result = authorisationManagerServiceClient.RemoveActivityFromRole(activityId, roleId);
+
+                authorisationManagerServiceClient.Close();
+
+                return result;
             }
             catch (Exception ex)
             {
+                if (authorisationManagerServiceClient != null)
+                {
+                    authorisationManagerServiceClient.Abort();
+                }
+
                 var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
@@ -147,12 +275,27 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
 
         public string RemoveRoleFromRole(string roleId, string parentId)
         {
+            WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
+
             try
             {
-                return authorisationManagerServiceClient.RemoveRoleFromRole(roleId, parentId);
+                authorisationManagerServiceClient
+                    = new WCFProxy.AuthorisationManagerServiceClient(new WSHttpBinding(),
+                        new EndpointAddress(endpointAddress));
+
+                var result = authorisationManagerServiceClient.RemoveRoleFromRole(roleId, parentId);
+
+                authorisationManagerServiceClient.Close();
+
+                return result;
             }
             catch (Exception ex)
             {
+                if (authorisationManagerServiceClient != null)
+                {
+                    authorisationManagerServiceClient.Abort();
+                }
+
                 var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
@@ -161,12 +304,27 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
 
         public string RemoveRoleFromUser(string roleId, string userId)
         {
+            WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
+
             try
             {
-                return authorisationManagerServiceClient.RemoveRoleFromUser(roleId, userId);
+                authorisationManagerServiceClient
+                    = new WCFProxy.AuthorisationManagerServiceClient(new WSHttpBinding(),
+                        new EndpointAddress(endpointAddress));
+
+                var result = authorisationManagerServiceClient.RemoveRoleFromUser(roleId, userId);
+
+                authorisationManagerServiceClient.Close();
+
+                return result;
             }
             catch (Exception ex)
             {
+                if (authorisationManagerServiceClient != null)
+                {
+                    authorisationManagerServiceClient.Abort();
+                }
+
                 var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
@@ -175,12 +333,27 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
 
         public string AddActivityToRole(string roleId, string activityId)
         {
+            WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
+
             try
             {
-                return authorisationManagerServiceClient.AddActivityToRole(roleId, activityId);
+                authorisationManagerServiceClient
+                    = new WCFProxy.AuthorisationManagerServiceClient(new WSHttpBinding(),
+                        new EndpointAddress(endpointAddress));
+
+                var result = authorisationManagerServiceClient.AddActivityToRole(roleId, activityId);
+
+                authorisationManagerServiceClient.Close();
+
+                return result;
             }
             catch (Exception ex)
             {
+                if (authorisationManagerServiceClient != null)
+                {
+                    authorisationManagerServiceClient.Abort();
+                }
+
                 var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
@@ -189,12 +362,27 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
 
         public string AddActivityToActivity(string parentActivityId, string activityId)
         {
+            WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
+
             try
             {
-                return authorisationManagerServiceClient.AddActivityToActivity(parentActivityId, activityId);
+                authorisationManagerServiceClient
+                    = new WCFProxy.AuthorisationManagerServiceClient(new WSHttpBinding(),
+                        new EndpointAddress(endpointAddress));
+
+                var result = authorisationManagerServiceClient.AddActivityToActivity(parentActivityId, activityId);
+
+                authorisationManagerServiceClient.Close();
+
+                return result;
             }
             catch (Exception ex)
             {
+                if (authorisationManagerServiceClient != null)
+                {
+                    authorisationManagerServiceClient.Abort();
+                }
+
                 var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
@@ -203,12 +391,27 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
 
         public string AddRoleToUser(string userId, string roleId)
         {
+            WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
+
             try
             {
-                return authorisationManagerServiceClient.AddRoleToUser(userId, roleId);
+                authorisationManagerServiceClient
+                    = new WCFProxy.AuthorisationManagerServiceClient(new WSHttpBinding(),
+                        new EndpointAddress(endpointAddress));
+
+                var result = authorisationManagerServiceClient.AddRoleToUser(userId, roleId);
+
+                authorisationManagerServiceClient.Close();
+
+                return result;
             }
             catch (Exception ex)
             {
+                if (authorisationManagerServiceClient != null)
+                {
+                    authorisationManagerServiceClient.Abort();
+                }
+
                 var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
@@ -217,12 +420,27 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
 
         public string AddRoleToRole(string parentRoleId, string roleId)
         {
+            WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
+
             try
             {
-                return authorisationManagerServiceClient.AddRoleToRole(parentRoleId, roleId);
+                authorisationManagerServiceClient
+                    = new WCFProxy.AuthorisationManagerServiceClient(new WSHttpBinding(),
+                        new EndpointAddress(endpointAddress));
+
+                var result = authorisationManagerServiceClient.AddRoleToRole(parentRoleId, roleId);
+
+                authorisationManagerServiceClient.Close();
+
+                return result;
             }
             catch (Exception ex)
             {
+                if (authorisationManagerServiceClient != null)
+                {
+                    authorisationManagerServiceClient.Abort();
+                }
+
                 var serviceResponse = new ServiceResponse(ex.Message, ex);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
