@@ -10,6 +10,7 @@ using DevelopmentInProgress.Origin.Messages;
 using DevelopmentInProgress.Origin.ViewModel;
 using DevelopmentInProgress.WPFControls.Command;
 using DevelopmentInProgress.WPFControls.FilterTree;
+using Microsoft.Practices.Prism.Logging;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 {
@@ -32,6 +33,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             RemoveItemCommand = new WpfCommand(OnRemoveItem);
             SelectItemCommand = new WpfCommand(OnSelectItem);
             DragDropCommand = new WpfCommand(OnDragDrop);
+
+            Logger.Log("ConfigurationAuthorisationViewModel initialised", Category.Info, Priority.None);
         }
 
         public ICommand NewUserCommand { get; set; }
@@ -78,9 +81,11 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
             ResetStatus();
             base.OnPropertyChanged("");
+
+            Logger.Log("ConfigurationAuthorisationViewModel OnPublished complete", Category.Info, Priority.None);
         }
 
-        protected async override void SaveDocument()
+        protected override void SaveDocument()
         {
             OnEntitySave(SelectedItem);
         }
@@ -202,7 +207,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 ShowMessage(new Message()
                 {
                     MessageType = MessageTypeEnum.Warn,
-                    Text = "Invalid drag item."
+                    Text = "Invalid drag item " + dragDropArgs.DragItem.GetType().Name
                 }, true);
             }
         }
@@ -508,7 +513,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             }
         }
 
-        private async void RemoveUser(UserNode userNode)
+        private void RemoveUser(UserNode userNode)
         {
             if (userNode.ParentType == ParentType.None)
             {
