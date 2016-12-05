@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DevelopmentInProgress.AuthorisationManager.Service;
 using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipSecure;
@@ -33,19 +34,19 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             return false;
         }
 
-        public AuthorisationNodes GetAuthorisationNodes()
+        public async Task<AuthorisationNodes> GetAuthorisationNodes()
         {
             var authorisationNodes = new AuthorisationNodes();
-            var authorisation = authorisationManagerServiceProxy.GetAuthorisation();
+            var authorisation = await authorisationManagerServiceProxy.GetAuthorisation().ConfigureAwait(false);
             authorisation.Activities.ToList().ForEach(a => authorisationNodes.ActivityNodes.Add(GetActivityNode(a)));
             authorisation.Roles.ToList().ForEach(r => authorisationNodes.RoleNodes.Add(GetRoleNode(r)));
             authorisation.UserAuthorisations.ToList().ForEach(u => authorisationNodes.UserNodes.Add(GetUserNode(u)));
             return authorisationNodes;
         }
 
-        public ActivityNode SaveActivity(ActivityNode activityNode, IEnumerable<ActivityNode> activities)
+        public async Task<ActivityNode> SaveActivity(ActivityNode activityNode, IEnumerable<ActivityNode> activities)
         {
-            var activity = authorisationManagerServiceProxy.SaveActivity(activityNode.Activity);
+            var activity = await authorisationManagerServiceProxy.SaveActivity(activityNode.Activity).ConfigureAwait(false);
             var savedActivityNode = GetActivityNode(activity);
 
             if (activityNode.Id.Equals(0))
@@ -66,9 +67,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             return activityNode;
         }
 
-        public RoleNode SaveRole(RoleNode roleNode, IEnumerable<RoleNode> roles)
+        public async Task<RoleNode> SaveRole(RoleNode roleNode, IEnumerable<RoleNode> roles)
         {
-            var role = authorisationManagerServiceProxy.SaveRole(roleNode.Role);
+            var role = await authorisationManagerServiceProxy.SaveRole(roleNode.Role).ConfigureAwait(false);
             var savedRoleNode = GetRoleNode(role);
 
             if (roleNode.Id.Equals(0))
@@ -89,9 +90,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             return roleNode;
         }
 
-        public UserNode SaveUser(UserNode userNode, IEnumerable<UserNode> users)
+        public async Task<UserNode> SaveUser(UserNode userNode, IEnumerable<UserNode> users)
         {
-            var user = authorisationManagerServiceProxy.SaveUserAuthorisation(userNode.UserAuthorisation);
+            var user = await authorisationManagerServiceProxy.SaveUserAuthorisation(userNode.UserAuthorisation).ConfigureAwait(false);
             var savedUserNode = GetUserNode(user);
 
             if (userNode.Id.Equals(0))
@@ -110,122 +111,185 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             return userNode;
         }
 
-        public void DeleteActivity(ActivityNode activityNode, IList list)
+        public async Task<bool> DeleteActivity(ActivityNode activityNode, IList list)
         {
-            authorisationManagerServiceProxy.DeleteActivity(activityNode.Id);
-            list.RemoveNested(activityNode, a => a.Id.Equals(activityNode.Id));
+            var result = await authorisationManagerServiceProxy.DeleteActivity(activityNode.Id);
+            if (result)
+            {
+                list.RemoveNested(activityNode, a => a.Id.Equals(activityNode.Id));
+            }
+
+            return result;
         }
 
-        public void DeleteRole(RoleNode roleNode, IList list)
+        public async Task<bool> DeleteRole(RoleNode roleNode, IList list)
         {
-            authorisationManagerServiceProxy.DeleteRole(roleNode.Id);
-            list.RemoveNested(roleNode, r => r.Id.Equals(roleNode.Id));
+            var result = await authorisationManagerServiceProxy.DeleteRole(roleNode.Id);
+            if (result)
+            {
+                list.RemoveNested(roleNode, r => r.Id.Equals(roleNode.Id));
+            }
+
+            return result;
         }
 
-        public void DeleteUserAuthorisation(UserNode userNode, IList list)
+        public async Task<bool> DeleteUserAuthorisation(UserNode userNode, IList list)
         {
-            authorisationManagerServiceProxy.DeleteUserAuthorisation(userNode.Id);
-            list.RemoveNested(userNode, u => u.Id.Equals(userNode.Id));
+            var result = await authorisationManagerServiceProxy.DeleteUserAuthorisation(userNode.Id);
+            if (result)
+            {
+                list.RemoveNested(userNode, u => u.Id.Equals(userNode.Id));
+            }
+
+            return result;
         }
 
-        public void RemoveActivityFromActivity(ActivityNode activityNode, IList<ActivityNode> activities)
+        public async Task<bool> RemoveActivityFromActivity(ActivityNode activityNode, IList<ActivityNode> activities)
         {
             if (activityNode.ParentType == ParentType.ActivityNode)
             {
-                authorisationManagerServiceProxy.RemoveActivityFromActivity(activityNode.Id, activityNode.ParentId);
-                var parentActivities = activities.Where(a => a.Id.Equals(activityNode.ParentId));
-                foreach (var activity in parentActivities)
+                var result = await authorisationManagerServiceProxy.RemoveActivityFromActivity(activityNode.Id, activityNode.ParentId);
+                if (result)
                 {
-                    activity.RemoveActivity(activityNode.Id);
+                    var parentActivities = activities.Where(a => a.Id.Equals(activityNode.ParentId));
+                    foreach (var activity in parentActivities)
+                    {
+                        activity.RemoveActivity(activityNode.Id);
+                    }
                 }
+
+                return result;
             }
+
+            return false;
         }
 
-        public void RemoveActivityFromRole(ActivityNode activityNode, IList<RoleNode> roles)
+        public async Task<bool> RemoveActivityFromRole(ActivityNode activityNode, IList<RoleNode> roles)
         {
             if (activityNode.ParentType == ParentType.RoleNode)
             {
-                authorisationManagerServiceProxy.RemoveActivityFromRole(activityNode.Id, activityNode.ParentId);
-                var parentRoles = roles.Where(r => r.Id.Equals(activityNode.ParentId));
-                foreach (var role in parentRoles)
+                var result = await authorisationManagerServiceProxy.RemoveActivityFromRole(activityNode.Id, activityNode.ParentId);
+                if (result)
                 {
-                    role.RemoveActivity(activityNode.Id);
+                    var parentRoles = roles.Where(r => r.Id.Equals(activityNode.ParentId));
+                    foreach (var role in parentRoles)
+                    {
+                        role.RemoveActivity(activityNode.Id);
+                    }
                 }
+
+                return result;
             }
+
+            return false;
         }
 
-        public void RemoveRoleFromRole(RoleNode roleNode, IList<RoleNode> roles)
+        public async Task<bool> RemoveRoleFromRole(RoleNode roleNode, IList<RoleNode> roles)
         {
             if (roleNode.ParentType == ParentType.RoleNode)
             {
-                authorisationManagerServiceProxy.RemoveRoleFromRole(roleNode.Id, roleNode.ParentId);
-                var parentRoles = roles.Where(r => r.Id.Equals(roleNode.ParentId));
-                foreach (var role in parentRoles)
+                var result = await authorisationManagerServiceProxy.RemoveRoleFromRole(roleNode.Id, roleNode.ParentId);
+                if (result)
                 {
-                    role.RemoveRole(roleNode.Id);
+                    var parentRoles = roles.Where(r => r.Id.Equals(roleNode.ParentId));
+                    foreach (var role in parentRoles)
+                    {
+                        role.RemoveRole(roleNode.Id);
+                    }
                 }
+
+                return result;
             }
+
+            return false;
         }
 
-        public void RemoveRoleFromUser(RoleNode roleNode, IList<UserNode> users)
+        public async Task<bool> RemoveRoleFromUser(RoleNode roleNode, IList<UserNode> users)
         {
             if (roleNode.ParentType == ParentType.UserNode)
             {
-                authorisationManagerServiceProxy.RemoveRoleFromUser(roleNode.Id, roleNode.ParentId);
-                var parentUsers = users.Where(u => u.Id.Equals(roleNode.ParentId));
-                foreach (var parent in parentUsers)
+                var result = await authorisationManagerServiceProxy.RemoveRoleFromUser(roleNode.Id, roleNode.ParentId);
+                if (result)
                 {
-                    parent.RemoveRole(roleNode.Id);
+                    var parentUsers = users.Where(u => u.Id.Equals(roleNode.ParentId));
+                    foreach (var parent in parentUsers)
+                    {
+                        parent.RemoveRole(roleNode.Id);
+                    }
                 }
+
+                return result;
             }
+
+            return false;
         }
 
-        public void AddActivity(ActivityNode activityNode, ActivityNode targetActivityNode, IEnumerable<ActivityNode> targets)
+        public async Task<bool> AddActivity(ActivityNode activityNode, ActivityNode targetActivityNode, IEnumerable<ActivityNode> targets)
         {
-            authorisationManagerServiceProxy.AddActivityToActivity(targetActivityNode.Id, activityNode.Id);
-            foreach (var activity in targets)
+            var result = await authorisationManagerServiceProxy.AddActivityToActivity(targetActivityNode.Id, activityNode.Id);
+            if (result)
             {
-                if (activity.Activities.All(a => a.Id != activityNode.Id))
+                foreach (var activity in targets)
                 {
-                    activity.AddActivity(activityNode);
+                    if (activity.Activities.All(a => a.Id != activityNode.Id))
+                    {
+                        activity.AddActivity(activityNode);
+                    }
                 }
             }
+
+            return result;
         }
 
-        public void AddActivity(ActivityNode activityNode, RoleNode targetRoleNode, IEnumerable<RoleNode> targets)
+        public async Task<bool> AddActivity(ActivityNode activityNode, RoleNode targetRoleNode, IEnumerable<RoleNode> targets)
         {
-            authorisationManagerServiceProxy.AddActivityToRole(targetRoleNode.Id, activityNode.Id);
-            foreach (var role in targets)
+            var result = await authorisationManagerServiceProxy.AddActivityToRole(targetRoleNode.Id, activityNode.Id);
+            if (result)
             {
-                if (role.Activities.All(a => a.Id != activityNode.Id))
+                foreach (var role in targets)
                 {
-                    role.AddActivity(activityNode);
+                    if (role.Activities.All(a => a.Id != activityNode.Id))
+                    {
+                        role.AddActivity(activityNode);
+                    }
                 }
             }
+
+            return result;
         }
 
-        public void AddRole(RoleNode roleNode, RoleNode targetRoleNode, IEnumerable<RoleNode> targets)
+        public async Task<bool> AddRole(RoleNode roleNode, RoleNode targetRoleNode, IEnumerable<RoleNode> targets)
         {
-            authorisationManagerServiceProxy.AddRoleToRole(targetRoleNode.Id, roleNode.Id);
-            foreach (var role in targets)
+            var result = await authorisationManagerServiceProxy.AddRoleToRole(targetRoleNode.Id, roleNode.Id);
+            if (result)
             {
-                if (role.Roles.All(r => r.Id != roleNode.Id))
+                foreach (var role in targets)
                 {
-                    role.AddRole(roleNode);
+                    if (role.Roles.All(r => r.Id != roleNode.Id))
+                    {
+                        role.AddRole(roleNode);
+                    }
                 }
             }
+
+            return result;
         }
 
-        public void AddRole(RoleNode roleNode, UserNode targetUserNode, IEnumerable<UserNode> targets)
+        public async Task<bool> AddRole(RoleNode roleNode, UserNode targetUserNode, IEnumerable<UserNode> targets)
         {
-            authorisationManagerServiceProxy.AddRoleToUser(targetUserNode.Id, roleNode.Id);
-            foreach (var user in targets)
+            var result = await authorisationManagerServiceProxy.AddRoleToUser(targetUserNode.Id, roleNode.Id);
+            if (result)
             {
-                if (user.Roles.All(r => r.Id != roleNode.Id))
+                foreach (var user in targets)
                 {
-                    user.AddRole(roleNode);
+                    if (user.Roles.All(r => r.Id != roleNode.Id))
+                    {
+                        user.AddRole(roleNode);
+                    }
                 }
             }
+
+            return result;
         }
 
         private ActivityNode GetActivityNode(Activity activity)

@@ -44,6 +44,7 @@
     <Compile Include="AuthorisationManagerServiceProxy.cs" />
     <Compile Include="AuthorisationSerialised.cs" />
     <Compile Include="IAuthorisationManagerService.cs" />
+    <Compile Include="IAuthorisationManagerServiceAsync.cs" />
     <Compile Include="IAuthorisationManagerServiceProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

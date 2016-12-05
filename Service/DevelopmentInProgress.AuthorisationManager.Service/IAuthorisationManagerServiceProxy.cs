@@ -1,23 +1,24 @@
-﻿using DevelopmentInProgress.DipSecure;
+﻿using System.Threading.Tasks;
+using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.Service
 {
     public interface IAuthorisationManagerServiceProxy
     {
-        Authorisation GetAuthorisation();
-        Activity SaveActivity(Activity activity);
-        Role SaveRole(Role role);
-        UserAuthorisation SaveUserAuthorisation(UserAuthorisation userAuthorisation);
-        void DeleteActivity(int id);
-        void DeleteRole(int id);
-        void DeleteUserAuthorisation(int id);
-        void RemoveActivityFromActivity(int activityId, int parentId);
-        void RemoveActivityFromRole(int activityId, int roleId);
-        void RemoveRoleFromRole(int roleId, int parentId);
-        void RemoveRoleFromUser(int roleId, int userId);
-        void AddActivityToRole(int roleId, int activityId);
-        void AddActivityToActivity(int parentActivityId, int activityId);
-        void AddRoleToUser(int userId, int roleId);
-        void AddRoleToRole(int parentRoleId, int roleId);
+        Task<Authorisation> GetAuthorisation();
+        Task<Activity> SaveActivity(Activity activity);
+        Task<Role> SaveRole(Role role);
+        Task<UserAuthorisation> SaveUserAuthorisation(UserAuthorisation userAuthorisation);
+        Task<bool> DeleteActivity(int id);
+        Task<bool> DeleteRole(int id);
+        Task<bool> DeleteUserAuthorisation(int id);
+        Task<bool> RemoveActivityFromActivity(int activityId, int parentId);
+        Task<bool> RemoveActivityFromRole(int activityId, int roleId);
+        Task<bool> RemoveRoleFromRole(int roleId, int parentId);
+        Task<bool> RemoveRoleFromUser(int roleId, int userId);
+        Task<bool> AddActivityToRole(int roleId, int activityId);
+        Task<bool> AddActivityToActivity(int parentActivityId, int activityId);
+        Task<bool> AddRoleToUser(int userId, int roleId);
+        Task<bool> AddRoleToRole(int parentRoleId, int roleId);
     }
 }

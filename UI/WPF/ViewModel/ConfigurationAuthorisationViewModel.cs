@@ -66,24 +66,23 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             }
         }
 
-        protected override ProcessAsyncResult OnPublishedAsync(object data)
+        protected async override void OnPublished(object data)
         {
-            return base.OnPublishedAsync(data);
-        }
+            IsBusy = true;
 
-        protected override void OnPublishedAsyncCompleted(ProcessAsyncResult processAsyncResult)
-        {
-            base.OnPublishedAsyncCompleted(processAsyncResult);
+            var authorisationNodes = await authorisationManagerServiceManager.GetAuthorisationNodes();
 
-            var authorisationNodes = authorisationManagerServiceManager.GetAuthorisationNodes();
             Activities = new ObservableCollection<ActivityNode>(authorisationNodes.ActivityNodes);
             Roles = new ObservableCollection<RoleNode>(authorisationNodes.RoleNodes);
             Users = new ObservableCollection<UserNode>(authorisationNodes.UserNodes);
+
+            ResetStatus();
+            base.OnPropertyChanged("");
         }
 
-        protected override ProcessAsyncResult SaveDocumentAsync()
+        protected async override void SaveDocument()
         {
-            return base.SaveDocumentAsync();
+            OnEntitySave(SelectedItem);
         }
 
         private void OnSelectItem(object param)
@@ -108,103 +107,70 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         private void OnEntitySave(object param)
         {
-            try
+            var activityNode = param as ActivityNode;
+            if (activityNode != null)
             {
-                var activityNode = param as ActivityNode;
-                if (activityNode != null)
-                {
-                    SaveActivity(activityNode);
-                    return;
-                }
-
-                var roleNode = param as RoleNode;
-                if (roleNode != null)
-                {
-                    SaveRole(roleNode);
-                    return;
-                }
-
-                var userNode = param as UserNode;
-                if (userNode != null)
-                {
-                    SaveUser(userNode);
-                }
+                SaveActivity(activityNode);
+                return;
             }
-            catch (Exception ex)
+
+            var roleNode = param as RoleNode;
+            if (roleNode != null)
             {
-                ShowMessage(new Message()
-                {
-                    MessageType = MessageTypeEnum.Warn,
-                    Text = ex.Message
-                }, true);
+                SaveRole(roleNode);
+                return;
+            }
+
+            var userNode = param as UserNode;
+            if (userNode != null)
+            {
+                SaveUser(userNode);
             }
         }
 
         private void OnEntityDelete(object param)
         {
-            try
+            var activityNode = param as ActivityNode;
+            if (activityNode != null)
             {
-                var activityNode = param as ActivityNode;
-                if (activityNode != null)
-                {
-                    DeleteActivity(activityNode);
-                    return;
-                }
-
-                var roleNode = param as RoleNode;
-                if (roleNode != null)
-                {
-                    DeleteRole(roleNode);
-                    return;
-                }
-
-                var userNode = param as UserNode;
-                if (userNode != null)
-                {
-                    DeleteUser(userNode);
-                }
+                DeleteActivity(activityNode);
+                return;
             }
-            catch (Exception ex)
+
+            var roleNode = param as RoleNode;
+            if (roleNode != null)
             {
-                ShowMessage(new Message()
-                {
-                    MessageType = MessageTypeEnum.Warn,
-                    Text = ex.Message
-                }, true);
+                DeleteRole(roleNode);
+                return;
+            }
+
+            var userNode = param as UserNode;
+            if (userNode != null)
+            {
+                DeleteUser(userNode);
             }
         }
 
         private void OnRemoveItem(object param)
         {
-            try
+            var activityNode = param as ActivityNode;
+            if (activityNode != null)
             {
-                var activityNode = param as ActivityNode;
-                if (activityNode != null)
-                {
-                    RemoveActivity(activityNode);
-                    return;
-                }
-
-                var roleNode = param as RoleNode;
-                if (roleNode != null)
-                {
-                    RemoveRole(roleNode);
-                    return;
-                }
-
-                var userNode = param as UserNode;
-                if (userNode != null)
-                {
-                    RemoveUser(userNode);
-                }
+                RemoveActivity(activityNode);
+                return;
             }
-            catch (Exception ex)
+
+            var roleNode = param as RoleNode;
+            if (roleNode != null)
             {
-                ShowMessage(new Message()
-                {
-                    MessageType = MessageTypeEnum.Warn,
-                    Text = ex.Message
-                }, true);
+                RemoveRole(roleNode);
+                return;
+            }
+
+            var userNode = param as UserNode;
+            if (userNode != null)
+            {
+                RemoveUser(userNode);
             }
         }
 
@@ -223,20 +189,47 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 return;
             }
 
+            if (dragDropArgs.DragItem is ActivityNode)
+            {
+                AddActivity((ActivityNode) dragDropArgs.DragItem, target);
+            }
+            else if (dragDropArgs.DragItem is RoleNode)
+            {
+                AddRole((RoleNode) dragDropArgs.DragItem, target);
+            }
+            else
+            {
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text = "Invalid drag item."
+                }, true);
+            }
+        }
+
+        private async void SaveActivity(ActivityNode activityNode)
+        {
             try
             {
-                if (dragDropArgs.DragItem is ActivityNode)
+                IsBusy = true;
+
+                var newActivity = activityNode.Id.Equals(0);
+
+                var duplicateActivities = Activities.Flatten<ActivityNode>(a => a.Id.Equals(activityNode.Id), Roles,
+                    Users);
+
+                var savedActivity =
+                    await authorisationManagerServiceManager.SaveActivity(activityNode, duplicateActivities);
+
+                if (savedActivity != null)
                 {
-                    AddActivity((ActivityNode) dragDropArgs.DragItem, target);
+                    if (newActivity)
+                    {
+                        Activities.Add(activityNode);
+                    }
                 }
-                else if (dragDropArgs.DragItem is RoleNode)
-                {
-                    AddRole((RoleNode) dragDropArgs.DragItem, target);
-                }
-                else
-                {
-                    throw new Exception("Invalid drag item.");
-                }
+
+                ResetStatus();
             }
             catch (Exception ex)
             {
@@ -245,78 +238,111 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                     MessageType = MessageTypeEnum.Warn,
                     Text = ex.Message
                 }, true);
+
+                IsBusy = false;
             }
-        }
-
-        private void SaveActivity(ActivityNode activityNode)
-        {
-            var newActivity = activityNode.Id.Equals(0);
-
-            var duplicateActivities = Activities.Flatten<ActivityNode>(a => a.Id.Equals(activityNode.Id), Roles, Users);
-
-            var savedActivity = authorisationManagerServiceManager.SaveActivity(activityNode, duplicateActivities);
-
-            if (savedActivity != null)
+            finally
             {
-                if (newActivity)
-                {
-                    Activities.Add(activityNode);
-                }
+                OnPropertyChanged("");   
             }
         }
 
-        private void SaveRole(RoleNode roleNode)
-        {
-            var newRole = roleNode.Id.Equals(0);
-
-            var duplicateRoles = Roles.Flatten<RoleNode>(r => r.Id.Equals(roleNode.Id), Users);
-
-            var savedRole = authorisationManagerServiceManager.SaveRole(roleNode, duplicateRoles);
-
-            if (savedRole != null)
-            {
-                if (newRole)
-                {
-                    Roles.Add(roleNode);
-                }
-            }
-        }
-
-        private void SaveUser(UserNode userNode)
-        {
-            var newUser = userNode.Id.Equals(0);
-
-            var duplicateUsers = Users.Flatten<UserNode>(u => u.Id.Equals(0));
-
-            var savedUser = authorisationManagerServiceManager.SaveUser(userNode, duplicateUsers);
-
-            if (savedUser != null)
-            {
-                if (newUser)
-                {
-                    Users.Add(userNode);
-                }
-            }
-        }
-
-        private void AddActivity(ActivityNode activityNode, NodeEntityBase target)
+        private async void SaveRole(RoleNode roleNode)
         {
             try
             {
+                IsBusy = true;
+
+                var newRole = roleNode.Id.Equals(0);
+
+                var duplicateRoles = Roles.Flatten<RoleNode>(r => r.Id.Equals(roleNode.Id), Users);
+
+                var savedRole = await authorisationManagerServiceManager.SaveRole(roleNode, duplicateRoles);
+
+                if (savedRole != null)
+                {
+                    if (newRole)
+                    {
+                        Roles.Add(roleNode);
+                    }
+                }
+
+                ResetStatus();
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text = ex.Message
+                }, true);
+
+                IsBusy = false;
+            }
+            finally
+            {
+                OnPropertyChanged("");
+            }
+        }
+
+        private async void SaveUser(UserNode userNode)
+        {
+            try
+            {
+                IsBusy = true;
+
+                var newUser = userNode.Id.Equals(0);
+
+                var duplicateUsers = Users.Flatten<UserNode>(u => u.Id.Equals(0));
+
+                var savedUser = await authorisationManagerServiceManager.SaveUser(userNode, duplicateUsers);
+
+                if (savedUser != null)
+                {
+                    if (newUser)
+                    {
+                        Users.Add(userNode);
+                    }
+                }
+
+                ResetStatus();
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text = ex.Message
+                }, true);
+
+                IsBusy = false;
+            }
+            finally
+            {
+                OnPropertyChanged("");
+            }
+        }
+
+        private async void AddActivity(ActivityNode activityNode, NodeEntityBase target)
+        {
+            try
+            {
+                IsBusy = true;
+
                 if (AuthorisationManagerServiceManager.TargetNodeIsDropCandidate(target, activityNode))
                 {
                     return;
                 }
-                
+
                 if (target is ActivityNode)
                 {
                     var targets = Activities.Flatten<ActivityNode>(t => t.Id.Equals(target.Id), Roles, Users);
-                    authorisationManagerServiceManager.AddActivity(activityNode, (ActivityNode) target, targets);
+                    var result = await authorisationManagerServiceManager.AddActivity(activityNode, (ActivityNode) target, targets);
                 }
                 else if (target is RoleNode)
                 {
                     var targets = Roles.Flatten<RoleNode>(t => t.Id.Equals(target.Id), Users);
-                    authorisationManagerServiceManager.AddActivity(activityNode, (RoleNode) target, targets);
+                    var result = await authorisationManagerServiceManager.AddActivity(activityNode, (RoleNode)target, targets);
                 }
                 else
                 {
@@ -325,6 +351,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                             "Invalid drop target. '{0}' can only be dropped onto a role or another activity.",
                             activityNode.Text));
                 }
+
+                ResetStatus();
             }
             catch (Exception ex)
             {
@@ -333,13 +361,21 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                     MessageType = MessageTypeEnum.Warn,
                     Text = ex.Message
                 }, true);
+
+                IsBusy = false;
+            }
+            finally
+            {                
+                OnPropertyChanged("");
             }
         }
 
-        private void AddRole(RoleNode roleNode, NodeEntityBase target)
+        private async void AddRole(RoleNode roleNode, NodeEntityBase target)
         {
             try
             {
+                IsBusy = true;
+
                 if (AuthorisationManagerServiceManager.TargetNodeIsDropCandidate(target, roleNode))
                 {
                     return;
@@ -348,12 +384,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 if (target is RoleNode)
                 {
                     var targets = Roles.Flatten<RoleNode>(t => t.Id.Equals(target.Id), Users);
-                    authorisationManagerServiceManager.AddRole(roleNode, (RoleNode) target, targets);
+                    var result = await authorisationManagerServiceManager.AddRole(roleNode, (RoleNode) target, targets);
                 }
                 else if (target is UserNode)
                 {
                     var targets = Users.Where(t => t.Id.Equals(target.Id));
-                    authorisationManagerServiceManager.AddRole(roleNode, (UserNode) target, targets);
+                    var result = await authorisationManagerServiceManager.AddRole(roleNode, (UserNode) target, targets);
                 }
                 else
                 {
@@ -362,6 +398,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                             "Invalid drop target. '{0}' can only be dropped onto a user or another role.",
                             roleNode.Text));
                 }
+
+                ResetStatus();
             }
             catch (Exception ex)
             {
@@ -370,10 +408,16 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                     MessageType = MessageTypeEnum.Warn,
                     Text = ex.Message
                 }, true);
+
+                IsBusy = false;
+            }
+            finally
+            {
+                OnPropertyChanged("");
             }
         }
 
-        private void RemoveActivity(ActivityNode activityNode)
+        private async void RemoveActivity(ActivityNode activityNode)
         {
             if (activityNode.ParentType == ParentType.None)
             {
@@ -385,19 +429,41 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 return;
             }
 
-            if (activityNode.ParentType == ParentType.ActivityNode)
+            try
             {
-                var activities = Activities.Flatten<ActivityNode>(Roles, Users).ToList();
-                authorisationManagerServiceManager.RemoveActivityFromActivity(activityNode, activities);
+                IsBusy = true;
+
+                if (activityNode.ParentType == ParentType.ActivityNode)
+                {
+                    var activities = Activities.Flatten<ActivityNode>(Roles, Users).ToList();
+                    var result =
+                        await authorisationManagerServiceManager.RemoveActivityFromActivity(activityNode, activities);
+                }
+                else if (activityNode.ParentType == ParentType.RoleNode)
+                {
+                    var roles = Roles.Flatten<RoleNode>(Users).ToList();
+                    var result = await authorisationManagerServiceManager.RemoveActivityFromRole(activityNode, roles);
+                }
+
+                ResetStatus();
             }
-            else if (activityNode.ParentType == ParentType.RoleNode)
+            catch (Exception ex)
             {
-                var roles = Roles.Flatten<RoleNode>(Users).ToList();
-                authorisationManagerServiceManager.RemoveActivityFromRole(activityNode, roles);                
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text = ex.Message
+                }, true);
+
+                IsBusy = false;
+            }
+            finally
+            {
+                OnPropertyChanged("");
             }
         }
-        
-        private void RemoveRole(RoleNode roleNode)
+
+        private async void RemoveRole(RoleNode roleNode)
         {
             if (roleNode.ParentType == ParentType.None)
             {
@@ -409,19 +475,40 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 return;
             }
 
-            if (roleNode.ParentType == ParentType.RoleNode)
+            try
             {
-                var roles = Roles.Flatten<RoleNode>(Users).ToList();
-                authorisationManagerServiceManager.RemoveRoleFromRole(roleNode, roles);
+                IsBusy = true;
+
+                if (roleNode.ParentType == ParentType.RoleNode)
+                {
+                    var roles = Roles.Flatten<RoleNode>(Users).ToList();
+                    var result = await authorisationManagerServiceManager.RemoveRoleFromRole(roleNode, roles);
+                }
+                else if (roleNode.ParentType == ParentType.UserNode)
+                {
+                    var users = Users.Flatten<UserNode>().ToList();
+                    var result = await authorisationManagerServiceManager.RemoveRoleFromUser(roleNode, users);
+                }
+
+                ResetStatus();
             }
-            else if (roleNode.ParentType == ParentType.UserNode)
+            catch (Exception ex)
             {
-                var users = Users.Flatten<UserNode>().ToList();
-                authorisationManagerServiceManager.RemoveRoleFromUser(roleNode, users);
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text = ex.Message
+                }, true);
+
+                IsBusy = false;
+            }
+            finally
+            {
+                OnPropertyChanged("");
             }
         }
 
-        private void RemoveUser(UserNode userNode)
+        private async void RemoveUser(UserNode userNode)
         {
             if (userNode.ParentType == ParentType.None)
             {
@@ -433,24 +520,81 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             }
         }
 
-        private void DeleteActivity(ActivityNode activityNode)
+        private async void DeleteActivity(ActivityNode activityNode)
         {
-            var aggregatedList = Activities.Merge(Roles, Users);
-            authorisationManagerServiceManager.DeleteActivity(activityNode, aggregatedList);            
-            SelectedItem = null;
+            try
+            {
+                IsBusy = true;
+                var aggregatedList = Activities.Merge(Roles, Users);
+                var result = await authorisationManagerServiceManager.DeleteActivity(activityNode, aggregatedList);
+                SelectedItem = null;
+                ResetStatus();
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text = ex.Message
+                }, true);
+
+                IsBusy = false;
+            }
+            finally
+            {
+                OnPropertyChanged("");
+            }
         }
 
-        private void DeleteRole(RoleNode roleNode)
+        private async void DeleteRole(RoleNode roleNode)
         {
-            var aggregatedList = Roles.Merge(Users);
-            authorisationManagerServiceManager.DeleteRole(roleNode, aggregatedList);
-            SelectedItem = null;
+            try
+            {
+                IsBusy = true;
+                var aggregatedList = Roles.Merge(Users);
+                var result = await authorisationManagerServiceManager.DeleteRole(roleNode, aggregatedList);
+                SelectedItem = null;
+                ResetStatus();
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text = ex.Message
+                }, true);
+
+                IsBusy = false;
+            }
+            finally
+            {
+                OnPropertyChanged("");
+            }
         }
 
-        private void DeleteUser(UserNode userNode)
+        private async void DeleteUser(UserNode userNode)
         {
-            authorisationManagerServiceManager.DeleteUserAuthorisation(userNode, Users);
-            SelectedItem = null;
+            try
+            {
+                IsBusy = true;
+                var result = await authorisationManagerServiceManager.DeleteUserAuthorisation(userNode, Users);
+                SelectedItem = null;
+                ResetStatus();
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text = ex.Message
+                }, true);
+
+                IsBusy = false;
+            }
+            finally
+            {
+                OnPropertyChanged("");
+            }
         }
     }
 }

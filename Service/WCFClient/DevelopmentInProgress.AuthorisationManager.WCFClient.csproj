@@ -50,7 +50,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <ProjectReference Include="..\..\..\dipcore\DevelopmentInProgress.DipCore\DevelopmentInProgress.DipCore.csproj">
+      <Project>{ba7df412-8e32-498d-a463-bd35f9494d5e}</Project>
+      <Name>DevelopmentInProgress.DipCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevelopmentInProgress.AuthorisationManager.Service\DevelopmentInProgress.AuthorisationManager.Service.csproj">
+      <Project>{f6cbd0d7-ccb3-44e2-97a9-549253a2ad35}</Project>
+      <Name>DevelopmentInProgress.AuthorisationManager.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\AuthorisationManagerServiceReference\AuthorisationManager.xsd">
@@ -60,6 +67,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\AuthorisationManagerServiceReference\AuthorisationManagerServer.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AuthorisationManagerServiceReference\" />
@@ -78,16 +88,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\dipcore\DevelopmentInProgress.DipCore\DevelopmentInProgress.DipCore.csproj">
-      <Project>{ba7df412-8e32-498d-a463-bd35f9494d5e}</Project>
-      <Name>DevelopmentInProgress.DipCore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DevelopmentInProgress.AuthorisationManager.Service\DevelopmentInProgress.AuthorisationManager.Service.csproj">
-      <Project>{f6cbd0d7-ccb3-44e2-97a9-549253a2ad35}</Project>
-      <Name>DevelopmentInProgress.AuthorisationManager.Service</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
