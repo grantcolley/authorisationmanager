@@ -1,10 +1,7 @@
 ﻿using System.Configuration;
 using System.IO;
 using System.Linq;
-using DevelopmentInProgress.AuthorisationManager.Data;
-using DevelopmentInProgress.AuthorisationManager.Data.SQL;
-using DevelopmentInProgress.AuthorisationManager.Server;
-using DevelopmentInProgress.AuthorisationManager.Service;
+using DevelopmentInProgress.DipCore.Logger;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 
@@ -37,6 +34,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFServiceHost
                 var unityConfigSection = (UnityConfigurationSection)unityConfig.GetSection("unity");
                 unityConfigSection.Configure(Container);
             }
+
+            Container.RegisterType(typeof (IDipLog), typeof (LoggerFacade));
         }
     }
 }
