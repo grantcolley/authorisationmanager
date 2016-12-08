@@ -13,13 +13,13 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFServiceHost
 
         public void Run()
         {
+            Container = new UnityContainer();
+            Container.RegisterType(typeof(IDipLog), typeof(LoggerFacade), new ContainerControlledLifetimeManager());
             ConfigureContainer();
         }
 
         private void ConfigureContainer()
         {
-            Container = new UnityContainer();
-
             var files = from f in Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "ServerConfiguration"))
                         where f.ToUpper().EndsWith("UNITY.CONFIG")
                         select f;
@@ -34,8 +34,6 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFServiceHost
                 var unityConfigSection = (UnityConfigurationSection)unityConfig.GetSection("unity");
                 unityConfigSection.Configure(Container);
             }
-
-            Container.RegisterType(typeof (IDipLog), typeof (LoggerFacade));
         }
     }
 }

@@ -24,9 +24,28 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFServiceHost
             logger = LogManager.GetLogger(typeof(LoggerFacade));
             logger.Info("*********************************************");
             logger.Info("*********************************************");
-            logger.Info("DevelopmentInProgress.AuthorisationManager.WCFServiceHost");
-            logger.Info("Copyright © Development In Progress Ltd 2012");
-            logger.Info("Start Application");
+            logger.Info("AuthorisationManager.WCFServiceHost");
+            logger.Info("Copyright © Development In Progress Ltd 2016");
+            logger.Info("Start Service");
+        }
+
+        /// <summary>
+        /// Log a message.
+        /// </summary>
+        /// <param name="message">The message to write.</param>
+        public void Log(string message)
+        {
+            Log(message, LogCategory.Info);
+        }
+
+        /// <summary>
+        /// Log a message.
+        /// </summary>
+        /// <param name="message">The message to write.</param>
+        /// <param name="category">The message category.</param>
+        public void Log(string message, LogCategory category)
+        {
+            Log(message, category, LogPriority.None);
         }
 
         /// <summary>
