@@ -2,6 +2,7 @@
 using DevelopmentInProgress.AuthorisationManager.Data;
 using DevelopmentInProgress.AuthorisationManager.Service;
 using DevelopmentInProgress.DipCore;
+using DevelopmentInProgress.DipCore.Logger;
 using DevelopmentInProgress.DipCore.Service;
 using DevelopmentInProgress.DipSecure;
 
@@ -10,10 +11,12 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
     public class AuthorisationManagerServer : IAuthorisationManagerService
     {
         private readonly IAuthorisationManagerDataProxy authorisationManagerDataProxy;
+        private readonly IDipLog logger;
 
-        public AuthorisationManagerServer(IAuthorisationManagerDataProxy authorisationManagerDataProxy)
+        public AuthorisationManagerServer(IAuthorisationManagerDataProxy authorisationManagerDataProxy, IDipLog logger)
         {
             this.authorisationManagerDataProxy = authorisationManagerDataProxy;
+            this.logger = logger;
         }
 
         public string GetAuthorisation()
@@ -38,6 +41,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             {
                 serviceResponse.IsError = true;
                 serviceResponse.Message = ex.Message;
+                logger.Log("AuthorisationManagerServer.GetAuthorisation" + ex.Message, LogCategory.Exception, LogPriority.None);
+                logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -49,6 +54,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
+                int i = 0;
+                var r = 1 / i;
                 var activityToSave = Serializer.DeserializeJson<Activity>(activity);
                 var savedActivity = authorisationManagerDataProxy.SaveActivity(activityToSave);
                 var serialisedActivity = Serializer.SerializeToJson(savedActivity);
@@ -58,6 +65,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             {
                 serviceResponse.IsError = true;
                 serviceResponse.Message = ex.Message;
+                logger.Log("AuthorisationManagerServer.SaveActivity - " + ex.Message, LogCategory.Exception, LogPriority.None);
+                logger.Log(activity, LogCategory.Exception, LogPriority.None);
+                logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -78,6 +88,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             {
                 serviceResponse.IsError = true;
                 serviceResponse.Message = ex.Message;
+                logger.Log("AuthorisationManagerServer.SaveRole - " + ex.Message, LogCategory.Exception, LogPriority.None);
+                logger.Log(role, LogCategory.Exception, LogPriority.None);
+                logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -98,6 +111,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             {
                 serviceResponse.IsError = true;
                 serviceResponse.Message = ex.Message;
+                logger.Log("AuthorisationManagerServer.SaveUserAuthorisation - " + ex.Message, LogCategory.Exception, LogPriority.None);
+                logger.Log(userAuthorisation, LogCategory.Exception, LogPriority.None);
+                logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -118,6 +134,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             {
                 serviceResponse.IsError = true;
                 serviceResponse.Message = ex.Message;
+                logger.Log("AuthorisationManagerServer.DeleteActivity - " + ex.Message, LogCategory.Exception, LogPriority.None);
+                logger.Log(id, LogCategory.Exception, LogPriority.None);
+                logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -138,6 +157,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             {
                 serviceResponse.IsError = true;
                 serviceResponse.Message = ex.Message;
+                logger.Log("AuthorisationManagerServer.DeleteRole - " + ex.Message, LogCategory.Exception, LogPriority.None);
+                logger.Log(id, LogCategory.Exception, LogPriority.None);
+                logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -158,6 +180,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             {
                 serviceResponse.IsError = true;
                 serviceResponse.Message = ex.Message;
+                logger.Log("AuthorisationManagerServer.DeleteUserAuthorisation - " + ex.Message, LogCategory.Exception, LogPriority.None);
+                logger.Log(id, LogCategory.Exception, LogPriority.None);
+                logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -179,6 +204,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             {
                 serviceResponse.IsError = true;
                 serviceResponse.Message = ex.Message;
+                logger.Log("AuthorisationManagerServer.RemoveActivityFromActivity - " + ex.Message, LogCategory.Exception, LogPriority.None);
+                logger.Log("activityId=" + activityId + ";parentId=" + parentId, LogCategory.Exception, LogPriority.None);
+                logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -200,6 +228,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             {
                 serviceResponse.IsError = true;
                 serviceResponse.Message = ex.Message;
+                logger.Log("AuthorisationManagerServer.RemoveActivityFromRole - " + ex.Message, LogCategory.Exception, LogPriority.None);
+                logger.Log("activityId=" + activityId + ";roleId=" + roleId, LogCategory.Exception, LogPriority.None);
+                logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -221,6 +252,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             {
                 serviceResponse.IsError = true;
                 serviceResponse.Message = ex.Message;
+                logger.Log("AuthorisationManagerServer.RemoveRoleFromRole - " + ex.Message, LogCategory.Exception, LogPriority.None);
+                logger.Log("roleId=" + roleId + ";parentId=" + parentId, LogCategory.Exception, LogPriority.None);
+                logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -242,6 +276,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             {
                 serviceResponse.IsError = true;
                 serviceResponse.Message = ex.Message;
+                logger.Log("AuthorisationManagerServer.RemoveRoleFromUser - " + ex.Message, LogCategory.Exception, LogPriority.None);
+                logger.Log("roleId=" + roleId + ";userId=" + userId, LogCategory.Exception, LogPriority.None);
+                logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -263,6 +300,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             {
                 serviceResponse.IsError = true;
                 serviceResponse.Message = ex.Message;
+                logger.Log("AuthorisationManagerServer.AddActivityToRole - " + ex.Message, LogCategory.Exception, LogPriority.None);
+                logger.Log("roleId=" + roleId + ";activityId=" + activityId, LogCategory.Exception, LogPriority.None);
+                logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -284,6 +324,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             {
                 serviceResponse.IsError = true;
                 serviceResponse.Message = ex.Message;
+                logger.Log("AuthorisationManagerServer.AddActivityToActivity - " + ex.Message, LogCategory.Exception, LogPriority.None);
+                logger.Log("parentActivityId=" + parentActivityId + ";activityId=" + activityId, LogCategory.Exception, LogPriority.None);
+                logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -305,6 +348,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             {
                 serviceResponse.IsError = true;
                 serviceResponse.Message = ex.Message;
+                logger.Log("AuthorisationManagerServer.AddRoleToUser - " + ex.Message, LogCategory.Exception, LogPriority.None);
+                logger.Log("userId=" + userId + ";roleId=" + roleId, LogCategory.Exception, LogPriority.None);
+                logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -326,6 +372,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             {
                 serviceResponse.IsError = true;
                 serviceResponse.Message = ex.Message;
+                logger.Log("AuthorisationManagerServer.AddRoleToRole - " + ex.Message, LogCategory.Exception, LogPriority.None);
+                logger.Log("parentRoleId=" + parentRoleId + ";roleId=" + roleId, LogCategory.Exception, LogPriority.None);
+                logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
             }
 
             return Serializer.SerializeToJson(serviceResponse);
