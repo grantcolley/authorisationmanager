@@ -32,11 +32,12 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
                 authorisation.UserAuthorisations.AddRange(userAuthorisations);
 
                 var serialisedAuthorisation = Serializer.SerializeToJson(authorisation);
-                serviceResponse = new ServiceResponse() { Message = serialisedAuthorisation };
+                serviceResponse = new ServiceResponse() {Message = serialisedAuthorisation};
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = new ServiceResponseException(ex);
+                serviceResponse.IsError = true;
+                serviceResponse.Message = ex.Message;
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -55,7 +56,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = new ServiceResponseException(ex);
+                serviceResponse.IsError = true;
+                serviceResponse.Message = ex.Message;
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -74,7 +76,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = new ServiceResponseException(ex);
+                serviceResponse.IsError = true;
+                serviceResponse.Message = ex.Message;
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -93,7 +96,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = new ServiceResponseException(ex);
+                serviceResponse.IsError = true;
+                serviceResponse.Message = ex.Message;
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -112,7 +116,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = new ServiceResponseException(ex);
+                serviceResponse.IsError = true;
+                serviceResponse.Message = ex.Message;
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -131,7 +136,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = new ServiceResponseException(ex);
+                serviceResponse.IsError = true;
+                serviceResponse.Message = ex.Message;
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -150,7 +156,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = new ServiceResponseException(ex);
+                serviceResponse.IsError = true;
+                serviceResponse.Message = ex.Message;
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -170,7 +177,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = new ServiceResponseException(ex);
+                serviceResponse.IsError = true;
+                serviceResponse.Message = ex.Message;
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -190,7 +198,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = new ServiceResponseException(ex);
+                serviceResponse.IsError = true;
+                serviceResponse.Message = ex.Message;
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -210,7 +219,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = new ServiceResponseException(ex);
+                serviceResponse.IsError = true;
+                serviceResponse.Message = ex.Message;
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -230,7 +240,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = new ServiceResponseException(ex);
+                serviceResponse.IsError = true;
+                serviceResponse.Message = ex.Message;
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -250,7 +261,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = new ServiceResponseException(ex);
+                serviceResponse.IsError = true;
+                serviceResponse.Message = ex.Message;
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -270,7 +282,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = new ServiceResponseException(ex);
+                serviceResponse.IsError = true;
+                serviceResponse.Message = ex.Message;
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -290,7 +303,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = new ServiceResponseException(ex);
+                serviceResponse.IsError = true;
+                serviceResponse.Message = ex.Message;
             }
 
             return Serializer.SerializeToJson(serviceResponse);
@@ -310,7 +324,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
             }
             catch (Exception ex)
             {
-                serviceResponse.Exception = new ServiceResponseException(ex);
+                serviceResponse.IsError = true;
+                serviceResponse.Message = ex.Message;
             }
 
             return Serializer.SerializeToJson(serviceResponse);

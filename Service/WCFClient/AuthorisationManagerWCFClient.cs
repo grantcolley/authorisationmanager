@@ -36,7 +36,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, ex);
+                var serviceResponse = new ServiceResponse(ex.Message, true);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -65,7 +65,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, ex);
+                var serviceResponse = new ServiceResponse(ex.Message, true);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -94,7 +94,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, ex);
+                var serviceResponse = new ServiceResponse(ex.Message, true);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -123,7 +123,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, ex);
+                var serviceResponse = new ServiceResponse(ex.Message, true);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -152,7 +152,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, ex);
+                var serviceResponse = new ServiceResponse(ex.Message, true);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -181,7 +181,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, ex);
+                var serviceResponse = new ServiceResponse(ex.Message, true);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -210,7 +210,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, ex);
+                var serviceResponse = new ServiceResponse(ex.Message, true);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -239,7 +239,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, ex);
+                var serviceResponse = new ServiceResponse(ex.Message, true);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -268,7 +268,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, ex);
+                var serviceResponse = new ServiceResponse(ex.Message, true);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -297,7 +297,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, ex);
+                var serviceResponse = new ServiceResponse(ex.Message, true);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -326,7 +326,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, ex);
+                var serviceResponse = new ServiceResponse(ex.Message, true);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -355,7 +355,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, ex);
+                var serviceResponse = new ServiceResponse(ex.Message, true);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -384,7 +384,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, ex);
+                var serviceResponse = new ServiceResponse(ex.Message, true);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -413,7 +413,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, ex);
+                var serviceResponse = new ServiceResponse(ex.Message, true);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }
@@ -442,7 +442,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, ex);
+                var serviceResponse = new ServiceResponse(ex.Message, true);
                 var response = Serializer.SerializeToJson(serviceResponse);
                 return response;
             }

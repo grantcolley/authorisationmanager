@@ -69,18 +69,33 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             }
         }
 
-        protected async override void OnPublished(object data)
+        protected override async void OnPublished(object data)
         {
-            IsBusy = true;
+            try
+            {
+                IsBusy = true;
 
-            var authorisationNodes = await authorisationManagerServiceManager.GetAuthorisationNodes();
+                var authorisationNodes = await authorisationManagerServiceManager.GetAuthorisationNodes();
+                Activities = new ObservableCollection<ActivityNode>(authorisationNodes.ActivityNodes);
+                Roles = new ObservableCollection<RoleNode>(authorisationNodes.RoleNodes);
+                Users = new ObservableCollection<UserNode>(authorisationNodes.UserNodes);
 
-            Activities = new ObservableCollection<ActivityNode>(authorisationNodes.ActivityNodes);
-            Roles = new ObservableCollection<RoleNode>(authorisationNodes.RoleNodes);
-            Users = new ObservableCollection<UserNode>(authorisationNodes.UserNodes);
+                ResetStatus();
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(new Message()
+                {
+                    MessageType = MessageTypeEnum.Warn,
+                    Text = ex.Message
+                }, true);
 
-            ResetStatus();
-            base.OnPropertyChanged("");
+                IsBusy = false;
+            }
+            finally
+            {
+                OnPropertyChanged("");
+            }
 
             Logger.Log("ConfigurationAuthorisationViewModel OnPublished complete", Category.Info, Priority.None);
         }
