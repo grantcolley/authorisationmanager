@@ -54,8 +54,6 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
-                int i = 0;
-                var r = 1 / i;
                 var activityToSave = Serializer.DeserializeJson<Activity>(activity);
                 var savedActivity = authorisationManagerDataProxy.SaveActivity(activityToSave);
                 var serialisedActivity = Serializer.SerializeToJson(savedActivity);
