@@ -86,7 +86,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Warn,
+                    MessageType = MessageTypeEnum.Error,
                     Text = ex.Message
                 }, true);
 
@@ -255,7 +255,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Warn,
+                    MessageType = MessageTypeEnum.Error,
                     Text = ex.Message
                 }, true);
 
@@ -293,7 +293,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Warn,
+                    MessageType = MessageTypeEnum.Error,
                     Text = ex.Message
                 }, true);
 
@@ -331,7 +331,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Warn,
+                    MessageType = MessageTypeEnum.Error,
                     Text = ex.Message
                 }, true);
 
@@ -378,7 +378,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Warn,
+                    MessageType = MessageTypeEnum.Error,
                     Text = ex.Message
                 }, true);
 
@@ -425,7 +425,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Warn,
+                    MessageType = MessageTypeEnum.Error,
                     Text = ex.Message
                 }, true);
 
@@ -443,7 +443,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Info,
+                    MessageType = MessageTypeEnum.Warn,
                     Text = string.Format("Can't remove activity {0} as it has no parent.", activityNode.Text)
                 }, true);
                 return;
@@ -471,7 +471,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Warn,
+                    MessageType = MessageTypeEnum.Error,
                     Text = ex.Message
                 }, true);
 
@@ -489,7 +489,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Info,
+                    MessageType = MessageTypeEnum.Warn,
                     Text = string.Format("Can't remove role {0} as it has no parent.", roleNode.Text)
                 }, true);
                 return;
@@ -516,7 +516,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Warn,
+                    MessageType = MessageTypeEnum.Error,
                     Text = ex.Message
                 }, true);
 
@@ -534,7 +534,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Info,
+                    MessageType = MessageTypeEnum.Warn,
                     Text = string.Format("Can't remove user {0} as the user has no parent.", userNode.Text)
                 }, true);
             }
@@ -554,7 +554,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Warn,
+                    MessageType = MessageTypeEnum.Error,
                     Text = ex.Message
                 }, true);
 
@@ -580,7 +580,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Warn,
+                    MessageType = MessageTypeEnum.Error,
                     Text = ex.Message
                 }, true);
 
@@ -605,7 +605,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Warn,
+                    MessageType = MessageTypeEnum.Error,
                     Text = ex.Message
                 }, true);
 
