@@ -70,14 +70,6 @@
       <Project>{ba7df412-8e32-498d-a463-bd35f9494d5e}</Project>
       <Name>DevelopmentInProgress.DipCore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\DevelopmentInProgress.AuthorisationManager.Data.SQL\DevelopmentInProgress.AuthorisationManager.Data.SQL.csproj">
-      <Project>{3383ddd9-a333-4031-952b-9cfdb0d4c02d}</Project>
-      <Name>DevelopmentInProgress.AuthorisationManager.Data.SQL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\DevelopmentInProgress.AuthorisationManager.Data\DevelopmentInProgress.AuthorisationManager.Data.csproj">
-      <Project>{e73387fe-7595-4122-9f27-00d5e3a454f6}</Project>
-      <Name>DevelopmentInProgress.AuthorisationManager.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DevelopmentInProgress.AuthorisationManager.Server\DevelopmentInProgress.AuthorisationManager.Server.csproj">
       <Project>{638070d4-e78e-47d7-b0ab-ee1ea5ef7674}</Project>
       <Name>DevelopmentInProgress.AuthorisationManager.Server</Name>
