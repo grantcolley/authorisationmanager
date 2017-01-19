@@ -21,15 +21,13 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFServiceHost
 
                 IDipLog logger = (IDipLog)unityBootstrapper.Container.Resolve(typeof (IDipLog), "");
 
-                Console.WriteLine("Created URI to server as base address: http://localhost:8733/Design_Time_Addresses/AuthorisationManager");
-                logger.Log("Created URI to server as base address: http://localhost:8733/Design_Time_Addresses/AuthorisationManager", LogCategory.Info, LogPriority.None);
-
-                Console.WriteLine("Create the service host: AuthorisationManagerServer.");
-                logger.Log("", LogCategory.Info, LogPriority.None);
+                var logBaseAddress = "Created URI to server as base address: " + baseAddress;
+                Console.WriteLine(logBaseAddress);
+                logger.Log(logBaseAddress, LogCategory.Info, LogPriority.None);
 
                 selfHost.AddServiceEndpoint(typeof (IAuthorisationManagerService), new WSHttpBinding(),
                     "AuthorisationManagerService");
-                Console.WriteLine("Add the service endpoint: AuthorisationManagerService.");
+                Console.WriteLine("Add the service endpoint - Contract=IAuthorisationManagerService; Address=AuthorisationManagerService.");
                 logger.Log("", LogCategory.Info, LogPriority.None);
 
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior() {HttpGetEnabled = true};
