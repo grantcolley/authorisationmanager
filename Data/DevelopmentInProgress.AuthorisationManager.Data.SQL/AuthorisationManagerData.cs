@@ -156,7 +156,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
                 }
                 else
                 {
-                    conn.Update(activity, new Dictionary<string, object>() {{"Id", activity.Id}}, new[] {"Id"});
+                    conn.Update(activity, new SqlParameter() {ParameterName = "Id", Value = activity.Id});
                 }
             }
 
@@ -175,7 +175,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
                 }
                 else
                 {
-                    conn.Update(role, new Dictionary<string, object>() {{"Id", role.Id}}, new[] {"Id"});
+                    conn.Update(role, new SqlParameter() { ParameterName = "Id", Value = role.Id });
                 }
             }
 
@@ -194,7 +194,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
                 }
                 else
                 {
-                    conn.Update(userAuthorisation, new Dictionary<string, object>() {{"Id", userAuthorisation.Id}}, new[] {"Id"});
+                    conn.Update(userAuthorisation, new SqlParameter() { ParameterName = "Id", Value = userAuthorisation.Id });
                 }
             }
 
@@ -261,13 +261,10 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
         {
             using (var conn = new SqlConnection(ConnectionString))
             {
-                var recordsAffected =
-                    conn.Delete<ActivityActivity>(new Dictionary<string, object>()
-                    {
-                        {"ActivityId", activityId},
-                        {"ParentActivityId", parentId}
-                    });
-
+                var parameters = new List<SqlParameter>();
+                parameters.Add(new SqlParameter() {ParameterName = "ActivityId", Value = activityId});
+                parameters.Add(new SqlParameter() { ParameterName = "ParentActivityId", Value = parentId });
+                var recordsAffected = conn.Delete<ActivityActivity>(parameters);
                 return recordsAffected.Equals(1);
             }
         }
@@ -276,13 +273,10 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
         {
             using (var conn = new SqlConnection(ConnectionString))
             {
-                var recordsAffected =
-                    conn.Delete<RoleActivity>(new Dictionary<string, object>()
-                    {
-                        {"ActivityId", activityId},
-                        {"RoleId", roleId}
-                    });
-
+                var parameters = new List<SqlParameter>();
+                parameters.Add(new SqlParameter() { ParameterName = "ActivityId", Value = activityId });
+                parameters.Add(new SqlParameter() { ParameterName = "RoleId", Value = roleId });
+                var recordsAffected = conn.Delete<RoleActivity>(parameters);
                 return recordsAffected.Equals(1);
             }
         }
@@ -291,13 +285,10 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
         {
             using (var conn = new SqlConnection(ConnectionString))
             {
-                var recordsAffected =
-                    conn.Delete<RoleRole>(new Dictionary<string, object>()
-                    {
-                        {"RoleId", roleId},
-                        {"ParentRoleId", parentId}
-                    });
-
+                var parameters = new List<SqlParameter>();
+                parameters.Add(new SqlParameter() { ParameterName = "RoleId", Value = roleId });
+                parameters.Add(new SqlParameter() { ParameterName = "ParentRoleId", Value = parentId });
+                var recordsAffected = conn.Delete<RoleRole>(parameters);
                 return recordsAffected.Equals(1);
             }
         }
@@ -306,13 +297,10 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
         {
             using (var conn = new SqlConnection(ConnectionString))
             {
-                var recordsAffected =
-                    conn.Delete<UserRole>(new Dictionary<string, object>()
-                    {
-                        {"Id", userId},
-                        {"RoleId", roleId}
-                    });
-
+                var parameters = new List<SqlParameter>();
+                parameters.Add(new SqlParameter() {ParameterName = "Id", Value = userId});
+                parameters.Add(new SqlParameter() { ParameterName = "RoleId", Value = roleId });
+                var recordsAffected = conn.Delete<UserRole>(parameters);
                 return recordsAffected.Equals(1);
             }
         }
