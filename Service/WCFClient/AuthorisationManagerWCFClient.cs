@@ -2,8 +2,8 @@
 using System.ServiceModel;
 using System.Threading.Tasks;
 using DevelopmentInProgress.AuthorisationManager.Service;
-using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipCore.Service;
+using DevelopmentInProgress.DipSecure;
 using WCFProxy = DevelopmentInProgress.AuthorisationManager.WCFClient.AuthorisationManagerServiceReference;
 
 namespace DevelopmentInProgress.AuthorisationManager.WCFClient
@@ -13,7 +13,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
         private string endpointAddress =
             "http://localhost:8733/Design_Time_Addresses/AuthorisationManager/AuthorisationManagerService";
 
-        public async Task<string> GetAuthorisation()
+        public async Task<ServiceResponse<Authorisation>> GetAuthorisation()
         {
             WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
 
@@ -36,13 +36,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, true);
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
+                var serviceResponse = new ServiceResponse<Authorisation>(ex.Message, true);
+                return serviceResponse;
             }
         }
 
-        public async Task<string> SaveActivity(string activity)
+        public async Task<ServiceResponse<Activity>> SaveActivity(Activity activity)
         {
             WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
 
@@ -65,13 +64,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, true);
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
+                var serviceResponse = new ServiceResponse<Activity>(ex.Message, true);
+                return serviceResponse;
             }
         }
 
-        public async Task<string> SaveRole(string role)
+        public async Task<ServiceResponse<Role>> SaveRole(Role role)
         {
             WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
 
@@ -94,13 +92,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, true);
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
+                var serviceResponse = new ServiceResponse<Role>(ex.Message, true);
+                return serviceResponse;
             }
         }
 
-        public async Task<string> SaveUserAuthorisation(string userAuthorisation)
+        public async Task<ServiceResponse<UserAuthorisation>> SaveUserAuthorisation(UserAuthorisation userAuthorisation)
         {
             WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
 
@@ -123,13 +120,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, true);
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
+                var serviceResponse = new ServiceResponse<UserAuthorisation>(ex.Message, true);
+                return serviceResponse;
             }
         }
 
-        public async Task<string> DeleteActivity(string id)
+        public async Task<ServiceResponse<bool>> DeleteActivity(int id)
         {
             WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
 
@@ -152,13 +148,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, true);
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
+                var serviceResponse = new ServiceResponse<bool>(ex.Message, true);
+                return serviceResponse;
             }
         }
 
-        public async Task<string> DeleteRole(string id)
+        public async Task<ServiceResponse<bool>> DeleteRole(int id)
         {
             WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
 
@@ -181,13 +176,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, true);
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
+                var serviceResponse = new ServiceResponse<bool>(ex.Message, true);
+                return serviceResponse;
             }
         }
 
-        public async Task<string> DeleteUserAuthorisation(string id)
+        public async Task<ServiceResponse<bool>> DeleteUserAuthorisation(int id)
         {
             WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
 
@@ -210,13 +204,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, true);
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
+                var serviceResponse = new ServiceResponse<bool>(ex.Message, true);
+                return serviceResponse;
             }
         }
 
-        public async Task<string> RemoveActivityFromActivity(string activityId, string parentId)
+        public async Task<ServiceResponse<bool>> RemoveActivityFromActivity(int activityId, int parentId)
         {
             WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
 
@@ -239,13 +232,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, true);
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
+                var serviceResponse = new ServiceResponse<bool>(ex.Message, true);
+                return serviceResponse;
             }
         }
 
-        public async Task<string> RemoveActivityFromRole(string activityId, string roleId)
+        public async Task<ServiceResponse<bool>> RemoveActivityFromRole(int activityId, int roleId)
         {
             WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
 
@@ -268,13 +260,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, true);
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
+                var serviceResponse = new ServiceResponse<bool>(ex.Message, true);
+                return serviceResponse;
             }
         }
 
-        public async Task<string> RemoveRoleFromRole(string roleId, string parentId)
+        public async Task<ServiceResponse<bool>> RemoveRoleFromRole(int roleId, int parentId)
         {
             WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
 
@@ -297,13 +288,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, true);
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
+                var serviceResponse = new ServiceResponse<bool>(ex.Message, true);
+                return serviceResponse;
             }
         }
 
-        public async Task<string> RemoveRoleFromUser(string roleId, string userId)
+        public async Task<ServiceResponse<bool>> RemoveRoleFromUser(int roleId, int userId)
         {
             WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
 
@@ -326,13 +316,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, true);
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
+                var serviceResponse = new ServiceResponse<bool>(ex.Message, true);
+                return serviceResponse;
             }
         }
 
-        public async Task<string> AddActivityToRole(string roleId, string activityId)
+        public async Task<ServiceResponse<bool>> AddActivityToRole(int roleId, int activityId)
         {
             WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
 
@@ -355,13 +344,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, true);
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
+                var serviceResponse = new ServiceResponse<bool>(ex.Message, true);
+                return serviceResponse;
             }
         }
 
-        public async Task<string> AddActivityToActivity(string parentActivityId, string activityId)
+        public async Task<ServiceResponse<bool>> AddActivityToActivity(int parentActivityId, int activityId)
         {
             WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
 
@@ -384,13 +372,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, true);
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
+                var serviceResponse = new ServiceResponse<bool>(ex.Message, true);
+                return serviceResponse;
             }
         }
 
-        public async Task<string> AddRoleToUser(string userId, string roleId)
+        public async Task<ServiceResponse<bool>> AddRoleToUser(int userId, int roleId)
         {
             WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
 
@@ -413,13 +400,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, true);
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
+                var serviceResponse = new ServiceResponse<bool>(ex.Message, true);
+                return serviceResponse;
             }
         }
 
-        public async Task<string> AddRoleToRole(string parentRoleId, string roleId)
+        public async Task<ServiceResponse<bool>> AddRoleToRole(int parentRoleId, int roleId)
         {
             WCFProxy.AuthorisationManagerServiceClient authorisationManagerServiceClient = null;
 
@@ -442,9 +428,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
                     authorisationManagerServiceClient.Abort();
                 }
 
-                var serviceResponse = new ServiceResponse(ex.Message, true);
-                var response = Serializer.SerializeToJson(serviceResponse);
-                return response;
+                var serviceResponse = new ServiceResponse<bool>(ex.Message, true);
+                return serviceResponse;
             }
         }
     }

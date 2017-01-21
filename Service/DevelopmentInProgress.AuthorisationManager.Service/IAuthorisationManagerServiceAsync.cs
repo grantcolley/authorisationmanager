@@ -1,5 +1,7 @@
 ﻿using System.ServiceModel;
 using System.Threading.Tasks;
+using DevelopmentInProgress.DipCore.Service;
+using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.Service
 {
@@ -7,48 +9,48 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
     public interface IAuthorisationManagerServiceAsync
     {
         [OperationContract]
-        Task<string> GetAuthorisation();
+        Task<ServiceResponse<Authorisation>> GetAuthorisation();
 
         [OperationContract]
-        Task<string> SaveActivity(string activity);
+        Task<ServiceResponse<Activity>> SaveActivity(Activity activity);
 
         [OperationContract]
-        Task<string> SaveRole(string role);
+        Task<ServiceResponse<Role>> SaveRole(Role role);
 
         [OperationContract]
-        Task<string> SaveUserAuthorisation(string userAuthorisation);
+        Task<ServiceResponse<UserAuthorisation>> SaveUserAuthorisation(UserAuthorisation userAuthorisation);
 
         [OperationContract]
-        Task<string> DeleteActivity(string id);
+        Task<ServiceResponse<bool>> DeleteActivity(int id);
 
         [OperationContract]
-        Task<string> DeleteRole(string id);
+        Task<ServiceResponse<bool>> DeleteRole(int id);
 
         [OperationContract]
-        Task<string> DeleteUserAuthorisation(string id);
+        Task<ServiceResponse<bool>> DeleteUserAuthorisation(int id);
 
         [OperationContract]
-        Task<string> RemoveActivityFromActivity(string activityId, string parentId);
+        Task<ServiceResponse<bool>> RemoveActivityFromActivity(int activityId, int parentId);
 
         [OperationContract]
-        Task<string> RemoveActivityFromRole(string activityId, string roleId);
+        Task<ServiceResponse<bool>> RemoveActivityFromRole(int activityId, int roleId);
 
         [OperationContract]
-        Task<string> RemoveRoleFromRole(string roleId, string parentId);
+        Task<ServiceResponse<bool>> RemoveRoleFromRole(int roleId, int parentId);
 
         [OperationContract]
-        Task<string> RemoveRoleFromUser(string roleId, string userId);
+        Task<ServiceResponse<bool>> RemoveRoleFromUser(int roleId, int userId);
 
         [OperationContract]
-        Task<string> AddActivityToRole(string roleId, string activityId);
+        Task<ServiceResponse<bool>> AddActivityToRole(int roleId, int activityId);
 
         [OperationContract]
-        Task<string> AddActivityToActivity(string parentActivityId, string activityId);
+        Task<ServiceResponse<bool>> AddActivityToActivity(int parentActivityId, int activityId);
 
         [OperationContract]
-        Task<string> AddRoleToUser(string userId, string roleId);
+        Task<ServiceResponse<bool>> AddRoleToUser(int userId, int roleId);
 
         [OperationContract]
-        Task<string> AddRoleToRole(string parentRoleId, string roleId);
+        Task<ServiceResponse<bool>> AddRoleToRole(int parentRoleId, int roleId);
     }
 }

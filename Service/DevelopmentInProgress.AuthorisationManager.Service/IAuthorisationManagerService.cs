@@ -1,4 +1,6 @@
 ﻿using System.ServiceModel;
+using DevelopmentInProgress.DipCore.Service;
+using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.Service
 {
@@ -6,48 +8,48 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
     public interface IAuthorisationManagerService
     {
         [OperationContract]
-        string GetAuthorisation();
+        ServiceResponse<Authorisation> GetAuthorisation();
 
         [OperationContract]
-        string SaveActivity(string activity);
+        ServiceResponse<Activity> SaveActivity(Activity activity);
 
         [OperationContract]
-        string SaveRole(string role);
+        ServiceResponse<Role> SaveRole(Role role);
 
         [OperationContract]
-        string SaveUserAuthorisation(string userAuthorisation);
+        ServiceResponse<UserAuthorisation> SaveUserAuthorisation(UserAuthorisation userAuthorisation);
 
         [OperationContract]
-        string DeleteActivity(string id);
+        ServiceResponse<bool> DeleteActivity(int id);
 
         [OperationContract]
-        string DeleteRole(string id);
+        ServiceResponse<bool> DeleteRole(int id);
 
         [OperationContract]
-        string DeleteUserAuthorisation(string id);
+        ServiceResponse<bool> DeleteUserAuthorisation(int id);
 
         [OperationContract]
-        string RemoveActivityFromActivity(string activityId, string parentId);
+        ServiceResponse<bool> RemoveActivityFromActivity(int activityId, int parentId);
 
         [OperationContract]
-        string RemoveActivityFromRole(string activityId, string roleId);
+        ServiceResponse<bool> RemoveActivityFromRole(int activityId, int roleId);
 
         [OperationContract]
-        string RemoveRoleFromRole(string roleId, string parentId);
+        ServiceResponse<bool> RemoveRoleFromRole(int roleId, int parentId);
 
         [OperationContract]
-        string RemoveRoleFromUser(string roleId, string userId);
+        ServiceResponse<bool> RemoveRoleFromUser(int roleId, int userId);
 
         [OperationContract]
-        string AddActivityToRole(string roleId, string activityId);
+        ServiceResponse<bool> AddActivityToRole(int roleId, int activityId);
 
         [OperationContract]
-        string AddActivityToActivity(string parentActivityId, string activityId);
+        ServiceResponse<bool> AddActivityToActivity(int parentActivityId, int activityId);
 
         [OperationContract]
-        string AddRoleToUser(string userId, string roleId);
+        ServiceResponse<bool> AddRoleToUser(int userId, int roleId);
 
         [OperationContract]
-        string AddRoleToRole(string parentRoleId, string roleId);
+        ServiceResponse<bool> AddRoleToRole(int parentRoleId, int roleId);
     }
 }
