@@ -1,11 +1,12 @@
 ﻿using System.ServiceModel;
+using DevelopmentInProgress.AuthorisationManager.Service;
 using DevelopmentInProgress.DipCore.Service;
 using DevelopmentInProgress.DipSecure;
 
-namespace DevelopmentInProgress.AuthorisationManager.Service
+namespace DevelopmentInProgress.AuthorisationManager.Server
 {
     [ServiceContract]
-    public interface IAuthorisationManagerService
+    public interface IAuthorisationManagerServer
     {
         [OperationContract]
         ServiceResponse<Authorisation> GetAuthorisation();

@@ -2,7 +2,6 @@
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using DevelopmentInProgress.AuthorisationManager.Server;
-using DevelopmentInProgress.AuthorisationManager.Service;
 using DevelopmentInProgress.DipCore.Logger;
 
 namespace DevelopmentInProgress.AuthorisationManager.WCFServiceHost
@@ -25,9 +24,9 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFServiceHost
                 Console.WriteLine(logBaseAddress);
                 logger.Log(logBaseAddress, LogCategory.Info, LogPriority.None);
 
-                selfHost.AddServiceEndpoint(typeof (IAuthorisationManagerService), new WSHttpBinding(),
-                    "AuthorisationManagerService");
-                Console.WriteLine("Add the service endpoint - Contract=IAuthorisationManagerService; Address=AuthorisationManagerService.");
+                selfHost.AddServiceEndpoint(typeof (IAuthorisationManagerServer), new WSHttpBinding(),
+                    "AuthorisationManagerServer");
+                Console.WriteLine("Add the service endpoint - Contract=IAuthorisationManagerServer; Address=AuthorisationManagerServer.");
                 logger.Log("", LogCategory.Info, LogPriority.None);
 
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior() {HttpGetEnabled = true};

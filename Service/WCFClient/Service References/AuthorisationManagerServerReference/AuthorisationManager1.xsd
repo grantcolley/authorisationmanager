@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/AuthorisationManager?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.AuthorisationManager.Service" />
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/AuthorisationManager?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" />
+  <xs:complexType name="ServiceResponseOfAuthorisationDw8ClIXC">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ServiceResponseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Authorisation" Namespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.AuthorisationManager.Service" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsError" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.AuthorisationManager.Service" minOccurs="0" name="Payload" nillable="true" type="q1:Authorisation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceResponseOfAuthorisationDw8ClIXC" nillable="true" type="tns:ServiceResponseOfAuthorisationDw8ClIXC" />
+  <xs:complexType name="ServiceResponseOfActivityQ1EL2LDc">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ServiceResponseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Activity" Namespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsError" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" minOccurs="0" name="Payload" nillable="true" type="q2:Activity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceResponseOfActivityQ1EL2LDc" nillable="true" type="tns:ServiceResponseOfActivityQ1EL2LDc" />
+  <xs:complexType name="ServiceResponseOfRoleQ1EL2LDc">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ServiceResponseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Role" Namespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsError" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" minOccurs="0" name="Payload" nillable="true" type="q3:Role" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceResponseOfRoleQ1EL2LDc" nillable="true" type="tns:ServiceResponseOfRoleQ1EL2LDc" />
+  <xs:complexType name="ServiceResponseOfUserAuthorisationQ1EL2LDc">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ServiceResponseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="UserAuthorisation" Namespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsError" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" minOccurs="0" name="Payload" nillable="true" type="q4:UserAuthorisation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceResponseOfUserAuthorisationQ1EL2LDc" nillable="true" type="tns:ServiceResponseOfUserAuthorisationQ1EL2LDc" />
+  <xs:complexType name="ServiceResponseOfboolean">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ServiceResponseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="boolean" Namespace="http://www.w3.org/2001/XMLSchema" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsError" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Payload" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceResponseOfboolean" nillable="true" type="tns:ServiceResponseOfboolean" />
+</xs:schema>

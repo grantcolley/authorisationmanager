@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/AuthorisationManager?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" />
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/AuthorisationManager?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" />
+  <xs:element name="GetAuthorisation">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAuthorisationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" minOccurs="0" name="GetAuthorisationResult" nillable="true" type="q1:ServiceResponseOfAuthorisationDw8ClIXC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveActivity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" minOccurs="0" name="activity" nillable="true" type="q2:Activity" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveActivityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" minOccurs="0" name="SaveActivityResult" nillable="true" type="q3:ServiceResponseOfActivityQ1EL2LDc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveRole">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" minOccurs="0" name="role" nillable="true" type="q4:Role" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveRoleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" minOccurs="0" name="SaveRoleResult" nillable="true" type="q5:ServiceResponseOfRoleQ1EL2LDc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveUserAuthorisation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" minOccurs="0" name="userAuthorisation" nillable="true" type="q6:UserAuthorisation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveUserAuthorisationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" minOccurs="0" name="SaveUserAuthorisationResult" nillable="true" type="q7:ServiceResponseOfUserAuthorisationQ1EL2LDc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteActivity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteActivityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" minOccurs="0" name="DeleteActivityResult" nillable="true" type="q8:ServiceResponseOfboolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteRole">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteRoleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" minOccurs="0" name="DeleteRoleResult" nillable="true" type="q9:ServiceResponseOfboolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserAuthorisation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserAuthorisationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" minOccurs="0" name="DeleteUserAuthorisationResult" nillable="true" type="q10:ServiceResponseOfboolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveActivityFromActivity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="activityId" type="xs:int" />
+        <xs:element minOccurs="0" name="parentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveActivityFromActivityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" minOccurs="0" name="RemoveActivityFromActivityResult" nillable="true" type="q11:ServiceResponseOfboolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveActivityFromRole">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="activityId" type="xs:int" />
+        <xs:element minOccurs="0" name="roleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveActivityFromRoleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" minOccurs="0" name="RemoveActivityFromRoleResult" nillable="true" type="q12:ServiceResponseOfboolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveRoleFromRole">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="roleId" type="xs:int" />
+        <xs:element minOccurs="0" name="parentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveRoleFromRoleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" minOccurs="0" name="RemoveRoleFromRoleResult" nillable="true" type="q13:ServiceResponseOfboolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveRoleFromUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="roleId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveRoleFromUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" minOccurs="0" name="RemoveRoleFromUserResult" nillable="true" type="q14:ServiceResponseOfboolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddActivityToRole">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="roleId" type="xs:int" />
+        <xs:element minOccurs="0" name="activityId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddActivityToRoleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" minOccurs="0" name="AddActivityToRoleResult" nillable="true" type="q15:ServiceResponseOfboolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddActivityToActivity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parentActivityId" type="xs:int" />
+        <xs:element minOccurs="0" name="activityId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddActivityToActivityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" minOccurs="0" name="AddActivityToActivityResult" nillable="true" type="q16:ServiceResponseOfboolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRoleToUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+        <xs:element minOccurs="0" name="roleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRoleToUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" minOccurs="0" name="AddRoleToUserResult" nillable="true" type="q17:ServiceResponseOfboolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRoleToRole">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parentRoleId" type="xs:int" />
+        <xs:element minOccurs="0" name="roleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRoleToRoleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipCore.Service" minOccurs="0" name="AddRoleToRoleResult" nillable="true" type="q18:ServiceResponseOfboolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -8,7 +8,7 @@ using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.Server
 {
-    public class AuthorisationManagerServer : IAuthorisationManagerService
+    public class AuthorisationManagerServer : IAuthorisationManagerServer
     {
         private readonly IAuthorisationManagerDataProxy authorisationManagerDataProxy;
         private readonly IDipLog logger;

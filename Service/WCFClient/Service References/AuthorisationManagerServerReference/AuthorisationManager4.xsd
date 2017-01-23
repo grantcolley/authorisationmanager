@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/System" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/AuthorisationManager?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="FuncOfUserAuthorisationstringTaskOfbooleanjehk3YA0">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="FuncOf{0}{1}{2}{#}" Namespace="http://schemas.datacontract.org/2004/07/System" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="UserAuthorisation" Namespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" />
+          <GenericParameter Name="string" Namespace="http://www.w3.org/2001/XMLSchema" />
+          <GenericParameter Name="TaskOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/System.Threading.Tasks">
+            <GenericParameter Name="boolean" Namespace="http://www.w3.org/2001/XMLSchema" />
+          </GenericParameter>
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:MulticastDelegate" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FuncOfUserAuthorisationstringTaskOfbooleanjehk3YA0" nillable="true" type="tns:FuncOfUserAuthorisationstringTaskOfbooleanjehk3YA0" />
+  <xs:complexType name="MulticastDelegate">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Delegate" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MulticastDelegate" nillable="true" type="tns:MulticastDelegate" />
+  <xs:complexType name="Delegate">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" namespace="##local" processContents="skip" />
+    </xs:sequence>
+    <xs:attribute ref="ser:FactoryType" />
+  </xs:complexType>
+  <xs:element name="Delegate" nillable="true" type="tns:Delegate" />
+  <xs:complexType name="FuncOfUserAuthorisationstringboolean_PoeYNvjM">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="FuncOf{0}{1}{2}{#}" Namespace="http://schemas.datacontract.org/2004/07/System" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="UserAuthorisation" Namespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" />
+          <GenericParameter Name="string" Namespace="http://www.w3.org/2001/XMLSchema" />
+          <GenericParameter Name="boolean" Namespace="http://www.w3.org/2001/XMLSchema" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:MulticastDelegate" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FuncOfUserAuthorisationstringboolean_PoeYNvjM" nillable="true" type="tns:FuncOfUserAuthorisationstringboolean_PoeYNvjM" />
+</xs:schema>

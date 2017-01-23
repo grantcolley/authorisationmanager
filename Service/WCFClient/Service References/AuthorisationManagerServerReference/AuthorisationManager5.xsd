@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/AuthorisationManager?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:complexType name="ArrayOfActivity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Activity" nillable="true" type="tns:Activity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfActivity" nillable="true" type="tns:ArrayOfActivity" />
+  <xs:complexType name="Activity">
+    <xs:sequence>
+      <xs:element name="_x003C_Activities_x003E_k__BackingField" nillable="true" type="tns:ArrayOfActivity" />
+      <xs:element name="_x003C_ActivityCode_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Description_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Name_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Activity" nillable="true" type="tns:Activity" />
+  <xs:complexType name="ArrayOfRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Role" nillable="true" type="tns:Role" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRole" nillable="true" type="tns:ArrayOfRole" />
+  <xs:complexType name="Role">
+    <xs:sequence>
+      <xs:element name="_x003C_Activities_x003E_k__BackingField" nillable="true" type="tns:ArrayOfActivity" />
+      <xs:element name="_x003C_Description_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Name_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_RoleCode_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Roles_x003E_k__BackingField" nillable="true" type="tns:ArrayOfRole" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Role" nillable="true" type="tns:Role" />
+  <xs:complexType name="ArrayOfUserAuthorisation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserAuthorisation" nillable="true" type="tns:UserAuthorisation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserAuthorisation" nillable="true" type="tns:ArrayOfUserAuthorisation" />
+  <xs:complexType name="UserAuthorisation">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System" name="_x003C_CanPerformActivityDelegateAsync_x003E_k__BackingField" nillable="true" type="q1:FuncOfUserAuthorisationstringTaskOfbooleanjehk3YA0" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System" name="_x003C_CanPerformActivityDelegate_x003E_k__BackingField" nillable="true" type="q2:FuncOfUserAuthorisationstringboolean_PoeYNvjM" />
+      <xs:element name="_x003C_DisplayName_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Id_x003E_k__BackingField" type="xs:int" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/System" name="_x003C_IsInRoleDelegateAsync_x003E_k__BackingField" nillable="true" type="q3:FuncOfUserAuthorisationstringTaskOfbooleanjehk3YA0" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/System" name="_x003C_IsInRoleDelegate_x003E_k__BackingField" nillable="true" type="q4:FuncOfUserAuthorisationstringboolean_PoeYNvjM" />
+      <xs:element name="_x003C_Roles_x003E_k__BackingField" nillable="true" type="tns:ArrayOfRole" />
+      <xs:element name="_x003C_UserName_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserAuthorisation" nillable="true" type="tns:UserAuthorisation" />
+</xs:schema>

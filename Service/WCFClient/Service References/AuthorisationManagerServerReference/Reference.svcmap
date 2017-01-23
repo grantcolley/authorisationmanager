@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d20d838d-eb7f-459d-bc9d-17bf2b6167c9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/AuthorisationManager" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AuthorisationManagerServer.wsdl" MetadataType="Wsdl" ID="8ba23dc1-a46c-44e1-9980-57c3c8d295d1" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/AuthorisationManager?wsdl" />
+    <MetadataFile FileName="AuthorisationManager.xsd" MetadataType="Schema" ID="724a9edc-44a9-4d73-944e-d95a7ae9c077" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/AuthorisationManager?xsd=xsd3" />
+    <MetadataFile FileName="AuthorisationManager1.xsd" MetadataType="Schema" ID="fe0f7be7-7a0f-472b-85eb-9262584f4c4e" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/AuthorisationManager?xsd=xsd2" />
+    <MetadataFile FileName="AuthorisationManager2.xsd" MetadataType="Schema" ID="a1252a1b-fc5b-412d-b67a-0e009632816d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/AuthorisationManager?xsd=xsd1" />
+    <MetadataFile FileName="AuthorisationManager3.xsd" MetadataType="Schema" ID="1bbb9082-e1cc-4f26-a918-8dedf980f683" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/AuthorisationManager?xsd=xsd0" />
+    <MetadataFile FileName="AuthorisationManager4.xsd" MetadataType="Schema" ID="38887094-9a92-47b4-8a0f-a361a0460149" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/AuthorisationManager?xsd=xsd5" />
+    <MetadataFile FileName="AuthorisationManager5.xsd" MetadataType="Schema" ID="7317f9ee-f785-4ca0-8147-96f9e1bb4bb0" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/AuthorisationManager?xsd=xsd4" />
+    <MetadataFile FileName="AuthorisationManager.disco" MetadataType="Disco" ID="48aca0af-8412-4338-95ea-aee976647c15" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/AuthorisationManager?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

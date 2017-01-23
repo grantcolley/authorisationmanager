@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="AuthorisationManagerWCFClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\AuthorisationManagerServiceReference\Reference.cs">
+    <Compile Include="Service References\AuthorisationManagerServerReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -64,31 +64,48 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\AuthorisationManagerServiceReference\AuthorisationManager.xsd">
+    <None Include="app.config" />
+    <None Include="DevelopmentInProgress.AuthorisationManager.Service.Authorisation1.datasource" />
+    <None Include="DevelopmentInProgress.DipSecure.Activity1.datasource" />
+    <None Include="DevelopmentInProgress.DipSecure.Role1.datasource" />
+    <None Include="DevelopmentInProgress.DipSecure.UserAuthorisation1.datasource" />
+    <None Include="Service References\AuthorisationManagerServerReference\AuthorisationManager.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AuthorisationManagerServiceReference\AuthorisationManager1.xsd">
+    <None Include="Service References\AuthorisationManagerServerReference\AuthorisationManager1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AuthorisationManagerServiceReference\AuthorisationManagerServer.wsdl" />
+    <None Include="Service References\AuthorisationManagerServerReference\AuthorisationManager2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AuthorisationManagerServerReference\AuthorisationManager3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AuthorisationManagerServerReference\AuthorisationManager4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AuthorisationManagerServerReference\AuthorisationManager5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AuthorisationManagerServerReference\AuthorisationManagerServer.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\AuthorisationManagerServiceReference\" />
+    <WCFMetadataStorage Include="Service References\AuthorisationManagerServerReference\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\AuthorisationManagerServiceReference\AuthorisationManager.disco" />
+    <None Include="Service References\AuthorisationManagerServerReference\AuthorisationManager.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\AuthorisationManagerServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\AuthorisationManagerServerReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\AuthorisationManagerServiceReference\configuration.svcinfo" />
+    <None Include="Service References\AuthorisationManagerServerReference\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\AuthorisationManagerServiceReference\Reference.svcmap">
+    <None Include="Service References\AuthorisationManagerServerReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

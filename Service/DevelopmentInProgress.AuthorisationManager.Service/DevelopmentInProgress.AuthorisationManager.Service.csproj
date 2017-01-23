@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="Authorisation.cs" />
     <Compile Include="AuthorisationManagerServiceProxy.cs" />
-    <Compile Include="IAuthorisationManagerService.cs" />
     <Compile Include="IAuthorisationManagerServiceAsync.cs" />
     <Compile Include="IAuthorisationManagerServiceProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

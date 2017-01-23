@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.AuthorisationManager.Service" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.AuthorisationManager.Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/AuthorisationManager?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" />
+  <xs:complexType name="Authorisation">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" name="_x003C_Activities_x003E_k__BackingField" nillable="true" type="q1:ArrayOfActivity" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" name="_x003C_Roles_x003E_k__BackingField" nillable="true" type="q2:ArrayOfRole" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DevelopmentInProgress.DipSecure" name="_x003C_UserAuthorisations_x003E_k__BackingField" nillable="true" type="q3:ArrayOfUserAuthorisation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Authorisation" nillable="true" type="tns:Authorisation" />
+</xs:schema>

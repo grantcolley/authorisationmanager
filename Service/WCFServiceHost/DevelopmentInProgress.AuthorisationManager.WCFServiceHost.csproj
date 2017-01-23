@@ -74,10 +74,6 @@
       <Project>{638070d4-e78e-47d7-b0ab-ee1ea5ef7674}</Project>
       <Name>DevelopmentInProgress.AuthorisationManager.Server</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DevelopmentInProgress.AuthorisationManager.Service\DevelopmentInProgress.AuthorisationManager.Service.csproj">
-      <Project>{f6cbd0d7-ccb3-44e2-97a9-549253a2ad35}</Project>
-      <Name>DevelopmentInProgress.AuthorisationManager.Service</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
