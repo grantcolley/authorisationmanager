@@ -1,38 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
+using DevelopmentInProgress.AuthorisationManager.Server;
+using DevelopmentInProgress.DipCore.Service;
 using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WebAPI.Controllers
 {
     public class ActivityController : ApiController
     {
-        public IEnumerable<Activity> GetActivities()
+        private readonly IAuthorisationManagerServer authorisationManagerServer;
+
+        public ActivityController(IAuthorisationManagerServer authorisationManagerServer)
         {
-            throw new NotImplementedException();
+            this.authorisationManagerServer = authorisationManagerServer;
         }
 
-        public Activity SaveActivity(string activity)
+        public ServiceResponse<Activity> SaveActivity(Activity activity)
         {
-            throw new NotImplementedException();
+            return authorisationManagerServer.SaveActivity(activity);
         }
 
-        public string DeleteActivity(string id)
+        public ServiceResponse<bool> DeleteActivity(int id)
         {
-            throw new NotImplementedException();
+            return authorisationManagerServer.DeleteActivity(id);
         }
 
-        public string RemoveActivity(string activityId, string parentId)
+        public ServiceResponse<bool> AddActivity(int parentActivityId, int activityId)
         {
-            throw new NotImplementedException();
+            return authorisationManagerServer.AddActivityToActivity(parentActivityId, activityId);
         }
 
-        public string AddActivity(string parentActivityId, string activityId)
+        public ServiceResponse<bool> RemoveActivity(int activityId, int parentId)
         {
-            throw new NotImplementedException();
+            return authorisationManagerServer.RemoveActivityFromActivity(activityId, parentId);
         }
     }
 }

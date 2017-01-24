@@ -1,37 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
+using DevelopmentInProgress.AuthorisationManager.Server;
+using DevelopmentInProgress.DipCore.Service;
+using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WebAPI.Controllers
 {
     public class UserAuthorisationController : ApiController
     {
-        public string GetUserAuthorisations()
+        private readonly IAuthorisationManagerServer authorisationManagerServer;
+
+        public UserAuthorisationController(IAuthorisationManagerServer authorisationManagerServer)
         {
-            throw new NotImplementedException();
+            this.authorisationManagerServer = authorisationManagerServer;
         }
 
-        public string SaveUserAuthorisation(string userAuthorisation)
+        public ServiceResponse<UserAuthorisation> SaveUserAuthorisation(UserAuthorisation userAuthorisation)
         {
-            throw new NotImplementedException();
+            return authorisationManagerServer.SaveUserAuthorisation(userAuthorisation);
         }
 
-        public string DeleteUserAuthorisation(string id)
+        public ServiceResponse<bool> DeleteUserAuthorisation(int id)
         {
-            throw new NotImplementedException();
+            return authorisationManagerServer.DeleteUserAuthorisation(id);
         }
 
-        public string RemoveRole(string roleId, string userId)
+        public ServiceResponse<bool> AddRole(int userId, int roleId)
         {
-            throw new NotImplementedException();
+            return authorisationManagerServer.AddRoleToUser(userId, roleId);
         }
 
-        public string AddRole(string userId, string roleId)
+        public ServiceResponse<bool> RemoveRole(int roleId, int userId)
         {
-            throw new NotImplementedException();
+            return authorisationManagerServer.RemoveRoleFromUser(roleId, userId);
         }
     }
 }

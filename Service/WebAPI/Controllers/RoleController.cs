@@ -1,47 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
+using DevelopmentInProgress.AuthorisationManager.Server;
+using DevelopmentInProgress.DipCore.Service;
+using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WebAPI.Controllers
 {
     public class RoleController : ApiController
     {
-        public string GetRoles()
+        private readonly IAuthorisationManagerServer authorisationManagerServer;
+
+        public RoleController(IAuthorisationManagerServer authorisationManagerServer)
         {
-            throw new NotImplementedException();
+            this.authorisationManagerServer = authorisationManagerServer;
         }
 
-        public string SaveRole(string role)
+        public ServiceResponse<Role> SaveRole(Role role)
         {
-            throw new NotImplementedException();
+            return authorisationManagerServer.SaveRole(role);
         }
 
-        public string DeleteRole(string id)
+        public ServiceResponse<bool> DeleteRole(int id)
         {
-            throw new NotImplementedException();
+            return authorisationManagerServer.DeleteRole(id);
         }
 
-        public string RemoveActivity(string activityId, string roleId)
+        public ServiceResponse<bool> AddActivity(int roleId, int activityId)
         {
-            throw new NotImplementedException();
+            return authorisationManagerServer.AddActivityToRole(roleId, activityId);
         }
 
-        public string RemoveRole(string roleId, string parentId)
+        public ServiceResponse<bool> AddRole(int parentRoleId, int roleId)
         {
-            throw new NotImplementedException();
+            return authorisationManagerServer.AddRoleToRole(parentRoleId, roleId);
         }
 
-        public string AddActivity(string roleId, string activityId)
+        public ServiceResponse<bool> RemoveActivity(int activityId, int roleId)
         {
-            throw new NotImplementedException();
+            return authorisationManagerServer.RemoveActivityFromRole(activityId, roleId);
         }
 
-        public string AddRole(string parentRoleId, string roleId)
+        public ServiceResponse<bool> RemoveRole(int roleId, int parentId)
         {
-            throw new NotImplementedException();
+            return authorisationManagerServer.RemoveRoleFromRole(roleId, parentId);
         }
     }
 }
