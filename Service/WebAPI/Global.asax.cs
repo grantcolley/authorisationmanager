@@ -12,6 +12,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WebAPI
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            GlobalConfiguration.Configure(UnityConfig.Register);
         }
     }
 }
