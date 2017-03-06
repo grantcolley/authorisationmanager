@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.DipSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.WCFClient", "Service\WCFClient\DevelopmentInProgress.AuthorisationManager.WCFClient.csproj", "{33FCD575-C452-4FBC-B427-772844B12988}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.WebApiClient", "Service\WebApiClient\DevelopmentInProgress.AuthorisationManager.WebApiClient.csproj", "{C3B5BB1C-EC07-4DCC-A404-0B890F1127A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{33FCD575-C452-4FBC-B427-772844B12988}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33FCD575-C452-4FBC-B427-772844B12988}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33FCD575-C452-4FBC-B427-772844B12988}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3B5BB1C-EC07-4DCC-A404-0B890F1127A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3B5BB1C-EC07-4DCC-A404-0B890F1127A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3B5BB1C-EC07-4DCC-A404-0B890F1127A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3B5BB1C-EC07-4DCC-A404-0B890F1127A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,5 +73,6 @@ Global
 		{4B067197-130F-41C3-B6FB-E7541B091B4D} = {9F6A33EA-8714-491F-B697-59B70514ED15}
 		{F6CBD0D7-CCB3-44E2-97A9-549253A2AD35} = {934D6B38-1A66-499D-8A7E-F0617EE6CBA9}
 		{33FCD575-C452-4FBC-B427-772844B12988} = {934D6B38-1A66-499D-8A7E-F0617EE6CBA9}
+		{C3B5BB1C-EC07-4DCC-A404-0B890F1127A1} = {934D6B38-1A66-499D-8A7E-F0617EE6CBA9}
 	EndGlobalSection
 EndGlobal
