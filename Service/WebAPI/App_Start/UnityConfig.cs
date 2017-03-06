@@ -2,7 +2,6 @@
 using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Web.Http;
 using DevelopmentInProgress.DipCore.Logger;
 using Microsoft.Practices.Unity;

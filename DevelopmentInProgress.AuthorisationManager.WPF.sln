@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.DipCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.DipSecure", "..\dipsecure\DevelopmentInProgress.DipSecure\DevelopmentInProgress.DipSecure.csproj", "{22C3BF8F-C03B-49BB-9295-EF4EFEF95EF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.DipMapper", "..\dipmapper\DevelopmentInProgress.DipMapper\DevelopmentInProgress.DipMapper.csproj", "{8C8F5142-DA70-438D-A602-DD60994F5BA1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.WCFClient", "Service\WCFClient\DevelopmentInProgress.AuthorisationManager.WCFClient.csproj", "{33FCD575-C452-4FBC-B427-772844B12988}"
 EndProject
 Global
@@ -55,10 +53,6 @@ Global
 		{22C3BF8F-C03B-49BB-9295-EF4EFEF95EF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22C3BF8F-C03B-49BB-9295-EF4EFEF95EF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22C3BF8F-C03B-49BB-9295-EF4EFEF95EF4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C8F5142-DA70-438D-A602-DD60994F5BA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C8F5142-DA70-438D-A602-DD60994F5BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C8F5142-DA70-438D-A602-DD60994F5BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C8F5142-DA70-438D-A602-DD60994F5BA1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33FCD575-C452-4FBC-B427-772844B12988}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{33FCD575-C452-4FBC-B427-772844B12988}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33FCD575-C452-4FBC-B427-772844B12988}.Release|Any CPU.ActiveCfg = Release|Any CPU
