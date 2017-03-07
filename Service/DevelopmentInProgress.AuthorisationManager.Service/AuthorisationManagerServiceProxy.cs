@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipCore.Service;
 using DevelopmentInProgress.DipSecure;
 
