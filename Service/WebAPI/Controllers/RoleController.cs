@@ -14,31 +14,43 @@ namespace DevelopmentInProgress.AuthorisationManager.WebAPI.Controllers
             this.authorisationManagerServer = authorisationManagerServer;
         }
 
+        [HttpPost]
+        [Route("api/Role/SaveRole/")]
         public ServiceResponse<Role> SaveRole(Role role)
         {
             return authorisationManagerServer.SaveRole(role);
         }
 
+        [HttpDelete]
+        [Route("api/Role/DeleteRole/{id:int}")]
         public ServiceResponse<bool> DeleteRole(int id)
         {
             return authorisationManagerServer.DeleteRole(id);
         }
 
+        [HttpPut]
+        [Route("api/Role/AddActivity/{roleId:int}/{activityId:int}")]
         public ServiceResponse<bool> AddActivity(int roleId, int activityId)
         {
             return authorisationManagerServer.AddActivityToRole(roleId, activityId);
         }
 
+        [HttpPut]
+        [Route("api/Role/AddRole/{parentRoleId:int}/{roleId:int}")]
         public ServiceResponse<bool> AddRole(int parentRoleId, int roleId)
         {
             return authorisationManagerServer.AddRoleToRole(parentRoleId, roleId);
         }
 
+        [HttpDelete]
+        [Route("api/Role/RemoveActivity/{activityId:int}/{roleId:int}")]
         public ServiceResponse<bool> RemoveActivity(int activityId, int roleId)
         {
             return authorisationManagerServer.RemoveActivityFromRole(activityId, roleId);
         }
 
+        [HttpDelete]
+        [Route("api/Role/RemoveRole/{roleId:int}/{parentId:int}")]
         public ServiceResponse<bool> RemoveRole(int roleId, int parentId)
         {
             return authorisationManagerServer.RemoveRoleFromRole(roleId, parentId);

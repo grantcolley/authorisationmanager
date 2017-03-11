@@ -14,6 +14,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WebAPI.Controllers
             this.authorisationManagerServer = authorisationManagerServer;
         }
 
+        [HttpGet]
+        [Route("api/Authorisation/GetAuthorisations")]
         public ServiceResponse<Authorisation> GetAuthorisations()
         {
             return authorisationManagerServer.GetAuthorisation();

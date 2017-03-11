@@ -14,21 +14,29 @@ namespace DevelopmentInProgress.AuthorisationManager.WebAPI.Controllers
             this.authorisationManagerServer = authorisationManagerServer;
         }
 
+        [HttpPost]
+        [Route("api/UserAuthorisation/SaveUserAuthorisation/")]
         public ServiceResponse<UserAuthorisation> SaveUserAuthorisation(UserAuthorisation userAuthorisation)
         {
             return authorisationManagerServer.SaveUserAuthorisation(userAuthorisation);
         }
 
+        [HttpDelete]
+        [Route("api/UserAuthorisation/DeleteUserAuthorisation/{id:int}")]
         public ServiceResponse<bool> DeleteUserAuthorisation(int id)
         {
             return authorisationManagerServer.DeleteUserAuthorisation(id);
         }
 
+        [HttpPut]
+        [Route("api/UserAuthorisation/AddRole/{userId:int}/{roleId:int}")]
         public ServiceResponse<bool> AddRole(int userId, int roleId)
         {
             return authorisationManagerServer.AddRoleToUser(userId, roleId);
         }
 
+        [HttpDelete]
+        [Route("api/UserAuthorisation/RemoveRole/{roleId:int}/{userId:int}")]
         public ServiceResponse<bool> RemoveRole(int roleId, int userId)
         {
             return authorisationManagerServer.RemoveRoleFromUser(roleId, userId);
