@@ -38,10 +38,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevelopmentInProgress.DipSecure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DipSecure.1.0.0.0\lib\net45\DevelopmentInProgress.DipSecure.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\..\origin\Third Party\log4net\log4net.dll</HintPath>
     </Reference>
@@ -122,6 +118,10 @@
     <ProjectReference Include="..\..\..\dipcore\DevelopmentInProgress.DipCore\DevelopmentInProgress.DipCore.csproj">
       <Project>{ba7df412-8e32-498d-a463-bd35f9494d5e}</Project>
       <Name>DevelopmentInProgress.DipCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\dipsecure\DevelopmentInProgress.DipSecure\DevelopmentInProgress.DipSecure.csproj">
+      <Project>{22c3bf8f-c03b-49bb-9295-ef4efef95ef4}</Project>
+      <Name>DevelopmentInProgress.DipSecure</Name>
     </ProjectReference>
     <ProjectReference Include="..\DevelopmentInProgress.AuthorisationManager.Server\DevelopmentInProgress.AuthorisationManager.Server.csproj">
       <Project>{638070d4-e78e-47d7-b0ab-ee1ea5ef7674}</Project>
