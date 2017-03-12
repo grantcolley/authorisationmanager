@@ -28,7 +28,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WebAPI.Controllers
             return authorisationManagerServer.DeleteUserAuthorisation(id);
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("api/UserAuthorisation/AddRole/{userId:int}/{roleId:int}")]
         public ServiceResponse<bool> AddRole(int userId, int roleId)
         {

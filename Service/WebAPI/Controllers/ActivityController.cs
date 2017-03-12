@@ -28,7 +28,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WebAPI.Controllers
             return authorisationManagerServer.DeleteActivity(id);
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("api/Activity/AddActivity/{parentActivityId:int}/{activityId:int}")]
         public ServiceResponse<bool> AddActivity(int parentActivityId, int activityId)
         {
