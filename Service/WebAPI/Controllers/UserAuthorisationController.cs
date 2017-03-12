@@ -28,14 +28,14 @@ namespace DevelopmentInProgress.AuthorisationManager.WebAPI.Controllers
             return authorisationManagerServer.DeleteUserAuthorisation(id);
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("api/UserAuthorisation/AddRole/{userId:int}/{roleId:int}")]
         public ServiceResponse<bool> AddRole(int userId, int roleId)
         {
             return authorisationManagerServer.AddRoleToUser(userId, roleId);
         }
 
-        [HttpDelete]
+        [HttpGet]
         [Route("api/UserAuthorisation/RemoveRole/{roleId:int}/{userId:int}")]
         public ServiceResponse<bool> RemoveRole(int roleId, int userId)
         {

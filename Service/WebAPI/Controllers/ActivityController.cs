@@ -28,14 +28,14 @@ namespace DevelopmentInProgress.AuthorisationManager.WebAPI.Controllers
             return authorisationManagerServer.DeleteActivity(id);
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("api/Activity/AddActivity/{parentActivityId:int}/{activityId:int}")]
         public ServiceResponse<bool> AddActivity(int parentActivityId, int activityId)
         {
             return authorisationManagerServer.AddActivityToActivity(parentActivityId, activityId);
         }
 
-        [HttpDelete]
+        [HttpGet]
         [Route("api/Activity/RemoveActivity/{activityId:int}/{parentId:int}")]
         public ServiceResponse<bool> RemoveActivity(int activityId, int parentId)
         {
