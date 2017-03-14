@@ -71,6 +71,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Q /Y "$(ProjectDir)\..\..\..\Binaries\DevelopmentInProgress.AuthorisationManager.Data.SQL.dll" "$(ProjectDir)\..\..\Service\WebAPI\bin"
+xcopy /Q /Y "$(ProjectDir)\..\..\..\Binaries\DevelopmentInProgress.AuthorisationManager.Data.SQL.pdb" "$(ProjectDir)\..\..\Service\WebAPI\bin"
+xcopy /Q /Y "$(ProjectDir)\..\..\..\Binaries\DevelopmentInProgress.DipMapper.dll" "$(ProjectDir)\..\..\Service\WebAPI\bin"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
