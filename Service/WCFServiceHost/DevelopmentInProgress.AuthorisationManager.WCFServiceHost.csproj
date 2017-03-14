@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevelopmentInProgress.DipCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DipCore.1.0.0.0\lib\DevelopmentInProgress.DipCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\origin\Third Party\log4net\log4net.dll</HintPath>
@@ -64,12 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\dipcore\DevelopmentInProgress.DipCore\DevelopmentInProgress.DipCore.csproj">
-      <Project>{ba7df412-8e32-498d-a463-bd35f9494d5e}</Project>
-      <Name>DevelopmentInProgress.DipCore</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DevelopmentInProgress.AuthorisationManager.Server\DevelopmentInProgress.AuthorisationManager.Server.csproj">
       <Project>{638070d4-e78e-47d7-b0ab-ee1ea5ef7674}</Project>
       <Name>DevelopmentInProgress.AuthorisationManager.Server</Name>

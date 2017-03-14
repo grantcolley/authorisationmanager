@@ -16,10 +16,10 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient.AuthorisationMana
     public interface IAuthorisationManagerServer {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthorisationManagerServer/GetAuthorisation", ReplyAction="http://tempuri.org/IAuthorisationManagerServer/GetAuthorisationResponse")]
-        DevelopmentInProgress.DipCore.Service.ServiceResponse<DevelopmentInProgress.AuthorisationManager.Service.Authorisation> GetAuthorisation();
+        DevelopmentInProgress.DipCore.Service.ServiceResponse<DevelopmentInProgress.DipSecure.Authorisation> GetAuthorisation();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthorisationManagerServer/GetAuthorisation", ReplyAction="http://tempuri.org/IAuthorisationManagerServer/GetAuthorisationResponse")]
-        System.Threading.Tasks.Task<DevelopmentInProgress.DipCore.Service.ServiceResponse<DevelopmentInProgress.AuthorisationManager.Service.Authorisation>> GetAuthorisationAsync();
+        System.Threading.Tasks.Task<DevelopmentInProgress.DipCore.Service.ServiceResponse<DevelopmentInProgress.DipSecure.Authorisation>> GetAuthorisationAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthorisationManagerServer/SaveActivity", ReplyAction="http://tempuri.org/IAuthorisationManagerServer/SaveActivityResponse")]
         DevelopmentInProgress.DipCore.Service.ServiceResponse<DevelopmentInProgress.DipSecure.Activity> SaveActivity(DevelopmentInProgress.DipSecure.Activity activity);
@@ -134,12 +134,14 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient.AuthorisationMana
         public AuthorisationManagerServerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
-        
-        public DevelopmentInProgress.DipCore.Service.ServiceResponse<DevelopmentInProgress.AuthorisationManager.Service.Authorisation> GetAuthorisation() {
+
+        public DevelopmentInProgress.DipCore.Service.ServiceResponse<DevelopmentInProgress.DipSecure.Authorisation> GetAuthorisation()
+        {
             return base.Channel.GetAuthorisation();
         }
-        
-        public System.Threading.Tasks.Task<DevelopmentInProgress.DipCore.Service.ServiceResponse<DevelopmentInProgress.AuthorisationManager.Service.Authorisation>> GetAuthorisationAsync() {
+
+        public System.Threading.Tasks.Task<DevelopmentInProgress.DipCore.Service.ServiceResponse<DevelopmentInProgress.DipSecure.Authorisation>> GetAuthorisationAsync()
+        {
             return base.Channel.GetAuthorisationAsync();
         }
         

@@ -34,8 +34,8 @@
       <HintPath>..\WebAPI\packages\DipCore.1.0.0.0\lib\DevelopmentInProgress.DipCore.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevelopmentInProgress.DipSecure, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\WebAPI\packages\DipSecure.1.5.0.0\lib\DevelopmentInProgress.DipSecure.dll</HintPath>
+    <Reference Include="DevelopmentInProgress.DipSecure, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DipSecure.1.6.0.0\lib\DevelopmentInProgress.DipSecure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -62,7 +62,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "..\..\..\Binaries\"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
