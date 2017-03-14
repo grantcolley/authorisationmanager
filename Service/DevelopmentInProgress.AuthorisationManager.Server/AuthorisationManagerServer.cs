@@ -1,6 +1,5 @@
 ﻿using System;
 using DevelopmentInProgress.AuthorisationManager.Data;
-using DevelopmentInProgress.AuthorisationManager.Service;
 using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipCore.Logger;
 using DevelopmentInProgress.DipCore.Service;

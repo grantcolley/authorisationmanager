@@ -1,5 +1,4 @@
 ﻿using System.ServiceModel;
-using DevelopmentInProgress.AuthorisationManager.Service;
 using DevelopmentInProgress.DipCore.Service;
 using DevelopmentInProgress.DipSecure;
 

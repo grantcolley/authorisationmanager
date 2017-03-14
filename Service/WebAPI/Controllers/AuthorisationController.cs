@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
 using DevelopmentInProgress.AuthorisationManager.Server;
-using DevelopmentInProgress.AuthorisationManager.Service;
 using DevelopmentInProgress.DipCore.Service;
+using DevelopmentInProgress.DipSecure;
 
 namespace DevelopmentInProgress.AuthorisationManager.WebAPI.Controllers
 {

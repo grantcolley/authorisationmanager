@@ -30,6 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevelopmentInProgress.DipCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Service\WebAPI\packages\DipCore.1.0.0.0\lib\DevelopmentInProgress.DipCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevelopmentInProgress.DipMapper, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Service\WebAPI\packages\DipMapper.3.0.0.0\lib\DevelopmentInProgress.DipMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevelopmentInProgress.DipSecure, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Service\WebAPI\packages\DipSecure.1.5.0.0\lib\DevelopmentInProgress.DipSecure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,18 +59,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\dipcore\DevelopmentInProgress.DipCore\DevelopmentInProgress.DipCore.csproj">
-      <Project>{ba7df412-8e32-498d-a463-bd35f9494d5e}</Project>
-      <Name>DevelopmentInProgress.DipCore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\dipmapper\DevelopmentInProgress.DipMapper\DevelopmentInProgress.DipMapper.csproj">
-      <Project>{8c8f5142-da70-438d-a602-dd60994f5ba1}</Project>
-      <Name>DevelopmentInProgress.DipMapper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\dipsecure\DevelopmentInProgress.DipSecure\DevelopmentInProgress.DipSecure.csproj">
-      <Project>{22c3bf8f-c03b-49bb-9295-ef4efef95ef4}</Project>
-      <Name>DevelopmentInProgress.DipSecure</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DevelopmentInProgress.AuthorisationManager.Data\DevelopmentInProgress.AuthorisationManager.Data.csproj">
       <Project>{e73387fe-7595-4122-9f27-00d5e3a454f6}</Project>
       <Name>DevelopmentInProgress.AuthorisationManager.Data</Name>
@@ -66,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MSSQLServer_AuthorisationManager.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

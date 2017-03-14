@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevelopmentInProgress.DipCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\WebAPI\packages\DipCore.1.0.0.0\lib\DevelopmentInProgress.DipCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevelopmentInProgress.DipSecure, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\WebAPI\packages\DipSecure.1.6.0.0\lib\DevelopmentInProgress.DipSecure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
@@ -45,24 +53,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\dipcore\DevelopmentInProgress.DipCore\DevelopmentInProgress.DipCore.csproj">
-      <Project>{ba7df412-8e32-498d-a463-bd35f9494d5e}</Project>
-      <Name>DevelopmentInProgress.DipCore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\dipsecure\DevelopmentInProgress.DipSecure\DevelopmentInProgress.DipSecure.csproj">
-      <Project>{22c3bf8f-c03b-49bb-9295-ef4efef95ef4}</Project>
-      <Name>DevelopmentInProgress.DipSecure</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\DevelopmentInProgress.AuthorisationManager.Data\DevelopmentInProgress.AuthorisationManager.Data.csproj">
       <Project>{e73387fe-7595-4122-9f27-00d5e3a454f6}</Project>
       <Name>DevelopmentInProgress.AuthorisationManager.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DevelopmentInProgress.AuthorisationManager.Service\DevelopmentInProgress.AuthorisationManager.Service.csproj">
-      <Project>{f6cbd0d7-ccb3-44e2-97a9-549253a2ad35}</Project>
-      <Name>DevelopmentInProgress.AuthorisationManager.Service</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="ServerConfiguration\DevelopmentInProgress.AuthorisationManager.Server.Unity.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevelopmentInProgress.DipCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\WebAPI\packages\DipCore.1.0.0.0\lib\DevelopmentInProgress.DipCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevelopmentInProgress.DipSecure, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\WebAPI\packages\DipSecure.1.5.0.0\lib\DevelopmentInProgress.DipSecure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
@@ -40,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authorisation.cs" />
     <Compile Include="AuthorisationManagerServiceProxy.cs" />
     <Compile Include="IAuthorisationManagerServiceAsync.cs" />
     <Compile Include="IAuthorisationManagerServiceProxy.cs" />
@@ -51,18 +58,12 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\dipcore\DevelopmentInProgress.DipCore\DevelopmentInProgress.DipCore.csproj">
-      <Project>{ba7df412-8e32-498d-a463-bd35f9494d5e}</Project>
-      <Name>DevelopmentInProgress.DipCore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\dipsecure\DevelopmentInProgress.DipSecure\DevelopmentInProgress.DipSecure.csproj">
-      <Project>{22c3bf8f-c03b-49bb-9295-ef4efef95ef4}</Project>
-      <Name>DevelopmentInProgress.DipSecure</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "..\..\..\Binaries\"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
