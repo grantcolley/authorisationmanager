@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.WCFServiceHost", "DevelopmentInProgress.AuthorisationManager.WCFServiceHost.csproj", "{CA8AAD27-7E1E-495F-9828-D2E683B5DFA1}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{117AB99B-451A-42EA-8EB8-63702A8674EF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{60C751C3-E8EC-48EC-86C9-C33512B4CEE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.Service", "..\DevelopmentInProgress.AuthorisationManager.Service\DevelopmentInProgress.AuthorisationManager.Service.csproj", "{F6CBD0D7-CCB3-44E2-97A9-549253A2AD35}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.WCFServiceHost", "Service\WCFServiceHost\DevelopmentInProgress.AuthorisationManager.WCFServiceHost.csproj", "{CA8AAD27-7E1E-495F-9828-D2E683B5DFA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.Server", "..\DevelopmentInProgress.AuthorisationManager.Server\DevelopmentInProgress.AuthorisationManager.Server.csproj", "{638070D4-E78E-47D7-B0AB-EE1EA5EF7674}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.Service", "Service\DevelopmentInProgress.AuthorisationManager.Service\DevelopmentInProgress.AuthorisationManager.Service.csproj", "{F6CBD0D7-CCB3-44E2-97A9-549253A2AD35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.Data", "..\..\Data\DevelopmentInProgress.AuthorisationManager.Data\DevelopmentInProgress.AuthorisationManager.Data.csproj", "{E73387FE-7595-4122-9F27-00D5E3A454F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.Server", "Service\DevelopmentInProgress.AuthorisationManager.Server\DevelopmentInProgress.AuthorisationManager.Server.csproj", "{638070D4-E78E-47D7-B0AB-EE1EA5EF7674}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.Data.SQL", "..\..\Data\DevelopmentInProgress.AuthorisationManager.Data.SQL\DevelopmentInProgress.AuthorisationManager.Data.SQL.csproj", "{3383DDD9-A333-4031-952B-9CFDB0D4C02D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.Data.SQL", "Data\DevelopmentInProgress.AuthorisationManager.Data.SQL\DevelopmentInProgress.AuthorisationManager.Data.SQL.csproj", "{3383DDD9-A333-4031-952B-9CFDB0D4C02D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.Data", "Data\DevelopmentInProgress.AuthorisationManager.Data\DevelopmentInProgress.AuthorisationManager.Data.csproj", "{E73387FE-7595-4122-9F27-00D5E3A454F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,14 +35,14 @@ Global
 		{638070D4-E78E-47D7-B0AB-EE1EA5EF7674}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{638070D4-E78E-47D7-B0AB-EE1EA5EF7674}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{638070D4-E78E-47D7-B0AB-EE1EA5EF7674}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E73387FE-7595-4122-9F27-00D5E3A454F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E73387FE-7595-4122-9F27-00D5E3A454F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E73387FE-7595-4122-9F27-00D5E3A454F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E73387FE-7595-4122-9F27-00D5E3A454F6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3383DDD9-A333-4031-952B-9CFDB0D4C02D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3383DDD9-A333-4031-952B-9CFDB0D4C02D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3383DDD9-A333-4031-952B-9CFDB0D4C02D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3383DDD9-A333-4031-952B-9CFDB0D4C02D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E73387FE-7595-4122-9F27-00D5E3A454F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E73387FE-7595-4122-9F27-00D5E3A454F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E73387FE-7595-4122-9F27-00D5E3A454F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E73387FE-7595-4122-9F27-00D5E3A454F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,7 +50,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{F6CBD0D7-CCB3-44E2-97A9-549253A2AD35} = {117AB99B-451A-42EA-8EB8-63702A8674EF}
 		{638070D4-E78E-47D7-B0AB-EE1EA5EF7674} = {117AB99B-451A-42EA-8EB8-63702A8674EF}
-		{E73387FE-7595-4122-9F27-00D5E3A454F6} = {60C751C3-E8EC-48EC-86C9-C33512B4CEE3}
 		{3383DDD9-A333-4031-952B-9CFDB0D4C02D} = {60C751C3-E8EC-48EC-86C9-C33512B4CEE3}
+		{E73387FE-7595-4122-9F27-00D5E3A454F6} = {60C751C3-E8EC-48EC-86C9-C33512B4CEE3}
 	EndGlobalSection
 EndGlobal
