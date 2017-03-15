@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{60C751C3-E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.WCFServiceHost", "Service\WCFServiceHost\DevelopmentInProgress.AuthorisationManager.WCFServiceHost.csproj", "{CA8AAD27-7E1E-495F-9828-D2E683B5DFA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.Service", "Service\DevelopmentInProgress.AuthorisationManager.Service\DevelopmentInProgress.AuthorisationManager.Service.csproj", "{F6CBD0D7-CCB3-44E2-97A9-549253A2AD35}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.Server", "Service\DevelopmentInProgress.AuthorisationManager.Server\DevelopmentInProgress.AuthorisationManager.Server.csproj", "{638070D4-E78E-47D7-B0AB-EE1EA5EF7674}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.Data.SQL", "Data\DevelopmentInProgress.AuthorisationManager.Data.SQL\DevelopmentInProgress.AuthorisationManager.Data.SQL.csproj", "{3383DDD9-A333-4031-952B-9CFDB0D4C02D}"
@@ -27,10 +25,6 @@ Global
 		{CA8AAD27-7E1E-495F-9828-D2E683B5DFA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA8AAD27-7E1E-495F-9828-D2E683B5DFA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA8AAD27-7E1E-495F-9828-D2E683B5DFA1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F6CBD0D7-CCB3-44E2-97A9-549253A2AD35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F6CBD0D7-CCB3-44E2-97A9-549253A2AD35}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F6CBD0D7-CCB3-44E2-97A9-549253A2AD35}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F6CBD0D7-CCB3-44E2-97A9-549253A2AD35}.Release|Any CPU.Build.0 = Release|Any CPU
 		{638070D4-E78E-47D7-B0AB-EE1EA5EF7674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{638070D4-E78E-47D7-B0AB-EE1EA5EF7674}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{638070D4-E78E-47D7-B0AB-EE1EA5EF7674}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -48,7 +42,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F6CBD0D7-CCB3-44E2-97A9-549253A2AD35} = {117AB99B-451A-42EA-8EB8-63702A8674EF}
 		{638070D4-E78E-47D7-B0AB-EE1EA5EF7674} = {117AB99B-451A-42EA-8EB8-63702A8674EF}
 		{3383DDD9-A333-4031-952B-9CFDB0D4C02D} = {60C751C3-E8EC-48EC-86C9-C33512B4CEE3}
 		{E73387FE-7595-4122-9F27-00D5E3A454F6} = {60C751C3-E8EC-48EC-86C9-C33512B4CEE3}
