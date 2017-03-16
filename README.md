@@ -11,7 +11,13 @@ The Authorisation Manager system comprises several decoupled application layers:
   * [WebApi Client](#webapi)
 * [Server](#server)
 * [Data Access Layer](#data-access-layer)
+  * [MS SQL Server Data Access Library](#ms-sql-server-data-access-library)
+  * [Oracle Data Access Library](#oracle-data-access-library)
+  * [MySql Data Access Library](#mysql-data-access-library)
 * [Database](#database)
+  * [MS SQL Server](#ms-sql-server)
+  * [Oracle](#oracle)
+  * [MySql](#mysql)
 
 ## User Interface
 #### WPF
@@ -56,5 +62,11 @@ The implementation of [IAuthorisationManagerServiceAsync](https://github.com/gra
 ## Server
 
 ## Data Access Layer
+### MS SQL Server Data Access Library
+### Oracle Data Access Library
+### MySql Data Access Library
 
 ## Database
+### MS SQL Server
+### Oracle
+### MySql
