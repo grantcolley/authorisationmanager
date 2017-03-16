@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Binaries\</OutputPath>
+    <OutputPath>..\..\..\Binaries\Server\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -57,10 +57,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Q /Y "$(ProjectDir)\..\..\..\Binaries\DevelopmentInProgress.AuthorisationManager.Data.dll" "$(ProjectDir)\..\..\Service\WebAPI\bin"
-xcopy /Q /Y "$(ProjectDir)\..\..\..\Binaries\DevelopmentInProgress.AuthorisationManager.Data.pdb" "$(ProjectDir)\..\..\Service\WebAPI\bin"
+    <PostBuildEvent>xcopy /Q /Y "$(ProjectDir)\..\..\..\Binaries\Server\DevelopmentInProgress.AuthorisationManager.Data.dll" "$(ProjectDir)\..\..\Service\WebAPI\bin"
+xcopy /Q /Y "$(ProjectDir)\..\..\..\Binaries\Server\DevelopmentInProgress.AuthorisationManager.Data.pdb" "$(ProjectDir)\..\..\Service\WebAPI\bin"
 if not exist $(ProjectDir)\..\..\Service\WebAPI\bin\ServerConfiguration mkdir $(ProjectDir)\..\..\Service\WebAPI\bin\ServerConfiguration
-xcopy /Q /Y "$(ProjectDir)\..\..\..\Binaries\ServerConfiguration\DevelopmentInProgress.AuthorisationManager.Data.Unity.config" "$(ProjectDir)\..\..\Service\WebAPI\bin\ServerConfiguration"
+xcopy /Q /Y "$(ProjectDir)\..\..\..\Binaries\Server\ServerConfiguration\DevelopmentInProgress.AuthorisationManager.Data.Unity.config" "$(ProjectDir)\..\..\Service\WebAPI\bin\ServerConfiguration"
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

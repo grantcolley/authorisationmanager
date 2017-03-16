@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Binaries\</OutputPath>
+    <OutputPath>..\..\..\Binaries\Server\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -67,10 +67,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Q /Y "$(ProjectDir)\..\..\..\Binaries\DevelopmentInProgress.AuthorisationManager.Service.dll" "$(ProjectDir)\..\WebAPI\bin"
-xcopy /Q /Y "$(ProjectDir)\..\..\..\Binaries\DevelopmentInProgress.AuthorisationManager.Service.pdb" "$(ProjectDir)\..\WebAPI\bin"
+    <PostBuildEvent>xcopy /Q /Y "$(ProjectDir)\..\..\..\Binaries\Server\DevelopmentInProgress.AuthorisationManager.Service.dll" "$(ProjectDir)\..\WebAPI\bin"
+xcopy /Q /Y "$(ProjectDir)\..\..\..\Binaries\Server\DevelopmentInProgress.AuthorisationManager.Service.pdb" "$(ProjectDir)\..\WebAPI\bin"
 if not exist $(ProjectDir)\..\WebAPI\bin\ServerConfiguration mkdir $(ProjectDir)\..\WebAPI\bin\ServerConfiguration
-xcopy /Q /Y "$(ProjectDir)\..\..\..\Binaries\ServerConfiguration\DevelopmentInProgress.AuthorisationManager.Server.Unity.config" "$(ProjectDir)\..\WebAPI\bin\ServerConfiguration"</PostBuildEvent>
+xcopy /Q /Y "$(ProjectDir)\..\..\..\Binaries\Server\ServerConfiguration\DevelopmentInProgress.AuthorisationManager.Server.Unity.config" "$(ProjectDir)\..\WebAPI\bin\ServerConfiguration"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

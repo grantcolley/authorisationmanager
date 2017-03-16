@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Binaries\</OutputPath>
+    <OutputPath>..\..\..\Binaries\UI\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevelopmentInProgress.DipCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\WebAPI\packages\DipCore.1.0.0.0\lib\DevelopmentInProgress.DipCore.dll</HintPath>
+      <HintPath>..\..\packages\DipCore.1.0.0.0\lib\DevelopmentInProgress.DipCore.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DevelopmentInProgress.DipSecure, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -58,7 +58,9 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
