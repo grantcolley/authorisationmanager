@@ -7,8 +7,8 @@ The Authorisation Manager system comprises several decoupled application layers:
   * [WPF](#wpf)
   * [Web App](#web-app)
 * [Service Layer](#service-layer)
-  * [WCF Client](#wcf-client)
-  * [WebApi Client](#wcf-client)
+  * [WCF Service](#wcf-service)
+  * [WebApi Client](#webapi)
 * [Server](#server)
 * [Data Access Layer](#data-access-layer)
 * [Database](#database)
@@ -49,9 +49,9 @@ The implementation of [IAuthorisationManagerServiceAsync](https://github.com/gra
   </unity>
 ```
 
-#### WCF Client
+#### WCF Service
 
-#### WebApi Client
+#### WebApi
 
 ## Server
 
