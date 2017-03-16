@@ -30,12 +30,12 @@ The implementation of [IAuthorisationManagerServiceAsync](https://github.com/gra
     <alias alias="IAuthorisationManagerServiceProxy" type="DevelopmentInProgress.AuthorisationManager.Service.IAuthorisationManagerServiceProxy, DevelopmentInProgress.AuthorisationManager.Service" />
     <alias alias="IAuthorisationManagerServiceAsync" type="DevelopmentInProgress.AuthorisationManager.Service.IAuthorisationManagerServiceAsync, DevelopmentInProgress.AuthorisationManager.Service" />    
     <alias alias="AuthorisationManagerWCFClient" type="DevelopmentInProgress.AuthorisationManager.WCFClient.AuthorisationManagerWCFClient, DevelopmentInProgress.AuthorisationManager.WCFClient" />
-<!--<alias alias="AuthorisationManagerWebApiClient" type="DevelopmentInProgress.AuthorisationManager.WebApiClient.AuthorisationManagerWebApiClient, DevelopmentInProgress.AuthorisationManager.WebApiClient" />-->
+    <!--<alias alias="AuthorisationManagerWebApiClient" type="DevelopmentInProgress.AuthorisationManager.WebApiClient.AuthorisationManagerWebApiClient, DevelopmentInProgress.AuthorisationManager.WebApiClient" />-->
 
     <container>
       <register type="IAuthorisationManagerServiceProxy" mapTo="AuthorisationManagerServiceProxy"/>
       <register type="IAuthorisationManagerServiceAsync" mapTo="AuthorisationManagerWCFClient"/>
-    <!--<register type="IAuthorisationManagerServiceAsync" mapTo="AuthorisationManagerWebApiClient"/>-->
+      <!--<register type="IAuthorisationManagerServiceAsync" mapTo="AuthorisationManagerWebApiClient"/>-->
     </container>
 
   </unity>
