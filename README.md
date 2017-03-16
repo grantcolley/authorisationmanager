@@ -1,4 +1,4 @@
-The Authorisation Manager system comprises several decoupled application layers: user interface, service layer, service, data access layer and database. Each layer has its own configurable interface.
+The Authorisation Manager system comprises several decoupled application layers: user interface, service layer, server, data access layer and database. Each layer has its own configurable interface.
 
 ![Alt text](/README-images/component_diagram.png?raw=true "Component Diagram")
 
