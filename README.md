@@ -4,23 +4,25 @@
 * [User Interface](#user-interface)
   * [WPF](#wpf)
   * [Web App](#web-app)
-* [Service Interface](#service-interface)
+* [Service Layer](#service-layer)
   * [WCF Client](#wcf-client)
   * [WebApi Client](#wcf-client)
 
 ## User Interface
 #### WPF
-The WPF GUI uses the [Origin](https://github.com/grantcolley/origin) framework.
+The [WPF UI](https://github.com/grantcolley/authorisationmanager/tree/master/UI/WPF) uses the [Origin](https://github.com/grantcolley/origin) framework which is a WPF shell application implements Prism and Unity for hosting line-of-business modules in a document style layout.
+
+The UI contains presentation only logic and relies on the [service layer](#service-layer) for operational functionality via an instance of the [AuthorisationManagerServiceProxy](https://github.com/grantcolley/authorisationmanager/blob/master/Service/DevelopmentInProgress.AuthorisationManager.Service/AuthorisationManagerServiceProxy.cs).
+
 ![Alt text](/README-images/wpf_ui.PNG?raw=true "WPF GUI")
 
 #### Web App
 Development in progress...
 
 
-## Service Interface
-The service interface is managed by the [Service library](https://github.com/grantcolley/authorisationmanager/tree/master/Service/DevelopmentInProgress.AuthorisationManager.Service).
+## Service Layer
+The [service layer](https://github.com/grantcolley/authorisationmanager/tree/master/Service/DevelopmentInProgress.AuthorisationManager.Service) takes requests from the UI via the [AuthorisationManagerServiceProxy](https://github.com/grantcolley/authorisationmanager/blob/master/Service/DevelopmentInProgress.AuthorisationManager.Service/AuthorisationManagerServiceProxy.cs) which is responsible for routing it to the configured service.
 
-The UI has a reference (dependency injected) to an instance of the [AuthorisationManagerServiceProxy](https://github.com/grantcolley/authorisationmanager/blob/master/Service/DevelopmentInProgress.AuthorisationManager.Service/AuthorisationManagerServiceProxy.cs).
 The [AuthorisationManagerServiceProxy](https://github.com/grantcolley/authorisationmanager/blob/master/Service/DevelopmentInProgress.AuthorisationManager.Service/AuthorisationManagerServiceProxy.cs) has a reference (dependency injected) to [IAuthorisationManagerServiceAsync](https://github.com/grantcolley/authorisationmanager/blob/master/Service/DevelopmentInProgress.AuthorisationManager.Service/IAuthorisationManagerServiceAsync.cs).
 
 The implementation of [IAuthorisationManagerServiceAsync](https://github.com/grantcolley/authorisationmanager/blob/master/Service/DevelopmentInProgress.AuthorisationManager.Service/IAuthorisationManagerServiceAsync.cs) is determined by the [Service.Unity.config](https://github.com/grantcolley/authorisationmanager/blob/master/Service/DevelopmentInProgress.AuthorisationManager.Service/Configuration/DevelopmentInProgress.AuthorisationManager.Service.Unity.config).
