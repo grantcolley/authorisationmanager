@@ -2,11 +2,11 @@
 
 #### Table of Contents
 * [User Interface](#user-interface)
-* [WPF](#wpf)
-* [Web App](#web-app)
+  * [WPF](#wpf)
+  * [Web App](#web-app)
 * [Service Interface](#service-interface)
-* [WCF Client](#wcf-client)
-* [WebApi Client](#wcf-client)
+  * [WCF Client](#wcf-client)
+  * [WebApi Client](#wcf-client)
 
 ## User Interface
 #### WPF
