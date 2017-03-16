@@ -11,6 +11,7 @@
 ## User Interface
 #### WPF
 The WPF GUI uses the [Origin](https://github.com/grantcolley/origin) framework.
+![Alt text](/README-images/wpf_ui.png?raw=true "WPF GUI")
 
 #### Web App
 Development in progress...
