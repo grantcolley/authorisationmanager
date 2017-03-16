@@ -1,4 +1,4 @@
-The Authorisation Manager system comprises several decoupled application layers: user interface, service layer, server, data access layer and database. Each layer has its own configurable interface.
+The Authorisation Manager system comprises several decoupled application layers: [user interface](#user-interface), [service layer](#service-layer), [server](#server), [data access layer](#data-access-layer) and [database](#database). Each layer has its own configurable interface.
 
 ![Alt text](/README-images/component_diagram.png?raw=true "Component Diagram")
 
@@ -9,6 +9,9 @@ The Authorisation Manager system comprises several decoupled application layers:
 * [Service Layer](#service-layer)
   * [WCF Client](#wcf-client)
   * [WebApi Client](#wcf-client)
+* [Server](#server)
+* [Data Access Layer](#data-access-layer)
+* [Database](#database)
 
 ## User Interface
 #### WPF
@@ -49,3 +52,9 @@ The implementation of [IAuthorisationManagerServiceAsync](https://github.com/gra
 #### WCF Client
 
 #### WebApi Client
+
+## Server
+
+## Data Access Layer
+
+## Database
