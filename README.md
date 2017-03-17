@@ -1,7 +1,8 @@
 The Authorisation Manager system comprises several decoupled configurable application layers: [user interface](#user-interface), [service layer](#service-layer), [server](#server), [data access layer](#data-access-layer) and [database](#database).
 
-##### Technologies:
+##### Technologies
 ###### WPF, Prism, Unity, WebApi 2.2, WCF
+#####  
 
 ![Alt text](/README-images/component_diagram.png?raw=true "Component Diagram")
 
