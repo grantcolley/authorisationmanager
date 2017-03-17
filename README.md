@@ -52,12 +52,11 @@ The service can be [configured](https://github.com/grantcolley/authorisationmana
 
   </unity>
 ```
+#### WebApi
+The [WebApi Client](https://github.com/grantcolley/authorisationmanager/tree/master/Service/WebApiClient) forwards the request onto the [WebApi](https://github.com/grantcolley/authorisationmanager/tree/master/Service/WebAPI), which is simply host for the [Server](https://github.com/grantcolley/authorisationmanager/tree/master/Service/DevelopmentInProgress.AuthorisationManager.Server).
 
 #### WCF Service
-The [WCF Client](https://github.com/grantcolley/authorisationmanager/tree/master/Service/WCFClient) forwards the request onto the [WebApi](https://github.com/grantcolley/authorisationmanager/tree/master/Service/WebAPI), which is simply host for the [Server](https://github.com/grantcolley/authorisationmanager/tree/master/Service/DevelopmentInProgress.AuthorisationManager.Server).
-
-#### WebApi
-The [WebApi Client](https://github.com/grantcolley/authorisationmanager/tree/master/Service/WebApiClient) forwards the request onto the [WCF Service Host](https://github.com/grantcolley/authorisationmanager/tree/master/Service/WCFServiceHost), which is simply host for the [Server](https://github.com/grantcolley/authorisationmanager/tree/master/Service/DevelopmentInProgress.AuthorisationManager.Server).
+The [WCF Client](https://github.com/grantcolley/authorisationmanager/tree/master/Service/WCFClient) forwards the request onto the [WCF Service Host](https://github.com/grantcolley/authorisationmanager/tree/master/Service/WCFServiceHost), which is simply host for the [Server](https://github.com/grantcolley/authorisationmanager/tree/master/Service/DevelopmentInProgress.AuthorisationManager.Server).
 
 ## Server
 
