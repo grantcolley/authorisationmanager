@@ -99,7 +99,8 @@ The [MS SQL Server data access library](https://github.com/grantcolley/authorisa
 Development in progress...
 
 #### MySql Data Access Library
-Development in progress...
+The [MySql data access library](https://github.com/grantcolley/authorisationmanager/tree/master/Data/DevelopmentInProgress.AuthorisationManager.Data.MySql) uses [DipMapper](https://github.com/grantcolley/dipmapper) for easy, fast and efficient access to MS SQL Server.
+
 
 ## Database
 #### MS SQL Server
@@ -109,4 +110,5 @@ Development in progress...
 Development in progress...
 
 #### MySql
-Development in progress...
+[Installation script](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.MySql/MySql_AuthorisationManager.txt).
+[MySql Workbench File](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.MySql/authorisationmanager.mwb)
