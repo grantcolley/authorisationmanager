@@ -42,7 +42,8 @@ The [service layer](https://github.com/grantcolley/authorisationmanager/tree/mas
 The service can be [configured](https://github.com/grantcolley/authorisationmanager/blob/master/Service/DevelopmentInProgress.AuthorisationManager.Service/Configuration/DevelopmentInProgress.AuthorisationManager.Service.Unity.config) to send requests via either the [WCF Client](https://github.com/grantcolley/authorisationmanager/tree/master/Service/WCFClient) or the [WebApi Client](https://github.com/grantcolley/authorisationmanager/tree/master/Service/WebApiClient), both of which implement [IAuthorisationManagerServiceAsync](https://github.com/grantcolley/authorisationmanager/blob/master/Service/DevelopmentInProgress.AuthorisationManager.Service/IAuthorisationManagerServiceAsync.cs) and is injected into the constructor of [AuthorisationManagerServiceProxy](https://github.com/grantcolley/authorisationmanager/blob/master/Service/DevelopmentInProgress.AuthorisationManager.Service/AuthorisationManagerServiceProxy.cs).
 
 ```C#
-  <unity xmlns="http://schemas.microsoft.com/practices/2010/unity">
+
+<unity xmlns="http://schemas.microsoft.com/practices/2010/unity">
     <alias alias="AuthorisationManagerServiceProxy" type="DevelopmentInProgress.AuthorisationManager.Service.AuthorisationManagerServiceProxy, DevelopmentInProgress.AuthorisationManager.Service" />
     <alias alias="IAuthorisationManagerServiceProxy" type="DevelopmentInProgress.AuthorisationManager.Service.IAuthorisationManagerServiceProxy, DevelopmentInProgress.AuthorisationManager.Service" />
     <alias alias="IAuthorisationManagerServiceAsync" type="DevelopmentInProgress.AuthorisationManager.Service.IAuthorisationManagerServiceAsync, DevelopmentInProgress.AuthorisationManager.Service" />    
@@ -51,7 +52,8 @@ The service can be [configured](https://github.com/grantcolley/authorisationmana
 
     <container>
       <register type="IAuthorisationManagerServiceProxy" mapTo="AuthorisationManagerServiceProxy"/>
-      <register type="IAuthorisationManagerServiceAsync" mapTo="AuthorisationManagerWCFClient"/>
+
+<register type="IAuthorisationManagerServiceAsync" mapTo="AuthorisationManagerWCFClient"/>
       <!--<register type="IAuthorisationManagerServiceAsync" mapTo="AuthorisationManagerWebApiClient"/>-->
     </container>
 
@@ -91,10 +93,20 @@ The data access implementation can be [configured](https://github.com/grantcolle
 ```
 
 #### MS SQL Server Data Access Library
+The [MS SQL Server data access library](https://github.com/grantcolley/authorisationmanager/tree/master/Data/DevelopmentInProgress.AuthorisationManager.Data.SQL) uses [DipMapper](https://github.com/grantcolley/dipmapper) for easy, fast and efficient access to MS SQL Server.
+
 #### Oracle Data Access Library
+Development in progress...
+
 #### MySql Data Access Library
+Development in progress...
 
 ## Database
 #### MS SQL Server
+[Installation script](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.SQL/MSSQLServer_AuthorisationManager.sql).
+
 #### Oracle
+Development in progress...
+
 #### MySql
+Development in progress...
