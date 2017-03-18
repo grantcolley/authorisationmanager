@@ -69,6 +69,27 @@ The [WCF Client](https://github.com/grantcolley/authorisationmanager/tree/master
 The [server](https://github.com/grantcolley/authorisationmanager/tree/master/Service/DevelopmentInProgress.AuthorisationManager.Server) is for business logic and access to the [data access layer](https://github.com/grantcolley/authorisationmanager/tree/master/Data/DevelopmentInProgress.AuthorisationManager.Data) via the [IAuthorisationManagerDataProxy](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data/IAuthorisationManagerDataProxy.cs).  
 
 ## Data Access Layer
+The [Data](https://github.com/grantcolley/authorisationmanager/tree/master/Data/DevelopmentInProgress.AuthorisationManager.Data) library provides the interface to the data access layer through [IAuthorisationManagerData](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data/IAuthorisationManagerData.cs).
+The data access implementation can be [configured](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data/ServerConfiguration/DevelopmentInProgress.AuthorisationManager.Data.Unity.config) for access to MS SQL Server, Oracle or MySql.
+
+```C#
+  <unity xmlns="http://schemas.microsoft.com/practices/2010/unity">
+    
+    <alias alias="AuthorisationManagerDataProxy" type="DevelopmentInProgress.AuthorisationManager.Data.AuthorisationManagerDataProxy, DevelopmentInProgress.AuthorisationManager.Data" />
+    <alias alias="IAuthorisationManagerDataProxy" type="DevelopmentInProgress.AuthorisationManager.Data.IAuthorisationManagerDataProxy, DevelopmentInProgress.AuthorisationManager.Data" />
+    <alias alias="IAuthorisationManagerData" type="DevelopmentInProgress.AuthorisationManager.Data.IAuthorisationManagerData, DevelopmentInProgress.AuthorisationManager.Data" />
+    <!--<alias alias="AuthorisationManagerData" type="DevelopmentInProgress.AuthorisationManager.Data.SQL.AuthorisationManagerData, DevelopmentInProgress.AuthorisationManager.Data.Oracle" />-->
+    <!--<alias alias="AuthorisationManagerData" type="DevelopmentInProgress.AuthorisationManager.Data.SQL.AuthorisationManagerData, DevelopmentInProgress.AuthorisationManager.Data.MySql" />-->
+    <alias alias="AuthorisationManagerData" type="DevelopmentInProgress.AuthorisationManager.Data.SQL.AuthorisationManagerData, DevelopmentInProgress.AuthorisationManager.Data.SQL" />
+    
+    <container>
+      <register type="IAuthorisationManagerDataProxy" mapTo="AuthorisationManagerDataProxy"/>
+      <register type="IAuthorisationManagerData" mapTo="AuthorisationManagerData"/>
+    </container>
+
+  </unity>
+```
+
 #### MS SQL Server Data Access Library
 #### Oracle Data Access Library
 #### MySql Data Access Library
