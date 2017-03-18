@@ -6,8 +6,9 @@ using DevelopmentInProgress.AuthorisationManager.Data.Model;
 using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipMapper;
 using DevelopmentInProgress.DipSecure;
+using MySql.Data.MySqlClient;
 
-namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
+namespace DevelopmentInProgress.AuthorisationManager.Data.MySql
 {
     public class AuthorisationManagerData : IAuthorisationManagerData
     {
@@ -19,9 +20,8 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
             var key = "Ouc7Qs9I+rdjpsAll7HbJ+4pzmm9yvdD6rLmsq5pzZc=";
             var iv = "+vafc4VzsRnl05ZIz3+nIQ==";
 
-            ConnectionString =
-                "Data Source=(local);Initial Catalog=AuthorisationManager;User id=authmanager;Password=" 
-                + Security.Decrypt(password, key, iv);
+            ConnectionString = "Server=127.0.0.1;Port=3306;Uid=authmanager;Pwd=" + Security.Decrypt(password, key, iv) +
+                               ";Database=authorisationmanager;";
         }
 
         public IList<Activity> GetActivities()
@@ -29,7 +29,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
             IList<Activity> activities;
             IList<ActivityActivity> activityActivities;
 
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 activities = conn.Select<Activity>().ToList();
                 activityActivities = conn.Select<ActivityActivity>().ToList();
@@ -63,7 +63,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
             IList<RoleRole> roleRoles;
             IList<RoleActivity> roleActivities;
 
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 roles = conn.Select<Role>().ToList();
                 roleRoles = conn.Select<RoleRole>().ToList();
@@ -116,7 +116,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
             IList<UserAuthorisation> userAuthorisations;
             IList<UserRole> userRoles;
 
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 userAuthorisations = conn.Select<UserAuthorisation>().ToList();
                 userRoles = conn.Select<UserRole>().ToList();
@@ -148,7 +148,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
         {
             var isInsert = activity.Id.Equals(0);
 
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 if (isInsert)
                 {
@@ -156,7 +156,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
                 }
                 else
                 {
-                    conn.Update(activity, new SqlParameter() {ParameterName = "Id", Value = activity.Id});
+                    conn.Update(activity, new SqlParameter() { ParameterName = "Id", Value = activity.Id });
                 }
             }
 
@@ -167,7 +167,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
         {
             var isInsert = role.Id.Equals(0);
 
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 if (isInsert)
                 {
@@ -186,7 +186,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
         {
             var isInsert = userAuthorisation.Id.Equals(0);
 
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 if (isInsert)
                 {
@@ -207,10 +207,10 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
                       + "; DELETE FROM RoleActivity WHERE ActivityId = " + id
                       + "; DELETE FROM Activity WHERE Id = " + id;
 
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 conn.Open();
-                using(var transaction = conn.BeginTransaction())
+                using (var transaction = conn.BeginTransaction())
                 {
                     conn.ExecuteNonQuery(sql, null, CommandType.Text, transaction);
                     transaction.Commit();
@@ -226,7 +226,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
                       + "; DELETE FROM UserRole WHERE RoleId = " + id
                       + "; DELETE FROM Role WHERE Id = " + id;
 
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 conn.Open();
                 using (var transaction = conn.BeginTransaction())
@@ -244,7 +244,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
             var sql = "DELETE FROM UserRole WHERE Id = " + id
                       + "; DELETE FROM UserAuthorisation WHERE Id = " + id;
 
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 conn.Open();
                 using (var transaction = conn.BeginTransaction())
@@ -259,10 +259,10 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 
         public bool RemoveActivityFromActivity(int activityId, int parentId)
         {
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 var parameters = new List<SqlParameter>();
-                parameters.Add(new SqlParameter() {ParameterName = "ActivityId", Value = activityId});
+                parameters.Add(new SqlParameter() { ParameterName = "ActivityId", Value = activityId });
                 parameters.Add(new SqlParameter() { ParameterName = "ParentActivityId", Value = parentId });
                 var recordsAffected = conn.Delete<ActivityActivity>(parameters);
                 return recordsAffected.Equals(1);
@@ -271,7 +271,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 
         public bool RemoveActivityFromRole(int activityId, int roleId)
         {
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 var parameters = new List<SqlParameter>();
                 parameters.Add(new SqlParameter() { ParameterName = "ActivityId", Value = activityId });
@@ -283,7 +283,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 
         public bool RemoveRoleFromRole(int roleId, int parentId)
         {
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 var parameters = new List<SqlParameter>();
                 parameters.Add(new SqlParameter() { ParameterName = "RoleId", Value = roleId });
@@ -295,10 +295,10 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 
         public bool RemoveRoleFromUser(int roleId, int userId)
         {
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 var parameters = new List<SqlParameter>();
-                parameters.Add(new SqlParameter() {ParameterName = "Id", Value = userId});
+                parameters.Add(new SqlParameter() { ParameterName = "Id", Value = userId });
                 parameters.Add(new SqlParameter() { ParameterName = "RoleId", Value = roleId });
                 var recordsAffected = conn.Delete<UserRole>(parameters);
                 return recordsAffected.Equals(1);
@@ -307,9 +307,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 
         public bool AddActivityToRole(int roleId, int activityId)
         {
-            var roleActivity = new RoleActivity() {ActivityId = activityId, RoleId = roleId};
+            var roleActivity = new RoleActivity() { ActivityId = activityId, RoleId = roleId };
 
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 conn.Insert(roleActivity);
             }
@@ -319,9 +319,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 
         public bool AddActivityToActivity(int parentActivityId, int activityId)
         {
-            var activityActivity = new ActivityActivity() {ActivityId = activityId, ParentActivityId = parentActivityId};
+            var activityActivity = new ActivityActivity() { ActivityId = activityId, ParentActivityId = parentActivityId };
 
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 conn.Insert(activityActivity);
             }
@@ -331,9 +331,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 
         public bool AddRoleToUser(int userId, int roleId)
         {
-            var userRole = new UserRole() {Id = userId, RoleId = roleId};
+            var userRole = new UserRole() { Id = userId, RoleId = roleId };
 
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 conn.Insert(userRole);
             }
@@ -343,9 +343,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.SQL
 
         public bool AddRoleToRole(int parentRoleId, int roleId)
         {
-            var roleRole = new RoleRole() {RoleId = roleId, ParentRoleId = parentRoleId};
+            var roleRole = new RoleRole() { RoleId = roleId, ParentRoleId = parentRoleId };
 
-            using (var conn = new SqlConnection(ConnectionString))
+            using (var conn = new MySqlConnection(ConnectionString))
             {
                 conn.Insert(roleRole);
             }
