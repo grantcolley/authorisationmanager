@@ -111,4 +111,5 @@ Development in progress...
 
 #### MySql
 [Installation script](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.MySql/MySql_AuthorisationManager.txt).
+
 [MySql Workbench File](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.MySql/authorisationmanager.mwb)
