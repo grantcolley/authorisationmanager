@@ -52,10 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorisationManagerData.cs" />
-    <Compile Include="Model\ActivityActivity.cs" />
-    <Compile Include="Model\RoleActivity.cs" />
-    <Compile Include="Model\RoleRole.cs" />
-    <Compile Include="Model\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

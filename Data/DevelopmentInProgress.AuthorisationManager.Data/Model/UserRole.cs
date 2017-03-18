@@ -1,4 +1,4 @@
-﻿namespace DevelopmentInProgress.AuthorisationManager.Data.SQL.Model
+﻿namespace DevelopmentInProgress.AuthorisationManager.Data.Model
 {
     public class UserRole
     {

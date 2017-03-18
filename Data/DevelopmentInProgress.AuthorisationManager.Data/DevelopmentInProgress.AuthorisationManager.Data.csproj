@@ -46,6 +46,10 @@
     <Compile Include="AuthorisationManagerDataProxy.cs" />
     <Compile Include="IAuthorisationManagerDataProxy.cs" />
     <Compile Include="IAuthorisationManagerData.cs" />
+    <Compile Include="Model\ActivityActivity.cs" />
+    <Compile Include="Model\RoleActivity.cs" />
+    <Compile Include="Model\RoleRole.cs" />
+    <Compile Include="Model\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
