@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using DevelopmentInProgress.AuthorisationManager.Data.Model;
 using DevelopmentInProgress.DipCore;
@@ -156,7 +155,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.MySql
                 }
                 else
                 {
-                    conn.Update(activity, new SqlParameter() { ParameterName = "Id", Value = activity.Id });
+                    conn.Update(activity, new MySqlParameter() { ParameterName = "Id", Value = activity.Id });
                 }
             }
 
@@ -175,7 +174,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.MySql
                 }
                 else
                 {
-                    conn.Update(role, new SqlParameter() { ParameterName = "Id", Value = role.Id });
+                    conn.Update(role, new MySqlParameter() { ParameterName = "Id", Value = role.Id });
                 }
             }
 
@@ -194,7 +193,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.MySql
                 }
                 else
                 {
-                    conn.Update(userAuthorisation, new SqlParameter() { ParameterName = "Id", Value = userAuthorisation.Id });
+                    conn.Update(userAuthorisation, new MySqlParameter() { ParameterName = "Id", Value = userAuthorisation.Id });
                 }
             }
 
@@ -261,9 +260,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.MySql
         {
             using (var conn = new MySqlConnection(ConnectionString))
             {
-                var parameters = new List<SqlParameter>();
-                parameters.Add(new SqlParameter() { ParameterName = "ActivityId", Value = activityId });
-                parameters.Add(new SqlParameter() { ParameterName = "ParentActivityId", Value = parentId });
+                var parameters = new List<MySqlParameter>();
+                parameters.Add(new MySqlParameter() { ParameterName = "ActivityId", Value = activityId });
+                parameters.Add(new MySqlParameter() { ParameterName = "ParentActivityId", Value = parentId });
                 var recordsAffected = conn.Delete<ActivityActivity>(parameters);
                 return recordsAffected.Equals(1);
             }
@@ -273,9 +272,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.MySql
         {
             using (var conn = new MySqlConnection(ConnectionString))
             {
-                var parameters = new List<SqlParameter>();
-                parameters.Add(new SqlParameter() { ParameterName = "ActivityId", Value = activityId });
-                parameters.Add(new SqlParameter() { ParameterName = "RoleId", Value = roleId });
+                var parameters = new List<MySqlParameter>();
+                parameters.Add(new MySqlParameter() { ParameterName = "ActivityId", Value = activityId });
+                parameters.Add(new MySqlParameter() { ParameterName = "RoleId", Value = roleId });
                 var recordsAffected = conn.Delete<RoleActivity>(parameters);
                 return recordsAffected.Equals(1);
             }
@@ -285,9 +284,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.MySql
         {
             using (var conn = new MySqlConnection(ConnectionString))
             {
-                var parameters = new List<SqlParameter>();
-                parameters.Add(new SqlParameter() { ParameterName = "RoleId", Value = roleId });
-                parameters.Add(new SqlParameter() { ParameterName = "ParentRoleId", Value = parentId });
+                var parameters = new List<MySqlParameter>();
+                parameters.Add(new MySqlParameter() { ParameterName = "RoleId", Value = roleId });
+                parameters.Add(new MySqlParameter() { ParameterName = "ParentRoleId", Value = parentId });
                 var recordsAffected = conn.Delete<RoleRole>(parameters);
                 return recordsAffected.Equals(1);
             }
@@ -297,9 +296,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.MySql
         {
             using (var conn = new MySqlConnection(ConnectionString))
             {
-                var parameters = new List<SqlParameter>();
-                parameters.Add(new SqlParameter() { ParameterName = "Id", Value = userId });
-                parameters.Add(new SqlParameter() { ParameterName = "RoleId", Value = roleId });
+                var parameters = new List<MySqlParameter>();
+                parameters.Add(new MySqlParameter() { ParameterName = "Id", Value = userId });
+                parameters.Add(new MySqlParameter() { ParameterName = "RoleId", Value = roleId });
                 var recordsAffected = conn.Delete<UserRole>(parameters);
                 return recordsAffected.Equals(1);
             }
