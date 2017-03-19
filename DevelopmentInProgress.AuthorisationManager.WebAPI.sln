@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.Autho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.Data.MySql", "Data\DevelopmentInProgress.AuthorisationManager.Data.MySql\DevelopmentInProgress.AuthorisationManager.Data.MySql.csproj", "{FE4FA900-2743-493D-951C-7519CA7A98FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentInProgress.AuthorisationManager.Data.Oracle", "Data\DevelopmentInProgress.AuthorisationManager.Data.Oracle\DevelopmentInProgress.AuthorisationManager.Data.Oracle.csproj", "{B2A263B0-2F0F-40E0-89E5-2999B636B431}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{FE4FA900-2743-493D-951C-7519CA7A98FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE4FA900-2743-493D-951C-7519CA7A98FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE4FA900-2743-493D-951C-7519CA7A98FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2A263B0-2F0F-40E0-89E5-2999B636B431}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2A263B0-2F0F-40E0-89E5-2999B636B431}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2A263B0-2F0F-40E0-89E5-2999B636B431}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2A263B0-2F0F-40E0-89E5-2999B636B431}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,5 +58,6 @@ Global
 		{3383DDD9-A333-4031-952B-9CFDB0D4C02D} = {16CFA8ED-4A08-41CF-A386-C6E2BFCAB1D2}
 		{638070D4-E78E-47D7-B0AB-EE1EA5EF7674} = {AFF246DD-F23C-4199-9069-8CDAFA0CFE4A}
 		{FE4FA900-2743-493D-951C-7519CA7A98FA} = {16CFA8ED-4A08-41CF-A386-C6E2BFCAB1D2}
+		{B2A263B0-2F0F-40E0-89E5-2999B636B431} = {16CFA8ED-4A08-41CF-A386-C6E2BFCAB1D2}
 	EndGlobalSection
 EndGlobal
