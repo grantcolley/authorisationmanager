@@ -96,11 +96,10 @@ The data access implementation can be [configured](https://github.com/grantcolle
 The [MS SQL Server data access library](https://github.com/grantcolley/authorisationmanager/tree/master/Data/DevelopmentInProgress.AuthorisationManager.Data.SQL) uses [DipMapper](https://github.com/grantcolley/dipmapper) for easy, fast and efficient access to MS SQL Server.
 
 #### Oracle Data Access Library
-Development in progress...
+The [Oracle Server data access library](https://github.com/grantcolley/authorisationmanager/tree/master/Data/DevelopmentInProgress.AuthorisationManager.Data.Oracle) uses [DipMapper](https://github.com/grantcolley/dipmapper) for easy, fast and efficient access to Oracle.
 
 #### MySql Data Access Library
-The [MySql data access library](https://github.com/grantcolley/authorisationmanager/tree/master/Data/DevelopmentInProgress.AuthorisationManager.Data.MySql) uses [DipMapper](https://github.com/grantcolley/dipmapper) for easy, fast and efficient access to MS SQL Server.
-
+The [MySql data access library](https://github.com/grantcolley/authorisationmanager/tree/master/Data/DevelopmentInProgress.AuthorisationManager.Data.MySql) uses [DipMapper](https://github.com/grantcolley/dipmapper) for easy, fast and efficient access to MySql.
 
 ## Database
 #### MS SQL Server
