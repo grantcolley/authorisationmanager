@@ -208,16 +208,19 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.Oracle
 
         public bool DeleteActivity(int id)
         {
-            var sql = "DELETE FROM ActivityActivity WHERE ParentActivityId = " + id + " or ActivityId = " + id
-                      + "; DELETE FROM RoleActivity WHERE ActivityId = " + id
-                      + "; DELETE FROM Activity WHERE Id = " + id;
+            var activityActivitySql = "DELETE FROM ActivityActivity WHERE ParentActivityId = " + id +
+                                      " or ActivityId = " + id;
+            var roleActivitySql = "DELETE FROM RoleActivity WHERE ActivityId = " + id;
+            var activitySql = "DELETE FROM Activity WHERE Id = " + id;
 
             using (var conn = new OracleConnection(ConnectionString))
             {
                 conn.Open();
                 using (var transaction = conn.BeginTransaction())
                 {
-                    conn.ExecuteNonQuery(sql, null, CommandType.Text, transaction);
+                    conn.ExecuteNonQuery(activityActivitySql, null, CommandType.Text, transaction);
+                    conn.ExecuteNonQuery(roleActivitySql, null, CommandType.Text, transaction);
+                    conn.ExecuteNonQuery(activitySql, null, CommandType.Text, transaction);
                     transaction.Commit();
                 }
             }
@@ -227,16 +230,18 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.Oracle
 
         public bool DeleteRole(int id)
         {
-            var sql = "DELETE FROM RoleActivity WHERE RoleId = " + id
-                      + "; DELETE FROM UserRole WHERE RoleId = " + id
-                      + "; DELETE FROM Role WHERE Id = " + id;
+            var roleActivitySql = "DELETE FROM RoleActivity WHERE RoleId = " + id;
+            var userRoleSql = "DELETE FROM UserRole WHERE RoleId = " + id;
+            var roleSql = "DELETE FROM Role WHERE Id = " + id;
 
             using (var conn = new OracleConnection(ConnectionString))
             {
                 conn.Open();
                 using (var transaction = conn.BeginTransaction())
                 {
-                    conn.ExecuteNonQuery(sql, null, CommandType.Text, transaction);
+                    conn.ExecuteNonQuery(roleActivitySql, null, CommandType.Text, transaction);
+                    conn.ExecuteNonQuery(userRoleSql, null, CommandType.Text, transaction);
+                    conn.ExecuteNonQuery(roleSql, null, CommandType.Text, transaction);
                     transaction.Commit();
                 }
             }
@@ -246,15 +251,16 @@ namespace DevelopmentInProgress.AuthorisationManager.Data.Oracle
 
         public bool DeleteUserAuthorisation(int id)
         {
-            var sql = "DELETE FROM UserRole WHERE Id = " + id
-                      + "; DELETE FROM UserAuthorisation WHERE Id = " + id;
+            var userRoleSql = "DELETE FROM UserRole WHERE Id = " + id;
+            var userSql = "DELETE FROM UserAuthorisation WHERE Id = " + id;
 
             using (var conn = new OracleConnection(ConnectionString))
             {
                 conn.Open();
                 using (var transaction = conn.BeginTransaction())
                 {
-                    conn.ExecuteNonQuery(sql, null, CommandType.Text, transaction);
+                    conn.ExecuteNonQuery(userRoleSql, null, CommandType.Text, transaction);
+                    conn.ExecuteNonQuery(userSql, null, CommandType.Text, transaction);
                     transaction.Commit();
                 }
             }
