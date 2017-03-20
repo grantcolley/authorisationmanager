@@ -1,7 +1,7 @@
 The Authorisation Manager system comprises several decoupled configurable application layers: [user interface](#user-interface), [service layer](#service-layer), [server](#server), [data access layer](#data-access-layer) and [database](#database).
 
 ##### Technologies
-###### WPF, Prism, Unity, WebApi 2.2, WCF, MS SQL Server, MySql, Oracle
+* ###### WPF, Prism, Unity, WebApi 2.2, WCF, MS SQL Server, MySql, Oracle
 #####  
 
 ![Alt text](/README-images/component_diagram.png?raw=true "Component Diagram")
@@ -25,7 +25,7 @@ The Authorisation Manager system comprises several decoupled configurable applic
 
 ## User Interface
 #### WPF
-###### WPF, Prism, Unity, Origin framework.
+* ###### WPF, Prism, Unity, Origin framework.
 The [WPF UI](https://github.com/grantcolley/authorisationmanager/tree/master/UI/WPF) uses the [Origin](https://github.com/grantcolley/origin) framework which is a WPF shell application implementing MVVM, Prism and Unity for hosting line-of-business modules in a document style layout.
 
 The UI contains presentation only logic and relies on the [service layer](https://github.com/grantcolley/authorisationmanager/tree/master/Service/DevelopmentInProgress.AuthorisationManager.Service) for operational functionality via an instance of the [AuthorisationManagerServiceProxy](https://github.com/grantcolley/authorisationmanager/blob/master/Service/DevelopmentInProgress.AuthorisationManager.Service/AuthorisationManagerServiceProxy.cs).
@@ -60,18 +60,18 @@ The service can be [configured](https://github.com/grantcolley/authorisationmana
   </unity>
 ```
 #### WebApi
-###### WebApi 2.2, Unity
+* ###### WebApi 2.2, Unity
 The [WebApi Client](https://github.com/grantcolley/authorisationmanager/tree/master/Service/WebApiClient) forwards the request onto the [WebApi](https://github.com/grantcolley/authorisationmanager/tree/master/Service/WebAPI), which is simply host for the [Server](https://github.com/grantcolley/authorisationmanager/tree/master/Service/DevelopmentInProgress.AuthorisationManager.Server).
 
 #### WCF Service
-###### WCF, Unity
+* ###### WCF, Unity
 The [WCF Client](https://github.com/grantcolley/authorisationmanager/tree/master/Service/WCFClient) forwards the request onto the [WCF Service Host](https://github.com/grantcolley/authorisationmanager/tree/master/Service/WCFServiceHost), which is simply host for the [Server](https://github.com/grantcolley/authorisationmanager/tree/master/Service/DevelopmentInProgress.AuthorisationManager.Server).
 
 ## Server
 The [server](https://github.com/grantcolley/authorisationmanager/tree/master/Service/DevelopmentInProgress.AuthorisationManager.Server) is for business logic and access to the [data access layer](https://github.com/grantcolley/authorisationmanager/tree/master/Data/DevelopmentInProgress.AuthorisationManager.Data) via the [IAuthorisationManagerDataProxy](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data/IAuthorisationManagerDataProxy.cs).  
 
 ## Data Access Layer
-###### MS SQL Server, MySql, Oracle
+* ###### MS SQL Server, MySql, Oracle
 The [Data](https://github.com/grantcolley/authorisationmanager/tree/master/Data/DevelopmentInProgress.AuthorisationManager.Data) library provides the interface to the data access layer through [IAuthorisationManagerData](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data/IAuthorisationManagerData.cs).
 The data access implementation can be [configured](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data/ServerConfiguration/DevelopmentInProgress.AuthorisationManager.Data.Unity.config) for access to MS SQL Server, Oracle or MySql.
 
@@ -104,12 +104,12 @@ The [MySql data access library](https://github.com/grantcolley/authorisationmana
 
 ## Database
 #### MS SQL Server
-[Installation script](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.SQL/MSSQLServer_AuthorisationManager.sql).
+* [Installation script](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.SQL/MSSQLServer_AuthorisationManager.sql).
 
 #### Oracle
-[Installation script](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.Oracle/Oracle_AuthorisationManager.sql).
+* [Installation script](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.Oracle/Oracle_AuthorisationManager.sql).
 
 #### MySql
-[Installation script](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.MySql/MySql_AuthorisationManager.sql).
+* [Installation script](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.MySql/MySql_AuthorisationManager.sql).
 
-[MySql Workbench File](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.MySql/authorisationmanager.mwb)
+* [MySql Workbench File](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.MySql/authorisationmanager.mwb)
