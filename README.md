@@ -1,8 +1,8 @@
 The Authorisation Manager system comprises several decoupled configurable application layers: [user interface](#user-interface), [service layer](#service-layer), [server](#server), [data access layer](#data-access-layer) and [database](#database).
 
 ##### Technologies
-###### WPF, Prism, Unity, WebApi 2.2, WCF, MS SQL Server, MySql
-#####  
+###### WPF, Prism, Unity, WebApi 2.2, WCF, MS SQL Server, MySql, Oracle
+#####  
 
 ![Alt text](/README-images/component_diagram.png?raw=true "Component Diagram")
 
@@ -71,6 +71,7 @@ The [WCF Client](https://github.com/grantcolley/authorisationmanager/tree/master
 The [server](https://github.com/grantcolley/authorisationmanager/tree/master/Service/DevelopmentInProgress.AuthorisationManager.Server) is for business logic and access to the [data access layer](https://github.com/grantcolley/authorisationmanager/tree/master/Data/DevelopmentInProgress.AuthorisationManager.Data) via the [IAuthorisationManagerDataProxy](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data/IAuthorisationManagerDataProxy.cs).  
 
 ## Data Access Layer
+###### MS SQL Server, MySql, Oracle
 The [Data](https://github.com/grantcolley/authorisationmanager/tree/master/Data/DevelopmentInProgress.AuthorisationManager.Data) library provides the interface to the data access layer through [IAuthorisationManagerData](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data/IAuthorisationManagerData.cs).
 The data access implementation can be [configured](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data/ServerConfiguration/DevelopmentInProgress.AuthorisationManager.Data.Unity.config) for access to MS SQL Server, Oracle or MySql.
 
