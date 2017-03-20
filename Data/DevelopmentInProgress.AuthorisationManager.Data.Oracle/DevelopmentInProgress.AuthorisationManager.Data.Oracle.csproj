@@ -68,6 +68,9 @@
       <Name>DevelopmentInProgress.AuthorisationManager.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Oracle_AuthorisationManager.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /Q /Y "$(ProjectDir)\..\..\..\Binaries\Server\DevelopmentInProgress.AuthorisationManager.Data.Oracle.dll" "$(ProjectDir)\..\..\Service\WebAPI\bin"
