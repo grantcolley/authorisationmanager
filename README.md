@@ -107,9 +107,9 @@ The [MySql data access library](https://github.com/grantcolley/authorisationmana
 [Installation script](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.SQL/MSSQLServer_AuthorisationManager.sql).
 
 #### Oracle
-Development in progress...
+[Installation script](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.Oracle/Oracle_AuthorisationManager.sql).
 
 #### MySql
-[Installation script](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.MySql/MySql_AuthorisationManager.txt).
+[Installation script](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.MySql/MySql_AuthorisationManager.sql).
 
 [MySql Workbench File](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data.MySql/authorisationmanager.mwb)
