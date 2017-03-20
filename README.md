@@ -41,6 +41,8 @@ Development in progress...
 
 ## Service Layer
 * ###### WebApi 2.2, WCF, Unity
+#####  
+
 The [service layer](https://github.com/grantcolley/authorisationmanager/tree/master/Service/DevelopmentInProgress.AuthorisationManager.Service) takes requests from the UI via the [AuthorisationManagerServiceProxy](https://github.com/grantcolley/authorisationmanager/blob/master/Service/DevelopmentInProgress.AuthorisationManager.Service/AuthorisationManagerServiceProxy.cs) and is responsible for routing it to the configured service.
 
 The service can be [configured](https://github.com/grantcolley/authorisationmanager/blob/master/Service/DevelopmentInProgress.AuthorisationManager.Service/Configuration/DevelopmentInProgress.AuthorisationManager.Service.Unity.config) to send requests via either the [WCF Client](https://github.com/grantcolley/authorisationmanager/tree/master/Service/WCFClient) or the [WebApi Client](https://github.com/grantcolley/authorisationmanager/tree/master/Service/WebApiClient), both of which implement [IAuthorisationManagerServiceAsync](https://github.com/grantcolley/authorisationmanager/blob/master/Service/DevelopmentInProgress.AuthorisationManager.Service/IAuthorisationManagerServiceAsync.cs) and is injected into the constructor of [AuthorisationManagerServiceProxy](https://github.com/grantcolley/authorisationmanager/blob/master/Service/DevelopmentInProgress.AuthorisationManager.Service/AuthorisationManagerServiceProxy.cs).
@@ -76,6 +78,8 @@ The [server](https://github.com/grantcolley/authorisationmanager/tree/master/Ser
 
 ## Data Access Layer
 * ###### MS SQL Server, MySql, Oracle
+#####  
+
 The [Data](https://github.com/grantcolley/authorisationmanager/tree/master/Data/DevelopmentInProgress.AuthorisationManager.Data) library provides the interface to the data access layer through [IAuthorisationManagerData](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data/IAuthorisationManagerData.cs).
 The data access implementation can be [configured](https://github.com/grantcolley/authorisationmanager/blob/master/Data/DevelopmentInProgress.AuthorisationManager.Data/ServerConfiguration/DevelopmentInProgress.AuthorisationManager.Data.Unity.config) for access to MS SQL Server, Oracle or MySql.
 
