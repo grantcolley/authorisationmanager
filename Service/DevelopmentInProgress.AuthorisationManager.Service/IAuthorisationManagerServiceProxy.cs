@@ -6,6 +6,7 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
     public interface IAuthorisationManagerServiceProxy
     {
         Task<Authorisation> GetAuthorisation();
+        Task<UserAuthorisation> GetUserAuthorisation(string userName);
         Task<Activity> SaveActivity(Activity activity);
         Task<Role> SaveRole(Role role);
         Task<UserAuthorisation> SaveUserAuthorisation(UserAuthorisation userAuthorisation);

@@ -21,6 +21,13 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
             return response.Payload;
         }
 
+        public async Task<UserAuthorisation> GetUserAuthorisation(string userName)
+        {
+            var response = await authorisationManagerService.GetUserAuthorisation(userName).ConfigureAwait(false);
+            ServiceResponseErrorHandler(response);
+            return response.Payload;
+        }
+
         public async Task<Activity> SaveActivity(Activity activity)
         {
             var response = await authorisationManagerService.SaveActivity(activity).ConfigureAwait(false);

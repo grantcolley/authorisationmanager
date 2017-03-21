@@ -20,5 +20,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WebAPI.Controllers
         {
             return authorisationManagerServer.GetAuthorisation();
         }
+
+        [HttpGet]
+        [Route("api/Authorisation/GetUserAuthorisation/{userName}")]
+        public ServiceResponse<UserAuthorisation> GetUserAuthorisation(string userName)
+        {
+            return authorisationManagerServer.GetUserAuthorisation(userName);
+        }
     }
 }

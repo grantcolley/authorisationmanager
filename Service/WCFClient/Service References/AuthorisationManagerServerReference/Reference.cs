@@ -20,7 +20,13 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient.AuthorisationMana
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthorisationManagerServer/GetAuthorisation", ReplyAction="http://tempuri.org/IAuthorisationManagerServer/GetAuthorisationResponse")]
         System.Threading.Tasks.Task<DevelopmentInProgress.DipCore.Service.ServiceResponse<DevelopmentInProgress.DipSecure.Authorisation>> GetAuthorisationAsync();
-        
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAuthorisationManagerServer/GetUserAuthorisation", ReplyAction = "http://tempuri.org/IAuthorisationManagerServer/GetUserAuthorisationResponse")]
+        DevelopmentInProgress.DipCore.Service.ServiceResponse<DevelopmentInProgress.DipSecure.UserAuthorisation> GetUserAuthorisation(string userName);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAuthorisationManagerServer/GetAuthorisation", ReplyAction = "http://tempuri.org/IAuthorisationManagerServer/GetUserAuthorisationResponse")]
+        System.Threading.Tasks.Task<DevelopmentInProgress.DipCore.Service.ServiceResponse<DevelopmentInProgress.DipSecure.UserAuthorisation>> GetUserAuthorisationAsync(string userName);
+
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthorisationManagerServer/SaveActivity", ReplyAction="http://tempuri.org/IAuthorisationManagerServer/SaveActivityResponse")]
         DevelopmentInProgress.DipCore.Service.ServiceResponse<DevelopmentInProgress.DipSecure.Activity> SaveActivity(DevelopmentInProgress.DipSecure.Activity activity);
         
@@ -144,7 +150,17 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient.AuthorisationMana
         {
             return base.Channel.GetAuthorisationAsync();
         }
-        
+
+        public DevelopmentInProgress.DipCore.Service.ServiceResponse<DevelopmentInProgress.DipSecure.UserAuthorisation> GetUserAuthorisation(string userName)
+        {
+            return base.Channel.GetUserAuthorisation(userName);
+        }
+
+        public System.Threading.Tasks.Task<DevelopmentInProgress.DipCore.Service.ServiceResponse<DevelopmentInProgress.DipSecure.UserAuthorisation>> GetUserAuthorisationAsync(string userName)
+        {
+            return base.Channel.GetUserAuthorisationAsync(userName);
+        }
+
         public DevelopmentInProgress.DipCore.Service.ServiceResponse<DevelopmentInProgress.DipSecure.Activity> SaveActivity(DevelopmentInProgress.DipSecure.Activity activity) {
             return base.Channel.SaveActivity(activity);
         }

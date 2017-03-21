@@ -41,6 +41,34 @@ namespace DevelopmentInProgress.AuthorisationManager.WCFClient
             }
         }
 
+        public async Task<ServiceResponse<UserAuthorisation>> GetUserAuthorisation(string userName)
+        {
+            WCFProxy.AuthorisationManagerServerClient authorisationManagerServerClient = null;
+
+            try
+            {
+                authorisationManagerServerClient
+                    = new WCFProxy.AuthorisationManagerServerClient(new WSHttpBinding(),
+                        new EndpointAddress(endpointAddress));
+
+                var result = await authorisationManagerServerClient.GetUserAuthorisationAsync(userName).ConfigureAwait(false);
+
+                authorisationManagerServerClient.Close();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                if (authorisationManagerServerClient != null)
+                {
+                    authorisationManagerServerClient.Abort();
+                }
+
+                var serviceResponse = new ServiceResponse<UserAuthorisation>(ex.Message, true);
+                return serviceResponse;
+            }
+        }
+
         public async Task<ServiceResponse<Activity>> SaveActivity(Activity activity)
         {
             WCFProxy.AuthorisationManagerServerClient authorisationManagerServerClient = null;

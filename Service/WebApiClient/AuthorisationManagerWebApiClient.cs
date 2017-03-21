@@ -33,6 +33,26 @@ namespace DevelopmentInProgress.AuthorisationManager.WebApiClient
             }
         }
 
+        public async Task<ServiceResponse<UserAuthorisation>> GetUserAuthorisation(string userName)
+        {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(baseAddress);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync("api/Authorisation/GetUserAuthorisation/" + userName);
+                response.EnsureSuccessStatusCode();
+                var content = await response.Content.ReadAsAsync<ServiceResponse<UserAuthorisation>>();
+                return content;
+            }
+            catch (Exception ex)
+            {
+                var serviceResponse = new ServiceResponse<UserAuthorisation>(ex.Message, true);
+                return serviceResponse;
+            }
+        }
+
         public async Task<ServiceResponse<Activity>> SaveActivity(Activity activity)
         {
             var client = new HttpClient();

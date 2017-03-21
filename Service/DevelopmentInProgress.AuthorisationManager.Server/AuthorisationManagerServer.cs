@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DevelopmentInProgress.AuthorisationManager.Data;
 using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipCore.Logger;
@@ -40,6 +41,30 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
                 serviceResponse.IsError = true;
                 serviceResponse.Message = ex.Message;
                 logger.Log("AuthorisationManagerServer.GetAuthorisation" + ex.Message, LogCategory.Exception, LogPriority.None);
+                logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
+            }
+
+            return serviceResponse;
+        }
+
+        public ServiceResponse<UserAuthorisation> GetUserAuthorisation(string userName)
+        {
+            var serviceResponse = new ServiceResponse<UserAuthorisation>();
+
+            try
+            {
+                // TODO: this can be improved...
+                var activities = authorisationManagerDataProxy.GetActivities();
+                var roles = authorisationManagerDataProxy.GetRoles(activities);
+                var userAuthorisations = authorisationManagerDataProxy.GetUserAuthorisations(roles);
+                var userAuthorisation = userAuthorisations.SingleOrDefault(u => u.UserName == userName);
+                serviceResponse = new ServiceResponse<UserAuthorisation>() { Payload = userAuthorisation };
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.IsError = true;
+                serviceResponse.Message = ex.Message;
+                logger.Log("AuthorisationManagerServer.GetUserAuthorisation(" + userName + "); " + ex.Message, LogCategory.Exception, LogPriority.None);
                 logger.Log(ex.StackTrace, LogCategory.Exception, LogPriority.None);
             }
 

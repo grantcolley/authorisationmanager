@@ -12,6 +12,9 @@ namespace DevelopmentInProgress.AuthorisationManager.Service
         Task<ServiceResponse<Authorisation>> GetAuthorisation();
 
         [OperationContract]
+        Task<ServiceResponse<UserAuthorisation>> GetUserAuthorisation(string userName);
+
+        [OperationContract]
         Task<ServiceResponse<Activity>> SaveActivity(Activity activity);
 
         [OperationContract]

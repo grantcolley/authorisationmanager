@@ -16,24 +16,16 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 {
     public class ConfigurationAuthorisationViewModel : DocumentViewModel
     {
-        private EntityBase selectedItem;
-
         private readonly AuthorisationManagerServiceManager authorisationManagerServiceManager;
+
+        private UserAuthorisation currentUser;
+
+        private EntityBase selectedItem;
 
         public ConfigurationAuthorisationViewModel(ViewModelContext viewModelContext, AuthorisationManagerServiceManager authorisationManagerServiceManager)
             : base(viewModelContext)
         {
             this.authorisationManagerServiceManager = authorisationManagerServiceManager;
-
-            NewUserCommand = new WpfCommand(OnNewUser);
-            NewRoleCommand = new WpfCommand(OnNewRole);
-            NewActivityCommand = new WpfCommand(OnNewActivity);
-            SaveCommand = new WpfCommand(OnEntitySave);
-            DeleteCommand = new WpfCommand(OnEntityDelete);
-            RemoveItemCommand = new WpfCommand(OnRemoveItem);
-            SelectItemCommand = new WpfCommand(OnSelectItem);
-            DragDropCommand = new WpfCommand(OnDragDrop);
-
             Logger.Log("ConfigurationAuthorisationViewModel initialised", Category.Info, Priority.None);
         }
 
@@ -74,6 +66,17 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             try
             {
                 IsBusy = true;
+
+                currentUser = await authorisationManagerServiceManager.GetUserAuthorisation(Environment.UserName);
+
+                NewUserCommand = new WpfCommand(OnNewUser, x => currentUser.CanPerformActivity("AUTHMAN_WRITE"));
+                NewRoleCommand = new WpfCommand(OnNewRole, x => currentUser.CanPerformActivity("AUTHMAN_WRITE"));
+                NewActivityCommand = new WpfCommand(OnNewActivity, x => currentUser.CanPerformActivity("AUTHMAN_WRITE"));
+                SaveCommand = new WpfCommand(OnEntitySave, x => currentUser.CanPerformActivity("AUTHMAN_WRITE"));
+                DeleteCommand = new WpfCommand(OnEntityDelete, x => currentUser.CanPerformActivity("AUTHMAN_WRITE"));
+                RemoveItemCommand = new WpfCommand(OnRemoveItem, x => currentUser.CanPerformActivity("AUTHMAN_WRITE"));
+                DragDropCommand = new WpfCommand(OnDragDrop, x => currentUser.CanPerformActivity("AUTHMAN_WRITE"));
+                SelectItemCommand = new WpfCommand(OnSelectItem, x => currentUser.CanPerformActivity("AUTHMAN_READ"));
 
                 var authorisationNodes = await authorisationManagerServiceManager.GetAuthorisationNodes();
                 Activities = new ObservableCollection<ActivityNode>(authorisationNodes.ActivityNodes);

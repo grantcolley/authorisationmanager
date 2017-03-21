@@ -44,6 +44,12 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.Model
             return authorisationNodes;
         }
 
+        public async Task<UserAuthorisation> GetUserAuthorisation(string userName)
+        {
+            var authorisation = await authorisationManagerServiceProxy.GetUserAuthorisation(userName).ConfigureAwait(false);
+            return authorisation;
+        }
+
         public async Task<ActivityNode> SaveActivity(ActivityNode activityNode, IEnumerable<ActivityNode> activities)
         {
             var activity = await authorisationManagerServiceProxy.SaveActivity(activityNode.Activity).ConfigureAwait(false);
