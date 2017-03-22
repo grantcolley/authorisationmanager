@@ -22,6 +22,8 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         private EntityBase selectedItem;
 
+        private bool isEditable;
+
         public ConfigurationAuthorisationViewModel(ViewModelContext viewModelContext, AuthorisationManagerServiceManager authorisationManagerServiceManager)
             : base(viewModelContext)
         {
@@ -51,6 +53,16 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
         public ObservableCollection<UserNode> Users { get; set; }
 
+        public bool IsEditable
+        {
+            get { return isEditable; }
+            set
+            {
+                isEditable = value;
+                OnPropertyChanged("IsEditable");
+            }
+        }
+
         public EntityBase SelectedItem
         {
             get { return selectedItem; }
@@ -69,14 +81,16 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
                 currentUser = await authorisationManagerServiceManager.GetUserAuthorisation(Environment.UserName);
 
-                NewUserCommand = new WpfCommand(OnNewUser, x => currentUser.CanPerformActivity("AUTHMAN_WRITE"));
-                NewRoleCommand = new WpfCommand(OnNewRole, x => currentUser.CanPerformActivity("AUTHMAN_WRITE"));
-                NewActivityCommand = new WpfCommand(OnNewActivity, x => currentUser.CanPerformActivity("AUTHMAN_WRITE"));
-                SaveCommand = new WpfCommand(OnEntitySave, x => currentUser.CanPerformActivity("AUTHMAN_WRITE"));
-                DeleteCommand = new WpfCommand(OnEntityDelete, x => currentUser.CanPerformActivity("AUTHMAN_WRITE"));
-                RemoveItemCommand = new WpfCommand(OnRemoveItem, x => currentUser.CanPerformActivity("AUTHMAN_WRITE"));
-                DragDropCommand = new WpfCommand(OnDragDrop, x => currentUser.CanPerformActivity("AUTHMAN_WRITE"));
-                SelectItemCommand = new WpfCommand(OnSelectItem, x => currentUser.CanPerformActivity("AUTHMAN_READ"));
+                IsEditable = currentUser.CanPerformActivity("AUTHORISATION_WRITE");
+
+                NewUserCommand = new WpfCommand(OnNewUser, x => currentUser.CanPerformActivity("AUTHORISATION_WRITE"));
+                NewRoleCommand = new WpfCommand(OnNewRole, x => currentUser.CanPerformActivity("AUTHORISATION_WRITE"));
+                NewActivityCommand = new WpfCommand(OnNewActivity, x => currentUser.CanPerformActivity("AUTHORISATION_WRITE"));
+                SaveCommand = new WpfCommand(OnEntitySave, x => currentUser.CanPerformActivity("AUTHORISATION_WRITE"));
+                DeleteCommand = new WpfCommand(OnEntityDelete, x => currentUser.CanPerformActivity("AUTHORISATION_WRITE"));
+                RemoveItemCommand = new WpfCommand(OnRemoveItem, x => currentUser.CanPerformActivity("AUTHORISATION_WRITE"));
+                DragDropCommand = new WpfCommand(OnDragDrop, x => currentUser.CanPerformActivity("AUTHORISATION_WRITE"));
+                SelectItemCommand = new WpfCommand(OnSelectItem, x => currentUser.CanPerformActivity("AUTHORISATION_READ"));
 
                 var authorisationNodes = await authorisationManagerServiceManager.GetAuthorisationNodes();
                 Activities = new ObservableCollection<ActivityNode>(authorisationNodes.ActivityNodes);

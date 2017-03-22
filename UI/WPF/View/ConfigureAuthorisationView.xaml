@@ -136,9 +136,10 @@
             <ft:XamlFilterTree Header="Users" 
                                Foreground="{StaticResource LabelForeground}"
                                ItemsSource="{Binding Users}" 
-                               RemoveItemCommand="{Binding RemoveItemCommand}"
+                               RemoveItemCommand="{Binding RemoveItemCommand}"                               
                                SelectItemCommand="{Binding SelectItemCommand}"
-                               DragDropCommand="{Binding DragDropCommand}"/>          
+                               DragDropCommand="{Binding DragDropCommand}"
+                               IsEditable="{Binding IsEditable}"/>          
         </ScrollViewer>
 
         <GridSplitter Grid.Column="1" Width="2" HorizontalAlignment="Stretch"/>
@@ -149,7 +150,8 @@
                                ItemsSource="{Binding Roles}" 
                                RemoveItemCommand="{Binding RemoveItemCommand}"
                                SelectItemCommand="{Binding SelectItemCommand}"
-                               DragDropCommand="{Binding DragDropCommand}"/>
+                               DragDropCommand="{Binding DragDropCommand}"
+                               IsEditable="{Binding IsEditable}"/>
         </ScrollViewer>
         
         <GridSplitter Grid.Column="3" Width="2" HorizontalAlignment="Stretch"/>
@@ -160,7 +162,8 @@
                                ItemsSource="{Binding Activities}" 
                                RemoveItemCommand="{Binding RemoveItemCommand}"
                                SelectItemCommand="{Binding SelectItemCommand}"
-                               DragDropCommand="{Binding DragDropCommand}"/>
+                               DragDropCommand="{Binding DragDropCommand}"
+                               IsEditable="{Binding IsEditable}"/>
         </ScrollViewer>
         
         <GridSplitter Grid.Column="5" Width="2" HorizontalAlignment="Stretch"/>
@@ -168,30 +171,35 @@
         <ScrollViewer Grid.Column="6" Margin="5,5,5,5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <DockPanel LastChildFill="True" Margin="2" Background="#FFEEF5FD">
                 <ContentControl DockPanel.Dock="Top" Height="10"/>
-                <GroupBox Background="#FFEEF5FD" Style="{StaticResource GroupBoxNoHeaderStyle}" DockPanel.Dock="Top">
+                <GroupBox Background="#FFEEF5FD" Style="{StaticResource GroupBoxNoHeaderStyle}" DockPanel.Dock="Top" Visibility="{Binding IsEditable, Converter={StaticResource boolToVisibilityConverter}}">
                     <DockPanel Dock="Top" LastChildFill="True">
-                        <Button Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding NewUserCommand}">
+                        <Button Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding NewUserCommand}"
+                                Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource boolToVisibilityConverter}}">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="../Images/User.png" Height="24" Width="24"/>
                                 <Label Content="New User" Foreground="{StaticResource LabelForeground}"/>
                             </StackPanel>
                         </Button>
-                        <Button Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding NewRoleCommand}">
+                        <Button Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding NewRoleCommand}"
+                                Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource boolToVisibilityConverter}}">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="../Images/Role.png" Height="24" Width="24"/>
                                 <Label Content="New Role" Foreground="{StaticResource LabelForeground}"/>
                             </StackPanel>
                         </Button>
-                        <Button Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding NewActivityCommand}">
+                        <Button Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding NewActivityCommand}"
+                                Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource boolToVisibilityConverter}}">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="../Images/Activity.png" Height="24" Width="24"/>
                                 <Label Content="New Activity" Foreground="{StaticResource LabelForeground}"/>
                             </StackPanel>
                         </Button>
-                        <Button DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItem}">
+                        <Button DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItem}"
+                                Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource boolToVisibilityConverter}}">
                             <Image Source="../Images/Delete.png" Height="24" Width="24"/>
                         </Button>
-                        <Button DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding SaveCommand}" CommandParameter="{Binding SelectedItem}">
+                        <Button DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Command="{Binding SaveCommand}" 
+                                CommandParameter="{Binding SelectedItem}" Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource boolToVisibilityConverter}}">
                             <Image Source="../Images/Save.png" Height="24" Width="24"/>
                         </Button>
                         <Label/>
