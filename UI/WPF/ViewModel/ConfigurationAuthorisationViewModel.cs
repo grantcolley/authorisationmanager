@@ -28,6 +28,16 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             : base(viewModelContext)
         {
             this.authorisationManagerServiceManager = authorisationManagerServiceManager;
+
+            NewUserCommand = new WpfCommand(OnNewUser);
+            NewRoleCommand = new WpfCommand(OnNewRole);
+            NewActivityCommand = new WpfCommand(OnNewActivity);
+            SaveCommand = new WpfCommand(OnEntitySave);
+            DeleteCommand = new WpfCommand(OnEntityDelete);
+            RemoveItemCommand = new WpfCommand(OnRemoveItem);
+            DragDropCommand = new WpfCommand(OnDragDrop);
+            SelectItemCommand = new WpfCommand(OnSelectItem);
+
             Logger.Log("ConfigurationAuthorisationViewModel initialised", Category.Info, Priority.None);
         }
 
@@ -81,21 +91,25 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
 
                 currentUser = await authorisationManagerServiceManager.GetUserAuthorisation(Environment.UserName);
 
-                IsEditable = currentUser.CanPerformActivity("AUTHORISATION_WRITE");
+                if (currentUser.CanPerformActivity(Permissions.AUTHORISATION_READ.ToString()))
+                {
+                    IsEditable = currentUser.CanPerformActivity(Permissions.AUTHORISATION_WRITE.ToString());
 
-                NewUserCommand = new WpfCommand(OnNewUser, x => currentUser.CanPerformActivity("AUTHORISATION_WRITE"));
-                NewRoleCommand = new WpfCommand(OnNewRole, x => currentUser.CanPerformActivity("AUTHORISATION_WRITE"));
-                NewActivityCommand = new WpfCommand(OnNewActivity, x => currentUser.CanPerformActivity("AUTHORISATION_WRITE"));
-                SaveCommand = new WpfCommand(OnEntitySave, x => currentUser.CanPerformActivity("AUTHORISATION_WRITE"));
-                DeleteCommand = new WpfCommand(OnEntityDelete, x => currentUser.CanPerformActivity("AUTHORISATION_WRITE"));
-                RemoveItemCommand = new WpfCommand(OnRemoveItem, x => currentUser.CanPerformActivity("AUTHORISATION_WRITE"));
-                DragDropCommand = new WpfCommand(OnDragDrop, x => currentUser.CanPerformActivity("AUTHORISATION_WRITE"));
-                SelectItemCommand = new WpfCommand(OnSelectItem, x => currentUser.CanPerformActivity("AUTHORISATION_READ"));
+                    var authorisationNodes = await authorisationManagerServiceManager.GetAuthorisationNodes();
+                    Activities = new ObservableCollection<ActivityNode>(authorisationNodes.ActivityNodes);
+                    Roles = new ObservableCollection<RoleNode>(authorisationNodes.RoleNodes);
+                    Users = new ObservableCollection<UserNode>(authorisationNodes.UserNodes);
+                }
+                else
+                {
+                    ShowMessage(new Message()
+                    {
+                        MessageType = MessageTypeEnum.Error,
+                        Text = "Access denied."
+                    });
 
-                var authorisationNodes = await authorisationManagerServiceManager.GetAuthorisationNodes();
-                Activities = new ObservableCollection<ActivityNode>(authorisationNodes.ActivityNodes);
-                Roles = new ObservableCollection<RoleNode>(authorisationNodes.RoleNodes);
-                Users = new ObservableCollection<UserNode>(authorisationNodes.UserNodes);
+                    Logger.Log("ConfigurationAuthorisationViewModel OnPublished access denied.", Category.Warn, Priority.None);
+                }
 
                 ResetStatus();
             }

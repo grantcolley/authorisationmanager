@@ -38,6 +38,10 @@
       <HintPath>..\..\packages\DipSecure.1.6.0.0\lib\DevelopmentInProgress.DipSecure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DipWpfControls, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DipWpfControls.1.6.0.0\lib\DipWpfControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism">
       <HintPath>..\..\..\origin\Third Party\Prism\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
@@ -71,6 +75,7 @@
     <Compile Include="Model\AuthorisationNodes.cs" />
     <Compile Include="Model\NodeEntityBase.cs" />
     <Compile Include="Model\ParentType.cs" />
+    <Compile Include="Model\Permissions.cs" />
     <Compile Include="Model\RoleNode.cs" />
     <Compile Include="Model\AuthorisationManagerServiceManager.cs" />
     <Compile Include="Model\UserNode.cs" />
@@ -113,10 +118,6 @@
     <ProjectReference Include="..\..\..\origin\Projects\DevelopmentInProgress.Origin\DevelopmentInProgress.Origin.csproj">
       <Project>{7bce5d35-0443-4031-843a-3563356290e1}</Project>
       <Name>DevelopmentInProgress.Origin</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\wpfcontrols\DevelopmentInProgress.WPFControls\DevelopmentInProgress.WPFControls.csproj">
-      <Project>{5acdc574-0f6f-48bc-ad2a-2f29bd7009fe}</Project>
-      <Name>DevelopmentInProgress.WPFControls</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Service\DevelopmentInProgress.AuthorisationManager.Service\DevelopmentInProgress.AuthorisationManager.Service.csproj">
       <Project>{f6cbd0d7-ccb3-44e2-97a9-549253a2ad35}</Project>
