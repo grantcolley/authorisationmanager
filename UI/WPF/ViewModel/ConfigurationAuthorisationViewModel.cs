@@ -6,10 +6,10 @@ using DevelopmentInProgress.AuthorisationManager.WPF.Model;
 using DevelopmentInProgress.DipCore;
 using DevelopmentInProgress.DipSecure;
 using DevelopmentInProgress.Origin.Context;
-using DevelopmentInProgress.Origin.Messages;
 using DevelopmentInProgress.Origin.ViewModel;
 using DevelopmentInProgress.WPFControls.Command;
 using DevelopmentInProgress.WPFControls.FilterTree;
+using DevelopmentInProgress.WPFControls.Messaging;
 using Microsoft.Practices.Prism.Logging;
 
 namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
@@ -104,7 +104,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
                 {
                     ShowMessage(new Message()
                     {
-                        MessageType = MessageTypeEnum.Error,
+                        MessageType = MessageType.Error,
                         Text = "Access denied."
                     });
 
@@ -117,7 +117,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Error,
+                    MessageType = MessageType.Error,
                     Text = ex.Message
                 }, true);
 
@@ -252,7 +252,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Warn,
+                    MessageType = MessageType.Warn,
                     Text = "Invalid drag item " + dragDropArgs.DragItem.GetType().Name
                 }, true);
             }
@@ -286,7 +286,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Error,
+                    MessageType = MessageType.Error,
                     Text = ex.Message
                 }, true);
 
@@ -324,7 +324,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Error,
+                    MessageType = MessageType.Error,
                     Text = ex.Message
                 }, true);
 
@@ -362,7 +362,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Error,
+                    MessageType = MessageType.Error,
                     Text = ex.Message
                 }, true);
 
@@ -409,7 +409,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Error,
+                    MessageType = MessageType.Error,
                     Text = ex.Message
                 }, true);
 
@@ -456,7 +456,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Error,
+                    MessageType = MessageType.Error,
                     Text = ex.Message
                 }, true);
 
@@ -474,7 +474,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Warn,
+                    MessageType = MessageType.Warn,
                     Text = string.Format("Can't remove activity {0} as it has no parent.", activityNode.Text)
                 }, true);
                 return;
@@ -502,7 +502,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Error,
+                    MessageType = MessageType.Error,
                     Text = ex.Message
                 }, true);
 
@@ -520,7 +520,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Warn,
+                    MessageType = MessageType.Warn,
                     Text = string.Format("Can't remove role {0} as it has no parent.", roleNode.Text)
                 }, true);
                 return;
@@ -547,7 +547,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Error,
+                    MessageType = MessageType.Error,
                     Text = ex.Message
                 }, true);
 
@@ -565,7 +565,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Warn,
+                    MessageType = MessageType.Warn,
                     Text = string.Format("Can't remove user {0} as the user has no parent.", userNode.Text)
                 }, true);
             }
@@ -585,7 +585,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Error,
+                    MessageType = MessageType.Error,
                     Text = ex.Message
                 }, true);
 
@@ -611,7 +611,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Error,
+                    MessageType = MessageType.Error,
                     Text = ex.Message
                 }, true);
 
@@ -636,7 +636,7 @@ namespace DevelopmentInProgress.AuthorisationManager.WPF.ViewModel
             {
                 ShowMessage(new Message()
                 {
-                    MessageType = MessageTypeEnum.Error,
+                    MessageType = MessageType.Error,
                     Text = ex.Message
                 }, true);
 

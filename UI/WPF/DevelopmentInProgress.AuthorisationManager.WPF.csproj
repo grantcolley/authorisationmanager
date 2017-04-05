@@ -38,8 +38,8 @@
       <HintPath>..\..\packages\DipSecure.1.6.0.0\lib\DevelopmentInProgress.DipSecure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DipWpfControls, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\DipWpfControls.1.6.0.0\lib\DipWpfControls.dll</HintPath>
+    <Reference Include="DipWpfControls, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DipWpfControls.2.0.0.0\lib\DipWpfControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism">
