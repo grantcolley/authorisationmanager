@@ -77,6 +77,12 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
+                if (string.IsNullOrWhiteSpace(activity.Name)
+                    || string.IsNullOrWhiteSpace(activity.ActivityCode))
+                {
+                    throw new Exception("Mandatory fields: Name, ActivityCode");
+                }
+
                 var savedActivity = authorisationManagerDataProxy.SaveActivity(activity);
                 serviceResponse.Payload = savedActivity;
             }
@@ -98,6 +104,12 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
+                if (string.IsNullOrWhiteSpace(role.Name)
+                    || string.IsNullOrWhiteSpace(role.RoleCode))
+                {
+                    throw new Exception("Mandatory fields: Name, RoleCode");
+                }
+
                 var savedRole = authorisationManagerDataProxy.SaveRole(role);
                 serviceResponse.Payload = savedRole;
             }
@@ -119,6 +131,12 @@ namespace DevelopmentInProgress.AuthorisationManager.Server
 
             try
             {
+                if (string.IsNullOrWhiteSpace(userAuthorisation.UserName)
+                    || string.IsNullOrWhiteSpace(userAuthorisation.DisplayName))
+                {
+                    throw new Exception("Mandatory fields: UserName, DisplayName");
+                }
+
                 var savedUserAuthorisation = authorisationManagerDataProxy.SaveUserAuthorisation(userAuthorisation);
                 serviceResponse.Payload = savedUserAuthorisation;
             }
