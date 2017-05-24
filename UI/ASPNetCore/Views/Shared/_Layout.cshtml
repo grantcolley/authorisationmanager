@@ -1,16 +1,29 @@
-﻿<!DOCTYOE html>
-    <html>
+﻿<!DOCTYPE html>
+<html>
 
     <head />
-    <title>Authorisation Manager - @ViewBag.Title</title>
-    <meta charset="utf-8" />
+        <title>Authorisation Manager - @ViewBag.Title</title>
+        <meta charset="utf-8" />
 
-    <link rel="stylesheet" href="/css/site.css" />
+        <!-- style sheets are applied in the order they are included so site.css will override bootstrap.min.css  -->
+        <!-- using the tilda ~ means the path is relative to the root of the app -->
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="~/lib/bootswatch/spacelab/bootstrap.min.css"/>
+        <link rel="stylesheet" href="~/css/site.css"/>
+
+    </head>
+
+    <body>
+        @RenderBody()
+
+
+        <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"/>
+        <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"/>
+
+        @RenderSection("Scripts", false);
+
+    </body>
 
 </html>
 
-<body>
-    @RenderBody()
-</body>
-
-</!DOCTYOE>
+</!DOCTYPE>

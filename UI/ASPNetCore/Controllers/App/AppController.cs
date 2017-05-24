@@ -8,5 +8,15 @@ namespace DevelopmentInProgress.AuthorisationManager.ASP.Net.Core.Controllers.Ap
         {
             return View();
         }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        public IActionResult About()
+        {
+            return View();
+        }
     }
 }

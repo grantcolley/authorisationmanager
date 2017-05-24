@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -12,6 +11,7 @@ namespace DevelopmentInProgress.AuthorisationManager.ASP.Net.Core
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add Mvc service
             services.AddMvc();
         }
 
@@ -20,13 +20,16 @@ namespace DevelopmentInProgress.AuthorisationManager.ASP.Net.Core
         {
             loggerFactory.AddConsole();
 
+            // Uses environment variable in project file.
             if (env.IsDevelopment())
             {
+                // Shows exception with stacktrace rather than HTTP 500 error.
                 app.UseDeveloperExceptionPage();
             }
 
             app.UseMvc(config =>
             {
+                // Map the default route
                 config.MapRoute(
                     name: "Default",
                     template: "{controller}/{action}/{id?}",
