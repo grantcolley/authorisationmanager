@@ -14,7 +14,27 @@
     </head>
 
     <body>
-        @RenderBody()
+
+        <div id="wrapper">
+
+            <div id="header" class="container-fluid">
+                <ul class="nav">
+                    <li class="active"><a asp-controller="App" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="App" asp-action="About">About</a></li>
+                    <li><a asp-controller="App" asp-action="Contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                @RenderBody()
+            </div>
+
+            <div id="footer">
+                <a href="https://github.com/grantcolley/authorisationmanager/tree/master/UI/ASPNetCore">Development In Progress Ltd</a>
+            </div>
+
+
+        </div>
 
 
         <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"/>
