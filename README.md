@@ -12,7 +12,7 @@ The Authorisation Manager system comprises several decoupled configurable applic
   * [Web App](#web-app)
 * [Service Layer](#service-layer)
   * [WCF Service](#wcf-service)
-  * [WebApi Client](#webapi)
+  * [WebApi](#webapi)
 * [Server](#server)
 * [Data Access Layer](#data-access-layer)
   * [MS SQL Server Data Access Library](#ms-sql-server-data-access-library)
