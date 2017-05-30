@@ -4,7 +4,7 @@ namespace DevelopmentInProgress.AuthorisationManager.ASP.Net.Core.Controllers.Ap
 {
     public class AppController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Home()
         {
             return View();
         }
