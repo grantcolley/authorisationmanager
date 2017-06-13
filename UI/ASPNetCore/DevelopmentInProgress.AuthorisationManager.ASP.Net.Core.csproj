@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Content Include="wwwroot\css\site.css" />
+    <Content Include="wwwroot\js\site.js" />
   </ItemGroup>
 
   <ItemGroup>
