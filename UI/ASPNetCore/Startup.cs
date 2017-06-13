@@ -27,6 +27,9 @@ namespace DevelopmentInProgress.AuthorisationManager.ASP.Net.Core
                 app.UseDeveloperExceptionPage();
             }
 
+            // Enables using static files in wwwroot folder (css, js, bootstrap etc...)
+            app.UseStaticFiles();
+
             app.UseMvc(config =>
             {
                 // Map the default route
