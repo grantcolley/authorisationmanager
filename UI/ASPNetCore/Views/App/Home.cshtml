@@ -2,4 +2,20 @@
     ViewBag.Title = "Home Page";
 }
 
-<h2>@ViewBag.Title</h2>
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#users">Users</a></li>
+    <li><a data-toggle="tab" href="#roles">Roles</a></li>
+    <li><a data-toggle="tab" href="#activities">Activities</a></li>
+</ul>
+
+<div class="tab-content">
+    <div id="users" class="tab-pane active">
+        Users
+    </div>
+    <div id="roles" class="tab-pane">
+        Roles
+    </div>
+    <div id="activities" class="tab-pane">
+        Activities
+    </div>
+</div>
