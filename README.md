@@ -1,7 +1,7 @@
 The Authorisation Manager system comprises several decoupled configurable application layers: [user interface](#user-interface), [service layer](#service-layer), [server](#server), [data access layer](#data-access-layer) and [database](#database).
 
 ##### Technologies
-* ###### WPF, Prism, Unity, WebApi 2.2, WCF, MS SQL Server, MySql, Oracle
+* ###### WPF, MVVM, Prism, Unity, WebApi 2.2, WCF, Asp.Net Core, MVC 6, Bootstrap, MS SQL Server, MySql, Oracle
 #####  
 
 ![Alt text](/README-images/component_diagram.png?raw=true "Component Diagram")
@@ -24,11 +24,11 @@ The Authorisation Manager system comprises several decoupled configurable applic
   * [MySql](#mysql)
 
 ## User Interface
-* ###### WPF, Prism, Unity, Origin framework
+* ###### WPF, MVVM, Prism, Unity, Asp.Net Core, MVC 6, Bootstrap, Origin framework
 #####  
 
 #### WPF
-* ###### WPF, Prism, Unity, Origin framework
+* ###### WPF, MVVM, Prism, Unity, Origin framework
 The [WPF UI](https://github.com/grantcolley/authorisationmanager/tree/master/UI/WPF) uses the [Origin](https://github.com/grantcolley/origin) framework which is a WPF shell application implementing MVVM, Prism and Unity for hosting line-of-business modules in a document style layout.
 
 The UI contains presentation only logic and relies on the [service layer](https://github.com/grantcolley/authorisationmanager/tree/master/Service/DevelopmentInProgress.AuthorisationManager.Service) for operational functionality via an instance of the [AuthorisationManagerServiceProxy](https://github.com/grantcolley/authorisationmanager/blob/master/Service/DevelopmentInProgress.AuthorisationManager.Service/AuthorisationManagerServiceProxy.cs).
@@ -36,8 +36,8 @@ The UI contains presentation only logic and relies on the [service layer](https:
 ![Alt text](/README-images/wpf_ui.PNG?raw=true "WPF GUI")
 
 #### Web App
-Development in progress...
-
+* ###### Asp.Net, MVC 6, Bootstrap
+[*Development in progress...*](https://github.com/grantcolley/authorisationmanager/tree/master/UI/ASPNetCore)
 
 ## Service Layer
 * ###### WebApi 2.2, WCF, Unity
