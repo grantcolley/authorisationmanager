@@ -8,14 +8,77 @@
     <li><a data-toggle="tab" href="#activities">Activities</a></li>
 </ul>
 
-<div class="tab-content">
+<div id="authorisation" class="tab-content">
     <div id="users" class="tab-pane active">
-        Users
+        <form id="userform" class="authorisation-label authorisation-input-text">
+            <fieldset>
+                <legend>
+                    <img src="~/images/home/users.png" alt="User" class="authorisation-img"/>
+                    <label>User</label>
+                    <input type="image" value="Submit" src="~/images/home/save.png"/>
+                    <a href="#" onclick="document.getElementById("userform").reset();"><img src="~/images/home/clear.png" alt="Add New"/></a>
+                </legend>                 
+                <ul style="list-style-type:none">
+                    <li>
+                        <label>Id</label>
+                        <label></label>
+                    </li>
+                    <li>
+                        <label>User Name</label>
+                        <input type="text" value="User name" />
+                    </li>
+                    <li>
+                        <label>Display Name</label>
+                        <input type="text" value="Display name" />
+                    </li>
+                </ul>
+            </fieldset>
+        </form>
     </div>
     <div id="roles" class="tab-pane">
-        Roles
+        <fieldset>
+            <legend><img src="~/images/home/role.png" alt="Role" class="authorisation-img"/><label>Role</label></legend>
+            <ul style="list-style-type:none">
+                <li>
+                    <label>Id</label>
+                    <label></label>
+                </li>
+                <li>
+                    <label>Name</label>
+                    <input type="text" value="Role name"/>
+                </li>
+                <li>
+                    <label>Role Code</label>
+                    <input type="text" value="Role code"/>
+                </li>
+                <li>
+                    <label>Description</label>
+                    <input type="text" value="Description"/>
+                </li>
+            </ul>
+        </fieldset>
     </div>
     <div id="activities" class="tab-pane">
-        Activities
+        <fieldset>
+            <legend><img src="~/images/home/activity.png" alt="Activity" class="authorisation-img"/><label>Activity</label></legend>
+            <ul style="list-style-type:none">
+                <li>
+                    <label>Id</label>
+                    <label></label>
+                </li>
+                <li>
+                    <label>Name</label>
+                    <input type="text" value="Activity name" />
+                </li>
+                <li>
+                    <label>Activity Code</label>
+                    <input type="text" value="Activity code" />
+                </li>
+                <li>
+                    <label>Description</label>
+                    <input type="text" value="Description" />
+                </li>
+            </ul>
+        </fieldset>
     </div>
 </div>
