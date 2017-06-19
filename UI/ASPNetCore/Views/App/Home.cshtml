@@ -10,13 +10,13 @@
 
 <div id="authorisation" class="tab-content">
     <div id="users" class="tab-pane active">
-        <form id="userform" class="authorisation-label authorisation-input-text">
+        <form id="userform">
             <fieldset>
                 <legend>
                     <img src="~/images/home/users.png" alt="User" class="authorisation-img"/>
                     <label>User</label>
-                    <input type="image" value="Submit" src="~/images/home/save.png"/>
-                    <a href="#" onclick="document.getElementById("userform").reset();"><img src="~/images/home/clear.png" alt="Add New"/></a>
+                    <input type="image" value="Submit" src="~/images/home/save.png" class="authorisation-legend-aref-img"/>
+                    <a href="javascript:document.getElementById('userform').reset();"><img src="~/images/home/clear.png" alt="Reset"/></a>
                 </legend>                 
                 <ul style="list-style-type:none">
                     <li>
@@ -36,49 +36,63 @@
         </form>
     </div>
     <div id="roles" class="tab-pane">
-        <fieldset>
-            <legend><img src="~/images/home/role.png" alt="Role" class="authorisation-img"/><label>Role</label></legend>
-            <ul style="list-style-type:none">
-                <li>
-                    <label>Id</label>
-                    <label></label>
-                </li>
-                <li>
-                    <label>Name</label>
-                    <input type="text" value="Role name"/>
-                </li>
-                <li>
-                    <label>Role Code</label>
-                    <input type="text" value="Role code"/>
-                </li>
-                <li>
-                    <label>Description</label>
-                    <input type="text" value="Description"/>
-                </li>
-            </ul>
-        </fieldset>
+        <form id="roleform">
+            <fieldset>
+                <legend>
+                    <img src="~/images/home/role.png" alt="Role" class="authorisation-img" />
+                    <label>Role</label>
+                    <input type="image" value="Submit" src="~/images/home/save.png" class="authorisation-legend-aref-img" />
+                    <a href="javascript:document.getElementById('roleform').reset();"><img src="~/images/home/clear.png" alt="Reset" /></a>
+                </legend>
+                <ul style="list-style-type:none">
+                    <li>
+                        <label>Id</label>
+                        <label></label>
+                    </li>
+                    <li>
+                        <label>Name</label>
+                        <input type="text" value="Role name" />
+                    </li>
+                    <li>
+                        <label>Role Code</label>
+                        <input type="text" value="Role code" />
+                    </li>
+                    <li>
+                        <label>Description</label>
+                        <input type="text" value="Description" />
+                    </li>
+                </ul>
+            </fieldset>
+        </form>
     </div>
     <div id="activities" class="tab-pane">
-        <fieldset>
-            <legend><img src="~/images/home/activity.png" alt="Activity" class="authorisation-img"/><label>Activity</label></legend>
-            <ul style="list-style-type:none">
-                <li>
-                    <label>Id</label>
-                    <label></label>
-                </li>
-                <li>
-                    <label>Name</label>
-                    <input type="text" value="Activity name" />
-                </li>
-                <li>
-                    <label>Activity Code</label>
-                    <input type="text" value="Activity code" />
-                </li>
-                <li>
-                    <label>Description</label>
-                    <input type="text" value="Description" />
-                </li>
-            </ul>
-        </fieldset>
+        <form id="activityform">
+            <fieldset>
+                <legend>
+                    <img src="~/images/home/activity.png" alt="Activity" class="authorisation-img" />
+                    <label>Activity</label>
+                    <input type="image" value="Submit" src="~/images/home/save.png" class="authorisation-legend-aref-img" />
+                    <a href="javascript:document.getElementById('activityform').reset();"><img src="~/images/home/clear.png" alt="Reset" /></a>
+                </legend>
+                <ul style="list-style-type:none">
+                    <li>
+                        <label>Id</label>
+                        <label></label>
+                    </li>
+                    <li>
+                        <label>Name</label>
+                        <input type="text" value="Activity name" />
+                    </li>
+                    <li>
+                        <label>Activity Code</label>
+                        <input type="text" value="Activity code" />
+                    </li>
+                    <li>
+                        <label>Description</label>
+                        <input type="text" value="Description" />
+                    </li>
+                </ul>
+            </fieldset>
+        </form>
     </div>
 </div>

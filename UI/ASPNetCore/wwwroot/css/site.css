@@ -1,8 +1,14 @@
 ﻿/* site.css - custom style sheet*/
 
-.authorisation-img{
+.authorisation-img {
     margin-left:10px;
     margin-right:10px
+}
+
+.authorisation-legend-aref-img {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    max-height:30px
 }
 
 #authorisation label {
