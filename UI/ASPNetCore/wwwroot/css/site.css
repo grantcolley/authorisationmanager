@@ -2,13 +2,23 @@
 
 .authorisation-img {
     margin-left:10px;
-    margin-right:10px
+    margin-right:10px;
+    width: 30px;
+    height: 30px;
 }
 
 .authorisation-legend-aref-img {
-    margin-top: 10px;
-    margin-bottom: 0px;
-    max-height:30px
+    vertical-align: middle;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+.authorisation-legend-divider {
+    width: 140px;
+    height: auto;
+    display: inline-block;
 }
 
 #authorisation label {
