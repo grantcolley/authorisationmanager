@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DevelopmentInProgress.AuthorisationManager.ASP.Net.Core.ViewModels.UserViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -10,7 +11,7 @@
 
 <div id="authorisation" class="tab-content">
     <div id="users" class="tab-pane active">
-        <form id="userform">
+        <form id="userform" method="post">
             <fieldset>
                 <legend>
                     <img src="~/images/home/users.png" alt="User" class="authorisation-img"/>
@@ -21,16 +22,16 @@
                 </legend>                 
                 <ul style="list-style-type:none">
                     <li>
-                        <label>Id</label>
-                        <label></label>
+                        <label asp-for="Id"></label>
+                        <input asp-for="Id" />
                     </li>
                     <li>
-                        <label>User Name</label>
-                        <input type="text" value="User name" />
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" />
                     </li>
                     <li>
-                        <label>Display Name</label>
-                        <input type="text" value="Display name" />
+                        <label asp-for="DisplayName"></label>
+                        <input asp-for="DisplayName" />
                     </li>
                 </ul>
             </fieldset>
