@@ -5,13 +5,13 @@ namespace DevelopmentInProgress.AuthorisationManager.ASP.Net.Core.Controllers.Ap
 {
     public class AppController : Controller
     {
-        public IActionResult Home()
+        public IActionResult Authorisation()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Home(UserViewModel userViewModel)
+        public IActionResult Authorisation(UserViewModel userViewModel)
         {
             return View();
         }

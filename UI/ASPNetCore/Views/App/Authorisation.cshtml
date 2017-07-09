@@ -1,6 +1,5 @@
-﻿@model DevelopmentInProgress.AuthorisationManager.ASP.Net.Core.ViewModels.UserViewModel
-@{
-    ViewBag.Title = "Home Page";
+﻿@{
+    ViewBag.Title = "Authorisation Page";
 }
 
 <ul class="nav nav-tabs">
@@ -11,41 +10,17 @@
 
 <div id="authorisation" class="tab-content">
     <div id="users" class="tab-pane active">
-        <form id="userform" method="post">
-            <fieldset>
-                <legend>
-                    <img src="~/images/home/users.png" alt="User" class="authorisation-img"/>
-                    <label>User</label>
-                    <div class="authorisation-legend-divider"></div>
-                    <input type="image" value="Submit" src="~/images/home/save.png" class="authorisation-legend-aref-img"/>
-                    <a href="javascript:document.getElementById('userform').reset();"><img src="~/images/home/clear.png" alt="Reset"/></a>
-                </legend>                 
-                <ul style="list-style-type:none">
-                    <li>
-                        <label asp-for="Id"></label>
-                        <input asp-for="Id" />
-                    </li>
-                    <li>
-                        <label asp-for="Name"></label>
-                        <input asp-for="Name" />
-                    </li>
-                    <li>
-                        <label asp-for="DisplayName"></label>
-                        <input asp-for="DisplayName" />
-                    </li>
-                </ul>
-            </fieldset>
-        </form>
+        
     </div>
     <div id="roles" class="tab-pane">
         <form id="roleform">
             <fieldset>
                 <legend>
-                    <img src="~/images/home/role.png" alt="Role" class="authorisation-img" />
+                    <img src="~/images/authorisation/role.png" alt="Role" class="authorisation-img" />
                     <label>Role</label>
                     <div class="authorisation-legend-divider"></div>
-                    <input type="image" value="Submit" src="~/images/home/save.png" class="authorisation-legend-aref-img" />
-                    <a href="javascript:document.getElementById('roleform').reset();"><img src="~/images/home/clear.png" alt="Reset" /></a>
+                    <input type="image" value="Submit" src="~/images/authorisation/save.png" class="authorisation-legend-aref-img" />
+                    <a href="javascript:document.getElementById('roleform').reset();"><img src="~/images/authorisation/clear.png" alt="Reset" /></a>
                 </legend>
                 <ul style="list-style-type:none">
                     <li>
@@ -72,11 +47,11 @@
         <form id="activityform">
             <fieldset>
                 <legend>
-                    <img src="~/images/home/activity.png" alt="Activity" class="authorisation-img" />
+                    <img src="~/images/authorisation/activity.png" alt="Activity" class="authorisation-img" />
                     <label>Activity</label>
                     <div class="authorisation-legend-divider"></div>
-                    <input type="image" value="Submit" src="~/images/home/save.png" class="authorisation-legend-aref-img" />
-                    <a href="javascript:document.getElementById('activityform').reset();"><img src="~/images/home/clear.png" alt="Reset" /></a>
+                    <input type="image" value="Submit" src="~/images/authorisation/save.png" class="authorisation-legend-aref-img" />
+                    <a href="javascript:document.getElementById('activityform').reset();"><img src="~/images/authorisation/clear.png" alt="Reset" /></a>
                 </legend>
                 <ul style="list-style-type:none">
                     <li>

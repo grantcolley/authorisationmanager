@@ -6,6 +6,11 @@
 
   <ItemGroup>
     <Content Include="wwwroot\css\site.css" />
+    <Content Include="wwwroot\images\authorisation\activity.png" />
+    <Content Include="wwwroot\images\authorisation\clear.png" />
+    <Content Include="wwwroot\images\authorisation\role.png" />
+    <Content Include="wwwroot\images\authorisation\save.png" />
+    <Content Include="wwwroot\images\authorisation\users.png" />
     <Content Include="wwwroot\js\site.js" />
   </ItemGroup>
 
