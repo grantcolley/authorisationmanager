@@ -6,7 +6,7 @@ namespace DevelopmentInProgress.AuthorisationManager.ASP.Net.Core.Controllers.Ap
     {
         public IActionResult Home()
         {
-            return View("Authorisation");
+            return RedirectToAction("Authorisation", "Authorisation");
         }
 
         public IActionResult Contact()
