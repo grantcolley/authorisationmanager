@@ -36,7 +36,7 @@ namespace DevelopmentInProgress.AuthorisationManager.ASP.Net.Core
                 config.MapRoute(
                     name: "Default",
                     template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "App", action = "Authorisation" });
+                    defaults: new { controller = "App", action = "Home" });
             });
         }
     }
