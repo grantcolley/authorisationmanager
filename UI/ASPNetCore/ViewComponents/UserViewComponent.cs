@@ -7,9 +7,14 @@ namespace DevelopmentInProgress.AuthorisationManager.ASP.Net.Core.ViewComponents
     [ViewComponent(Name="User")]
     public class UserViewComponent : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(UserViewModel userViewModel)
         {
-            return View(new UserViewModel());
+            if (userViewModel == null)
+            {
+                userViewModel = new UserViewModel();
+            }
+
+            return View(userViewModel);
         }
     }
 }
