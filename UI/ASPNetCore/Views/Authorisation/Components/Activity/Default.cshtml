@@ -1,0 +1,31 @@
+﻿@model DevelopmentInProgress.AuthorisationManager.ASP.Net.Core.ViewModels.ActivityViewModel
+
+<form id="activityform" asp-controller="Authorisation" asp-action="ActivitySave">
+    <fieldset>
+        <legend>
+            <img src="~/images/authorisation/activity.png" alt="Activity" class="authorisation-img" />
+            <label>Activity</label>
+            <div class="authorisation-legend-divider"></div>
+            <input type="image" value="Submit" src="~/images/authorisation/save.png" class="authorisation-legend-aref-img" />
+            <a href="javascript:document.getElementById('activityform').reset();"><img src="~/images/authorisation/clear.png" alt="Reset" /></a>
+        </legend>
+        <ul style="list-style-type:none">
+            <li>
+                <label asp-for="Id"></label>
+                <input asp-for="Id" />
+            </li>
+            <li>
+                <label asp-for="Name"></label>
+                <input asp-for="Name" />
+            </li>
+            <li>
+                <label asp-for="ActivityCode"></label>
+                <input asp-for="ActivityCode" />
+            </li>
+            <li>
+                <label asp-for="Description"></label>
+                <input asp-for="Description" />
+            </li>
+        </ul>
+    </fieldset>
+</form>

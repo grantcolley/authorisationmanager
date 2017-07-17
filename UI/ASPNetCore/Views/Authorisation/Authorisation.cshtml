@@ -12,68 +12,12 @@
 
 <div id="authorisation" class="tab-content">
     <div id="users" class="tab-pane active">
-        @await Component.InvokeAsync("User", User)
+        @await Component.InvokeAsync("User", @Model.User)
     </div>
     <div id="roles" class="tab-pane">
-        <form id="roleform">
-            <fieldset>
-                <legend>
-                    <img src="~/images/authorisation/role.png" alt="Role" class="authorisation-img" />
-                    <label>Role</label>
-                    <div class="authorisation-legend-divider"></div>
-                    <input type="image" value="Submit" src="~/images/authorisation/save.png" class="authorisation-legend-aref-img" />
-                    <a href="javascript:document.getElementById('roleform').reset();"><img src="~/images/authorisation/clear.png" alt="Reset" /></a>
-                </legend>
-                <ul style="list-style-type:none">
-                    <li>
-                        <label>Id</label>
-                        <label></label>
-                    </li>
-                    <li>
-                        <label>Name</label>
-                        <input type="text" value="Role name" />
-                    </li>
-                    <li>
-                        <label>Role Code</label>
-                        <input type="text" value="Role code" />
-                    </li>
-                    <li>
-                        <label>Description</label>
-                        <input type="text" value="Description" />
-                    </li>
-                </ul>
-            </fieldset>
-        </form>
+        @await  Component.InvokeAsync("Role", @Model.Role)
     </div>
     <div id="activities" class="tab-pane">
-        <form id="activityform">
-            <fieldset>
-                <legend>
-                    <img src="~/images/authorisation/activity.png" alt="Activity" class="authorisation-img" />
-                    <label>Activity</label>
-                    <div class="authorisation-legend-divider"></div>
-                    <input type="image" value="Submit" src="~/images/authorisation/save.png" class="authorisation-legend-aref-img" />
-                    <a href="javascript:document.getElementById('activityform').reset();"><img src="~/images/authorisation/clear.png" alt="Reset" /></a>
-                </legend>
-                <ul style="list-style-type:none">
-                    <li>
-                        <label>Id</label>
-                        <label></label>
-                    </li>
-                    <li>
-                        <label>Name</label>
-                        <input type="text" value="Activity name" />
-                    </li>
-                    <li>
-                        <label>Activity Code</label>
-                        <input type="text" value="Activity code" />
-                    </li>
-                    <li>
-                        <label>Description</label>
-                        <input type="text" value="Description" />
-                    </li>
-                </ul>
-            </fieldset>
-        </form>
+        @await Component.InvokeAsync("Activity", @Model.Activity)
     </div>
 </div>

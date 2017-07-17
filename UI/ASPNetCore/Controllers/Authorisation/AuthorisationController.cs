@@ -17,5 +17,21 @@ namespace DevelopmentInProgress.AuthorisationManager.ASP.Net.Core.Controllers.Au
             authorisation.User = user;
             return View("Authorisation", authorisation);
         }
+
+        [HttpPost]
+        public IActionResult RoleSave(RoleViewModel role)
+        {
+            var authorisation = new AuthorisationViewModel();
+            authorisation.Role = role;
+            return View("Authorisation", authorisation);
+        }
+
+        [HttpPost]
+        public IActionResult ActivitySave(ActivityViewModel activity)
+        {
+            var authorisation = new AuthorisationViewModel();
+            authorisation.Activity = activity;
+            return View("Authorisation", authorisation);
+        }
     }
 }
