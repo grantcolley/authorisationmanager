@@ -7,14 +7,9 @@ namespace DevelopmentInProgress.AuthorisationManager.ASP.Net.Core.ViewComponents
     [ViewComponent(Name="Activity")]
     public class ActivityViewComponent : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync(ActivityViewModel activity)
+        public async Task<IViewComponentResult> InvokeAsync(AuthorisationViewModel authorisation)
         {
-            if (activity == null)
-            {
-                activity = new ActivityViewModel();
-            }
-
-            return View(activity);
+            return View(authorisation);
         }
     }
 }

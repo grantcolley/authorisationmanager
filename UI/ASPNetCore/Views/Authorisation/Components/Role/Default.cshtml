@@ -1,4 +1,4 @@
-﻿@model DevelopmentInProgress.AuthorisationManager.ASP.Net.Core.ViewModels.RoleViewModel
+﻿@model DevelopmentInProgress.AuthorisationManager.ASP.Net.Core.ViewModels.AuthorisationViewModel
 
 <form id="roleform" asp-controller="Authorisation" asp-action="RoleSave">
     <fieldset>
@@ -11,20 +11,20 @@
         </legend>
         <ul style="list-style-type:none">
             <li>
-                <label asp-for="Id"></label>
-                <input asp-for="Id" />
+                <label asp-for="Role.Id"></label>
+                <input asp-for="Role.Id" />
             </li>
             <li>
-                <label asp-for="Name"></label>
-                <input asp-for="Name" />
+                <label asp-for="Role.Name"></label>
+                <input asp-for="Role.Name" />
             </li>
             <li>
-                <label asp-for="RoleCode"></label>
-                <input asp-for="RoleCode" />
+                <label asp-for="Role.RoleCode"></label>
+                <input asp-for="Role.RoleCode" />
             </li>
             <li>
-                <label asp-for="Description"></label>
-                <input asp-for="Description" />
+                <label asp-for="Role.Description"></label>
+                <input asp-for="Role.Description" />
             </li>
         </ul>
     </fieldset>

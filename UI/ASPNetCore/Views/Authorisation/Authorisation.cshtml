@@ -12,12 +12,12 @@
 
 <div id="authorisation" class="tab-content">
     <div id="users" class="tab-pane active">
-        @await Component.InvokeAsync("User", @Model.User)
+        @await Component.InvokeAsync("User", Model)
     </div>
     <div id="roles" class="tab-pane">
-        @await  Component.InvokeAsync("Role", @Model.Role)
+        @await  Component.InvokeAsync("Role", Model)
     </div>
     <div id="activities" class="tab-pane">
-        @await Component.InvokeAsync("Activity", @Model.Activity)
+        @await Component.InvokeAsync("Activity", Model)
     </div>
 </div>

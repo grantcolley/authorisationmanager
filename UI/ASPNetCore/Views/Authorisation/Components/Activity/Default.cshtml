@@ -1,4 +1,4 @@
-﻿@model DevelopmentInProgress.AuthorisationManager.ASP.Net.Core.ViewModels.ActivityViewModel
+﻿@model DevelopmentInProgress.AuthorisationManager.ASP.Net.Core.ViewModels.AuthorisationViewModel
 
 <form id="activityform" asp-controller="Authorisation" asp-action="ActivitySave">
     <fieldset>
@@ -11,20 +11,20 @@
         </legend>
         <ul style="list-style-type:none">
             <li>
-                <label asp-for="Id"></label>
-                <input asp-for="Id" />
+                <label asp-for="Activity.Id"></label>
+                <input asp-for="Activity.Id" />
             </li>
             <li>
-                <label asp-for="Name"></label>
-                <input asp-for="Name" />
+                <label asp-for="Activity.Name"></label>
+                <input asp-for="Activity.Name" />
             </li>
             <li>
-                <label asp-for="ActivityCode"></label>
-                <input asp-for="ActivityCode" />
+                <label asp-for="Activity.ActivityCode"></label>
+                <input asp-for="Activity.ActivityCode" />
             </li>
             <li>
-                <label asp-for="Description"></label>
-                <input asp-for="Description" />
+                <label asp-for="Activity.Description"></label>
+                <input asp-for="Activity.Description" />
             </li>
         </ul>
     </fieldset>
