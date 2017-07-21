@@ -4,6 +4,30 @@
     ViewBag.Title = "Authorisation Page";
 }
 
+<script>
+    $(function () {
+
+        $('#userTree').jstree({
+            'core': {
+                'data': {
+                    'url': '/Authorisation/UserTree',
+                    'data': function (node) {
+                        return { 'id': node.id };
+                    }
+                }
+            }
+        });
+        
+        $('#userTree').on('changed.jstree', function (e, data) {
+            var i, j, r = [];
+            for (i = 0, j = data.selected.length; i < j; i++) {
+                r.push(data.instance.get_node(data.selected[i]).text);
+            }
+            alert('Selected: ' + r.join(', '));
+        }).jstree();
+    });
+</script>
+
 <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#users">Users</a></li>
     <li><a data-toggle="tab" href="#roles">Roles</a></li>
@@ -14,10 +38,29 @@
     <div id="users" class="tab-pane active">
         @await Component.InvokeAsync("User", Model)
     </div>
-    <div id="roles" class="tab-pane">
-        @await  Component.InvokeAsync("Role", Model)
-    </div>
-    <div id="activities" class="tab-pane">
-        @await Component.InvokeAsync("Activity", Model)
+        <div id="roles" class="tab-pane">
+            @await Component.InvokeAsync("Role", Model)
+        </div>
+        <div id="activities" class="tab-pane">
+            @await Component.InvokeAsync("Activity", Model)
+        </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        JsTree Demo
+                    </div>
+                    <div class="panel-body">
+                        <div id="userTree">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+            </div>
+        </div>
     </div>
 </div>
