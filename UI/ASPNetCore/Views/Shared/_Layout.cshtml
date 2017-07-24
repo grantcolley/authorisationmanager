@@ -11,6 +11,9 @@
         <link rel="stylesheet" href="~/lib/bootswatch/spacelab/bootstrap.css"/>
         <link rel="stylesheet" href="~/css/site.css"/>
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+
     </head>
 
     <body>
@@ -35,7 +38,7 @@
                 <div class="row">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-10" style="background-color:whitesmoke">
-                        @RenderBody()
+                        @RenderBody()                        
                     </div>
                     <div class="col-lg-1"></div>
                 </div>
@@ -52,6 +55,10 @@
         <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
         <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script type="text/javascript" src="~/js/site.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+        <script type="text/javascript" src="~/js/tree.js"></script>
+
         @RenderSection("Scripts", false)
 
     </body>
