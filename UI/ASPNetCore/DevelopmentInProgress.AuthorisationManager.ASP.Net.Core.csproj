@@ -12,7 +12,6 @@
     <Content Include="wwwroot\images\authorisation\save.png" />
     <Content Include="wwwroot\images\authorisation\users.png" />
     <Content Include="wwwroot\js\site.js" />
-    <Content Include="wwwroot\js\tree.js" />
   </ItemGroup>
 
   <ItemGroup>
